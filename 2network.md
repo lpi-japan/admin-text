@@ -3,73 +3,11 @@
 ## ネットワークインターフェイスの設定
 ネットワークインターフェースには、IPアドレスなどネットワーク通信のための各種設定が必要となります。ネットワーク環境に合わせて設定を変更します。
 
-### ネットワーク設定の確認
-ifconfigを使ってネットワーク設定の確認を行います。ifconfigコマンドは、ネットワークインターフェースの状態を表示します。
-
-```shell-session
-# ifconfig
-eth0      Link encap:Ethernet  HWaddr 00:1C:42:DC:25:92  
-          inet addr:192.168.0.10  Bcast:192.168.0.255  Mask:255.255.255.0
-          inet6 addr: fe80::21c:42ff:fedc:2592/64 Scope:Link
-          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-          RX packets:6267 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:3120 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000 
-          RX bytes:706436 (689.8 KiB)  TX bytes:472809 (461.7 KiB)
-
-lo        Link encap:Local Loopback  
-          inet addr:127.0.0.1  Mask:255.0.0.0
-          inet6 addr: ::1/128 Scope:Host
-          UP LOOPBACK RUNNING  MTU:65536  Metric:1
-          RX packets:45 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:45 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:0 
-          RX bytes:5792 (5.6 KiB)  TX bytes:5792 (5.6 KiB)
-```
-
-### デフォルトゲートウェイの確認
-デフォルトゲートウェイの確認にはrouteコマンドまたはnetstat -rnコマンドを使います。
-
-```shell-session
-# route
-Kernel IP routing table
-Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
-192.168.0.0     *               255.255.255.0   U     1      0        0 eth0
-default         192.168.0.1     0.0.0.0         UG    0      0        0 eth0
-```
-
-Destinationがdefaultになっている行がデフォルトゲートウェイの設定です。この例では、192.168.0.1がネットワークインターフェースeth0から通信する場合のデフォルトゲートウェイとして設定されています。
-
-### ネットワークインターフェースの設定ファイル
-ネットワークインターフェースの設定ファイルは、/etc/sysconfig/network-scriptsディレクトリ以下に格納されています。ファイル名は「ifcfg-ネットワークインターフェース名」です。
-たとえば、最初のネットワークインターフェースはeth0というネットワークインターフェース名で認識されるので、設定ファイルはifcfg-eth0となります。
-
-```shell-session
-# cat /etc/sysconfig/network-scripts/ifcfg-eth0 
-DEVICE=eth0
-TYPE=Ethernet
-UUID=c9eaa5e8-a31a-4d36-8dc7-2fc8de8350b3
-ONBOOT=yes
-NM_CONTROLLED=yes
-BOOTPROTO=none
-HWADDR=00:1C:42:DC:25:92
-IPADDR=192.168.0.10
-PREFIX=24
-GATEWAY=192.168.0.1
-DNS1=192.168.0.1
-DEFROUTE=yes
-IPV4_FAILURE_FATAL=yes
-IPV6INIT=no
-NAME="System eth0"
-```
-
 ### ipコマンドを使ったネットワークインターフェースの設定
 ipコマンドは、ネットワークインターフェースの状態の確認や設定、ルーティングテーブルの表示や追加、削除、ARPテーブルの確認や削除など、ネットワークにおける操作全般を行うことができます。
-CentOSでは今後、ifconfig/route/arp/netstatコマンドなどnet-toolsパッケージに含まれていたコマンドは標準ではなくなり、ipコマンドに置き換わっていきます。
 
-
-#### IPアドレス、MACアドレスの確認
-IPアドレスやMACアドレスの確認にはip address showコマンドを実行します。これは従来のifconfigコマンドに相当します。
+### ネットワーク設定の確認
+IPアドレスやMACアドレスの確認にはip address showコマンドを実行します。
 
 ```shell-session
 # ip address show
@@ -85,7 +23,7 @@ IPアドレスやMACアドレスの確認にはip address showコマンドを実
        valid_lft forever preferred_lft forever
 ```
 
-#### ルーティングテーブルの確認
+### ルーティングテーブル、デフォルトゲートウェイの確認
 ルーティングテーブルの確認を行うにはip route showコマンドを実行します。これは従来のrouteコマンドに相当します。
 
 ```shell-session
@@ -94,8 +32,11 @@ IPアドレスやMACアドレスの確認にはip address showコマンドを実
 default via 192.168.0.1 dev eth0  proto static 
 ```
 
-#### ARPテーブルの確認
-ARPテーブルの確認を行うにはip neighbor showコマンドを実行します。これは従来のarpコマンドに相当します。neighborはneighに省略できます。
+defaultになっている行がデフォルトゲートウェイの設定です。この例では、192.168.0.1がネットワークインターフェースeth0から通信する場合のデフォルトゲートウェイとして設定されています。
+
+
+### ARPテーブルの確認
+ARPテーブルの確認を行うにはip neighbor showコマンドを実行します。neighborはneighに省略できます。
 
 ```shell-session
 #  ip neigh show
@@ -103,7 +44,8 @@ ARPテーブルの確認を行うにはip neighbor showコマンドを実行し�
 192.168.0.2 dev eth0 lladdr 00:1c:42:00:00:08 REACHABLE
 ```
 
-### netstatコマンドを使った設定確認
+## netstatコマンドを使った設定確認
+※ssコマンドに置き換え
 netstatコマンドはネットワークの各種状態を確認することができます。よく使用するオプションは以下の通りです。
 
 |オプション|説明|
@@ -116,7 +58,7 @@ netstatコマンドはネットワークの各種状態を確認することが�
 |-u|UDPの統計情報を表示|
 
 
-#### ネットワークインターフェースの統計情報の表示
+### ネットワークインターフェースの統計情報の表示
 netstat -iコマンドは、各ネットワークインターフェースのパケット転送量を分かりやすく表示します。
 
 ```shell-session
@@ -127,7 +69,7 @@ eth0       1500   0    47780      0      0      0    16784      0      0      0 
 lo        65536   0     2366      0      0      0     2366      0      0      0 LRU
 ```
 
-#### TCP通信の状態の表示
+### TCP通信の状態の表示
 すべてのTCP通信の状態を表示したい場合には、netstat -natコマンドを実行します。
 
 ```shell-session
@@ -146,7 +88,7 @@ tcp        0      0 :::37114                    :::*                        LIST
 tcp        0      0 :::111                      :::*                        LISTEN      
 ```
 
-#### 待ち受けTCPポートの表示
+### 待ち受けTCPポートの表示
 待ち受けているすべてのTCPのポートを表示したい場合には、netstat -nltコマンドを実行します。
 
 ```shell-session
@@ -165,7 +107,7 @@ tcp        0      0 :::37114                    :::*                        LIST
 tcp        0      0 :::111                      :::*                        LISTEN      
 ```
 
-#### 待ち受けUDPポートの表示
+### 待ち受けUDPポートの表示
 待ち受けているすべてのUDPのポートを表示したい場合には、netstat -nluコマンドを実行します。
 
 ```shell-session
@@ -189,7 +131,7 @@ udp        0      0 :::39182                    :::*
 udp        0      0 :::655                      :::*                                    
 ```
 
-### ping コマンドを使用した疎通の確認
+## ping コマンドを使用した疎通の確認
 リモートのホストにIPのパケットが到達できるか確認するためにはpingコマンドを実行します。Ctrl+Cを実行するまで無制限に実行されます。
 
 ```shell-session
@@ -289,39 +231,6 @@ supports-test: no
 supports-eeprom-access: no
 supports-register-dump: no
 supports-priv-flags: no
-```
-
-## networkサービスとNetworkManager 
-CentOS 6上のネットワークの管理は、networkサービス、もしくはNetworkManagerサービスで行います。
-networkサービスは、Linuxで従来から使われているネットワーク管理の仕組みです。起動時に設定ファイルからネットワークの情報を読み込み、ネットワークインターフェースに対してIPアドレスなどの設定を行ったり、デフォルトゲートウェイやDNSサーバの情報を起動時に反映させます。中身はシェルスクリプトの集まりです。
-
-一方、NetworkManagerはLinuxにおけるネットワークの管理を抽象化して新たに作った仕組みです。また、NetworkManagerは、Linuxのプロセス間通信でよく使用されるD-BusのAPIを持っており、ネットワークを利用するアプリケーションと連携を行うことができます。
-
-CentOS 6はNeworkManagerを標準で使用していますが、Minimalでインストールした場合や、NetworkManagerに対応していないアプリケーションを使うためにnetworkサービスを使用したい場合には、NetworkManagerを停止し、networkサービスを有効にします。
-
-### NetworkManagerの停止とnetworkサービスの有効化
-networkサービスを有効化したい場合には、事前にNetworkManagerを停止、無効化した上で、networkサービスを起動、有効化します。
-なお、これらの作業はSSHにてネットワーク経由でログインしている時には行わないでください。接続が切れてしまいシステムを制御できなくなる場合があります。
-
-serviceコマンドを使ってNetworkManagerサービスを停止し、chkconfigコマンドでシステム起動時のNetworkManagerサービスの自動実行を無効にしておきます。
-
-```shell-session
-# service NetworkManager stop
-NetworkManager デーモンを停止中:                           [  OK  ]
-# chkconfig NetworkManager off
-# chkconfig --list NetworkManager
-NetworkManager 	0:off	1:off	2:off	3:off	4:off	5:off	6:off
-```
-
-serviceコマンドでnetworkサービスを実行し、chkconfigコマンドでシステム起動時のnetworkサービスの自動実行を有効にしておきます。
-
-```shell-session
-# service network start
-ループバックインターフェイスを呼び込み中                   [  OK  ]
-インターフェース eth0 を活性化中:                          [  OK  ]
-# chkconfig network on
-# chkconfig --list network
-network        	0:off	1:off	2:on	3:on	4:on	5:on	6:off
 ```
 
 ## 各種ネットワーク設定ファイル
@@ -649,214 +558,64 @@ system-config-firewall-tuiで設定を変更すると、/etc/sysconfig/iptables�
 COMMIT
 ```
 
-## DHCPサーバの構築
-DHCPは、IPアドレスを自動的に取得するためのプロトコルです。DHCPからDHCPクライアントに対して、IPアドレスなどの設定を自動的に提供する仕組みになっています。
 
-### DHCPサーバは1つだけ設置
-DHCPサーバは、同一ネットワークセグメント内に1つだけ設置します。DHCPサーバを同一ネットワークセグメント内に複数設置すると、クライアントは先に受け取ったDHCPサーバからの設定でIPアドレスなどを設定します。
+## ファイアウォールの設定
+ファイアウォールはネットワークにおいて様々なアクセス制限を行い、ネットワークからの攻撃や不正なアクセス等を防ぐ機能です。
 
-DHCPプロトコルはルーターを越えることができないので、ルーターで分割された別のネットワークには別のDHCPサーバを設置できます。
+AlmaLinuxのファイアウォール機能はfirewalldによって管理されています。firewalldでは、ネットワークインターフェースへのパケットの受信の許可、拒否のルールを管理しています。firewalldの設定は、firewall-cmdコマンドで行います。
 
-たとえば、本番運用されているDHCPサーバが存在するネットワークにテスト目的のためのDHCPサーバを設置すると、ユーザーが誤ったIPアドレスを取得してしまうおそれがあります。このような場合には、テスト目的のホストは手動でIPアドレスを設定するか、VLANやL3スイッチなどを使って本番用とテスト用を別々のネットワークとして分離します。
+### ファイアウォール設定の確認
+まず、許可されているサービスを調べます。
 
-### DHCPサーバのインストール
-DHCPサーバを動作させるにはdhcpパッケージをインストールします。
-
-```shell-session
-# yum install dhcp
+```
+$ sudo firewall-cmd --list-services
+cockpit dhcpv6-client http ssh
 ```
 
-### DHCPサーバの設定
-DHCPサーバの設定ファイル/etc/dhcp/dhcpd.conf の設定は最小限、以下の記述があれば動作します。設定行の最後には「;」（セミコロン）を記述します。
+ここでは、HTTPやSSHなどのプロトコルが使用するポートが受信を許可されています。
 
-```shell-session
-ddns-update-style none;
+### 許可サービスの追加
+サービスの許可を追加します。以下の例では、imapサービスを許可しています。
 
-subnet 192.168.0.0 netmask 255.255.255.0 {
-   range 192.168.0.200 192.168.0.254;
-}
+```
+$ sudo firewall-cmd --add-service=imap
+success
 ```
 
-この設定では、以下のような値を設定しています。
+この設定は即座に有効になりますが、システムを再起動すると有効にはなりません。再起動後も有効にするには、これまでの実習で行った以下のような設定を行った後に再読み込みを行うか、後述する設定の保存を行います。
 
-|設定項目|意味|値|
-|-------|-------|-------|
-|ddns-update-style|ダイナミックDNS機能との連動|none（連動しない）|
-|subnet|ネットワークアドレス|192.168.0.0|
-|netmask|ネットマスク|255.255.255.0|
-|range|開始IPアドレスと終了IPアドレス|192.168.0.200から192.168.0.254|
-
-### その他のDHCPサーバの設定パラメーター
-DHCPサーバでは、基本的なIPアドレスのほかに、以下のようなパラメーターをDHCPクライアントに対して提供できます。
-
-```shell-session
-ddns-update-style none;
-
-subnet 192.168.0.0 netmask 255.255.255.0 {
-   range 192.168.0.200 192.168.0.254;
-   option routers 192.168.0.1;
-   option domain-name-servers 192.168.0.1,192.168.0.2;
-   default-lease-time 18000;
-   max-lease-time 36000;
-}
+```
+$ sudo firewall-cmd --add-service=imap --zone=public --permanent
+$ sudo firewall-cmd --reload
 ```
 
-|設定項目|意味|値|
-|-------|-------|-------|
-|option routers|デフォルトゲートウェイを設定|192.168.0.1|
-|option domain-name-servers|DNSサーバを指定。複数指定はカンマ区切りで記述|192.168.0.1と192.168.0.2|
-|default-lease-time|デフォルトのリース時間(秒)を指定|18000（5時間）|
-|max-lease-time|最大のリース時間(秒)を指定|36000（10時間）|
+### 設定可能なサービスの確認
+設定可能なサービスはあらかじめ定義されているので、一覧を確認してみます。
 
-リース時間が過ぎるとDHCPクライアントはDHCPサーバに対してIPアドレスの再要求を行います。クライアントがIPアドレス要求時にリース時間を指定しなかった場合には、default-lease-timeの時間がリース時間として設定されます。クライアントがリース時間を指定しても、max-lease-timeより長い時間のリース時間は設定されません。
-
-### 特定のクライアントに固定IPアドレスを割り当てる
-特定のクライアントに固定IPアドレスを割り当てたい場合は、host設定を行い、hardware ethernetでクライアントのMACアドレスを指定し、fixed-addressで固定IPアドレスを割り当てます。
-
-```shell-session
-host client1 {
-    hardware ethernet FA:16:3E:01:DB:D0;
-    fixed-address 192.168.0.10;
-}
+```
+$ sudo firewall-cmd --get-services
+RH-Satellite-6 amanda-client amanda-k5-client bacula bacula-client bgp bitcoin bitcoin-rpc bitcoin-testnet bitcoin-testnet-rpc ceph ceph-mon cfengine condor-collector ctdb dhcp dhcpv6 dhcpv6-client dns docker-registry docker-swarm dropbox-lansync elasticsearch freeipa-ldap freeipa-ldaps freeipa-replication freeipa-trust ftp ganglia-client ganglia-master git gre high-availability http https imap imaps ipp ipp-client ipsec irc ircs iscsi-target jenkins kadmin kerberos kibana klogin kpasswd kprop kshell ldap ldaps libvirt libvirt-tls managesieve mdns minidlna mongodb mosh mountd ms-wbt mssql murmur mysql nfs nfs3 nmea-0183 nrpe ntp openvpn ovirt-imageio ovirt-storageconsole ovirt-vmconsole pmcd pmproxy pmwebapi pmwebapis pop3 pop3s postgresql privoxy proxy-dhcp ptp pulseaudio puppetmaster quassel radius redis rpc-bind rsh rsyncd samba samba-client sane sip sips smtp smtp-submission smtps snmp snmptrap spideroak-lansync squid ssh syncthing syncthing-gui synergy syslog syslog-tls telnet tftp tftp-client tinc tor-socks transmission-client upnp-client vdsm vnc-server wbem-https xmpp-bosh xmpp-client xmpp-local xmpp-server zabbix-agent zabbix-server
 ```
 
-### DHCPサービスの開始
-serviceコマンドでDHCPサービスを起動します。システム起動時にDHCPサービスを自動的に起動するためには、chkconfig コマンドで有効化します。
+プロトコル名の場合もあれば、使用したいソフトウェアの名称で定義されている場合もあります。
 
-```shell-session
-# service dhcpd start
-# chkconfig dhcpd on
+### 許可サービスの取り消し
+許可されているサービスを取り消しすることもできます。
+
+```
+$ sudo firewall-cmd --remove-service=imap
+success
 ```
 
-### LinuxでのDHCPクライアントの設定
-LinuxクライアントでDHCPを有効にするには、ネットワークインターフェースの設定ファイルに「BOOTPROTO= dhcp」を記述します。
-DHCPサーバからDNSの情報を受け取った場合、デフォルトでクライアントの /etc/resolv.conf が自動的に変更される仕様になっています。/etc/resolv.confの変更を有効にするためにはPEERDNSオプションでyesを指定します。
+この設定も一時的なもので、システムの再起動時に許可したくない場合には、次の設定の保存が必要です。
 
-```shell-session
-$ cat /etc/sysconfig/network-scripts/ifcfg-eth0
-DEVICE= eth0
-BOOTPROTO= dhcp
-ONBOOT= yes
-PEERDNS=yes
+### ファイアウォール設定の保存
+上記の方法で行ったファイアウォールルールの変更は、一時的なものです。そのため、再起動をすると失われてしまいます。再起動後も設定を有効にするには、現在の設定を保存します。
+
+```
+$ sudo firewall-cmd --runtime-to-permanent
 ```
 
-networkサービスを再起動します。
 
-```shell-session
-# service network restart
-```
 
-設定されたIPアドレス、デフォルトゲートウェイ、DNSなどを確認します。
 
-```shell-session
-$ ifconfig eth0
-eth0      Link encap:Ethernet  HWaddr 00:1C:42:D0:CA:A0  
-          inet addr:192.168.0.200  Bcast:192.168.0.255  Mask:255.255.255.0
-（略）
-```
-
-```shell-session
-$ route
-Kernel IP routing table
-Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
-192.168.0.0     *               255.255.255.0   U     1      0        0 eth0
-default         192.168.0.1     0.0.0.0         UG    0      0        0 eth0
-```
-
-```shell-session
-$ cat /etc/resolv.conf 
-# Generated by NetworkManager
-nameserver 192.168.0.1
-nameserver 192.168.0.2
-```
-
-### WindowsクライアントでのDHCPクライアントの設定
-WindowsクライアントでDHCPを有効にするには、ネットワークアダプターの設定を変更して、「IPアドレスを自動的に取得する」を有効にします。
-
-1. コントロールパネルから「ネットワークと共有センター」を実行します。
-
-![「ネットワークと共有センター」を実行します](network1.png)
-
-Windows7の場合、「コントロール パネル」から「ネットワークと共有センター」を実行します。
-
-＃2
-
-2. ネットワーク接続の一覧画面を呼び出します。
-
-![「アダプターの設定の変更」をクリックします](network2.png)
-
-「アダプターの設定の変更」をクリックします。
-
-＃3
-
-3. アダプターのプロパティダイアログを呼び出します。
-
-![アダプターを右クリックして、プロパティを選択します](network3.png)
-
-使用するネットワークアダプターを右クリックして、ポップアップメニューから「プロパティ」を選択します。
-
-＃4
-
-4. TCP/IPv4のプロパティダイアログを呼び出します。
-
-![TCP/IPv4を選択して、「プロパティ」ボタンをクリックします](network4.png)
-
-「インターネットプロトコルバージョン4 (TCP/IPv4)」を選択し、「プロパティ」ボタンをクリックします。
-
-＃5
-
-5. DHCPクライアントとして設定します。
-
-![自動的に取得するように設定します](network5.png)
-
-「IPアドレスを自動的に取得する」を選択します。DNSサーバの設定もDHCPサーバから取得する場合には、「DNSサーバのアドレスを自動的に取得する」を選択します。「OK」ボタンをクリックします。
-
-＃6
-
-6. アダプターのプロパティダイアログを閉じます。
-「閉じる」ボタンをクリックします。
-
-7. 接続状態を確認します。
-
-![接続状態が確認できます](network6.png)
-
-使用するネットワークアダプターをダブルクリックします。接続状態によって「IPv4接続」の状態表記が変わります。
-
-＃8
-
-8. 設定の詳細を確認します。
-
-![IPアドレスなどが確認できます](network7.png)
-
-設定されたIPアドレス、デフォルトゲートウェイ、DNSなどを確認するには、「詳細」ボタンをクリックします。
-
-### DHCPサーバが提供しているIPアドレスの確認
-DHCPサーバがDHCPクライアントに提供しているIPアドレスの一覧は/var/lib/dhcpd/dhcpd.leasesのリースデータベースファイルの中に記録されています。
-
-```shell-session
-[root@server ~]# cat /var/lib/dhcpd/dhcpd.leases
-# The format of this file is documented in the dhcpd.leases(5) manual page.
-# This lease file was written by isc-dhcp-4.1.1-P1
-
-server-duid "\000\001\000\001\034H\217F\000\034B\334%\222";
-
-lease 192.168.0.200 {
-  starts 3 2015/01/14 02:22:17;
-  ends 3 2015/01/14 07:22:17;
-  cltt 3 2015/01/14 02:22:17;
-  binding state active;
-  next binding state free;
-  hardware ethernet 00:1c:42:d0:ca:a0;
-  client-hostname "client";
-}
-lease 192.168.0.201 {
-  starts 3 2015/01/14 02:22:40;
-  ends 3 2015/01/14 07:22:40;
-  cltt 3 2015/01/14 02:22:40;
-  binding state active;
-  next binding state free;
-  hardware ethernet 00:1c:42:46:9b:b4;
-  uid "\001\000\034BF\233\264";
-  client-hostname "TORUWIN7MACPRO";
-}
-```
