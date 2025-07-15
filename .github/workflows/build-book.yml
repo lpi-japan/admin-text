@@ -44,6 +44,24 @@ jobs:
         name: linux-system-admin-textbook-web
         path: output/linux-system-admin-textbook-web/
         
+    - name: Create release archives
+      if: github.ref == 'refs/heads/main'
+      run: |
+        cd output
+        # Create timestamped versions for latest builds
+        TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+        cp linux-system-admin-textbook.pdf "linux-system-admin-textbook-latest.pdf"
+        tar -czf "linux-system-admin-textbook-web-latest.tar.gz" linux-system-admin-textbook-web/
+        
+    - name: Upload latest release files
+      if: github.ref == 'refs/heads/main'
+      uses: actions/upload-artifact@v4
+      with:
+        name: linux-system-admin-textbook-latest
+        path: |
+          output/linux-system-admin-textbook-latest.pdf
+          output/linux-system-admin-textbook-web-latest.tar.gz
+        
     - name: Deploy to GitHub Pages
       if: github.ref == 'refs/heads/main'
       uses: peaceiris/actions-gh-pages@v3
