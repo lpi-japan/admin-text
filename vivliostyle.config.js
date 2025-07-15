@@ -3,7 +3,7 @@ module.exports = {
   author: 'LPI-Japan',
   language: 'ja',
   size: 'A4',
-  // theme: '@vivliostyle/theme-techbook',
+  theme: '@vivliostyle/theme-techbook',
   css: 'fonts.css',
   entry: [
     '0preface.md',
