@@ -1,0 +1,56 @@
+name: Preview Book
+
+on:
+  pull_request:
+    branches: [ main ]
+    
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build preview
+      run: npm run build
+      
+    - name: Comment PR with preview link
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const path = require('path');
+          
+          // Check if PDF was generated
+          const pdfPath = 'output/linux-system-admin-textbook.pdf';
+          const pdfExists = fs.existsSync(pdfPath);
+          
+          const comment = `
+          ## 📚 書籍プレビュー
+          
+          ${pdfExists ? '✅ PDF生成成功' : '❌ PDF生成失敗'}
+          
+          ### アーティファクト
+          - PDF版: このワークフローの Artifacts からダウンロード可能
+          - Web版: このワークフローの Artifacts からダウンロード可能
+          
+          ### ファイル情報
+          ${pdfExists ? `- PDF サイズ: ${(fs.statSync(pdfPath).size / 1024 / 1024).toFixed(2)} MB` : '- PDF生成に失敗しました'}
+          `;
+          
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: comment
+          });

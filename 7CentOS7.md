@@ -1,91 +1,100 @@
-# CentOS 7�ւ̈ڍs
-## CentOS 7�ւ̈ڍs
-�{���ȏ��ł�CentOS 6���g���ĉ�������Ă��܂������A���݂ł͐V�����o�[�W�����ł���CentOS 7�������[�X����Ă��܂��B
+# CentOS 7への移行
 
-CentOS 7�ւ̃o�[�W�����A�b�v�����{�I�ȉ^�p�Ǘ��̒m���͑傫���͕ς��܂��񂪁ACentOS 7�ő傫���ύX�ɂȂ����ȉ��̓_�ɂ��ĉ�����܂��B
+## CentOS 7への移行
 
-* SysV init����systemd�ւ̈ڍs
-* journald�ɂ�郍�O�L�^
-* firewalld�ɂ��p�P�b�g�t�B���^�����O
+本教科書ではCentOS 6を使って解説をしてきましたが、現在では新しいバージョンであるCentOS 7もリリースされています。
 
-�܂��A�ύX���ꂽ�킯�ł͂���܂��񂪁A�l�b�g���[�N��NetworkManager��CentOS 6�ƕς�炸�W���Ȃ̂ŁACUI��NetworkManager�p�̃c�[���ł���nmtui���Љ�܂��B
+CentOS 7へのバージョンアップ後も基本的な運用管理の知識は大きくは変わりませんが、CentOS 7で大きく変更になった以下の点について解説します。
 
-## SysV init����systemd�ւ̈ڍs
-CentOS 7����A����܂ł̃T�[�r�X�Ǘ��ł���SysV init�A�܂���Upstart����Linux�����̐V�����T�[�r�X�Ǘ��}�l�[�W���[�ł���usystemd�v�ɒu���������܂����B/etc/rc.d�f�B���N�g���ȉ��̃T�[�r�X�N���X�N���v�g���g������������߂��܂����B
+- SysV initからsystemdへの移行
+- journaldによるログ記録
+- firewalldによるパケットフィルタリング
 
-�ȒP��systemd�ł̃T�[�r�X�Ǘ��ɂ��ĉ�����܂��B
+また、変更されたわけではありませんが、ネットワークはNetworkManagerがCentOS 6と変わらず標準なので、CUIのNetworkManager用のツールであるnmtuiを紹介します。
 
-### ���j�b�g�ł̊Ǘ�
-�]���������x����T�[�r�X�ƌĂ΂�Ă����d�g�݂́Asystemd�ł́u���j�b�g�v�Ƃ��čĒ�`����܂����B���j�b�g�ɂ́A�u�^�[�Q�b�g�v�i�������x���ɑ����j���j�b�g��u�T�[�r�X�v���j�b�g������A���ꂼ��̃��j�b�g�͈ˑ��֌W�̒�`���ł���悤�ɂȂ��Ă��܂��B
+## SysV initからsystemdへの移行
 
-�ˑ��֌W�Ƃ́A���Ƃ��΁u���̃T�[�r�X�����s����ɂ͂��炩���߂��̃T�[�r�X�����s����Ă��Ȃ���΂Ȃ�Ȃ��v�Ƃ����֌W�ł��B�]����SysV init�ł̓T�[�r�X�ɂ͈ˑ��֌W�������������߁A�T�[�r�X�����ԂɎ��s����Ƃ������@�ňˑ��֌W���������Ă��܂����B�������A���s�̏��Ԃ�ۏ؂��邽�߂�1�����s����u���񏈗��v�ƂȂ邽�߁A�V�X�e���N�����x���Ȃ�Ƃ�����_������܂����B
+CentOS 7から、これまでのサービス管理であるSysV init、またはUpstartからLinux向けの新しいサービス管理マネージャーである「systemd」に置き換えられました。/etc/rc.dディレクトリ以下のサービス起動スクリプトを使う方式から改められました。
 
-systemd�ł͈ˑ��֌W�ɂȂ��T�[�r�X���u���񏈗��v�Ŏ��s���邽�߁A�����ɃV�X�e�����N���ł���Ƃ������_������܂��B
+簡単にsystemdでのサービス管理について解説します。
 
-��ȃ��j�b�g�̎�ނ͈ȉ��̒ʂ�ł��B
+### ユニットでの管理
 
-|���j�b�g|����|
-|-------|-------|
-|service|�]���̃T�[�r�X�Ɠ��l|
-|target|�T�[�r�X�����܂Ƃ߂邽�߂̃��j�b�g|
-|mount|�}�E���g�|�C���g|
-|swap|�X���b�v�̈�|
-|device|�f�o�C�X|
+従来ランレベルやサービスと呼ばれていた仕組みは、systemdでは「ユニット」として再定義されました。ユニットには、「ターゲット」（ランレベルに相当）ユニットや「サービス」ユニットがあり、それぞれのユニットは依存関係の定義ができるようになっています。
 
-### �T�[�r�X�̑���
-systemd�ł́A�T�[�r�X�̋N�����~���s���̂�systemctl�R�}���h���g�p���܂��B����͏]����service�R�}���h�ɑ������܂��B
+依存関係とは、たとえば「このサービスを実行するにはあらかじめこのサービスが実行されていなければならない」という関係です。従来のSysV initではサービスには依存関係が無かったため、サービスを順番に実行するという方法で依存関係を解消していました。しかし、実行の順番を保証するために1つずつ実行する「順列処理」となるため、システム起動が遅くなるという難点がありました。
 
-Web�T�[�r�X�̋N�����~�A�ċN���A�����ď�Ԃ̊m�F���s���ɂ́A�ȉ���systemctl�R�}���h���g�p���܂��B
+systemdでは依存関係にないサービスを「並列処理」で実行するため、高速にシステムを起動できるという利点があります。
 
-#### �T�[�r�X�̋N��
-systemctl start�R�}���h�ŁA�T�[�r�X���N�����܂��B
+主なユニットの種類は以下の通りです。
+
+| ユニット | 役割                                 |
+| -------- | ------------------------------------ |
+| service  | 従来のサービスと同様                 |
+| target   | サービスを取りまとめるためのユニット |
+| mount    | マウントポイント                     |
+| swap     | スワップ領域                         |
+| device   | デバイス                             |
+
+### サービスの操作
+
+systemdでは、サービスの起動や停止を行うのにsystemctlコマンドを使用します。これは従来のserviceコマンドに相当します。
+
+Webサービスの起動や停止、再起動、そして状態の確認を行うには、以下のsystemctlコマンドを使用します。
+
+#### サービスの起動
+
+systemctl startコマンドで、サービスを起動します。
 
 ```shell-session
 # systemctl start httpd
 ```
 
-#### �T�[�r�X�̃X�e�[�^�X�m�F
-systemctl status�R�}���h�ŁA�T�[�r�X�̃X�e�[�^�X���m�F�ł��܂��B
+#### サービスのステータス確認
 
-systemd�ł́A�T�[�r�X�̃v���Z�X���u�R���g���[���O���[�v�v�icgroup�j�Ƃ���Linux�J�[�l���̎d�g�݂Ŏ��s����悤�ɕς��܂����Bcgroup���g�����ƂŁACPU�⃁�����Ȃǂ̃��\�[�X���_��Ɋ��蓖�Ă邱�Ƃ��ł��闘�_������܂��B
+systemctl statusコマンドで、サービスのステータスを確認できます。
+
+systemdでは、サービスのプロセスを「コントロールグループ」（cgroup）というLinuxカーネルの仕組みで実行するように変わりました。cgroupを使うことで、CPUやメモリなどのリソースを柔軟に割り当てることができる利点があります。
 
 ```shell-session
 # systemctl status httpd
 httpd.service - The Apache HTTP Server
    Loaded: loaded (/usr/lib/systemd/system/httpd.service; disabled)
-   Active: active (running) since �� 2015-01-28 15:23:50 JST; 33s ago
+   Active: active (running) since 水 2015-01-28 15:23:50 JST; 33s ago
  Main PID: 2926 (httpd)
    Status: "Total requests: 0; Current requests/sec: 0; Current traffic:   0 B/sec"
    CGroup: /system.slice/httpd.service
-           ����2926 /usr/sbin/httpd -DFOREGROUND
-           ����2927 /usr/sbin/httpd -DFOREGROUND
-           ����2928 /usr/sbin/httpd -DFOREGROUND
-           ����2929 /usr/sbin/httpd -DFOREGROUND
-           ����2930 /usr/sbin/httpd -DFOREGROUND
-           ����2931 /usr/sbin/httpd -DFOREGROUND
+           ├─2926 /usr/sbin/httpd -DFOREGROUND
+           ├─2927 /usr/sbin/httpd -DFOREGROUND
+           ├─2928 /usr/sbin/httpd -DFOREGROUND
+           ├─2929 /usr/sbin/httpd -DFOREGROUND
+           ├─2930 /usr/sbin/httpd -DFOREGROUND
+           └─2931 /usr/sbin/httpd -DFOREGROUND
 
- 1�� 28 15:23:50 centos7.example.com httpd[2926]: AH00557: httpd: apr_sockad...
- 1�� 28 15:23:50 centos7.example.com httpd[2926]: AH00558: httpd: Could not ...
- 1�� 28 15:23:50 centos7.example.com systemd[1]: Started The Apache HTTP Ser...
+ 1月 28 15:23:50 centos7.example.com httpd[2926]: AH00557: httpd: apr_sockad...
+ 1月 28 15:23:50 centos7.example.com httpd[2926]: AH00558: httpd: Could not ...
+ 1月 28 15:23:50 centos7.example.com systemd[1]: Started The Apache HTTP Ser...
 Hint: Some lines were ellipsized, use -l to show in full.
 ```
 
-#### �T�[�r�X�̍ċN��
-systemctl restart�R�}���h�ŁA�T�[�r�X���ċN�����܂��B
+#### サービスの再起動
+
+systemctl restartコマンドで、サービスを再起動します。
 
 ```shell-session
 # systemctl restart httpd
 # systemctl status httpd
 httpd.service - The Apache HTTP Server
    Loaded: loaded (/usr/lib/systemd/system/httpd.service; disabled)
-   Active: active (running) since �� 2015-01-28 15:24:40 JST; 2s ago
+   Active: active (running) since 水 2015-01-28 15:24:40 JST; 2s ago
   Process: 2945 ExecStop=/bin/kill -WINCH ${MAINPID} (code=exited, status=0/SUCCESS)
  Main PID: 2950 (httpd)
-�i���j
+（略）
 ```
 
-#### �T�[�r�X�̒�~
-systemctl stop�R�}���h�ŁA�T�[�r�X���~���܂��B
+#### サービスの停止
+
+systemctl stopコマンドで、サービスを停止します。
 
 ```shell-session
 # systemctl stop httpd
@@ -95,41 +104,42 @@ httpd.service - The Apache HTTP Server
    Active: inactive (dead)
 ```
 
-### ���j�b�g�ꗗ�̎擾
-systemd�ŊǗ�����Ă��郆�j�b�g�̈ꗗ���擾����ɂ́Asystemctl list-unit-files�R�}���h�����s���܂��B
+### ユニット一覧の取得
+
+systemdで管理されているユニットの一覧を取得するには、systemctl list-unit-filesコマンドを実行します。
 
 ```shell-session
 # systemctl list-unit-files
 ```
 
-���ׂĂ̎�ނ̃��j�b�g���\������Ă��܂��̂ŁA���j�b�g�̎�ނ��i�荞�ނɂ�-t�I�v�V������t�^���Ď��s���܂��B
+すべての種類のユニットが表示されてしまうので、ユニットの種類を絞り込むには-tオプションを付与して実行します。
 
-���Ƃ��΁Aservice���j�b�g������\������ɂ͈ȉ���systemctl�R�}���h�����s���܂��B����͏]����chkconfig --list�R�}���h�ɑ������܂��B
+たとえば、serviceユニットだけを表示するには以下のsystemctlコマンドを実行します。これは従来のchkconfig --listコマンドに相当します。
 
 ```shell-session
 # systemctl list-unit-files -t service
 ```
 
-�\�������X�e�[�^�X�iSTATE�j�̈Ӗ��͈ȉ��̒ʂ�ł��B
+表示されるステータス（STATE）の意味は以下の通りです。
 
+| ステータス | 意味                                     |
+| ---------- | ---------------------------------------- |
+| enabled    | システム起動時に実行される               |
+| disabled   | システム起動時に実行されない             |
+| static     | システム起動時の実行の有無は設定できない |
 
-|�X�e�[�^�X|�Ӗ�|
-|-------|-------|
-|enabled|�V�X�e���N�����Ɏ��s�����|
-|disabled|�V�X�e���N�����Ɏ��s����Ȃ�|
-|static|�V�X�e���N�����̎��s�̗L���͐ݒ�ł��Ȃ�|
+### 現在のユニットの状況を確認
 
-### ���݂̃��j�b�g�̏󋵂��m�F
-���݂̃��j�b�g�̏󋵂��m�F����ɂ́Asystemctl list-units�R�}���h�����s���܂��Bsystemctl�R�}���h�̃f�t�H���g�͂��̃T�u�R�}���h�̎w��ɂȂ��Ă��܂��B
+現在のユニットの状況を確認するには、systemctl list-unitsコマンドを実行します。systemctlコマンドのデフォルトはこのサブコマンドの指定になっています。
 
-�ȉ��̗�͓������ʂ�Ԃ��܂��B
+以下の例は同じ結果を返します。
 
 ```shell-session
 # systemctl list-units
 # systemctl
 ```
 
--t�I�v�V�������g���āAservice���j�b�g�����ɍi�荞�ނ��Ƃ��ł��܂��B
+-tオプションを使って、serviceユニットだけに絞り込むこともできます。
 
 ```shell-session
 # systemctl -t service
@@ -137,43 +147,45 @@ UNIT                         LOAD   ACTIVE SUB     DESCRIPTION
 abrt-ccpp.service            loaded active exited  Install ABRT coredump hook
 abrt-oops.service            loaded active running ABRT kernel log watcher
 abrt-xorg.service            loaded active running ABRT Xorg log watcher
-abrtd.service                loaded active running ABRT Automated Bug Reporting 
+abrtd.service                loaded active running ABRT Automated Bug Reporting
 alsa-state.service           loaded active running Manage Sound Card State (rest
 atd.service                  loaded active running Job spooling tools
-�i���j
+（略）
 kdump.service                loaded failed failed  Crash recovery kernel arming
-�i���j
+（略）
 ```
 
-�\���̈Ӗ��͈ȉ��̒ʂ�ł��B
+表示の意味は以下の通りです。
 
-|����|�Ӗ�|
-|-------|-------|
-|UNIT|���j�b�g��|
-|LOAD|systemd�ւ̐ݒ�̓ǂݍ��ݏ�|
-|ACTIVE|���s��Ԃ̊T�v�Bactive��inactive�ŕ\�����|
-|SUB|���s��Ԃ̏ڍׁBrunning�i���s���j��exited�i���s�������I�������j�Ȃǂŕ\�����B|
-|DESCRIPTION|���j�b�g�̐���|
+| 項目        | 意味                                                                            |
+| ----------- | ------------------------------------------------------------------------------- |
+| UNIT        | ユニット名                                                                      |
+| LOAD        | systemdへの設定の読み込み状況                                                   |
+| ACTIVE      | 実行状態の概要。activeかinactiveで表される                                      |
+| SUB         | 実行状態の詳細。running（実行中）やexited（実行したが終了した）などで表される。 |
+| DESCRIPTION | ユニットの説明                                                                  |
 
-�f�t�H���g�ł́A����ACTIVE�̎��s��Ԃ�active�ɂȂ��Ă�����݂̂̂��\������Ă��܂��Binactive�̃��j�b�g���\������ɂ�--all�I�v�V������t�^���Ď��s���܂��B
+デフォルトでは、項目ACTIVEの実行状態がactiveになっているもののみが表示されています。inactiveのユニットも表示するには--allオプションを付与して実行します。
 
-����LOAD�́Asystemctl mask�R�}���h�Ŗ�����������masked�ɕς��܂��B�ڍׂ͌�q���܂��B
+項目LOADは、systemctl maskコマンドで無効化されるとmaskedに変わります。詳細は後述します。
 
-����ACTIVE��failed�ɂȂ��Ă���ƁA���炩�̌����ŋN�����s���Ă���Ƃ������ƂɂȂ�܂��B��L�̗�ł́Akdump�i�J�[�l���_���v�j�T�[�r�X�̋N���Ɏ��s���Ă��܂��B
+項目ACTIVEがfailedになっていると、何らかの原因で起動失敗しているということになります。上記の例では、kdump（カーネルダンプ）サービスの起動に失敗しています。
 
-### �f�o�C�X�ꗗ�̊m�F
--t device�I�v�V������t�^���āA�f�o�C�X�ꗗ��\�����܂��B
+### デバイス一覧の確認
+
+-t deviceオプションを付与して、デバイス一覧を表示します。
 
 ```shell-session
 # systemctl list-units -t device
 UNIT                                                                                     LOAD   ACTIVE SUB     DESCRIPTION
 sys-devices-pci0000:00-0000:00:05.0-virtio0-net-eth0.device                              loaded active plugged Virtio network device
 sys-devices-pci0000:00-0000:00:1f.2-ata3-host2-target2:0:0-2:0:0:0-block-sda-sda1.device loaded active plugged CentOS_7-0_SSD
-�i���j
+（略）
 ```
 
-### �}�E���g�󋵂̊m�F
--t mount�I�v�V������t�^���āA�}�E���g�̏󋵈ꗗ��\�����܂��B
+### マウント状況の確認
+
+-t mountオプションを付与して、マウントの状況一覧を表示します。
 
 ```shell-session
 # systemctl list-units -t mount
@@ -183,44 +195,47 @@ boot.mount                   loaded active mounted /boot
 dev-hugepages.mount          loaded active mounted Huge Pages File System
 dev-mqueue.mount             loaded active mounted POSIX Message Queue File Syst
 home.mount                   loaded active mounted /home
-�i���j
+（略）
 ```
 
-### �X���b�v�󋵂̊m�F
--t swap�I�v�V������t�^���āA�X���b�v�̏󋵈ꗗ��\�����܂��B
+### スワップ状況の確認
+
+-t swapオプションを付与して、スワップの状況一覧を表示します。
 
 ```shell-session
 # systemctl list-units -t swap
 UNIT             LOAD   ACTIVE SUB    DESCRIPTION
 dev-dm\x2d0.swap loaded active active /dev/dm-0
-�i���j
+（略）
 ```
 
-### �T�[�r�X�̎����N���̐ݒ�
-�V�X�e���N�����ɃT�[�r�X�������N������ɂ́Asystemctl enable�R�}���h�����s���܂��B����͏]����chkconfig�R�}���h�ɑ������܂��B
+### サービスの自動起動の設定
 
-��Ƃ��āAWeb�T�[�r�X���V�X�e���N�����Ɏ����N������悤�ɐݒ肵�܂��B/usr/lib/systemd/system/httpd.service��Web�T�[�r�X�̋N���X�N���v�g�ł��Bsystemctl enable�R�}���h�����s����ƁA/etc/systemd/system/multi-user.target.wants�f�B���N�g���ɃV���{���b�N�����N���쐬����܂��B
+システム起動時にサービスを自動起動するには、systemctl enableコマンドを実行します。これは従来のchkconfigコマンドに相当します。
 
-���̓���́Amulti-user.target�^�[�Q�b�g���j�b�g���Ăяo���ꂽ���ɁA�V���{���b�N�����N�̋N���X�N���v�g�����s�����悤�ɐݒ肵�Ă��܂��BSysV init�ɂ�����/etc/init.d�f�B���N�g�����̃T�[�r�X�N���X�N���v�g��/etc/rc.d�f�B���N�g�����Ƀ������x�����ɍ쐬�����V���{���b�N�����N�̊֌W�ɑ������܂��B
+例として、Webサービスをシステム起動時に自動起動するように設定します。/usr/lib/systemd/system/httpd.serviceがWebサービスの起動スクリプトです。systemctl enableコマンドを実行すると、/etc/systemd/system/multi-user.target.wantsディレクトリにシンボリックリンクが作成されます。
+
+この動作は、multi-user.targetターゲットユニットが呼び出された時に、シンボリックリンクの起動スクリプトが実行されるように設定しています。SysV initにおける/etc/init.dディレクトリ内のサービス起動スクリプトと/etc/rc.dディレクトリ内にランレベル毎に作成されるシンボリックリンクの関係に相当します。
 
 ```shell-session
 # systemctl enable httpd
 ln -s '/usr/lib/systemd/system/httpd.service' '/etc/systemd/system/multi-user.target.wants/httpd.service'
 ```
 
-�V�X�e���N�����̎����N�����s��Ȃ��悤�ɂ���ɂ́Asystemctl disable�R�}���h�����s���܂��B�쐬���ꂽ�V���{���b�N�����N���폜����A�N���X�N���v�g�͌Ăяo����Ȃ��Ȃ�܂��B
+システム起動時の自動起動を行わないようにするには、systemctl disableコマンドを実行します。作成されたシンボリックリンクが削除され、起動スクリプトは呼び出されなくなります。
 
 ```shell-session
 # systemctl disable httpd
 rm '/etc/systemd/system/multi-user.target.wants/httpd.service'
 ```
 
-### �T�[�r�X��systemd����̏��O
-systemctl mask�R�}���h�����s����ƁA�w�肵���T�[�r�X��systemd�̊Ǘ����珜�O����A�蓮�ł̋N�����s���Ȃ��Ȃ�܂��B
+### サービスのsystemdからの除外
 
-����Ƃ��ẮA/etc/systemd/system/httpd.service��/dev/null�ւ̃V���{���b�N�����N�Ƃ��č쐬����A���̋N���X�N���v�g���Ăяo����Ă������s���Ȃ��Ȃ�܂��B
+systemctl maskコマンドを実行すると、指定したサービスがsystemdの管理から除外され、手動での起動も行えなくなります。
 
-Web�T�[�r�X��systemd���珜�O���܂��B
+動作としては、/etc/systemd/system/httpd.serviceが/dev/nullへのシンボリックリンクとして作成され、この起動スクリプトが呼び出されても何も行われなくなります。
+
+Webサービスをsystemdから除外します。
 
 ```shell-session
 # systemctl mask httpd
@@ -229,14 +244,14 @@ ln -s '/dev/null' '/etc/systemd/system/httpd.service'
 Failed to issue method call: Unit httpd.service is masked.
 ```
 
-systemctl is-enabled�R�}���h�ŁA�T�[�r�X�̏�Ԃ��m�F�ł��܂��Bhttpd�T�[�r�X�̏�Ԃ�masked�ƂȂ��Ă��܂��B
+systemctl is-enabledコマンドで、サービスの状態が確認できます。httpdサービスの状態はmaskedとなっています。
 
 ```shell-session
 # systemctl is-enabled httpd
 masked
 ```
 
-systemctl unmask�R�}���h�����s����ƁA�V���{���b�N�����N���폜����āA�w�肵���T�[�r�X��systemd�ŊǗ������悤�ɂȂ�܂��Bhttpd�T�[�r�X�̏�Ԃ�disabled�ɂȂ�܂��B
+systemctl unmaskコマンドを実行すると、シンボリックリンクが削除されて、指定したサービスがsystemdで管理されるようになります。httpdサービスの状態はdisabledになります。
 
 ```shell-session
 # systemctl unmask httpd
@@ -245,120 +260,134 @@ rm '/etc/systemd/system/httpd.service'
 disabled
 ```
 
-### systemd�̃T�[�r�X�Ɋ֘A����f�B���N�g���ƃV�X�e���N���̎d�g��
-systemd�������I�ɂǂ̂悤�Ȏd�g�݂ɂȂ��Ă���̂��A�֘A����f�B���N�g����������܂��B
+### systemdのサービスに関連するディレクトリとシステム起動の仕組み
 
-systemctl enable�R�}���h�̓�������Ă�������ʂ�Asystemd�̎d�g�݂ɂ����āA�֘A����f�B���N�g���͈ȉ���2�ł��B
+systemdが内部的にどのような仕組みになっているのか、関連するディレクトリを解説します。
 
-#### /usr/lib/systemd/system�f�B���N�g��
-�T�[�r�X�N���X�N���v�g���i�[����Ă��܂��B/etc/rc.d/init.d�f�B���N�g���ɑ������܂��B
+systemctl enableコマンドの動作を見ても分かる通り、systemdの仕組みにおいて、関連するディレクトリは以下の2つです。
 
-#### /etc/systemd/system�f�B���N�g��
-�T�[�r�X�N���X�N���v�g�ɑ΂���V���{���b�N�����N���z�u����܂��B/etc/rc.d�f�B���N�g���ɑ������܂��B
+#### /usr/lib/systemd/systemディレクトリ
 
-�V�X�e���N������systemd�̓���́A/etc/systemd/system�f�B���N�g���ȉ��̃T�u�f�B���N�g�����ɍ쐬���ꂽ�T�[�r�X�N���X�N���v�g�ւ̃V���{���b�N�����N���������s����ăT�[�r�X���N������܂��B�V���{���b�N�����N�̍쐬�����ꏊ�́A�����ʂ̃^�[�Q�b�g���j�b�g���Ƀf�B���N�g�����������Ă��܂��B
+サービス起動スクリプトが格納されています。/etc/rc.d/init.dディレクトリに相当します。
 
-�^�[�Q�b�g���̃f�B���N�g���Ƃ��̖����A���s�̏��Ԃ͈ȉ��̒ʂ�ł��B
+#### /etc/systemd/systemディレクトリ
+
+サービス起動スクリプトに対するシンボリックリンクが配置されます。/etc/rc.dディレクトリに相当します。
+
+システム起動時のsystemdの動作は、/etc/systemd/systemディレクトリ以下のサブディレクトリ内に作成されたサービス起動スクリプトへのシンボリックリンクが順次実行されてサービスが起動されます。シンボリックリンクの作成される場所は、役割別のターゲットユニット毎にディレクトリが分けられています。
+
+ターゲット毎のディレクトリとその役割、実行の順番は以下の通りです。
 
 #### 1. /etc/systemd/system/sysinit.target.wants/
-�V�X�e���̏����Ɏ��s�����X�N���v�g�ł��Brc.sysinit�X�N���v�g�ɑ������܂��B
+
+システムの初期に実行されるスクリプトです。rc.sysinitスクリプトに相当します。
 
 #### 2. /etc/systemd/system/basic.target.wants/
-�V�X�e�����ʂɎ��s�����X�N���v�g�ł��B
+
+システム共通に実行されるスクリプトです。
 
 #### 3. /etc/systemd/system/multi-user.target.wants/
-�]���̃������x��3�iCUI�j�ɑ������܂��B
+
+従来のランレベル3（CUI）に相当します。
 
 #### 4. /etc/systemd/system/graphical.target.wants/
-�]���̃������x��5�iGUI�j�ɑ������܂��B
 
-SysV init�ł̓������x��3�ƃ������x��5�͕ʁX�̈����ł������Asystemd�ł�multi-user.target�����s���graphical.target�����s�����悤�ɂȂ��Ă��܂��B
+従来のランレベル5（GUI）に相当します。
 
-�ǂ��܂Ŏ��s���邩�́A���ɐ�������f�t�H���g�^�[�Q�b�g�̐ݒ�ɂ���Č��߂��Ă��܂��B
+SysV initではランレベル3とランレベル5は別々の扱いでしたが、systemdではmulti-user.targetを実行後にgraphical.targetが実行されるようになっています。
 
-### �f�t�H���g�^�[�Q�b�g�̕ύX
-systemd�ł̓������x���ł͂Ȃ��A�T�[�r�X�N���X�N���v�g�����ԂɎ��s���Ă����A�f�t�H���g�^�[�Q�b�g�Ŏw�肳�ꂽ�^�[�Q�b�g�܂Ŏ��s���܂��B�f�t�H���g�^�[�Q�b�g��ύX���邱�ƂŁACUI�N�������邩�AGUI�N���ɂ��邩��I���ł��܂��B
+どこまで実行するかは、次に説明するデフォルトターゲットの設定によって決められています。
 
-�f�t�H���g�^�[�Q�b�g�̕ύX�́Asystemctl set-default�R�}���h�����s���܂��B����́ASysV init�̐ݒ�t�@�C��/etc/inittab�Ŏw�肵�Ă���N�����������x���iinitdefault�j�̕ύX�ɑ������܂��B
+### デフォルトターゲットの変更
 
-#### �f�t�H���g�^�[�Q�b�g�̊m�F
-systemctl get-default�R�}���h�ŁA���݂̃f�t�H���g�^�[�Q�b�g���m�F���܂��B
+systemdではランレベルではなく、サービス起動スクリプトを順番に実行していき、デフォルトターゲットで指定されたターゲットまで実行します。デフォルトターゲットを変更することで、CUI起動をするか、GUI起動にするかを選択できます。
+
+デフォルトターゲットの変更は、systemctl set-defaultコマンドを実行します。これは、SysV initの設定ファイル/etc/inittabで指定している起動時ランレベル（initdefault）の変更に相当します。
+
+#### デフォルトターゲットの確認
+
+systemctl get-defaultコマンドで、現在のデフォルトターゲットを確認します。
 
 ```shell-session
 # systemctl get-default
 graphical.target
 ```
 
-#### �f�t�H���g�^�[�Q�b�g��CUI�ɕύX
-�f�t�H���g�^�[�Q�b�g��multi-user.target�ɕύX���A�ċN�����܂��BCUI�ŋN�����Ă��邱�Ƃ��m�F���܂��B
+#### デフォルトターゲットをCUIに変更
+
+デフォルトターゲットをmulti-user.targetに変更し、再起動します。CUIで起動してくることを確認します。
 
 ```shell-session
 # systemctl set-default multi-user.target
 # reboot
 ```
 
-#### �f�t�H���g�^�[�Q�b�g��GUI�ɕύX
-GUI�ł̋N���ɖ߂��ɂ́A�ȉ���systemctl set-default�R�}���h�����s���܂��B
+#### デフォルトターゲットをGUIに変更
+
+GUIでの起動に戻すには、以下のsystemctl set-defaultコマンドを実行します。
 
 ```shell-session
 # systemctl set-default graphical.target
 # reboot
 ```
 
-### ���݂̃^�[�Q�b�g�̈ꎞ�I�ȕύX
-systemd�ł̌��݂̃^�[�Q�b�g���ꎞ�I�ɕύX����ɂ́Asystemctl isolate�R�}���h�����s���܂��B����́ASysV init�̃������x���ύX�itelinit�R�}���h�j�ɑ������܂��B
+### 現在のターゲットの一時的な変更
 
-GUI����CUI�ɕύX���܂��BGUI���O�C�����Ă���ꍇ�A���O�A�E�g���܂��B
+systemdでの現在のターゲットを一時的に変更するには、systemctl isolateコマンドを実行します。これは、SysV initのランレベル変更（telinitコマンド）に相当します。
+
+GUIからCUIに変更します。GUIログインしている場合、ログアウトします。
 
 ```shell-session
 # systemctl isolate multi-user.target
 ```
 
-CUI����GUI�ɕύX���܂��B
+CUIからGUIに変更します。
 
 ```shell-session
 # systemctl isolate graphical.target
 ```
 
-## journald�ɂ�郍�O�L�^
-systemd�ɂ̓T�[�r�X�Ȃǂ���̃��O���L�^����journald���p�ӂ���Ă���Asyslog�Ƃ͕ʂɃ��O���L�^����Ă��܂��B
+## journaldによるログ記録
 
-### journald�̃��O�̊m�F
-journald�̃��O���m�F����ɂ́Ajournalctl�R�}���h�����s���܂��B�I�v�V������t�^���Ȃ��Ŏ��s����ƁA���ׂẴ��O���\������܂��B
+systemdにはサービスなどからのログを記録するjournaldが用意されており、syslogとは別にログが記録されています。
 
-�ȉ��̗�ł́Admesg�R�}���h�Ŋm�F�ł���Linux�J�[�l���N�����̃��O���L�^����Ă���̂�������܂��B
+### journaldのログの確認
+
+journaldのログを確認するには、journalctlコマンドを実行します。オプションを付与しないで実行すると、すべてのログが表示されます。
+
+以下の例では、dmesgコマンドで確認できるLinuxカーネル起動時のログが記録されているのが分かります。
 
 ```shell-session
 # journalctl
--- Logs begin at �� 2015-01-28 17:29:04 JST, end at �� 2015-01-28 17:29:38 JST. 
- 1�� 28 17:29:04 centos7.example.com systemd-journal[149]: Runtime journal is us
- 1�� 28 17:29:04 centos7.example.com systemd-journal[149]: Runtime journal is us
-�i���j
+-- Logs begin at 水 2015-01-28 17:29:04 JST, end at 水 2015-01-28 17:29:38 JST.
+ 1月 28 17:29:04 centos7.example.com systemd-journal[149]: Runtime journal is us
+ 1月 28 17:29:04 centos7.example.com systemd-journal[149]: Runtime journal is us
+（略）
 ```
 
+特定のサービスのログに絞るには、-uオプションを付与して実行します。
 
-����̃T�[�r�X�̃��O�ɍi��ɂ́A-u�I�v�V������t�^���Ď��s���܂��B
-
-�ȉ��̗�ł́Ahttpd�T�[�r�X�N�����̃��O���m�F�ł��܂��B
+以下の例では、httpdサービス起動時のログが確認できます。
 
 ```shell-session
 # journalctl -u httpd
--- Logs begin at �� 2015-01-28 17:29:04 JST, end at �� 2015-01-28 17:31:34 JST. 
- 1�� 28 17:31:28 centos7.example.com systemd[1]: Starting The Apache HTTP Server
- 1�� 28 17:31:34 centos7.example.com httpd[2232]: AH00557: httpd: apr_sockaddr_i
- 1�� 28 17:31:34 centos7.example.com httpd[2232]: AH00558: httpd: Could not reli
- 1�� 28 17:31:34 centos7.example.com systemd[1]: Started The Apache HTTP Server.
+-- Logs begin at 水 2015-01-28 17:29:04 JST, end at 水 2015-01-28 17:31:34 JST.
+ 1月 28 17:31:28 centos7.example.com systemd[1]: Starting The Apache HTTP Server
+ 1月 28 17:31:34 centos7.example.com httpd[2232]: AH00557: httpd: apr_sockaddr_i
+ 1月 28 17:31:34 centos7.example.com httpd[2232]: AH00558: httpd: Could not reli
+ 1月 28 17:31:34 centos7.example.com systemd[1]: Started The Apache HTTP Server.
 ```
 
-### journald�̃��O�̕ۑ�
-journald�̃��O�́A�ċN������Ə����Ă��܂��ݒ肪�f�t�H���g�ƂȂ��Ă��܂��Bjournald�̐ݒ�t�@�C��/etc/systemd/journald.conf��Storage�ݒ�̒l���f�t�H���g�ł�auto�ɐݒ肳��Ă��܂��B���̐ݒ�́A�ȉ��̂悤�ɓ��삵�܂��B
+### journaldのログの保存
 
-1. /var/log/journal�f�B���N�g�������݂���Ώ�������
-1. /var/log/journal�f�B���N�g�������݂��Ȃ����A�������߂Ȃ��ꍇ�ɂ́A/run/log/journal�f�B���N�g���ɏ�������
+journaldのログは、再起動すると消えてしまう設定がデフォルトとなっています。journaldの設定ファイル/etc/systemd/journald.confのStorage設定の値がデフォルトではautoに設定されています。この設定は、以下のように動作します。
 
-�f�t�H���g�ł�/var/log/journal�f�B���N�g���͑��݂��Ȃ����߁A/run/log/journal�f�B���N�g���Ƀ��O���������܂�܂��B/run/log/journal�f�B���N�g����tmpfs�Ń�������ɍ��ꂽ�ꎞ�̈�Ȃ̂ŁA�V�X�e���ċN�����Ƀ��O�̃t�@�C���͏����Ă��܂��܂��B
+1. /var/log/journalディレクトリが存在すれば書き込む
+1. /var/log/journalディレクトリが存在しないか、書き込めない場合には、/run/log/journalディレクトリに書き込む
 
-journald�̃��O���V�X�e���ċN�����ɏ����Ȃ��悤�ɂ���ɂ́A�ȉ��̂悤��/var/log/journal�f�B���N�g�����쐬���āA�V�X�e�����ċN�����܂��B
+デフォルトでは/var/log/journalディレクトリは存在しないため、/run/log/journalディレクトリにログが書き込まれます。/run/log/journalディレクトリはtmpfsでメモリ上に作られた一時領域なので、システム再起動時にログのファイルは消えてしまいます。
+
+journaldのログをシステム再起動時に消えないようにするには、以下のように/var/log/journalディレクトリを作成して、システムを再起動します。
 
 ```shell-session
 # mkdir /var/log/journal
@@ -366,34 +395,36 @@ journald�̃��O���V�X�e���ċN�����ɏ����Ȃ��悤�ɂ���ɂ́A�ȉ��̂悤��/var/log/j
 # reboot
 ```
 
-���O�t�@�C�����쐬���ꂽ���Ƃ��m�F���܂�
+ログファイルが作成されたことを確認します
 
 ```shell-session
 # ls -l /var/log/journal/
-���v 0
-drwxr-sr-x. 2 root systemd-journal 49  1�� 28 14:53 3b71b9857a284561a3450996bf78a306
+合計 0
+drwxr-sr-x. 2 root systemd-journal 49  1月 28 14:53 3b71b9857a284561a3450996bf78a306
 # ls -l /var/log/journal/3b71b9857a284561a3450996bf78a306/
-���v 16392
--rw-r-----. 1 root root            8388608  1�� 28 14:56 system.journal
--rw-r-----+ 1 root systemd-journal 8388608  1�� 28 14:55 user-42.journal
+合計 16392
+-rw-r-----. 1 root root            8388608  1月 28 14:56 system.journal
+-rw-r-----+ 1 root systemd-journal 8388608  1月 28 14:55 user-42.journal
 ```
 
-## firewalld�ɂ��p�P�b�g�t�B���^�����O
-CentOS 7�ł́ALinux�J�[�l���̃p�P�b�g�t�B���^�����O�̎d�g�݂ł���iptables��firewalld�T�[�r�X���Ǘ����Ă��܂��Bfirewalld�𗘗p����ƕ��G�ȃp�P�b�g�t�B���^�����O�������ł��܂����A�����ł͊�{�I�Ȑݒ��������܂��B
+## firewalld によるパケットフィルタリング
 
-�܂��A���G�Ȑݒ肪�s�v�ȏꍇ�ɂ͏]����iptables�T�[�r�X�ɂ��Ǘ��ɖ߂����Ƃ��ł��܂��B
+CentOS 7では、Linuxカーネルのパケットフィルタリングの仕組みであるiptablesをfirewalldサービスが管理しています。firewalldを利用すると複雑なパケットフィルタリングを実現できますが、ここでは基本的な設定を解説します。
 
-### firewalld�̐ݒ�m�F
-firewalld�ł́A�p�P�b�g�t�B���^�����O�̐ݒ���u�]�[���v�Ƃ����d�g�݂ŊǗ����Ă��܂��B
+また、複雑な設定が不要な場合には従来のiptablesサービスによる管理に戻すこともできます。
 
-�]�[�����w�肵�Ȃ������ꍇ�ɗ��p�����f�t�H���g�]�[�����m�F����ɂ́Afirewall-cmd�R�}���h��--get-default-zone�I�v�V������t�^���Ď��s���܂��B�f�t�H���g�ł�public�Ƃ����]�[�������p�����̂�������܂��B
+### firewalld の設定確認
+
+firewalldでは、パケットフィルタリングの設定を「ゾーン」という仕組みで管理しています。
+
+ゾーンを指定しなかった場合に利用されるデフォルトゾーンを確認するには、firewall-cmdコマンドに--get-default-zoneオプションを付与して実行します。デフォルトではpublicというゾーンが利用されるのが分かります。
 
 ```shell-session
 # firewall-cmd --get-default-zone
 public
 ```
 
-�f�t�H���g�]�[��public�̐ݒ���m�F���܂��BDHCP�N���C�A���g��SSH��������Ă��܂��B
+デフォルトゾーンpublicの設定を確認します。DHCPクライアントとSSHが許可されています。
 
 ```shell-session
 # firewall-cmd --list-all
@@ -408,26 +439,27 @@ public (default, active)
   rich rules:
 ```
 
-�f�t�H���g�]�[���ŋ�����Ă���T�[�r�X�������m�F����ɂ́A--list-services�I�v�V������t�^���܂��B
+デフォルトゾーンで許可されているサービスだけを確認するには、--list-servicesオプションを付与します。
 
 ```shell-session
 # firewall-cmd --list-services
 dhcpv6-client ssh
 ```
 
-��`����Ă���T�[�r�X���m�F���܂��B�����Ŋm�F�ł���T�[�r�X���]�[���ɓK�p���邱�ƂŁA��M�p�P�b�g�����ł��܂��B
+定義されているサービスを確認します。ここで確認できるサービスをゾーンに適用することで、受信パケットを許可できます。
 
 ```shell-session
 # firewall-cmd --get-services
 amanda-client bacula bacula-client dhcp dhcpv6 dhcpv6-client dns ftp high-availability http https imaps ipp ipp-client ipsec kerberos kpasswd ldap ldaps libvirt libvirt-tls mdns mountd ms-wbt mysql nfs ntp openvpn pmcd pmproxy pmwebapi pmwebapis pop3s postgresql proxy-dhcp radius rpc-bind samba samba-client smtp ssh telnet tftp tftp-client transmission-client vnc-server wbem-https
 ```
 
-### firewalld��HTTP��������
-firewalld�̐ݒ��ύX���āAHTTP�̎�M�������܂��B
+### firewalld でHTTPを許可する
 
---add-service�I�v�V�����Œ�`����Ă���T�[�r�X���]�[���ɓK�p���܂��B
+firewalldの設定を変更して、HTTPの受信を許可します。
 
---permanent�I�v�V������t�^����ƁA�]�[���̐ݒ�t�@�C���ł���/etc/firewalld/zones/public.xml���C������āA�V�X�e���ċN����ł�HTTP�̎�M���������悤�ɂȂ�܂��B
+--add-serviceオプションで定義されているサービスをゾーンに適用します。
+
+--permanentオプションを付与すると、ゾーンの設定ファイルである/etc/firewalld/zones/public.xmlが修正されて、システム再起動後でもHTTPの受信が許可されるようになります。
 
 ```shell-session
 # firewall-cmd --add-service=http  --permanent
@@ -445,14 +477,15 @@ dhcpv6-client http ssh
 </zone>
 ```
 
-Web�T�[�r�X���N�����A�O������Web�T�[�o�ɐڑ��ł��邱�Ƃ��m�F���܂��B
+Webサービスを起動し、外部からWebサーバに接続できることを確認します。
 
 ```shell-session
 # systemctl start httpd
 ```
 
-### iptables��L���ɂ���
-firewalld�T�[�r�X���~���Aiptables�T�[�r�X��L���ɂ���ɂ͈ȉ��̃R�}���h�����s���܂��B
+### iptables を有効にする
+
+firewalldサービスを停止し、iptablesサービスを有効にするには以下のコマンドを実行します。
 
 ```shell-session
 # systemctl stop firewalld
@@ -461,7 +494,7 @@ firewalld�T�[�r�X���~���Aiptables�T�[�r�X��L���ɂ���ɂ͈ȉ��̃R�}���h�����s�
 # systemctl start iptables
 ```
 
-firewalld�T�[�r�X��L���ɖ߂��ɂ́A�ȉ��̃R�}���h�����s���܂��B
+firewalld サービスを有効に戻すには、以下のコマンドを実行します。
 
 ```shell-session
 # systemctl stop iptables
@@ -470,16 +503,15 @@ firewalld�T�[�r�X��L���ɖ߂��ɂ́A�ȉ��̃R�}���h�����s���܂��B
 # systemctl start firewalld
 ```
 
-*NetworkManager�p�Ǘ��c�[�� nmtui
-CentOS 7�ł���������NetworkManager���g���ăl�b�g���[�N���Ǘ����܂��B
+\*NetworkManager用管理ツール nmtui
+CentOS 7でも引き続きNetworkManagerを使ってネットワークを管理します。
 
-NetworkManager�ł́A�ݒ�t�@�C���𒼐ڕҏW���邱�Ƃ͐�������Ă��܂���BGUI��CUI�p�̊Ǘ��c�[�����񋟂���Ă���̂ŁA�c�[�����g���Đݒ��ύX���܂��B
+NetworkManagerでは、設定ファイルを直接編集することは推奨されていません。GUIとCUI用の管理ツールが提供されているので、ツールを使って設定を変更します。
 
-![GUI��NetworkManager�ݒ���](nmtui1.png)
+![GUIのNetworkManager設定画面](nmtui1.png)
 
-GUI�ł́u�V�X�e���c�[���v���j���[����u�ݒ�v�����s���邱�ƂŃl�b�g���[�N�̐ݒ���s���܂��B
+GUIでは「システムツール」メニューから「設定」を実行することでネットワークの設定も行えます。
 
-![CUI��NetworkManager�ݒ���](nmtui2.png)
+![CUIのNetworkManager設定画面](nmtui2.png)
 
-CUI�ł�nmtui�����s���邱�ƂŁA�ȒP�Ƀl�b�g���[�N���ݒ�ł��܂��B�l�b�g���[�N�C���^�[�t�F�[�X��IP�A�h���X���̐ݒ��A�L���^�����̐؂�ւ����s����悤�ɂȂ��Ă��܂��B
-
+CUIではnmtuiを実行することで、簡単にネットワークが設定できます。ネットワークインターフェースのIPアドレス等の設定や、有効／無効の切り替えも行えるようになっています。

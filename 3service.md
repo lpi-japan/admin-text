@@ -1,5 +1,7 @@
 # サービスの管理
+
 ## OSが起動するまでのプロセス
+
 マシンに電源を入れた後、以下のような順番でシステムの初期化が行われ、OSが起動します。
 
 1. 電源オン
@@ -11,13 +13,13 @@
 1. OS起動
 
 ### ブートローダーGRUBの起動
+
 マシンの電源をオンにすると、BIOSが起動してハードウェアの初期化が行われ、起動に使用するブートデバイス（ハードディスクなど）が決定します。ブートデバイスからブートローダーであるGRUBが読み込まれ、起動処理が引き継がれます。
 GRUBは、Linuxカーネルのイメージをメモリ上にロードする役割を持っています。
 
 ![GRUB選択画面](grubmenu.png)
 
 Linuxカーネルイメージが複数ある場合は、GRUBの初期画面が表示されている時に何かキーを入力すると、GRUBのメニュー画面が表示されます。ロードしたいイメージを選択して、Enterキーを押します。
-
 
 GRUBの設定確認
 grubby --info=ALL
@@ -28,15 +30,14 @@ grubby --default-kernel
 GRUBのデフォルト起動カーネルのインデックス確認
 grubby --default-index
 
-
 GRUBのデフォルト起動カーネルの変更
 grubby --set-default /boot/vmlinuz-5.14.0-503.11.1.el9_5.x86_64
 
 GRUBのデフォルト起動カーネルのインデックスによる変更
 grubby --set-default 1
 
-
 ### GRUB設定
+
 $ sudo grubby --info=ALL
 [sudo] linuc のパスワード:
 index=0
@@ -84,13 +85,14 @@ title
 id
 マシンのユニークIDとカーネルバージョンを組み合わせた値です。
 
-
 ### カーネルの起動
+
 GRUBで指定されたLinuxカーネルイメージがメモリに読み込まれて、カーネルが起動します。カーネルはハードウェアを初期化し、カーネルの各種機能を有効にしていきます。
 
 カーネルは必要に応じてモジュールを読み込みますが、モジュールは初期化RAMディスク（initramfs）に含まれています。カーネルは初期化RAMディスクをメモリに読み込み、仮のルートファイルシステムとして利用可能にすることで、必要となるモジュールのファイルが読み込めるようになります。
 
 #### dmesgによるカーネル起動時の動作の確認
+
 カーネルが起動する際の動作の様子は、dmesgコマンドで確認できます。
 
 ```shell-session
@@ -111,28 +113,30 @@ BIOS-provided physical RAM map:
 
 ## systemdについて
 
-
 ### ユニットでの管理
+
 systemdでは「ユニット」という単位でシステムを管理します。ユニットには、「ターゲット」（ランレベルに相当）ユニットや「サービス」ユニットがあり、それぞれのユニットは依存関係の定義ができるようになっています。
 
 依存関係とは、たとえば「このサービスを実行するにはあらかじめこのサービスが実行されていなければならない」という関係です。systemdでは依存関係にないサービスを「並列処理」で実行するため、高速にシステムを起動できるという利点があります。
 
 主なユニットの種類は以下の通りです。
 
-|ユニット|役割|
-|-------|-------|
-|service|従来のサービスと同様|
-|target|サービスを取りまとめるためのユニット|
-|mount|マウントポイント|
-|swap|スワップ領域|
-|device|デバイス|
+| ユニット | 役割                                 |
+| -------- | ------------------------------------ |
+| service  | 従来のサービスと同様                 |
+| target   | サービスを取りまとめるためのユニット |
+| mount    | マウントポイント                     |
+| swap     | スワップ領域                         |
+| device   | デバイス                             |
 
 ### サービスの操作
+
 systemdでは、サービスの起動や停止を行うのにsystemctlコマンドを使用します。
 
 Webサービスの起動や停止、再起動、そして状態の確認を行うには、以下のsystemctlコマンドを使用します。
 
 #### サービスの起動
+
 systemctl startコマンドで、サービスを起動します。
 
 ```shell-session
@@ -140,6 +144,7 @@ systemctl startコマンドで、サービスを起動します。
 ```
 
 #### サービスのステータス確認
+
 systemctl statusコマンドで、サービスのステータスを確認できます。
 
 systemdでは、サービスのプロセスを「コントロールグループ」（cgroup）というLinuxカーネルの仕組みで実行するように変わりました。cgroupを使うことで、CPUやメモリなどのリソースを柔軟に割り当てることができる利点があります。
@@ -166,6 +171,7 @@ Hint: Some lines were ellipsized, use -l to show in full.
 ```
 
 #### サービスの再起動
+
 systemctl restartコマンドで、サービスを再起動します。
 
 ```shell-session
@@ -180,6 +186,7 @@ httpd.service - The Apache HTTP Server
 ```
 
 #### サービスの停止
+
 systemctl stopコマンドで、サービスを停止します。
 
 ```shell-session
@@ -191,6 +198,7 @@ httpd.service - The Apache HTTP Server
 ```
 
 ### ユニット一覧の取得
+
 systemdで管理されているユニットの一覧を取得するには、systemctl list-unit-filesコマンドを実行します。
 
 ```shell-session
@@ -207,14 +215,14 @@ systemdで管理されているユニットの一覧を取得するには、syst
 
 表示されるステータス（STATE）の意味は以下の通りです。
 
-
-|ステータス|意味|
-|-------|-------|
-|enabled|システム起動時に実行される|
-|disabled|システム起動時に実行されない|
-|static|システム起動時の実行の有無は設定できない|
+| ステータス | 意味                                     |
+| ---------- | ---------------------------------------- |
+| enabled    | システム起動時に実行される               |
+| disabled   | システム起動時に実行されない             |
+| static     | システム起動時の実行の有無は設定できない |
 
 ### 現在のユニットの状況を確認
+
 現在のユニットの状況を確認するには、systemctl list-unitsコマンドを実行します。systemctlコマンドのデフォルトはこのサブコマンドの指定になっています。
 
 以下の例は同じ結果を返します。
@@ -232,7 +240,7 @@ UNIT                         LOAD   ACTIVE SUB     DESCRIPTION
 abrt-ccpp.service            loaded active exited  Install ABRT coredump hook
 abrt-oops.service            loaded active running ABRT kernel log watcher
 abrt-xorg.service            loaded active running ABRT Xorg log watcher
-abrtd.service                loaded active running ABRT Automated Bug Reporting 
+abrtd.service                loaded active running ABRT Automated Bug Reporting
 alsa-state.service           loaded active running Manage Sound Card State (rest
 atd.service                  loaded active running Job spooling tools
 （略）
@@ -242,13 +250,13 @@ kdump.service                loaded failed failed  Crash recovery kernel arming
 
 表示の意味は以下の通りです。
 
-|項目|意味|
-|-------|-------|
-|UNIT|ユニット名|
-|LOAD|systemdへの設定の読み込み状況|
-|ACTIVE|実行状態の概要。activeかinactiveで表される|
-|SUB|実行状態の詳細。running（実行中）やexited（実行したが終了した）などで表される。|
-|DESCRIPTION|ユニットの説明|
+| 項目        | 意味                                                                            |
+| ----------- | ------------------------------------------------------------------------------- |
+| UNIT        | ユニット名                                                                      |
+| LOAD        | systemdへの設定の読み込み状況                                                   |
+| ACTIVE      | 実行状態の概要。activeかinactiveで表される                                      |
+| SUB         | 実行状態の詳細。running（実行中）やexited（実行したが終了した）などで表される。 |
+| DESCRIPTION | ユニットの説明                                                                  |
 
 デフォルトでは、項目ACTIVEの実行状態がactiveになっているもののみが表示されています。inactiveのユニットも表示するには--allオプションを付与して実行します。
 
@@ -257,6 +265,7 @@ kdump.service                loaded failed failed  Crash recovery kernel arming
 項目ACTIVEがfailedになっていると、何らかの原因で起動失敗しているということになります。上記の例では、kdump（カーネルダンプ）サービスの起動に失敗しています。
 
 ### デバイス一覧の確認
+
 -t deviceオプションを付与して、デバイス一覧を表示します。
 
 ```shell-session
@@ -268,6 +277,7 @@ sys-devices-pci0000:00-0000:00:1f.2-ata3-host2-target2:0:0-2:0:0:0-block-sda-sda
 ```
 
 ### マウント状況の確認
+
 -t mountオプションを付与して、マウントの状況一覧を表示します。
 
 ```shell-session
@@ -282,6 +292,7 @@ home.mount                   loaded active mounted /home
 ```
 
 ### スワップ状況の確認
+
 -t swapオプションを付与して、スワップの状況一覧を表示します。
 
 ```shell-session
@@ -292,6 +303,7 @@ dev-dm¥x2d0.swap loaded active active /dev/dm-0
 ```
 
 ### サービスの自動起動の設定
+
 システム起動時にサービスを自動起動するには、systemctl enableコマンドを実行します。
 
 例として、Webサービスをシステム起動時に自動起動するように設定します。/usr/lib/systemd/system/httpd.serviceがWebサービスの起動スクリプトです。systemctl enableコマンドを実行すると、/etc/systemd/system/multi-user.target.wantsディレクトリにシンボリックリンクが作成されます。
@@ -311,6 +323,7 @@ rm '/etc/systemd/system/multi-user.target.wants/httpd.service'
 ```
 
 ### サービスのsystemdからの除外
+
 systemctl maskコマンドを実行すると、指定したサービスがsystemdの管理から除外され、手動での起動も行えなくなります。
 
 動作としては、/etc/systemd/system/httpd.serviceが/dev/nullへのシンボリックリンクとして作成され、この起動スクリプトが呼び出されても何も行われなくなります。
@@ -341,14 +354,17 @@ disabled
 ```
 
 ### systemdのサービスに関連するディレクトリとシステム起動の仕組み
+
 systemdが内部的にどのような仕組みになっているのか、関連するディレクトリを解説します。
 
 systemctl enableコマンドの動作を見ても分かる通り、systemdの仕組みにおいて、関連するディレクトリは以下の2つです。
 
 #### /usr/lib/systemd/systemディレクトリ
+
 サービス起動スクリプトが格納されています。/etc/rc.d/init.dディレクトリに相当します。
 
 #### /etc/systemd/systemディレクトリ
+
 サービス起動スクリプトに対するシンボリックリンクが配置されます。/etc/rc.dディレクトリに相当します。
 
 システム起動時のsystemdの動作は、/etc/systemd/systemディレクトリ以下のサブディレクトリ内に作成されたサービス起動スクリプトへのシンボリックリンクが順次実行されてサービスが起動されます。シンボリックリンクの作成される場所は、役割別のターゲットユニット毎にディレクトリが分けられています。
@@ -356,15 +372,19 @@ systemctl enableコマンドの動作を見ても分かる通り、systemdの仕
 ターゲット毎のディレクトリとその役割、実行の順番は以下の通りです。
 
 #### 1. /etc/systemd/system/sysinit.target.wants/
+
 システムの初期に実行されるスクリプトです。rc.sysinitスクリプトに相当します。
 
 #### 2. /etc/systemd/system/basic.target.wants/
+
 システム共通に実行されるスクリプトです。
 
 #### 3. /etc/systemd/system/multi-user.target.wants/
+
 従来のランレベル3（CUI）に相当します。
 
 #### 4. /etc/systemd/system/graphical.target.wants/
+
 従来のランレベル5（GUI）に相当します。
 
 systemdではmulti-user.targetを実行後にgraphical.targetが実行されるようになっています。
@@ -372,11 +392,13 @@ systemdではmulti-user.targetを実行後にgraphical.targetが実行される�
 どこまで実行するかは、次に説明するデフォルトターゲットの設定によって決められています。
 
 ### デフォルトターゲットの変更
+
 systemdではランレベルではなく、サービス起動スクリプトを順番に実行していき、デフォルトターゲットで指定されたターゲットまで実行します。デフォルトターゲットを変更することで、CUI起動をするか、GUI起動にするかを選択できます。
 
 デフォルトターゲットの変更は、systemctl set-defaultコマンドを実行します。
 
 #### デフォルトターゲットの確認
+
 systemctl get-defaultコマンドで、現在のデフォルトターゲットを確認します。
 
 ```shell-session
@@ -385,6 +407,7 @@ graphical.target
 ```
 
 #### デフォルトターゲットをCUIに変更
+
 デフォルトターゲットをmulti-user.targetに変更し、再起動します。CUIで起動してくることを確認します。
 
 ```shell-session
@@ -393,6 +416,7 @@ graphical.target
 ```
 
 #### デフォルトターゲットをGUIに変更
+
 GUIでの起動に戻すには、以下のsystemctl set-defaultコマンドを実行します。
 
 ```shell-session
@@ -401,6 +425,7 @@ GUIでの起動に戻すには、以下のsystemctl set-defaultコマンドを�
 ```
 
 ### 現在のターゲットの一時的な変更
+
 systemdでの現在のターゲットを一時的に変更するには、systemctl isolateコマンドを実行します。
 
 GUIからCUIに変更します。GUIログインしている場合、ログアウトします。
@@ -415,19 +440,21 @@ CUIからGUIに変更します。
 # systemctl isolate graphical.target
 ```
 
-### anacron によるジョブの実行 
+### anacron によるジョブの実行
+
 cronを使って決められた時刻に一斉にcronジョブを実行すると、システムの負荷が集中してしまう欠点があります。特にクラウド環境において同じ時刻にcronジョブが実行されてしまうと、CPUやメモリ、I/Oなどの共有リソースを複数の仮想マシンが一斉に取り合うことになります。
 そこでanacronを使ってジョブを実行すると、ジョブが実行されるタイミングがランダムに決められるので、ジョブ実行が同時発生しないようになります。
 
 anacronで実行させたいジョブはシェルスクリプトとして作成し、実行したい時間間隔に応じて以下の表のディレクトリ内に配置します。シェルスクリプトのファイルを配置するだけでジョブが定期実行されるようになるので、定期実行するジョブをパッケージのインストール時に簡単に登録できるというメリットもあります。
 
-|実行する時間間隔|ディレクトリ|
-|-------|-------|
-|1日おき|/etc/cron.daily|
-|1週間おき|/etc/cron.weekly|
-|1ヶ月おき|/etc/cron.monthly|
+| 実行する時間間隔 | ディレクトリ      |
+| ---------------- | ----------------- |
+| 1日おき          | /etc/cron.daily   |
+| 1週間おき        | /etc/cron.weekly  |
+| 1ヶ月おき        | /etc/cron.monthly |
 
 ### anacronの設定
+
 anacronは、1時間おきにcrondから起動されます。起動時に設定ファイルとして/etc/anacrontabを読み込み、実行が必要なジョブを実行します。
 
 デフォルトの設定ファイルは以下の通りです。
@@ -454,11 +481,11 @@ START_HOURS_RANGE=3-22
 
 ジョブの実行頻度は、ジョブ設定の最初の数字で実行間隔を日数で記述します。デフォルトでは1日おきと7日おきのジョブが設定されています。1ヶ月毎の設定のように、実行間隔の設定は数値以外にマクロが用意されています。
 
-|マクロ|設定値|
-|-------|-------|
-|@daily|1（毎日1回）|
-|@weekly|7（毎週1回）|
-|@monthly|毎月1回|
+| マクロ   | 設定値       |
+| -------- | ------------ |
+| @daily   | 1（毎日1回） |
+| @weekly  | 7（毎週1回） |
+| @monthly | 毎月1回      |
 
 各ジョブは、それぞれの基準遅延時間に最大45分のランダムに決められた遅延時間（RANDOM_DELAY）を足して実行されます。基準遅延時間は、ジョブ定義の2番目の数字です。デフォルトでは、1日おきのジョブが5分、1週間おきのジョブが25分、1ヶ月おきのジョブが45分です。仮想マシン間で同時にジョブが実行されないようにしたい場合には、基準遅延時間を大きくずらす必要があります。
 
@@ -470,11 +497,13 @@ START_HOURS_RANGE=23-6
 ```
 
 ## NTPによる時刻管理
+
 コンピューターの時刻は、意外と精度が低く1日ごとに数秒狂っていきます。しかも、電源OFFにした状態だとさらに狂いやすくなります。認証やデータベース、ログを集中管理するような環境の場合には、この時刻のずれが大きな問題になる場合があります。
 
 システムの時刻を合わせる仕組みとして、NTP（Network Time Protocol）があります。NTPを利用することで、ネットワーク上のNTPサーバから時刻を取得し、システムの時刻を正確な時刻に合わせる事ができます。
 
 ### NTPサービスのインストール
+
 NTPクライアントに対して時刻を提供するNTPサーバを実行するには、NTPサービスをインストールします。NTPサービスは、NTPサーバとしての機能と、自分自身の時刻をNTPサーバに同期させるNTPクライアントの機能の両方を備えています。
 
 NTPサービスがインストールされていない場合には、yumコマンドでインストールします。
@@ -484,6 +513,7 @@ NTPサービスがインストールされていない場合には、yumコマ�
 ```
 
 ### NTPサービスの起動と自動起動の有効化
+
 NTPサービス（ntpd）を起動します。
 
 ```shell-session
@@ -501,6 +531,7 @@ ntpd            0:off   1:off   2:off   3:on    4:off   5:off   6:off
 NTPサーバを起動してから、しばらくすると上位のNTPサーバと時刻同期が始まります。時刻同期は徐々に行われるため、すぐには完了しません。
 
 ### 上位NTPサーバの設定
+
 同期する時刻を提供してくれる上位NTPサーバの設定は/etc/ntp.confに記述します。サーバは複数指定できます。CentOSでは、デフォルトでpool.ntp.orgのNTPサーバに同期するように設定されています。pool.ntp.orgはインターネット上のNTPサーバのアドレスをランダムに返すようになっています。
 
 ```
@@ -524,14 +555,15 @@ ntpqコマンドを実行して、外部のNTPサーバとの時刻同期の状�
 
 一番左に表示されているステータスの読み方は以下の通りです。
 
-|表示|意味|
-|-------|-------|
-|*|同期している|
-|+|いつでも同期可能|
-|x|クロックが不正確なため無効|
-|空白（スペース）|使用不可（通信不可、同期に時間が掛かっている等）|
+| 表示             | 意味                                             |
+| ---------------- | ------------------------------------------------ |
+| \*               | 同期している                                     |
+| +                | いつでも同期可能                                 |
+| x                | クロックが不正確なため無効                       |
+| 空白（スペース） | 使用不可（通信不可、同期に時間が掛かっている等） |
 
 ### NTPクライアントからの時刻同期リクエストの制御
+
 NTPサービスは、デフォルトではNTPクライアントからの時刻同期リクエストを受け付けないように設定されています。
 
 以下の例では、NTPサーバの設定ファイル/etc/ntp.confに「192.168.0.0/255.255.255.0」のネットワークに属しているNTPクライアントからの時刻同期リクエストを許可するように設定しています。
@@ -553,6 +585,7 @@ ntpd を起動中:                                             [  OK  ]
 ```
 
 ### ファイアーウォールの設定変更
+
 NTPサーバはUDPのポート番号123番でNTPクライアントからの時刻同期リクエストを待ち受けています。iptablesでパケットフィルタリングを行っている場合、ルールを追加する必要があります。
 
 /etc/sysconfig/iptablesを編集してルールを追加し、iptablesサービスをリロードします。
@@ -584,14 +617,15 @@ serviceコマンドで、iptablesサービスをリロードします。
 iptables: Trying to reload firewall rules:                 [  OK  ]
 # iptables -L
 Chain INPUT (policy ACCEPT)
-target     prot opt source               destination         
+target     prot opt source               destination
 （略）
-ACCEPT     udp  --  anywhere             anywhere            state NEW udp dpt:ntp 
-REJECT     all  --  anywhere             anywhere            reject-with icmp-host-prohibited 
+ACCEPT     udp  --  anywhere             anywhere            state NEW udp dpt:ntp
+REJECT     all  --  anywhere             anywhere            reject-with icmp-host-prohibited
 （略）
 ```
 
 ### NTPクライアントのNTPサービスを使ってNTPサーバと時刻を同期する
+
 クライアントのNTPサービスは、/etc/ntp.confにserver設定で指定されたNTPサーバと時刻同期を行います。
 
 クライアントで、デフォルトで設定されているpool.ntp.orgのserver設定をコメントアウトし、構築したNTPサーバ（192.168.0.10）と時刻を同期するように設定します。
@@ -625,5 +659,3 @@ ntpqコマンドで、時刻同期の状態を確認します。
 ==============================================================================
 *server          157.7.154.29     3 u    2   64    1    0.152    0.108   0.007
 ```
-
-

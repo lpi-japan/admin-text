@@ -1,0 +1,20 @@
+{
+  "name": "linux-system-admin-textbook",
+  "version": "2.0.0",
+  "description": "Linuxシステム管理標準教科書",
+  "scripts": {
+    "build": "vivliostyle build",
+    "preview": "vivliostyle preview",
+    "dev": "vivliostyle preview"
+  },
+  "devDependencies": {
+    "@vivliostyle/cli": "^8.0.0"
+  },
+  "license": "CC-BY-SA-4.0",
+  "keywords": [
+    "linux",
+    "system-administration",
+    "textbook",
+    "lpi-japan"
+  ]
+}

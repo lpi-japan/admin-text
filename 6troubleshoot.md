@@ -1,35 +1,39 @@
-# �g���u���V���[�e�B���O
+# トラブルシューティング
 
-## ���O�Ǘ�
-�V�X�e����Q�̖��������͂���g���u���V���[�e�B���O���s���ꍇ�ɁA�����Ƃ��L�v�ȏ�񌹂����O�ł��B
+## ログ管理
 
-���O�ɂ́AOS���o�͂��郍�O�A�A�v���P�[�V�������o�͂��郍�O�ȂǑ����̎�ނ����݂��܂��B
+システム障害の問題解決をはかるトラブルシューティングを行う場合に、もっとも有益な情報源がログです。
 
-�����ł́A��\�I�ȃ��O�̎�ނƊm�F���@�A�ݒ���@�Ȃǂ�������܂��B
+ログには、OSが出力するログ、アプリケーションが出力するログなど多くの種類が存在します。
 
-### ���O�̎��
-CentOS�ł́A���O�t�@�C����/var/log�f�B���N�g���ȉ��Ɋi�[����Ă��܂��B
+ここでは、代表的なログの種類と確認方法、設定方法などを解説します。
 
-�ȉ��͑�\�I�ȃ��O�t�@�C���ł��B
+### ログの種類
 
-|�t�@�C����|���e|
-|-------|-------|
-|messages|�T�[�r�X�N�����̏o�͂Ȃǈ�ʓI�ȃ��O|
-|secure|�F�؁A�Z�L�����e�B�֌W�̃��O|
-|maillog|���[���ԘA�̃��O|
-|dmesg|�J�[�l�����o�͂������b�Z�[�W�̃��O|
+CentOSでは、ログファイルは/var/logディレクトリ以下に格納されています。
 
-### ���O�̊m�F
-�T�[�o�̃��O�ɃT�[�r�X�N�����A�܂��͓��쎞�̃G���[���O���L�^����Ă��Ȃ������m�F���܂��B�܂��A�N���C�A���g���ɂ��G���[���O���L�^����Ă��Ȃ������m�F���܂��B
+以下は代表的なログファイルです。
 
-* ��ʓI�ȃg���u���ł���΁A�܂���/var/log/messages���m�F���܂��B
-* �F�؊֌W��A�N�Z�X�����Ɋ֌W����g���u����/var/log/secure���m�F���܂��B
-* ���[���֌W�ł����/var/log/maillog���m�F���܂��B
-* Web�T�[�o�ł����/var/log/httpd/error_log�Ȃǂ��m�F���܂��B
+| ファイル名 | 内容                                 |
+| ---------- | ------------------------------------ |
+| messages   | サービス起動時の出力など一般的なログ |
+| secure     | 認証、セキュリティ関係のログ         |
+| maillog    | メール間連のログ                     |
+| dmesg      | カーネルが出力したメッセージのログ   |
 
-### dmesg�ɋL�^����郍�O
-dmesg�R�}���h�́udisplay message�v�̗��ŁALinux�J�[�l�������b�Z�[�W���o�͂��郊���O�o�b�t�@�i�z�o�b�t�@�j�̓��e��\�����܂��B���̃����O�o�b�t�@�͈��̃T�C�Y���ŏz����悤�ɂȂ��Ă���A�Â����O�͏����Ă����܂��B
-dmesg�R�}���h��p���邱�Ƃɂ��A�V�X�e���N�����ɏo�͂����J�[�l�����b�Z�[�W�̊m�F���ł��܂��B�J�[�l�����������n�[�h�E�F�A��F�����Ă��邩�ǂ������m�F����ꍇ�ȂǂɎQ�Ƃ��܂��B
+### ログの確認
+
+サーバのログにサービス起動時、または動作時のエラーログが記録されていないかを確認します。また、クライアント側にもエラーログが記録されていないかを確認します。
+
+- 一般的なトラブルであれば、まずは/var/log/messagesを確認します。
+- 認証関係やアクセス制限に関係するトラブルは/var/log/secureを確認します。
+- メール関係であれば/var/log/maillogを確認します。
+- Webサーバであれば/var/log/httpd/error_logなどを確認します。
+
+### dmesgに記録されるログ
+
+dmesgコマンドは「display message」の略で、Linuxカーネルがメッセージを出力するリングバッファ（循環バッファ）の内容を表示します。このリングバッファは一定のサイズ内で循環するようになっており、古いログは消えていきます。
+dmesgコマンドを用いることにより、システム起動時に出力されるカーネルメッセージの確認ができます。カーネルが正しくハードウェアを認識しているかどうかを確認する場合などに参照します。
 
 ```shell-session
 # dmesg
@@ -42,142 +46,154 @@ KERNEL supported cpus:
   AMD AuthenticAMD
   Centaur CentaurHauls
 Disabled fast string operations
-�i���j
+（略）
 ```
 
-### syslog�ɂ���
-syslog�́A�J�[�l����v���O�����Ȃǂ���o�͂���郍�O���܂Ƃ߂ċL�^����d�g�݂ł��Bsyslog���g�����ƂŁA�e�v���O�����͓Ǝ��Ƀ��O���L�^����d�g�݂��J������K�v�������Ȃ�܂��B�܂��Asyslog�T�[�o���l�b�g���[�N��œ��삳���邱�ƂŁA�����̃z�X�g����̃��O���܂Ƃ߂ċL�^���邱�ƂŁA���O���ꌳ�Ǘ����邱�Ƃ��ł��܂��B
-CentOS 6�ł́Asyslog�T�[�o�Ƃ���rsyslog���g�p�ł��܂��B
+### syslogについて
 
-rsyslog�́A�]����syslog�f�[�����isyslogd�j�ɒu�������A�}���`�X���b�h��syslog�f�[�����ł��Brsyslog�iReliable syslog�j�Ƃ������O�����������ʂ�A�����M��������������悤�ɊJ������Ă��܂��B���̂��߁A���O�̓]����TCP���g�p������A�f�[�^�x�[�X�ւ̃��O�ۑ��A�Í����������O�̓]���Ȃǂ��s�����Ƃ��ł��܂��B��{�I�Ȑݒ�ɂ��ẮA�]����syslogd�ƌ݊���������܂��B
+syslogは、カーネルやプログラムなどから出力されるログをまとめて記録する仕組みです。syslogを使うことで、各プログラムは独自にログを記録する仕組みを開発する必要が無くなります。また、syslogサーバをネットワーク上で動作させることで、複数のホストからのログをまとめて記録することで、ログを一元管理することもできます。
+CentOS 6では、syslogサーバとしてrsyslogが使用できます。
 
-### �t�@�V���e�B�ƃv���C�I���e�B
-�J�[�l����v���O�������o�͂���syslog���b�Z�[�W�ɂ́A�u�t�@�V���e�B�v�ifacility�j�Ɓu�v���C�I���e�B�v�ipriority�j�ƌĂ΂��l���ݒ肳��Ă��܂��B
+rsyslogは、従来のsyslogデーモン（syslogd）に置き換わる、マルチスレッドのsyslogデーモンです。rsyslog（Reliable syslog）という名前からも分かる通り、高い信頼性を実現するように開発されています。そのため、ログの転送にTCPを使用したり、データベースへのログ保存、暗号化したログの転送なども行うことができます。基本的な設定については、従来のsyslogdと互換性があります。
 
-�t�@�V���e�B�́A�������̃��O���b�Z�[�W�𐶐������̂����w�肵�܂��B���Ƃ��΁A�J�[�l���⃁�[���Ƃ������l���w�肳��܂��B
+### ファシリティとプライオリティ
 
-�܂��A�v���C�I���e�B�̓��b�Z�[�W�̏d�v�����w�肵�܂��B���Ƃ��΁A�P�Ȃ���A���Ɋ댯�ȏ�ԂȂǂƂ������l���w�肳��܂��B
+カーネルやプログラムが出力するsyslogメッセージには、「ファシリティ」（facility）と「プライオリティ」（priority）と呼ばれる値が設定されています。
 
-�t�@�V���e�B�ɂ́A�ȉ��̎�ނ�����܂��B
+ファシリティは、何がそのログメッセージを生成したのかを指定します。たとえば、カーネルやメールといった値が指定されます。
 
-|�t�@�V���e�B|�Ӗ�|
-|-------|-------|
-|auth|�Z�L�����e�B�E�F�؊֘A�ilogin�Asu �Ȃǁj|
-|authpriv|�Z�L�����e�B�E�F�؊֘A�i�v���C�x�[�g�j|
-|cron|cron��at�̃��O|
-|daemon|��ʓI�ȃf�[�����i�T�[�o�v���O�����j�֘A|
-|kern|�J�[�l���֘A|
-|lpr|�v�����^�֘A|
-|mail|���[���֘A|
-|news|NetNews�֘A|
-|security|auth�Ɠ���|
-|syslog|syslogd���g�̃��O|
-|user|���[�U�A�v���P�[�V�����̃��O|
-|uucp|uucp�]�����s���v���O�����̃��O|
-|local0����local7|�Ǝ��̃v���O�����ŗ��p�\��facility|
+また、プライオリティはメッセージの重要性を指定します。たとえば、単なる情報、非常に危険な状態などといった値が指定されます。
 
-�v���C�I���e�B�ɂ́A�ȉ��̎�ނ�����܂��B
+ファシリティには、以下の種類があります。
 
-|�v���C�I���e�B|�Ӗ�|
-|-------|-------|
-|debug|�f�o�b�O�p���b�Z�[�W|
-|info|��ʓI�ȏ�񃁃b�Z�[�W|
-|notice|�ʒm���b�Z�[�W|
-|warning|�x�����b�Z�[�W|
-|warn|warning�Ɠ���|
-|err|��ʓI�ȃG���[���b�Z�[�W|
-|error|err�Ɠ���|
-|crit|�n�[�h��Q�Ȃǂ̊댯�ȃG���[���b�Z�[�W|
-|alert|�V�X�e���j���Ȃǂً̋}����|
-|emerg|���Ɋ댯�ȏ��|
-|panic|emerg�Ɠ���|
-|none|�t�@�V���e�B�𖳌��ɂ���|
+| ファシリティ     | 意味                                     |
+| ---------------- | ---------------------------------------- |
+| auth             | セキュリティ・認証関連（login、su など） |
+| authpriv         | セキュリティ・認証関連（プライベート）   |
+| cron             | cronやatのログ                           |
+| daemon           | 一般的なデーモン（サーバプログラム）関連 |
+| kern             | カーネル関連                             |
+| lpr              | プリンタ関連                             |
+| mail             | メール関連                               |
+| news             | NetNews関連                              |
+| security         | authと同じ                               |
+| syslog           | syslogd自身のログ                        |
+| user             | ユーザアプリケーションのログ             |
+| uucp             | uucp転送を行うプログラムのログ           |
+| local0からlocal7 | 独自のプログラムで利用可能なfacility     |
 
-### syslog�T�[�o�̐ݒ�
-syslog�T�[�o�̐ݒ�t�@�C���ł���/etc/rsyslog.conf�ɂ́A�󂯎�������O���b�Z�[�W���t�@�V���e�B�ƃv���C�I���e�B�̑g�ݍ��킹�łǂ̃t�@�C���ɏo�͂��邩�̐ݒ肪�L�q����Ă��܂��B
+プライオリティには、以下の種類があります。
 
-�L�q�͈ȉ��̌`���ƂȂ�܂��B
+| プライオリティ | 意味                                   |
+| -------------- | -------------------------------------- |
+| debug          | デバッグ用メッセージ                   |
+| info           | 一般的な情報メッセージ                 |
+| notice         | 通知メッセージ                         |
+| warning        | 警告メッセージ                         |
+| warn           | warningと同じ                          |
+| err            | 一般的なエラーメッセージ               |
+| error          | errと同じ                              |
+| crit           | ハード障害などの危険なエラーメッセージ |
+| alert          | システム破損などの緊急事態             |
+| emerg          | 非常に危険な状態                       |
+| panic          | emergと同じ                            |
+| none           | ファシリティを無効にする               |
+
+### syslogサーバの設定
+
+syslogサーバの設定ファイルである/etc/rsyslog.confには、受け取ったログメッセージをファシリティとプライオリティの組み合わせでどのファイルに出力するかの設定が記述されています。
+
+記述は以下の形式となります。
 
 ```
-�t�@�V���e�B.�v���C�I���e�B	�A�N�V����
+ファシリティ.プライオリティ アクション
 ```
 
-syslog�T�[�o�̐ݒ�t�@�C�����ŁA�����̃t�@�V���e�B���w�肵�����ꍇ�ɂ́A�u,�v�i�R���}�j�ŋ�؂�܂��B���Ƃ��΁AUUCP�]���ƃ��[���֘A�̃t�@�V���e�B�𓯎��Ɏw�肵�����ꍇ�ɂ́A�ȉ��̂悤�Ɏw�肵�܂��B
+syslogサーバの設定ファイル中で、複数のファシリティを指定したい場合には、「,」（コンマ）で区切ります。たとえば、UUCP転送とメール関連のファシリティを同時に指定したい場合には、以下のように指定します。
 
 ```shell-session
-uucp,news.crit	/var/log/spooler
+uucp,news.crit /var/log/spooler
 ```
 
-syslog�ݒ�t�@�C�����Ńv���C�I���e�B���w�肷��ƁA���̃v���C�I���e�B�ȏ�̏d�v�x�̃v���C�I���e�B�����ׂē��Ă͂܂�܂��B���Ƃ��΁A�ȉ��̂悤�ɐݒ肵���Ƃ��܂��B
+syslog設定ファイル中でプライオリティを指定すると、そのプライオリティ以上の重要度のプライオリティがすべて当てはまります。たとえば、以下のように設定したとします。
 
 ```
 mail.warning
 ```
 
-mail�t�@�V���e�B�����warning�ȏ�ierr�Acrit�Aalert�Aemerg�j�̂��ׂẴv���C�I���e�B�����Ă͂܂�܂��B
+mailファシリティからのwarning以上（err、crit、alert、emerg）のすべてのプライオリティが当てはまります。
 
-����̃v���C�I���e�B�̂ݎw�肵�����ꍇ�ɂ́A�u=�v���C�I���e�B�v�Ǝw�肵�܂��B
+特定のプライオリティのみ指定したい場合には、「=プライオリティ」と指定します。
 
 ```
 mail.=warning
 ```
 
-���̎w���mail�t�@�V���e�B�̃v���C�I���e�B��warning�̃��b�Z�[�W�݂̂����Ă͂܂�܂��B
+この指定はmailファシリティのプライオリティがwarningのメッセージのみが当てはまります。
 
-none�t�@�V���e�B�͂�����ȓ���������̂ŁA��q�̗�ŉ�����܂��B
+noneファシリティはやや特殊な動きをするので、後述の例で解説します。
 
-### �A�N�V�����̐ݒ�
-�t�@�V���e�B�ƃv���C�I���e�B���L�q�����E���ɁA�Y�����郍�O���ǂ����邩���w�肷��A�N�V�������L�q���܂��B
+### アクションの設定
 
-��ȃA�N�V�����́A�ȉ��̕\�̂Ƃ���ł��B
+ファシリティとプライオリティを記述した右側に、該当するログをどうするかを指定するアクションを記述します。
 
-#### �t�@�C����
-���O���t�@�C���ɏ������ށB
+主なアクションは、以下の表のとおりです。
 
-#### -�t�@�C����
-���O���t�@�C���ɏ������ލۂɃo�b�t�@�����O����B�������ݐ��\�����シ�邪�A�������܂�Ă��Ȃ��f�[�^�����鎞�ɃV�X�e����Q����������ƃ��O��������B
+#### ファイル名
 
-#### \�v���O����
-���O���b�Z�[�W���v���O�����Ɉ����n���B
+ログをファイルに書き込む。
 
-#### *
-���ׂẴ��[�U�̃R���\�[���Ƀ��b�Z�[�W��\������B
+#### -ファイル名
 
-#### @�z�X�g���i���邢��IP�A�h���X�j
-UDP��syslog�T�[�o�Ƀ��O���b�Z�[�W�𑗐M����B
+ログをファイルに書き込む際にバッファリングする。書き込み性能が向上するが、書き込まれていないデータがある時にシステム障害が発生するとログが失われる。
 
-#### @@�z�X�g���i���邢��IP�A�h���X�j
-TCP��syslog�T�[�o�Ƀ��O���b�Z�[�W�𑗐M����B
+#### \プログラム
 
-### syslog�T�[�o�̃f�t�H���g�ݒ���m�F����
-�ݒ�t�@�C��/etc/rsyslog.conf�Ɋ��ɐݒ肳��Ă�����e���m�F���܂��B
+ログメッセージをプログラムに引き渡す。
 
-```shell-session
-authpriv.*	/var/log/secure
-```
+#### \*
 
-���̐ݒ�́A�t�@�V���e�B��authpriv�i�F�؊֌W�j�A�v���C�I���e�B��*�i�S�Ẵv���C�I���e�B�j�̃��O���b�Z�[�W��/var/log/secure�ɏo�͂���悤�Ɏw�肵�Ă��܂��B
+すべてのユーザのコンソールにメッセージを表示する。
 
-```shell-session
-*.info;mail.none;authpriv.none;cron.none		/var/log/messages
-```
+#### @ホスト名（あるいはIPアドレス）
 
-���̐ݒ�́A���ׂẴt�@�V���e�B��info�v���C�I���e�B�ȏ�̃��O�����ׂ�/var/log/messages�ɏo�͂���悤�ɂ��Ă��܂��B�������Amail�Aauthpriv�Acron��3�̃t�@�V���e�B�ɂ�none�v���C�I���e�B���w�肳��Ă��邽�߁A�Ώۂ���͏��O����Ă��܂��B
+UDPでsyslogサーバにログメッセージを送信する。
 
-���O���ꂽ�e�t�@�V���e�B�̏o�͂́A�ȉ��̂悤�ɕʓr�w�肳��Ă��܂��B
+#### @@ホスト名（あるいはIPアドレス）
 
-mail�t�@�V���e�B�̃��O�́A��������ɂ�����x�o�b�t�@�����O������Ń��O�t�@�C���ɏ������ނ悤�Ɂu-�i�n�C�t���j�v���w�肵�Ă��܂��B���[���T�[�o�͈�x�ɑ�ʂ̃��O���������ނ��Ƃ���������ł��B
+TCPでsyslogサーバにログメッセージを送信する。
+
+### syslogサーバのデフォルト設定を確認する
+
+設定ファイル/etc/rsyslog.confに既に設定されている内容を確認します。
 
 ```shell-session
-authpriv.*						/var/log/secure
-mail.*							-/var/log/maillog
-cron.*							/var/log/cron
+authpriv.* /var/log/secure
 ```
 
-### �J�[�l�����O��syslog�o�͐ݒ�
-�f�t�H���g�̐ݒ�ł̓R�����g�A�E�g����Ė����ɂȂ��Ă���J�[�l������̃��O�o�͂̐ݒ��L���ɂ��܂��B�J�[�l���̃��O�́A���Ƃ���iptables�̂悤�ȃJ�[�l���̋@�\�����O���o�͂��܂��B
+この設定は、ファシリティがauthpriv（認証関係）、プライオリティが\*（全てのプライオリティ）のログメッセージは/var/log/secureに出力するように指定しています。
 
-iptables�̐ݒ�t�@�C��/etc/sysconfig/iptables��ҏW���A�|�[�g�ԍ�22�Ԃ̋��iACCEPT�j�ƁA���̑��̑S�Ă����ہiREJECT�j���郋�[���̊ԂɁA���O���擾���郋�[����ǉ����܂��B
+```shell-session
+*.info;mail.none;authpriv.none;cron.none  /var/log/messages
+```
+
+この設定は、すべてのファシリティのinfoプライオリティ以上のログをすべて/var/log/messagesに出力するようにしています。ただし、mail、authpriv、cronの3つのファシリティにはnoneプライオリティが指定されているため、対象からは除外されています。
+
+除外された各ファシリティの出力は、以下のように別途指定されています。
+
+mailファシリティのログは、メモリ上にある程度バッファリングした上でログファイルに書き込むように「-（ハイフン）」を指定しています。メールサーバは一度に大量のログを書き込むことが多いからです。
+
+```shell-session
+authpriv.*      /var/log/secure
+mail.*       -/var/log/maillog
+cron.*       /var/log/cron
+```
+
+### カーネルログのsyslog出力設定
+
+デフォルトの設定ではコメントアウトされて無効になっているカーネルからのログ出力の設定を有効にします。カーネルのログは、たとえばiptablesのようなカーネルの機能がログを出力します。
+
+iptablesの設定ファイル/etc/sysconfig/iptablesを編集し、ポート番号22番の許可（ACCEPT）と、その他の全てを拒否（REJECT）するルールの間に、ログを取得するルールを追加します。
 
 ```shell-session
 # Firewall configuration written by system-config-firewall
@@ -190,20 +206,20 @@ iptables�̐ݒ�t�@�C��/etc/sysconfig/iptables��ҏW���A�|�[�g�ԍ�22�Ԃ̋��iACC
 -A INPUT -p icmp -j ACCEPT
 -A INPUT -i lo -j ACCEPT
 -A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT
-��-A INPUT -j LOG --log-level debug --log-prefix '[iptables_test]:' ���V�K�ɒǉ�
+※-A INPUT -j LOG --log-level debug --log-prefix '[iptables_test]:' ←新規に追加
 -A INPUT -j REJECT --reject-with icmp-host-prohibited
 -A FORWARD -j REJECT --reject-with icmp-host-prohibited
 COMMIT
 ```
 
-iptables�T�[�r�X��reload���āA�V�����ݒ��ǂݍ��܂��܂��B
+iptablesサービスをreloadして、新しい設定を読み込ませます。
 
 ```shell-session
 # service iptables reload
 iptables: Trying to reload firewall rules:                 [  OK  ]
 ```
 
-/etc/rsyslog.conf��ҏW���A�t�@�V���e�B��kern�A�v���C�I���e�B���S�Ẵ��b�Z�[�W��/var/log/kern.log�ɏo�͂���ݒ��ǉ����܂��B
+/etc/rsyslog.confを編集し、ファシリティがkern、プライオリティが全てのメッセージを/var/log/kern.logに出力する設定を追加します。
 
 ```shell-session
 # vi /etc/rsyslog.conf
@@ -211,281 +227,318 @@ iptables: Trying to reload firewall rules:                 [  OK  ]
 # Log all kernel messages to the console.
 # Logging much else clutters up the screen.
 #kern.*                                                 /dev/console
-��kern.*                                                 /var/log/kern.log ���V�K�ɒǉ�
+※kern.*                                                 /var/log/kern.log ←新規に追加
 ```
 
-rsyslog�T�[�r�X���ċN�����āA�V�����ݒ��ǂݍ��܂��܂��B
+rsyslogサービスを再起動して、新しい設定を読み込ませます。
 
 ```shell-session
 # service rsyslog restart
-�V�X�e�����K�[���~��:                                    [  OK  ]
-�V�X�e�����K�[���N����:                                    [  OK  ]
+システムロガーを停止中:                                    [  OK  ]
+システムロガーを起動中:                                    [  OK  ]
 ```
 
-�O���̃z�X�g����ݒ���s�����z�X�g�ɑ΂��āAiptables�ŋ�����Ă��Ȃ��|�[�g�ԍ�80�Ԃ�Web�u���E�U���ŃA�N�Z�X���܂��B
+外部のホストから設定を行ったホストに対して、iptablesで許可されていないポート番号80番にWebブラウザ等でアクセスします。
 
-/var/log/kern.log�Ƀ|�[�g�ԍ�80�Ԃɑ΂���ʐM�����ۂ����|�̃��O���o�͂���܂��B
+/var/log/kern.logにポート番号80番に対する通信を拒否した旨のログが出力されます。
 
 ```shell-session
-# tail /var/log/kern.log 
+# tail /var/log/kern.log
 Dec 25 14:54:16 server kernel: imklog 5.8.10, log source = /proc/kmsg started.
-Dec 25 14:54:50 server kernel: ��'[iptables_test]:'��IN=eth0 OUT= MAC=00:1c:42:65:af:c4:00:1c:42:00:00:08:08:00 SRC=192.168.0.2 DST=192.168.0.10 LEN=64 TOS=0x00 PREC=0x00 TTL=64 ID=24955 DF PROTO=TCP SPT=57191 ��DPT=80�� WINDOW=65535 RES=0x00 SYN URGP=0 
+Dec 25 14:54:50 server kernel: ※'[iptables_test]:'※IN=eth0 OUT= MAC=00:1c:42:65:af:c4:00:1c:42:00:00:08:08:00 SRC=192.168.0.2 DST=192.168.0.10 LEN=64 TOS=0x00 PREC=0x00 TTL=64 ID=24955 DF PROTO=TCP SPT=57191 ※DPT=80※ WINDOW=65535 RES=0x00 SYN URGP=0
 ```
 
-### �����[�g�z�X�g�̃��O��UDP�Ŏ󂯎��
-syslog�T�[�o�Ƃ��ă����[�g�z�X�g�̃��O���󂯎�邽�߂̐ݒ���s���܂��Bsyslog�̃��b�Z�[�W�̑���M�́A�ʏ�UDP�ōs���܂��B
+### リモートホストのログをUDPで受け取る
 
-�ݒ�t�@�C��/etc/rsyslog.conf���ɂ���ȉ���2�s����A�s���̃R�����g�A�E�g���폜���Đݒ��L���ɂ��܂��B
+syslogサーバとしてリモートホストのログを受け取るための設定を行います。syslogのメッセージの送受信は、通常UDPで行われます。
 
-$ModLoad�́AUDP�p�̃v���g�R�����W���[���̃��[�h��ݒ肵�Ă��܂��B$UDPServerRun�́AUDP�Ń��O���b�Z�[�W���󂯎��|�[�g�ԍ����w�肵�Ă��܂��B
+設定ファイル/etc/rsyslog.conf内にある以下の2行から、行頭のコメントアウトを削除して設定を有効にします。
+
+$ModLoadは、UDP用のプロトコルモジュールのロードを設定しています。$UDPServerRunは、UDPでログメッセージを受け取るポート番号を指定しています。
 
 ```shell-session
 [root@server ~]## vi /etc/rsyslog.conf
 
-�i���j
+（略）
 # Provides UDP syslog reception
-$ModLoad imudp �����s����#���폜
-$UDPServerRun 514 �����s����#���폜
+$ModLoad imudp ※←行頭の#を削除
+$UDPServerRun 514 ※←行頭の#を削除
 ```
 
-rsyslog�T�[�r�X���ċN�����܂��Brsyslogd��UDP�̃|�[�g�ԍ�514�Ԃő҂��󂯂�悤�ɂȂ�܂��B
+rsyslogサービスを再起動します。rsyslogdがUDPのポート番号514番で待ち受けるようになります。
 
 ```shell-session
 [root@server ~]# service rsyslog restart
-�V�X�e�����K�[���~��:                                    [  OK  ]
-�V�X�e�����K�[���N����:                                    [  OK  ]
+システムロガーを停止中:                                    [  OK  ]
+システムロガーを起動中:                                    [  OK  ]
 [root@server ~]# lsof -i:514
 COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
-rsyslogd 9282 root    3u  IPv4 134339      0t0  UDP *:syslog 
-rsyslogd 9282 root    4u  IPv6 134340      0t0  UDP *:syslog 
+rsyslogd 9282 root    3u  IPv4 134339      0t0  UDP *:syslog
+rsyslogd 9282 root    4u  IPv6 134340      0t0  UDP *:syslog
 ```
 
-�ݒ��Aiptables�̐ݒ��ύX���AUDP�̃|�[�g�ԍ�514�Ԃւ̃p�P�b�g��������悤�ɐݒ��ύX����K�v������܂��B�ݒ�ɂ��Ă͌�q���܂��B
+設定後、iptablesの設定を変更し、UDPのポート番号514番へのパケットを許可するように設定を変更する必要があります。設定については後述します。
 
-### �����[�g�z�X�g�̃��O��TCP�Ŏ󂯎��
-���O���b�Z�[�W�̑���M��TCP���g�p���邱�Ƃɂ��AUDP�Ŕ������Ă������O�̎�肱�ڂ���h�����Ƃ��ł��܂��BUDP�̓Z�b�V�������X�ȃv���g�R���̂��߁A����M�Ɏ��s�������ɍđ��M����d�g�݂��������߂ł��B
+### リモートホストのログをTCPで受け取る
 
-�������ATCP�̓v���g�R���̐�����UDP�����������d���Ȃ��Ă��܂����߁A��ʂ̃��O�����M����Ă�����ł͋t�Ƀ{�g���l�b�N�ɂȂ��Ă��܂��Asyslog�T�[�o���������ׂŏ������؂��Ă��܂��\��������܂��B
+ログメッセージの送受信にTCPを使用することにより、UDPで発生していたログの取りこぼしを防ぐことができます。UDPはセッションレスなプロトコルのため、送受信に失敗した時に再送信する仕組みが無いためです。
 
-���̂��߁ATCP���g�������O���b�Z�[�W�̑���M�́A���O�̗ʂ�����قǑ����Ȃ����O�L�^�̐M�������K�v�ȏꍇ�ɐݒ肵�܂��B�����A��ʂ̃��O�����M����Ă���ꍇ�ɂ́Asyslog�T�[�o�𕡐��p�ӂ��邩�AUDP���g���K�v������܂��B
+ただし、TCPはプロトコルの性質上UDPよりも処理が重くなってしまうため、大量のログが送信されてくる環境では逆にボトルネックになってしまい、syslogサーバ側が高負荷で処理が滞ってしまう可能性があります。
 
-�ݒ�t�@�C��/etc/rsyslog.conf���ɂ���ȉ���2�s����A�s���̃R�����g�A�E�g���폜���Đݒ��L���ɂ��܂��B
+そのため、TCPを使ったログメッセージの送受信は、ログの量がそれほど多くなくログ記録の信頼性が必要な場合に設定します。もし、大量のログが送信されてくる場合には、syslogサーバを複数用意するか、UDPを使う必要があります。
 
-$ModLoad�́ATCP�p�̃v���g�R�����W���[���̃��[�h��ݒ肵�Ă��܂��B$InputTCPServerRun�́ATCP�Ń��O���b�Z�[�W���󂯎��|�[�g�ԍ����w�肵�Ă��܂��B
+設定ファイル/etc/rsyslog.conf内にある以下の2行から、行頭のコメントアウトを削除して設定を有効にします。
+
+$ModLoadは、TCP用のプロトコルモジュールのロードを設定しています。$InputTCPServerRunは、TCPでログメッセージを受け取るポート番号を指定しています。
 
 ```shell-session
 [root@server ~]# vi /etc/rsyslog.conf
 
-�i���j
+（略）
 # Provides TCP syslog reception
-$ModLoad imtcp �����s����#���폜
-$InputTCPServerRun 514 �����s����#���폜
+$ModLoad imtcp ※←行頭の#を削除
+$InputTCPServerRun 514 ※←行頭の#を削除
 ```
 
-rsyslog�T�[�r�X���ċN�����܂��Brsyslogd��TCP�̃|�[�g�ԍ�514�Ԃő҂��󂯂�悤�ɂȂ�܂��B
+rsyslogサービスを再起動します。rsyslogdがTCPのポート番号514番で待ち受けるようになります。
 
 ```shell-session
 [root@server ~]# service rsyslog restart
-�V�X�e�����K�[���~��:                                    [  OK  ]
-�V�X�e�����K�[���N����:                                    [  OK  ]
+システムロガーを停止中:                                    [  OK  ]
+システムロガーを起動中:                                    [  OK  ]
 [root@server ~]# lsof -i:514
 COMMAND    PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
 rsyslogd 24138 root    1u  IPv4 107209      0t0  TCP *:shell (LISTEN)
-rsyslogd 24138 root    3u  IPv4 107202      0t0  UDP *:syslog 
-rsyslogd 24138 root    4u  IPv6 107203      0t0  UDP *:syslog 
+rsyslogd 24138 root    3u  IPv4 107202      0t0  UDP *:syslog
+rsyslogd 24138 root    4u  IPv6 107203      0t0  UDP *:syslog
 rsyslogd 24138 root    8u  IPv6 107210      0t0  TCP *:shell (LISTEN)
 ```
 
-�|�[�g��shell�ƕ\������Ă���̂́A�|�[�g�ԍ��̐ݒ�t�@�C��/etc/services�Œ�`����Ă��邽�߂ł��B����ɉe���͂���܂���B
+ポートがshellと表示されているのは、ポート番号の設定ファイル/etc/servicesで定義されているためです。動作に影響はありません。
 
 ```shell-session
 # grep 514 /etc/services
 shell           514/tcp         cmd             # no passwords used
 syslog          514/udp
-�i���j
+（略）
 ```
 
-�ݒ��Aiptables�̐ݒ��ύX���ATCP�̃|�[�g�ԍ�514�Ԃւ̃p�P�b�g��������悤�ɐݒ��ύX����K�v������܂��B
+設定後、iptablesの設定を変更し、TCPのポート番号514番へのパケットを許可するように設定を変更する必要があります。
 
-### syslog�T�[�o��iptables�̐ݒ�
-syslog�T�[�o��iptables�̐ݒ��ύX���ATCP�����UDP�̃|�[�g�ԍ�514�Ԃ̐ڑ��������Ă����܂��B���邢�́Aiptables�T�[�r�X���~���Ă����܂��B
+### syslogサーバのiptablesの設定
+
+syslogサーバのiptablesの設定を変更し、TCPおよびUDPのポート番号514番の接続を許可しておきます。あるいは、iptablesサービスを停止しておきます。
 
 ```shell-session
 [root@server ~]# service iptables stop
-iptables: �`�F�C�����|���V�[ ACCEPT �֐ݒ蒆filter         [  OK  ]
-iptables: �t�@�C�A�E�H�[�����[����������:                  [  OK  ]
-iptables: ���W���[�������O����:                          [  OK  ]
+iptables: チェインをポリシー ACCEPT へ設定中filter         [  OK  ]
+iptables: ファイアウォールルールを消去中:                  [  OK  ]
+iptables: モジュールを取り外し中:                          [  OK  ]
 ```
 
-/etc/sysconfig/iptables�ւ�iptables�̃��[����ǉ�����ɂ́A�ȉ��̂悤�ɂȂ�܂��B�p�P�b�g��Reject���郋�[���̑O�ɁA���[���ݒ��ǉ����܂��B���[���ݒ��ǉ�������iptables�T�[�r�X��reload���Ă����܂��B
+/etc/sysconfig/iptablesへのiptablesのルールを追加するには、以下のようになります。パケットをRejectするルールの前に、ルール設定を追加します。ルール設定を追加したらiptablesサービスをreloadしておきます。
 
 ```shell-session
 [root@server ~]# vi /etc/sysconfig/iptables
-�i���j
-��-A INPUT -m state --state NEW -m udp -p udp --dport 514 -j ACCEPT ���V�K�ɒǉ�
-��-A INPUT -m state --state NEW -m tcp -p tcp --dport 514 -j ACCEPT ���V�K�ɒǉ�
+（略）
+※-A INPUT -m state --state NEW -m udp -p udp --dport 514 -j ACCEPT ←新規に追加
+※-A INPUT -m state --state NEW -m tcp -p tcp --dport 514 -j ACCEPT ←新規に追加
 -A INPUT -j REJECT --reject-with icmp-host-prohibited
 ```
 
-### syslog�N���C�A���g�̐ݒ�
-�l�b�g���[�N�Őڑ����ꂽsyslog�T�[�o�ɑ΂��ă��O���b�Z�[�W�𑗐M����syslog�N���C�A���g��ݒ肵�܂��B
+### syslogクライアントの設定
 
-syslog�N���C�A���g���̃z�X�g�ł�rsyslog��ݒ肵�A�A�N�V�����̐ݒ�Ńl�b�g���[�N���syslog�T�[�o���w�肵�܂��B
+ネットワークで接続されたsyslogサーバに対してログメッセージを送信するsyslogクライアントを設定します。
 
-syslog�N���C�A���g�̐ݒ�t�@�C��/etc/rsyslog.conf���C�����܂��B
+syslogクライアント側のホストでもrsyslogを設定し、アクションの設定でネットワーク上のsyslogサーバを指定します。
 
-authpriv�t�@�V���e�B�Ɋւ��邷�ׂẴ��O��syslog�T�[�o�ɑ��M����悤�ɐݒ��ǉ����܂��B@���M��Ǝw�肷�邱�Ƃ�UDP���g�p�������M���w��ł��܂��B
+syslogクライアントの設定ファイル/etc/rsyslog.confを修正します。
 
-�܂��Amail�t�@�V���e�B�Ɋւ��邷�ׂẴ��O��syslog�T�[�o�ɑ��M����悤�ɐݒ��ǉ����܂��B@@���M��Ǝw�肷�邱�Ƃ�TCP���g�p�������M���w��ł��܂��B
+authprivファシリティに関するすべてのログをsyslogサーバに送信するように設定を追加します。@送信先と指定することでUDPを使用した送信を指定できます。
 
-```shell-session
+また、mailファシリティに関するすべてのログをsyslogサーバに送信するように設定を追加します。@@送信先と指定することでTCPを使用した送信を指定できます。
+
+````shell-session
 # vi /etc/rsyslog.conf
 
 # The authpriv file has restricted access.
 authpriv.*                                              /var/log/secure
-��authpriv.*                                              @192.168.0.10 ���V�K�ɒǉ�
+※authpriv.*                                              @192.168.0.10 ←新規に追加
 
 # Log all the mail messages in one place.
 mail.*                                                  -/var/log/maillog
-��mail.*                                                  @@192.168.0.10 ���V�K�ɒǉ�```
+※mail.*                                                  @@192.168.0.10 ←新規に追加```
 
-syslog�N���C�A���g��rsyslog�T�[�r�X���ċN�����܂��B
+syslogクライアントのrsyslogサービスを再起動します。
 
 ```shell-session
 [root@client ~]# service rsyslog restart
-�V�X�e�����K�[���~��:                                    [  OK  ]
-�V�X�e�����K�[���N����:                                    [  OK  ]
-```
+システムロガーを停止中:                                    [  OK  ]
+システムロガーを起動中:                                    [  OK  ]
+````
 
-#### UDP�Ń��O�𑗐M
-syslog�N���C�A���g��logger�R�}���h�����s���āAauthpriv.debug�v���C�I���e�B�Ń��O���o�͂��܂��B
+#### UDPでログを送信
+
+syslogクライアントでloggerコマンドを実行して、authpriv.debugプライオリティでログを出力します。
 
 ```shell-session
 [root@client ~]# logger -p authpriv.debug "This is auth log over UDP"
 ```
 
-syslog�T�[�o���/var/log/secure�Ƀ��O���o�͂���邱�Ƃ��m�F���܂��B
+syslogサーバ上の/var/log/secureにログが出力されることを確認します。
 
 ```shell-session
-[root@server ~]# tail -f /var/log/secure 
-�i���j
+[root@server ~]# tail -f /var/log/secure
+（略）
 Dec 25 17:16:50 client root: This is auth log over UDP
 ```
 
-#### TCP�Ń��O�𑗐M
-syslog�N���C�A���g��logger�R�}���h�����s���āAmail.debug�v���C�I���e�B�Ń��O���o�͂��܂��B
+#### TCPでログを送信
+
+syslogクライアントでloggerコマンドを実行して、mail.debugプライオリティでログを出力します。
 
 ```shell-session
 [root@client ~]# logger -p mail.debug "This is mail log over TCP"
 ```
 
-syslog�T�[�o���/var/log/maillog�Ƀ��O���o�͂���邱�Ƃ��m�F���܂��B
+syslogサーバ上の/var/log/maillogにログが出力されることを確認します。
 
 ```shell-session
 [root@server ~]# tail /var/log/secure
-�i���j
+（略）
 Dec 25 17:18:03 client root: This is mail log over TCP
 ```
 
-### logrotate�ɂ�郍�O���[�e�[�V����
-���O�t�@�C���͏�ɒǋL����Ă������߁A�t�@�C���T�C�Y������ɔ�剻���ăf�B�X�N�e�ʂ��������A��Ń��O���m�F����ۂɕK�v�ȃ��O�������ɂ����Ȃ�܂��B�����̖���������邽�߁A���O�������ԂŃ��[�e�[�V��������logrotate���g���Ă��܂��B
+### logrotateによるログローテーション
 
-logrotate�́Acron����1��1��A/etc/cron.daily/logrotate�X�N���v�g�ɂ���ċN������܂��B/etc/logrotate.conf��logrotate�̐ݒ�t�@�C���ƂȂ��Ă���A���O�t�@�C�������[�e�[�V��������^�C�~���O��A���O�t�@�C����������܂Ŏc�����Ȃǂ̐ݒ肪�L�q����Ă��܂��B�T�[�r�X���̏ڍׂȐݒ�́A/etc/logrotate.d�f�B���N�g���Ɋi�[����Ă��܂��B
+ログファイルは常に追記されていくため、ファイルサイズが次第に肥大化してディスク容量を圧迫し、後でログを確認する際に必要なログを見つけにくくなります。これらの問題を回避するため、ログを一定期間でローテーションするlogrotateが使われています。
 
-logrotate�̐ݒ�Ŏg�p�ł���f�B���N�e�B�u�͈ȉ��̂Ƃ���ł��B
+logrotateは、cronから1日1回、/etc/cron.daily/logrotateスクリプトによって起動されます。/etc/logrotate.confがlogrotateの設定ファイルとなっており、ログファイルをローテーションするタイミングや、ログファイルを何世代まで残すかなどの設定が記述されています。サービス毎の詳細な設定は、/etc/logrotate.dディレクトリに格納されています。
 
-#### create [���[�h] [���L���[�U] [���L�O���[�v]
-���[�e�[�V�������s������A����ɋ�̐V�K���O�t�@�C�����쐬���܂��B�������w��ł��܂��B���[�h��0755�̂悤�Ȑ��l�����B�w�肵�Ȃ������ɂ��Ă͌��̃t�@�C���̑����������p����܂��B
+logrotateの設定で使用できるディレクティブは以下のとおりです。
+
+#### create [モード] [所有ユーザ] [所有グループ]
+
+ローテーションを行った後、代わりに空の新規ログファイルを作成します。属性も指定できます。モードは0755のような数値書式。指定しない属性については元のファイルの属性が引き継がれます。
 
 #### nocreate
-create���O���[�o���ɐݒ肵���ꍇ�ɁA�ʂ�create�𖳌��ɂ������ۂɎg�p���܂��B
+
+createをグローバルに設定した場合に、個別にcreateを無効にしたい際に使用します。
 
 #### copy/nocopy
-���̃��O�t�@�C���͂��̂܂܂ɂ��āA�R�s�[��ۑ����܂��B
+
+元のログファイルはそのままにして、コピーを保存します。
 
 #### copytruncate/nocopytruncate
-copy�̓�����s������A���̃��O�t�@�C���̓��e���������܂��B�������I�ɂ�create�Ɠ������ʂƂȂ�܂��B����̓��O�t�@�C���������[�h������@�������v���O�����ւ̑Ώ��@�̂ЂƂł��B���Ƃ���Oracle 10g R1/R2��alert���O�ɑ΂��ẮA���̕��@���s��Ȃ��ƈȑO�̃��O�t�@�C���i�Ⴆ��alert_xx.log.1�j�Ƀ��O���������ݑ������܂��B
 
-#### rotate ���㐔
-���ネ�[�e�[�V�����̐��㐔���w�肵�܂��B���Ƃ��Ό��̃��O�t�@�C����a.log�̏ꍇ�Anum��2���w�肷��ƁAa.log��a.log.1��a.log.2���p���ƂȂ�܂��B0�̏ꍇ�Aa.log���p���ƂȂ�܂��B
+copyの動作を行った後、元のログファイルの内容を消去します。見かけ的にはcreateと同じ結果となります。これはログファイルをリロードする方法が無いプログラムへの対処法のひとつです。たとえばOracle 10g R1/R2のalertログに対しては、この方法を行わないと以前のログファイル（例えばalert_xx.log.1）にログが書き込み続けられます。
 
-#### start ���l
-�ŏ��̃��[�e�[�V�����t�@�C���̖����ɕt������l���w�肵�܂��B�f�t�H���g��1�ł��B���Ƃ���num��5���w�肷��ƁAa.log��a.log.5��a.log.6�ƂȂ�܂��B
+#### rotate 世代数
 
-#### extension �g���q
-���[�e�[�V�������������O�t�@�C���ɕt����g���q���w�肵�܂��B�w��ɂ͋�؂�̃h�b�g���K�v�ł��B���Ƃ��Ίg���q�Ɂu.bak�v�Ǝw�肷��ƁAsome.log�̏��ネ�[�e�[�V�������O��some.log.1.bak�ƂȂ�܂��B���k���s���ꍇ�A���k�ɂ��g���q�͂���ɂ��̌��ɕt���܂��B
+世代ローテーションの世代数を指定します。たとえば元のログファイルがa.logの場合、numに2を指定すると、a.log→a.log.1→a.log.2→廃棄となります。0の場合、a.log→廃棄となります。
+
+#### start 数値
+
+最初のローテーションファイルの末尾に付加する値を指定します。デフォルトは1です。たとえばnumに5を指定すると、a.log→a.log.5→a.log.6となります。
+
+#### extension 拡張子
+
+ローテーションした旧ログファイルに付ける拡張子を指定します。指定には区切りのドットも必要です。たとえば拡張子に「.bak」と指定すると、some.logの初代ローテーションログはsome.log.1.bakとなります。圧縮も行う場合、圧縮による拡張子はさらにその後ろに付きます。
 
 #### compress/nocompress
-���[�e�[�V����������̋��t�@�C���Ɉ��k���|���܂��B�f�t�H���g��nocompress�i�񈳏k�j�ł��B
 
-#### compresscmd �R�}���h
-���O�t�@�C���̈��k�Ɏg�p����v���O�������w�肵�܂��B�f�t�H���g��gzip�ł��B
+ローテーションした後の旧ファイルに圧縮を掛けます。デフォルトはnocompress（非圧縮）です。
 
-#### uncompresscmd �R�}���h
-���O�t�@�C���̉𓀂Ɏg�p����v���O�������w�肵�܂��B�f�t�H���g��gunzip�ł��B
+#### compresscmd コマンド
 
-#### compressoptions �I�v�V����
-���k�v���O�����֓n���I�v�V�������w�肵�܂��B�f�t�H���g��gzip�ɓn���u-9�v�i���k���ő�j�ł��B�u-9 -s�v�̂悤�ɃX�y�[�X����ŕ����̃I�v�V�������w�肷�邱�Ƃ͂ł��܂���B
+ログファイルの圧縮に使用するプログラムを指定します。デフォルトはgzipです。
 
-#### compressext �g���q
-���k��̃t�@�C���ɕt����g���q�i�h�b�g���K�v�j���w�肵�܂��B�f�t�H���g�ł́A�g�p���鈳�k�R�}���h�ɉ��������̂��t�����܂��B
+#### uncompresscmd コマンド
+
+ログファイルの解凍に使用するプログラムを指定します。デフォルトはgunzipです。
+
+#### compressoptions オプション
+
+圧縮プログラムへ渡すオプションを指定します。デフォルトはgzipに渡す「-9」（圧縮率最大）です。「-9 -s」のようにスペース入りで複数のオプションを指定することはできません。
+
+#### compressext 拡張子
+
+圧縮後のファイルに付ける拡張子（ドットも必要）を指定します。デフォルトでは、使用する圧縮コマンドに応じたものが付けられます。
 
 #### delaycompress/nodelaycompress
-���k���������̃��[�e�[�V�����܂Œx�点��A���邢�͒x�点�܂���B
 
-#### olddir �f�B���N�g��/noolddir
-���[�e�[�V�������������O���f�B���N�g���Ɉړ����܂��B�ړ���͌��Ɠ����f�o�C�X��Ŏw�肵�܂��B���̃��O�ɑ΂��鑊�Ύw����L���ł��B
+圧縮処理を次のローテーションまで遅らせる、あるいは遅らせません。
+
+#### olddir ディレクトリ/noolddir
+
+ローテーションした旧ログをディレクトリに移動します。移動先は元と同じデバイス上で指定します。元のログに対する相対指定も有効です。
 
 #### mail address/nomail
-�����O�t�@�C����address�ɑ��M���܂��B�ǂ̒i�K�̃��O�𑗂邩��maillast�Ȃǂ̃I�v�V�����Ō��܂�܂��B
+
+旧ログファイルをaddressに送信します。どの段階のログを送るかはmaillastなどのオプションで決まります。
 
 #### maillast
-���オ�I����Ĕj������郍�O�����[�����܂��B
+
+世代が終わって破棄されるログをメールします。
 
 #### mailfirst
-���ネ�[�e�[�V�������O�����[�����܂��B
+
+初代ローテーションログをメールします。
 
 #### daily/weekly/monthly
-���O���[�e�[�V���������/�T��/�����ɍs���܂��B�f�t�H���g��daily�B���Ƃ���weekly�Ȃ�A�������s�����Ƃ��Ă��A�T��1�񂾂����[�e�[�V�������s���܂��B
 
-#### size �T�C�Y[K/M]
-���O�̃T�C�Y���T�C�Y�o�C�g�𒴂��Ă���΃��[�e�[�V�������s���܂��B���̏�����daily,weekly�Ȃǂ̏������D�悳��܂��B�L���o�C�g�iK�j�A���K�o�C�g�iM�j�ł̎w����ł��܂��B
+ログローテーションを日毎/週毎/月毎に行います。デフォルトはdaily。たとえばweeklyなら、毎日実行したとしても、週に1回だけローテーションが行われます。
+
+#### size サイズ[K/M]
+
+ログのサイズがサイズバイトを超えていればローテーションを行います。この条件はdaily,weeklyなどの条件より優先されます。キロバイト（K）、メガバイト（M）での指定もできます。
 
 #### ifempty/notifempty
-���̃��O�t�@�C������ł����[�e�[�V�������s���A���邢�͍s���܂���B
+
+元のログファイルが空でもローテーションを行う、あるいは行いません。
 
 #### missingok/nomissingok
-�w��̃��O�t�@�C�������݂��Ȃ������Ƃ��Ă��G���[���o�����ɏ����𑱍s����A���邢�̓G���[���o�͂��܂��B
+
+指定のログファイルが存在しなかったとしてもエラーを出さずに処理を続行する、あるいはエラーを出力します。
 
 #### firstaction
-���[�e�[�V�������s���O�ɃX�N���v�g�����s���܂��Bprerotete�����O�Ɏ��s�����ʒ�`���ł̂ݎw��\�ł��B
+
+ローテーションを行う前にスクリプトを実行します。preroteteよりも前に実行される個別定義内でのみ指定可能です。
 
 #### prerotate
-���[�e�[�V�������s���O�ɃX�N���v�g�����s���܂��Bfirstaction�̌�Ɏ��s����܂��B�ʒ�`���ł̂ݎw��ł��܂��B
+
+ローテーションを行う前にスクリプトを実行します。firstactionの後に実行されます。個別定義内でのみ指定できます。
 
 #### postrotate
-���[�e�[�V�������s��ꂽ��ɃX�N���v�g�����s���܂��Blastaction���O�Ɏ��s����܂��B�ʒ�`���ł̂ݎw��ł��܂��B
+
+ローテーションが行われた後にスクリプトを実行します。lastactionより前に実行されます。個別定義内でのみ指定できます。
 
 #### lastaction
-���[�e�[�V�������s��ꂽ��i������j�ɃX�N���v�g�����s���܂��Bpostrotate�̌�Ɏ��s����܂��B�ʒ�`���ł̂ݎw��ł��܂��B
+
+ローテーションが行われた後（よりも後）にスクリプトを実行します。postrotateの後に実行されます。個別定義内でのみ指定できます。
 
 #### sharedscripts
-���[�e�[�V�������郍�O�������������ꍇ�ɁAprerotate�Apostrotate�̃X�N���v�g����x�������s���܂��B
+
+ローテーションするログが複数あった場合に、prerotate、postrotateのスクリプトを一度だけ実行します。
 
 #### nosharedscripts
-���[�e�[�V�������郍�O�������������ꍇ�ɁAprerotate�Apostrotate�̃X�N���v�g���e���O�t�@�C�����Ɏ��s���܂��B
 
-#### include �t�@�C���i�f�B���N�g���j
-include�̋L�q�̂���ʒu�ɕʂ̐ݒ�t�@�C����ǂݍ��݂܂��B�f�B���N�g�����w�肵���ꍇ�A���̃f�B���N�g��������A�f�B���N�g������і��O�t���p�C�v�ȊO�̒ʏ�t�@�C�����A���t�@�x�b�g���ɓǂݍ��܂�܂��B
+ローテーションするログが複数あった場合に、prerotate、postrotateのスクリプトを各ログファイル毎に実行します。
 
-#### tabooext [+] �g���q[,�g���q,...]
-include�Ńf�B���N�g�����w�肵���ꍇ�ɓǂݍ��ރt�@�C�����珜�O����t�@�C���̊g���q���w�肵�܂��B�f�t�H���g�Łu.rpmorig�v�u.rpmsave�v�u,v�v�u.swp�v�u.rpmnew�v�u~�v�u.cfsaved�v�u.rhn-cfg-tmp-*�v���w�肳��Ă��܂��B+���w�肷��ƃf�t�H���g�w��ɑ΂��Ēǉ��Ŋg���q���w��ł��܂��B+���w�肵�Ȃ��ƃf�t�H���g�w���j�����ĐV�K�Ɋg���q���w�肵�܂��B
+#### include ファイル（ディレクトリ）
 
-### ���O���[�e�[�g�ݒ�t�@�C���̊m�F
-/etc/logrotate.d/httpd���Q�l�ɁA���[�e�[�g�̐ݒ���m�F���܂��B
+includeの記述のある位置に別の設定ファイルを読み込みます。ディレクトリを指定した場合、そのディレクトリ内から、ディレクトリおよび名前付きパイプ以外の通常ファイルがアルファベット順に読み込まれます。
+
+#### tabooext [+] 拡張子[,拡張子,...]
+
+includeでディレクトリを指定した場合に読み込むファイルから除外するファイルの拡張子を指定します。デフォルトで「.rpmorig」「.rpmsave」「,v」「.swp」「.rpmnew」「~」「.cfsaved」「.rhn-cfg-tmp-\*」が指定されています。+を指定するとデフォルト指定に対して追加で拡張子を指定できます。+を指定しないとデフォルト指定を破棄して新規に拡張子を指定します。
+
+### ログローテート設定ファイルの確認
+
+/etc/logrotate.d/httpdを参考に、ローテートの設定を確認します。
 
 ```shell-session
-# cat /etc/logrotate.d/httpd 
+# cat /etc/logrotate.d/httpd
 /var/log/httpd/*log {
     missingok
     notifempty
@@ -497,95 +550,105 @@ include�Ńf�B���N�g�����w�肵���ꍇ�ɓǂݍ��ރt�@�C�����珜�O����t�@�C���̊g���
 }
 ```
 
-���̗�ł́A�ȉ��̒ʂ胍�O���[�e�[�V�����̏������s���܂��B
+この例では、以下の通りログローテーションの処理が行われます。
 
-�ΏۂƂȂ郍�O�t�@�C����/var/log/httpd�f�B���N�g�����́A�t�@�C������log�ŏI��邷�ׂẴ��O�t�@�C���ł��B�f�t�H���g�ł�access_log�Aerror_log�Ƃ����t�@�C�����̃��O�t�@�C�����쐬����Ă��܂��B
+対象となるログファイルは/var/log/httpdディレクトリ内の、ファイル名がlogで終わるすべてのログファイルです。デフォルトではaccess_log、error_logというファイル名のログファイルが作成されています。
 
-* 1�s�ڂ�missingok�Ń��O�t�@�C�������݂��Ȃ������Ƃ��Ă��G���[���o�����ɏ����𑱍s���܂��B
-* 2�s�ڂ�notifempty�Ō��̃��O�t�@�C������Ȃ�΃��[�e�[�V�������܂���B
-* 3�s�ڂ�sharedscripts��prerotate,postrotate �̃X�N���v�g����x�������s���܂��B
-* 4�s�ڂ�delaycompress�ň��k���������̃��[�e�[�V�����܂Œx�点�܂��B
-* 5�s�ڂ�"postrotate"����"endscript"�܂ł��A���[�e�[�V�������s��ꂽ��Ɏ��s�����X�N���v�g�ł��Bservice�R�}���h�����s����httpd�T�[�r�X��reload���邱�ƂŁA�V�������O�t�@�C������������܂��B
+- 1行目のmissingokでログファイルが実在しなかったとしてもエラーを出さずに処理を続行します。
+- 2行目のnotifemptyで元のログファイルが空ならばローテーションしません。
+- 3行目のsharedscriptsでprerotate,postrotate のスクリプトを一度だけ実行します。
+- 4行目のdelaycompressで圧縮処理を次のローテーションまで遅らせます。
+- 5行目の"postrotate"から"endscript"までが、ローテーションが行われた後に実行されるスクリプトです。serviceコマンドを実行してhttpdサービスをreloadすることで、新しいログファイルが生成されます。
 
-## �l�b�g���[�N�c�[�����g�����g���u���V���[�e�B���O
-�T�[�o�ɐڑ��ł��Ȃ��Ȃǃl�b�g���[�N�ɋN�������肪���������ꍇ�A��{�I�Ȍ����̒������s�����߂̃c�[���Ƃ��āA�ȉ��̂悤�ȃl�b�g���[�N�c�[�����g�p���܂��B
+## ネットワークツールを使ったトラブルシューティング
 
-* ping
-* traceroute
-* netstat
-* tcpdump
-* Wireshark
+サーバに接続できないなどネットワークに起因する問題が発生した場合、基本的な原因の調査を行うためのツールとして、以下のようなネットワークツールを使用します。
 
-�����̃c�[�����g�p�����A�g���u���V���[�e�B���O�ɂ��ĉ�����܂��B��ʓI�ɂ́A�O������T�[�r�X�ւ̐ڑ����ł��Ȃ��Ȃ����ꍇ�ɂ́A�ȉ��̂悤�Ȏ菇�Ō����̒������s���܂��B
+- ping
+- traceroute
+- netstat
+- tcpdump
+- Wireshark
 
-1. ���O�̊m�F
-1. ping�R�}���h�ɂ��IP�ʐM�̊m�F
-1. telnet�R�}���h�ɂ��TCP�ʐM�̊m�F
-1. netstat�R�}���h�ɂ��|�[�g�̏󋵂̊m�F
-1. �ʐM���e�̊m�F
+これらのツールを使用した、トラブルシューティングについて解説します。一般的には、外部からサービスへの接続ができなくなった場合には、以下のような手順で原因の調査を行います。
 
-### ping�R�}���h�ɂ��IP�ʐM�̊m�F
-ping�R�}���h���g���āA�T�[�o�ɑ΂���ʐM���s���邩�ǂ������m�F���܂��Bping�R�}���h��ICMP���g�����ʐM��IP�ʐM���\���m�F�ł��܂��B�T�[�o�ɑ΂���ping�ɉ����������ꍇ�A�ȉ��̂悤�Ȗ�肪�l�����܂��B
+1. ログの確認
+1. pingコマンドによるIP通信の確認
+1. telnetコマンドによるTCP通信の確認
+1. netstatコマンドによるポートの状況の確認
+1. 通信内容の確認
 
-#### �T�[�o���g�̖��
-IP�A�h���X��f�t�H���g�Q�[�g�E�F�C���K�؂ɐݒ肳��Ă��Ȃ�������Aiptables�Ȃǂ̃p�P�b�g�t�B���^�����O��ICMP��ʂ��Ȃ��ݒ�ɂȂ��Ă��邱�Ƃ��l�����܂��B
-�T�[�o�̃l�b�g���[�N�ݒ���ēx�m�F���Ă݂܂��B�܂��A�T�[�o�����瑼�̃z�X�g��ping�R�}���h�����s���āA���������邩�m�F���Ă݂܂��B
+### pingコマンドによるIP通信の確認
 
-#### �l�b�g���[�N�o�H�̖��
-�l�b�g���[�N�ʐM�o�H��ɂ���P�[�u����X�C�b�`�A���[�^�[�A�t�@�C�A�[�E�H�[���⃍�[�h�o�����T�[�Ȃǂ̃l�b�g���[�N�@��ɖ�肪���������m�F���܂��B
-���[�e�B���O�ɖ�肪���邩���m�F���邽�߂ɂ�traceroute�R�}���h���g�p���܂����Atraceroute�R�}���h��ICMP���g�p���Ă��邽�߁A�r���̃��[�^�[��ICMP��ʂ��Ȃ��ꍇ�A���ׂĂ̌o�H���m�F�ł��Ȃ����Ƃ�����܂��B
+pingコマンドを使って、サーバに対する通信が行えるかどうかを確認します。pingコマンドはICMPを使った通信でIP通信が可能か確認できます。サーバに対するpingに応答が無い場合、以下のような問題が考えられます。
 
-### telnet�R�}���h�ɂ��TCP�ʐM�̊m�F
-telnet�R�}���h��2�Ԗڂ̈����Ƀ|�[�g�ԍ����w�肵�āA�T�[�o�̃T�[�r�X�ɐڑ����邱�Ƃ��ł���̂ŁATCP�ʐM���\���m�F�ł��܂��B
+#### サーバ自身の問題
+
+IPアドレスやデフォルトゲートウェイが適切に設定されていなかったり、iptablesなどのパケットフィルタリングでICMPを通さない設定になっていることが考えられます。
+サーバのネットワーク設定を再度確認してみます。また、サーバ側から他のホストへpingコマンドを実行して、応答があるか確認してみます。
+
+#### ネットワーク経路の問題
+
+ネットワーク通信経路上にあるケーブルやスイッチ、ルーター、ファイアーウォールやロードバランサーなどのネットワーク機器に問題が無いかを確認します。
+ルーティングに問題があるかを確認するためにはtracerouteコマンドを使用しますが、tracerouteコマンドはICMPを使用しているため、途中のルーターでICMPを通さない場合、すべての経路が確認できないことがあります。
+
+### telnetコマンドによるTCP通信の確認
+
+telnetコマンドは2番目の引数にポート番号を指定して、サーバのサービスに接続することができるので、TCP通信が可能か確認できます。
 
 ```
-telnet �ڑ���IP�A�h���X �|�[�g�ԍ�
+telnet 接続先IPアドレス ポート番号
 ```
 
-�������A�f�B�X�g���r���[�V�����ɂ���Ă�telnet�R�}���h���C���X�g�[������Ă��Ȃ��̂ŁA�C���X�g�[������K�v������܂��B
+ただし、ディストリビューションによってはtelnetコマンドがインストールされていないので、インストールする必要があります。
 
 ```shell-session
 # yum install telnet
 ```
 
-�T�[�r�X�ɐڑ��ł��Ȃ��ꍇ�ɂ́A�ȉ��̂悤�Ȗ�肪�l�����܂��B
+サービスに接続できない場合には、以下のような問題が考えられます。
 
-#### �l�b�g���[�N�o�H�̖��
-iptables��l�b�g���[�N�o�H��̃t�@�C�A�[�E�H�[���ȂǂŁA�w�肳�ꂽ�|�[�g�ւ̒ʐM��������Ă��Ȃ��B
-iptables��t�@�C�A�[�E�H�[���̃|�[�g���ݒ���m�F���܂��B
+#### ネットワーク経路の問題
 
-#### �T�[�o���g�̖��
-�T�[�r�X����~���Ă���A�w�肳�ꂽ�|�[�g��Listen���Ă��Ȃ��B���邢�́A���[�J�����[�v�o�b�N�A�h���X�i127.0.0.1�j�̂�Listen���Ă���A�ڑ���Ɏw�肵��IP�A�h���X�Ƀ|�[�g���o�C���h����Ă��Ȃ��B
-netstat�R�}���h��lsof�R�}���h�Ȃǂ��g�p���āA�|�[�g�̏�Ԃ��m�F���܂��B
+iptablesやネットワーク経路上のファイアーウォールなどで、指定されたポートへの通信が許可されていない。
+iptablesやファイアーウォールのポート許可設定を確認します。
 
-### netstat�ł̃|�[�g�̏󋵂̊m�F
-netstat�R�}���h���g���āA�T�[�r�X�v���Z�X�ƃ|�[�g�ԍ��A�����IP�A�h���X�Ƃ̃o�C���h�̏󋵂��m�F�ł��܂��B
+#### サーバ自身の問題
 
-netstat�R�}���h��-p�I�v�V�������w�肵�Ď��s���܂��B
+サービスが停止しており、指定されたポートをListenしていない。あるいは、ローカルループバックアドレス（127.0.0.1）のみListenしており、接続先に指定したIPアドレスにポートがバインドされていない。
+netstatコマンドやlsofコマンドなどを使用して、ポートの状態を確認します。
+
+### netstatでのポートの状況の確認
+
+netstatコマンドを使って、サービスプロセスとポート番号、さらにIPアドレスとのバインドの状況が確認できます。
+
+netstatコマンドに-pオプションを指定して実行します。
 
 ```shell-session
 # netstat -anp | grep sshd
 tcp        0      0 0.0.0.0:22     0.0.0.0:*  LISTEN   1493/sshd
 ```
 
-���̌��ʂ���A�ȉ��̂��Ƃ�������܂��B
+この結果から、以下のことが分かります。
 
-* sshd�̃v���Z�XID��1493�ł��邱��
-* TCP�|�[�g�ԍ�22�Ԃ�LISTEN���Ă��邱��
-* �|�[�g�ԍ�22�Ԃ��T�[�o�̂��ׂĂ�IP�A�h���X�i0.0.0.0:22�j�Ƀo�C���h����Ă��邱��
-* ���M���������s���Ă��Ȃ����Ɓi0.0.0.0:*�j
+- sshdのプロセスIDが1493であること
+- TCPポート番号22番でLISTENしていること
+- ポート番号22番がサーバのすべてのIPアドレス（0.0.0.0:22）にバインドされていること
+- 送信元制限を行っていないこと（0.0.0.0:\*）
 
-### �p�P�b�g�L���v�`���ɂ��ʐM���e�̊m�F
-�T�[�o�Ƃ̐ڑ����s���Ă���A���O�ɂ��肪����ƂȂ�G���[���������A�T�[�r�X�����������삵�Ȃ��悤�ȏꍇ�ɂ́A�ʐM�p�P�b�g���L���v�`�����āA�ʐM���e���m�F���܂��B�p�P�b�g���L���v�`�����邱�ƂŁA�T�[�o�ƃN���C�A���g�̊Ԃłǂ̂悤�ȒʐM���s���Ă��邩���m�F�ł��܂��B
-�p�P�b�g�L���v�`���̃c�[���Ƃ��ẮA�V���v���ɋ@�\����tcpdump�R�}���h�ƁAGUI�ő���ł���Wireshark�Ȃǂ�����܂��B
+### パケットキャプチャによる通信内容の確認
 
-### tcpdump�R�}���h���g�����p�P�b�g�L���v�`��
-tcpdump�R�}���h�́A����M���Ă���p�P�b�g���L���v�`�����āA���̏���W���o�͂ɏo�͂���R�}���h�ł��B
-tcpdump�R�}���h�̓f�t�H���g�ł͑S�Ẵp�P�b�g�̏����o�͂���̂ŁA�I�v�V�����ŏo�͌��ʂ��t�B���^�����O���āA�K�v�ȏ��𓾂���悤�ɂ��܂��B
+サーバとの接続が行えており、ログにも手がかりとなるエラーが無いが、サービスが正しく動作しないような場合には、通信パケットをキャプチャして、通信内容を確認します。パケットをキャプチャすることで、サーバとクライアントの間でどのような通信が行われているかを確認できます。
+パケットキャプチャのツールとしては、シンプルに機能するtcpdumpコマンドと、GUIで操作できるWiresharkなどがあります。
 
-��Ƃ��āA-i�I�v�V�����Ńl�b�g���[�N�C���^�[�t�F�[�X���w�肵�āAeth0��ʂ��ē����Ă���ʐM�̃p�P�b�g���擾���Ă݂܂��B
+### tcpdumpコマンドを使ったパケットキャプチャ
 
-�T�[�o���tcpdump�R�}���h�����s���܂��B���ʂ����_�C���N�g���āAtcpdump.out�t�@�C���ɋL�^���܂��B
+tcpdumpコマンドは、送受信しているパケットをキャプチャして、その情報を標準出力に出力するコマンドです。
+tcpdumpコマンドはデフォルトでは全てのパケットの情報を出力するので、オプションで出力結果をフィルタリングして、必要な情報を得られるようにします。
+
+例として、-iオプションでネットワークインターフェースを指定して、eth0を通じて入ってくる通信のパケットを取得してみます。
+
+サーバ上でtcpdumpコマンドを実行します。結果をリダイレクトして、tcpdump.outファイルに記録します。
 
 ```shell-session
 # tcpdump -i eth0 > tcpdump.out
@@ -593,158 +656,165 @@ tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
 listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes
 ```
 
-�N���C�A���g����SSH�ŃT�[�o�Ƀ��O�C�����A���O�A�E�g���܂��B
+クライアントからSSHでサーバにログインし、ログアウトします。
 
-�T�[�o��Ctrl+C�L�[����͂��āAtcpdump�R�}���h���I�����܂��B
+サーバでCtrl+Cキーを入力して、tcpdumpコマンドを終了します。
 
 ```shell-session
 listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes
-��^C��216 packets captured ����Ctrl+C�L�[�����
+※^C※216 packets captured ※←Ctrl+Cキーを入力
 216 packets received by filter
 0 packets dropped by kernel
 ```
 
-�쐬���ꂽtcpdump.out�t�@�C���̓��e���m�F���܂��B
+作成されたtcpdump.outファイルの内容を確認します。
 
 ```shell-session
 # grep ssh tcpdump.out
-13:17:06.041096 IP client.example.com.43880 > server.example.com.ssh: ��Flags [S]��, seq 4050960604, win 14600, options [mss 1460,sackOK,TS val 13231 ecr 0,nop,wscale 6], length 0
-13:17:06.041125 IP server.example.com.ssh > client.example.com.43880: ��Flags [S.]��, seq 3335753529, ��ack 4050960605��, win 14480, options [mss 1460,sackOK,TS val 22019990 ecr 13231,nop,wscale 6], length 0
-13:17:06.041240 IP client.example.com.43880 > server.example.com.ssh: ��Flags [.]��, ��ack 1��, win 229, options [nop,nop,TS val 13231 ecr 22019990], length 0
+13:17:06.041096 IP client.example.com.43880 > server.example.com.ssh: ※Flags [S]※, seq 4050960604, win 14600, options [mss 1460,sackOK,TS val 13231 ecr 0,nop,wscale 6], length 0
+13:17:06.041125 IP server.example.com.ssh > client.example.com.43880: ※Flags [S.]※, seq 3335753529, ※ack 4050960605※, win 14480, options [mss 1460,sackOK,TS val 22019990 ecr 13231,nop,wscale 6], length 0
+13:17:06.041240 IP client.example.com.43880 > server.example.com.ssh: ※Flags [.]※, ※ack 1※, win 229, options [nop,nop,TS val 13231 ecr 22019990], length 0
 ```
 
-�����玞�ԁi�}�C�N���b�P��)�A���M��IP�A�h���X.�|�[�g�ԍ��A�ʐM�̌����̖��A����z�X�g.�|�[�g�ԍ��A�t���O�iSYN)�A�V�[�P���X�A�E�B���h�E�A�I�v�V�����A�ő�Z�O�����g�T�C�Y�ƂȂ��Ă��܂��B
+左から時間（マイクロ秒単位)、送信元IPアドレス.ポート番号、通信の向きの矢印、宛先ホスト.ポート番号、フラグ（SYN)、シーケンス、ウィンドウ、オプション、最大セグメントサイズとなっています。
 
-#### 1�s��
-�N���C�A���g�̃|�[�g43880����T�[�o�̃|�[�g22�issh�j�Ɍ�����SYN�t���O��TCP�p�P�b�g�Ƒ��M���Đڑ��̗v��
+#### 1行目
 
-#### 2�s��
-1�s�ڂ̃p�P�b�g�ɑ΂��āASYN+ACK�t���O��TCP�p�P�b�g�𑗐M
+クライアントのポート43880からサーバのポート22（ssh）に向けてSYNフラグのTCPパケットと送信して接続の要求
 
-#### 3�s��
-ACK�t���O��TCP�p�P�b�g�𑗐M���āATCP�̃X���[�E�F�C�n���h�V�F�C�N������
+#### 2行目
 
-���̂悤�ɁA�T�[�o�ƃN���C�A���g�̊Ԃ̒ʐM���m�F�ł��܂��B
+1行目のパケットに対して、SYN+ACKフラグのTCPパケットを送信
 
-### Wireshark���g�����m�F
-tcpdump�̏o�̓t�@�C���͏��ʂ̃p�P�b�g������ꍇ�ɂ͏[���ł����A��ʂ̃p�P�b�g���m�F����ɂ͉ǐ����Ⴂ�̂���_�ł��B
+#### 3行目
 
-GUI�����p�P�b�g�L���v�`�������O�\�t�g�ł���Wireshark���g���΁A�p�P�b�g�L���v�`�������O���s�����p�P�b�g�̒��g��������A�t�B���^�����O�@�\�ŕK�v�ȃp�P�b�g�݂̂ɍi�荞��Ńp�P�b�g���m�F���邱�Ƃ��ł��܂��B
+ACKフラグのTCPパケットを送信して、TCPのスリーウェイハンドシェイクが完了
 
-Wireshark���C���X�g�[�����܂��BGUI�ł��C���X�g�[�����邽�߁Awireshark-gnome�p�b�P�[�W���C���X�g�[�����܂��B
+このように、サーバとクライアントの間の通信を確認できます。
+
+### Wiresharkを使った確認
+
+tcpdumpの出力ファイルは少量のパケットを見る場合には充分ですが、大量のパケットを確認するには可読性が低いのが難点です。
+
+GUIを持つパケットキャプチャリングソフトであるWiresharkを使えば、パケットキャプチャリングを行ったパケットの中身を見たり、フィルタリング機能で必要なパケットのみに絞り込んでパケットを確認することができます。
+
+Wiresharkをインストールします。GUI版をインストールするため、wireshark-gnomeパッケージをインストールします。
 
 ```shell-session
 # yum install wireshark-gnome
 ```
 
-1. Wireshark���N�����܂��B
-CentOS��GUI�Ń��O�C�����A�[������wireshark�R�}���h�����s���邩�A�u�A�v���P�[�V�����v���j���[���u�C���^�[�l�b�g�v���uWireshark Network Analyzer�v���N�����܂��B
+1. Wiresharkを起動します。
+   CentOSにGUIでログインし、端末からwiresharkコマンドを実行するか、「アプリケーション」メニュー→「インターネット」→「Wireshark Network Analyzer」を起動します。
 
 ```shell-session
 # wireshark &
 ```
 
-��2
+＃2
 
-2. �L���v�`�����s���f�o�C�X��I�т܂��B
+2. キャプチャを行うデバイスを選びます。
 
-![�uCapture�v���j���[���uInterfaces�v��I�����܂�](wireshark1.png)
+![「Capture」メニュー→「Interfaces」を選択します](wireshark1.png)
 
-�uCapture�v���j���[���uInterfaces�v��I�����A�p�P�b�g�L���v�`�����s�������f�o�C�X��I�т܂��B
+「Capture」メニュー→「Interfaces」を選択し、パケットキャプチャを行いたいデバイスを選びます。
 
-��3
+＃3
 
-3. �p�P�b�g�L���v�`�����J�n���܂��B
+3. パケットキャプチャを開始します。
 
-![eth0��I�����܂�](wireshark2.png)
+![eth0を選択します](wireshark2.png)
 
-�O���Ƃ̒ʐM���p�P�b�g�L���v�`�����邽�߂�eth0��I�т܂��B�uStart�v�{�^�����N���b�N���āA�p�P�b�g�L���v�`�����J�n���܂��B
+外部との通信をパケットキャプチャするためにeth0を選びます。「Start」ボタンをクリックして、パケットキャプチャを開始します。
 
-��4
+＃4
 
-4. Web�T�[�o�ɃA�N�Z�X���܂��B
-�T�[�o�ƒʐM���s���ăp�P�b�g�L���v�`�����s���܂��B�N���C�A���g��Web�u���E�U���N�����A�T�[�o��Web�T�[�o�ɃA�N�Z�X���܂��B
+4. Webサーバにアクセスします。
+   サーバと通信を行ってパケットキャプチャを行います。クライアントでWebブラウザを起動し、サーバのWebサーバにアクセスします。
 
-��5
+＃5
 
-5. �p�P�b�g�L���v�`�����~���܂��B
-�uCapture�v���j���[���uStop�v��I�����A�p�P�b�g�L���v�`�����~���܂��B
+5. パケットキャプチャを停止します。
+   「Capture」メニュー→「Stop」を選択し、パケットキャプチャを停止します。
 
-��6
+＃6
 
-6. ���ʂ̍i�荞�݂��s���܂��B
+6. 結果の絞り込みを行います。
 
-![http�ōi�荞�݂��s���܂�](wireshark3.png)
+![httpで絞り込みを行います](wireshark3.png)
 
-�uFilter:�v�̃e�L�X�g�{�b�N�X�Ɂuhttp�v�Ɠ��͂��āAEnter�L�[�������či�荞�݂܂��B
-�Q�Ƃ������p�P�b�g��I�����A�E�C���h�E�^�񒆂̏ڍ׏��ŁuHypertext Transfer Protocol�v���_�u���N���b�N���āAHTTP�ʐM�̓��e���m�F���܂��B
+「Filter:」のテキストボックスに「http」と入力して、Enterキーを押して絞り込みます。
+参照したいパケットを選択し、ウインドウ真ん中の詳細情報で「Hypertext Transfer Protocol」をダブルクリックして、HTTP通信の内容を確認します。
 
-## �t�@�C���V�X�e����Q�̏C��
-�t�@�C���V�X�e����Q����������OS������ɋN�����Ȃ��Ȃ����ꍇ�A�N���f�B�X�N�ł�����x�܂ŃV�X�e���N�����\�Ȃ�΃V���O�����[�U�[���[�h�ŋN��������A�N���f�B�X�N�ŃV�X�e�����N���ł��Ȃ��ꍇ�ɂ̓C���X�g�[���p�̃��f�B�A�����X�L���[���[�h�ŋN�����邱�ƂŁA�t�@�C���V�X�e�����C���ł��܂��B
+## ファイルシステム障害の修復
 
-### �V���O�����[�U���[�h�ł̋N��
-�V���O�����[�U���[�h��Linux���N������ƁA�������x��1�ŋN�����邽�ߊe��T�[�r�X�̋N�����s��ꂸ�Aroot���[�U�������V�X�e���ɃA�N�Z�X�ł����ԂŋN�����܂��B
-���Ƃ��΁A�T�[�r�X�̐ݒ���ԈႦ�����߃������x��3�⃉�����x��5�ŋN������ƃV�X�e���ɕs�����������ꍇ�ɂ́A�V���O�����[�U�[���[�h�ŋN�����Đݒ���C�����܂��B
+ファイルシステム障害が発生してOSが正常に起動しなくなった場合、起動ディスクである程度までシステム起動が可能ならばシングルユーザーモードで起動したり、起動ディスクでシステムを起動できない場合にはインストール用のメディアをレスキューモードで起動することで、ファイルシステムを修復できます。
 
-�N�����ɕ\���ł���GRUB���j���[�ŋN���p�����[�^�[��ҏW���ăV���O�����[�h�ŋN�����܂��B
+### シングルユーザモードでの起動
 
-1. �N�����̃f�t�H���g�ł́A�ݒ肳�ꂽ�b���i�f�t�H���g�ł�5�b�j���߂���Ǝ����I�ɋN�����܂����A�����L�[����͂����GRUB���j���[���\������܂��B
-2. �L�[�{�[�h��e�L�[�������ċN���p�����[�^�[�̕ҏW���[�h�ɓ���Akernel�s��I�����Ă����e�L�[�������A�����Ɂusingle�v�i���邢��1�j�ƃp�����[�^�[��ǋL���܂��B
-3. Enter�L�[�������ĕҏW���[�h��ʂɖ߂�܂��B
-4. b�L�[�������ăV���O�����[�U���[�h�N�����܂��B
+シングルユーザモードでLinuxを起動すると、ランレベル1で起動するため各種サービスの起動が行われず、rootユーザだけがシステムにアクセスできる状態で起動します。
+たとえば、サービスの設定を間違えたためランレベル3やランレベル5で起動するとシステムに不具合が発生する場合には、シングルユーザーモードで起動して設定を修正します。
 
-![�J�[�l���p�����[�^�ŃV���O�����[�U�[���[�h�N����ݒ肵�܂�](singleuserboot.png)
+起動時に表示できるGRUBメニューで起動パラメーターを編集してシングルモードで起動します。
 
-��5
+1. 起動時のデフォルトでは、設定された秒数（デフォルトでは5秒）が過ぎると自動的に起動しますが、何かキーを入力するとGRUBメニューが表示されます。
+2. キーボードのeキーを押して起動パラメーターの編集モードに入り、kernel行を選択してさらにeキーを押し、末尾に「single」（あるいは1）とパラメーターを追記します。
+3. Enterキーを押して編集モード画面に戻ります。
+4. bキーを押してシングルユーザモード起動します。
 
-5. �V���O�����[�U���[�h�ŋN������ƁA�p�X���[�h������root���[�U�Ƃ��ă��O�C�����Ă����ԂƂȂ�܂��B�K�v�ɉ�����fsck�R�}���h�Ńt�@�C���V�X�e�����C��������A�ݒ�t�@�C�����C������Ȃǂ��ăg���u���̉������s���܂��B
-6. �V�F������exit����ƁA�f�t�H���g�̃������x���Ɉڍs���܂��B
+![カーネルパラメータでシングルユーザーモード起動を設定します](singleuserboot.png)
 
-### �C���X�g�[��DVD���f�B�A���烌�X�L���[���[�h�ŋN��
-�N���f�B�X�N�̃t�@�C���V�X�e���ɏ�Q���������āA�����OS���N���ł��Ȃ��Ȃ��Ă��܂����ꍇ�ɂ́A�C���X�g�[��DVD���f�B�A���烌�X�L���[���[�h�ŋN�����A�t�@�C���V�X�e���̏C�����s���܂��B
+＃5
 
-1. CentOS�̃C���X�g�[��DVD���f�B�A�ŃV�X�e�����N�����܂��BBIOS�ŋN���f�o�C�X�̏��Ԃ�ύX����Ȃǂ��āADVD�h���C�u����N������悤�ɂ��܂��B
+5. シングルユーザモードで起動すると、パスワード無しでrootユーザとしてログインしている状態となります。必要に応じてfsckコマンドでファイルシステムを修復したり、設定ファイルを修正するなどしてトラブルの解決を行います。
+6. シェルからexitすると、デフォルトのランレベルに移行します。
 
-1. �N�����j���[����uRescue installed system�v��I�����܂��B
+### インストールDVDメディアからレスキューモードで起動
 
-![�N�����j���[](rescue1.png)
+起動ディスクのファイルシステムに障害が発生して、正常にOSが起動できなくなってしまった場合には、インストールDVDメディアからレスキューモードで起動し、ファイルシステムの修復を行います。
 
-��3
+1. CentOSのインストールDVDメディアでシステムを起動します。BIOSで起動デバイスの順番を変更するなどして、DVDドライブから起動するようにします。
 
-1. Language�A�L�[�{�[�h���C�A�E�g�A�C����ƒ��Ƀl�b�g���[�N���g�p���邩��I�����܂��B
+1. 起動メニューから「Rescue installed system」を選択します。
 
-![Language��I�����܂�](rescue2.png)
-![�L�[�{�[�h���C�A�E�g��I�����܂�](rescue3.png)
-![�l�b�g���[�N�g�p�̗L����I�����܂�](rescue4.png)
+![起動メニュー](rescue1.png)
 
-��4
+＃3
 
-1. �n�[�h�f�B�X�N���������A/mnt/sysimage�ȉ��Ƀ}�E���g����|�̐������\������܂��B�uRead-Only�v��I�ԂƁA�n�[�h�f�B�X�N���ǂݎ���p�Ń}�E���g����܂��B�C�����s�����߁A�uContinue�v��I�����܂��B
+1. Language、キーボードレイアウト、修復作業中にネットワークを使用するかを選択します。
 
-![Continue��I�����܂�](rescue5.png)
+![Languageを選択します](rescue2.png)
+![キーボードレイアウトを選択します](rescue3.png)
+![ネットワーク使用の有無を選択します](rescue4.png)
 
-��5
+＃4
 
-1. �n�[�h�f�B�X�N���������A/mnt/sysimage�ȉ��Ƀ}�E���g�ł����|���\������܂��B
+1. ハードディスクを検索し、/mnt/sysimage以下にマウントする旨の説明が表示されます。「Read-Only」を選ぶと、ハードディスクが読み取り専用でマウントされます。修復を行うため、「Continue」を選択します。
 
-![/mnt/sysimage�Ƀn�[�h�f�B�X�N���}�E���g����܂���](rescue6.png)
+![Continueを選択します](rescue5.png)
 
-��6
+＃5
 
-1. ���s�����Ƃ�I�����܂��B�ushell�v��I�ԂƃV�F�����N�����܂��B�ufakd�v��I�Ԃ�First Aid Kit�����s����ăV�X�e���̌������s���܂��B�ureboot�v��I�ԂƃV�X�e�����ċN�����܂��B�ushell�v��I�����܂��B
+1. ハードディスクを検索し、/mnt/sysimage以下にマウントできた旨が表示されます。
 
-![shell��I�����܂�](rescue7.png)
+![/mnt/sysimageにハードディスクがマウントされました](rescue6.png)
 
-��7
+＃6
 
-1. bash���N�����܂��B/mnt/sysimage�ȉ��ɁA�n�[�h�f�B�X�N�̃��[�g�p�[�e�B�V�������}�E���g����Ă��邱�Ƃ��m�F���܂��B
+1. 実行する作業を選択します。「shell」を選ぶとシェルが起動します。「fakd」を選ぶとFirst Aid Kitが実行されてシステムの検査が行えます。「reboot」を選ぶとシステムを再起動します。「shell」を選択します。
 
-![�V�F�����N�����܂�](rescue8.png)
+![shellを選択します](rescue7.png)
 
-��8
+＃7
 
-1. fsck�R�}���h�Ȃǂ𗘗p���āA�t�@�C���V�X�e���̏C����Ƃ��s���܂��B�C����Ƃ��I��������Aexit�ŃV�F�����I�����܂��B��Ƃ̑I����ʂɖ߂�܂��B
+1. bashが起動します。/mnt/sysimage以下に、ハードディスクのルートパーティションがマウントされていることを確認します。
 
-1. �ureboot�v��I�����āA�V�X�e�����ċN�����܂��B�C���X�g�[��DVD���f�B�A��DVD�h���C�u������o���Ă����܂��B
+![シェルが起動します](rescue8.png)
 
-![reboot��I�����čċN�����܂�](rescue9.png)
+＃8
+
+1. fsckコマンドなどを利用して、ファイルシステムの修復作業を行います。修復作業が終了したら、exitでシェルを終了します。作業の選択画面に戻ります。
+
+1. 「reboot」を選択して、システムを再起動します。インストールDVDメディアはDVDドライブから取り出しておきます。
+
+![rebootを選択して再起動します](rescue9.png)
