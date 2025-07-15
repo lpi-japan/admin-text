@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&display=swap');
+
+:root {
+  --font-family-serif: "Noto Serif JP", "Yu Mincho", "YuMincho", "Hiragino Mincho Pro", serif;
+  --font-family-sans: "Noto Sans JP", "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic Pro", sans-serif;
+  --font-family-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+html {
+  font-family: var(--font-family-serif);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-sans);
+  font-weight: 700;
+}
+
+code, pre {
+  font-family: var(--font-family-mono);
+}
+
+/* 日本語の文字間隔を調整 */
+body {
+  letter-spacing: 0.02em;
+  line-height: 1.8;
+}
+
+/* コードブロックの日本語対応 */
+pre code {
+  font-family: var(--font-family-mono);
+  letter-spacing: 0;
+}
+
+/* テーブルのフォント設定 */
+table {
+  font-family: var(--font-family-sans);
+}

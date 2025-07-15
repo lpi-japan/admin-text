@@ -4,6 +4,7 @@ module.exports = {
   language: 'ja',
   size: 'A4',
   // theme: '@vivliostyle/theme-techbook',
+  css: 'fonts.css',
   entry: [
     '0preface.md',
     '1user.md',
