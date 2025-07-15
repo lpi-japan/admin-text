@@ -1,0 +1,107 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag version (e.g., v2.0.0)'
+        required: true
+        default: 'v2.0.0'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install Japanese fonts
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra
+        fc-cache -fv
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build book
+      run: npm run build
+      
+    - name: Get version from tag
+      id: get_version
+      run: |
+        if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+          VERSION="${{ github.event.inputs.tag }}"
+        else
+          VERSION=${GITHUB_REF#refs/tags/}
+        fi
+        echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
+        echo "VERSION_NO_V=${VERSION#v}" >> $GITHUB_OUTPUT
+        
+    - name: Rename files with version
+      run: |
+        cd output
+        mv linux-system-admin-textbook.pdf "linux-system-admin-textbook-${{ steps.get_version.outputs.VERSION_NO_V }}.pdf"
+        tar -czf "linux-system-admin-textbook-web-${{ steps.get_version.outputs.VERSION_NO_V }}.tar.gz" linux-system-admin-textbook-web/
+        
+    - name: Generate release notes
+      id: release_notes
+      run: |
+        cat > release_notes.md << 'EOF'
+        # Linuxシステム管理標準教科書 ${{ steps.get_version.outputs.VERSION }}
+        
+        ## 📚 ダウンロード
+        
+        ### PDF版
+        - **[linux-system-admin-textbook-${{ steps.get_version.outputs.VERSION_NO_V }}.pdf](../../releases/download/${{ steps.get_version.outputs.VERSION }}/linux-system-admin-textbook-${{ steps.get_version.outputs.VERSION_NO_V }}.pdf)** - PDF版教科書
+        
+        ### Web版
+        - **[linux-system-admin-textbook-web-${{ steps.get_version.outputs.VERSION_NO_V }}.tar.gz](../../releases/download/${{ steps.get_version.outputs.VERSION }}/linux-system-admin-textbook-web-${{ steps.get_version.outputs.VERSION_NO_V }}.tar.gz)** - Web版教科書（アーカイブ）
+        
+        ## 📖 内容
+        
+        - 第1章 ユーザーとグループの管理
+        - 第2章 ネットワークの管理  
+        - 第3章 サービスの管理
+        - 第4章 ファイルシステムの管理
+        - 第5章 システムのメンテナンス
+        - 第6章 トラブルシューティング
+        - 第7章 CentOS 7への移行
+        
+        ## 🔧 生成環境
+        
+        - Vivliostyle CLI を使用
+        - 日本語フォント対応済み（Noto Sans/Serif JP）
+        - GitHub Actions で自動生成
+        
+        ## 📄 ライセンス
+        
+        クリエイティブ・コモンズ・ライセンス「表示 - 非営利 - 改変禁止 2.1 日本 (CC BY-NC-ND 2.1 JP)」
+        
+        著作権: 特定非営利活動法人エルピーアイジャパン
+        EOF
+        
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{ steps.get_version.outputs.VERSION }}
+        name: "Linuxシステム管理標準教科書 ${{ steps.get_version.outputs.VERSION }}"
+        body_path: release_notes.md
+        files: |
+          output/linux-system-admin-textbook-${{ steps.get_version.outputs.VERSION_NO_V }}.pdf
+          output/linux-system-admin-textbook-web-${{ steps.get_version.outputs.VERSION_NO_V }}.tar.gz
+        draft: false
+        prerelease: false
+        generate_release_notes: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
