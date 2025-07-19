@@ -1,100 +1,100 @@
 #ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ÌŠÇ—
 
 ## ƒAƒNƒZƒXŒ ‚ÌŠÇ—
-Linux‚ÍPOSIX‚Å¦‚³‚ê‚Ä‚¢‚éƒAƒNƒZƒX§Œä‚É€‹’‚µ‚Ä‚¢‚Ü‚·BPOSIX‚Æ‚ÍuPortable Operating System Interface for UNIXv‚Ì—ª‚ÅAIEEE‚É‚æ‚Á‚Ä’è‚ß‚ç‚ê‚½AUNIXƒx[ƒX‚ÌOS‚Ìd—lƒZƒbƒg‚Å‚·Bƒ†[ƒUIDiuidj/ƒOƒ‹[ƒvIDigidj‚Æƒp[ƒ~ƒbƒVƒ‡ƒ“‚Ì‘g‚İ‡‚í‚¹‚Åƒtƒ@ƒCƒ‹‚É‘Î‚·‚éƒAƒNƒZƒXŒ ‚ğŠÇ—‚µ‚Ä‚¢‚Ü‚·B
+Linux‚ÍPOSIX‚Å¦‚³‚ê‚Ä‚¢‚éƒAƒNƒZƒX§Œä‚É€‹’‚µ‚Ä‚¢‚Ü‚·BPOSIX‚Æ‚ÍuPortable Operating System Interface for UNIXv‚Ì—ª‚ÅAIEEEiInstitute of Electrical and Electronics EngineersAƒAƒCEƒgƒŠƒvƒ‹EƒC[j‚É‚æ‚Á‚Ä’è‚ß‚ç‚ê‚½AUNIXƒx[ƒX‚ÌOS‚Ìd—lƒZƒbƒg‚Å‚·Bƒ†[ƒU[IDiuidj/ƒOƒ‹[ƒvIDigidj‚Æƒp[ƒ~ƒbƒVƒ‡ƒ“‚Ì‘g‚İ‡‚í‚¹‚Åƒtƒ@ƒCƒ‹‚É‘Î‚·‚éƒAƒNƒZƒXŒ ‚ğŠÇ—‚µ‚Ä‚¢‚Ü‚·B
 
 ### UID‚ÆGID
-ƒ†[ƒUIDiuidFUser Identifier)‚ÍLinuxƒVƒXƒeƒ€‚Åƒ†[ƒU‚ğ¯•Ê‚·‚é‚½‚ß‚Ìƒ†ƒj[ƒN‚È”Ô†‚Å‚·BLinux‚Å’Ç‰Á‚³‚ê‚½ƒ†[ƒUƒJƒEƒ“ƒg‚É‚ÍA‚»‚ê‚¼‚êŒÂ•Ê‚Éuid‚ªŠ„‚èU‚ç‚ê‚Ü‚·B
-uid‚Í0‚©‚ç65535‚Ü‚Å‚Ì’l‚ğ‚Æ‚è‚Ü‚·B0‚Í“Á•Ê‚Èƒ†[ƒUID‚ÅAŠÇ—ÒŒ ŒÀ‚ğ‚Ârootƒ†[ƒU‚É•t—^‚³‚ê‚Ä‚¢‚Ü‚·B
+ƒ†[ƒU[IDiuidFUser Identifier)‚ÍLinuxƒVƒXƒeƒ€‚Åƒ†[ƒU[‚ğ¯•Ê‚·‚é‚½‚ß‚Ìƒ†ƒj[ƒN‚È”Ô†‚Å‚·BLinux‚Å’Ç‰Á‚³‚ê‚½ƒ†[ƒU[ƒJƒEƒ“ƒg‚É‚ÍA‚»‚ê‚¼‚êŒÂ•Ê‚Éuid‚ªŠ„‚èU‚ç‚ê‚Ü‚·B
+uid‚Í0‚©‚ç65535‚Ü‚Å‚Ì’l‚ğ‚Æ‚è‚Ü‚·B0‚Í“Á•Ê‚Èƒ†[ƒU[ID‚ÅAŠÇ—ÒŒ ŒÀ‚ğ‚Ârootƒ†[ƒU[‚É•t—^‚³‚ê‚Ä‚¢‚Ü‚·B
 
-ƒOƒ‹[ƒvIDigid: Group Identifierj‚ÍƒOƒ‹[ƒv‚ğ¯•Ê‚·‚é‚½‚ß‚Ìƒ†ƒj[ƒN‚È”Ô†‚Å‚·BLinux‚Ìƒ†[ƒU‚ÍA1‚ÂˆÈã‚ÌƒOƒ‹[ƒv‚ÉŠ‘®‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
+ƒOƒ‹[ƒvIDigid: Group Identifierj‚ÍƒOƒ‹[ƒv‚ğ¯•Ê‚·‚é‚½‚ß‚Ìƒ†ƒj[ƒN‚È”Ô†‚Å‚·BLinux‚Ìƒ†[ƒU[‚ÍA1‚ÂˆÈã‚ÌƒOƒ‹[ƒv‚ÉŠ‘®‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
 gid‚Í0‚©‚ç65535‚Ü‚Å‚Ì’l‚ğ‚Æ‚è‚Ü‚·B
 
-### ŒŸØ—pƒ†[ƒUAƒOƒ‹[ƒv‚ÌŠm”F
-ƒAƒNƒZƒX§Œä‚Ì“®ìŠm”F‚Ì‚½‚ßAŒŸØ—p‚Ìƒ†[ƒU‚ğ—pˆÓ‚µ‚Ü‚·B‚·‚Å‚É1Í‚Åì¬‚µ‚Ä‚¢‚Ü‚·‚ªAì¬‚³‚ê‚Ä‚¢‚È‚¢ê‡‚É‚ÍuseraddƒRƒ}ƒ“ƒhAgrooupaddƒRƒ}ƒ“ƒh‚È‚Ç‚ğg—p‚µ‚Äì¬‚µ‚Ä‰º‚³‚¢B
+### ŒŸØ—pƒ†[ƒU[AƒOƒ‹[ƒv‚ÌŠm”F
+ƒAƒNƒZƒX§Œä‚Ì“®ìŠm”F‚Ì‚½‚ßAŒŸØ—p‚Ìƒ†[ƒU[‚ğ—pˆÓ‚µ‚Ü‚·B‚·‚Å‚É1Í‚Åì¬‚µ‚Ä‚¢‚Ü‚·‚ªAì¬‚³‚ê‚Ä‚¢‚È‚¢ê‡‚É‚ÍuseraddƒRƒ}ƒ“ƒhAgrooupaddƒRƒ}ƒ“ƒh‚È‚Ç‚ğg—p‚µ‚Äì¬‚µ‚Ä‰º‚³‚¢B
 
-ƒ†[ƒUsato‚Æƒ†[ƒUsuzuki‚ªì¬‚³‚ê‚Ä‚¨‚èAƒ†[ƒUsuzuki‚ÍwheelƒOƒ‹[ƒv‚ÆeigyouƒOƒ‹[ƒv‚ÉŠ‘®‚µ‚Ä‚¢‚Ü‚·B
+ƒ†[ƒU[sato‚Æƒ†[ƒU[suzuki‚ªì¬‚³‚ê‚Ä‚¨‚èAƒ†[ƒU[suzuki‚ÍwheelƒOƒ‹[ƒv‚ÆeigyouƒOƒ‹[ƒv‚ÉŠ‘®‚µ‚Ä‚¢‚Ü‚·B
 
-```shell-session
+```
 # id sato
 uid=500(sato) gid=500(sato) Š‘®ƒOƒ‹[ƒv=500(sato)
 # id suzuki
 uid=501(suzuki) gid=501(suzuki) Š‘®ƒOƒ‹[ƒv=501(suzuki),10(wheel),5000(eigyou)
 ```
 
-### •ÊX‚Ìƒ†[ƒU‚Æ‚µ‚Äì‹Æ‚·‚é
-ƒ†[ƒUsato‚Æƒ†[ƒUsuzuki ‚Å‚Ì‘€ì‚ğƒXƒ€[ƒY‚És‚¤‚½‚ßA‚»‚ê‚¼‚ê•ÊX‚Ìƒ†[ƒU‚ÅƒƒOƒCƒ“‚µ‚Ü‚·B
+### •ÊX‚Ìƒ†[ƒU[‚Æ‚µ‚Äì‹Æ‚·‚é
+ƒ†[ƒU[sato‚Æƒ†[ƒU[suzuki ‚Å‚Ì‘€ì‚ğƒXƒ€[ƒY‚És‚¤‚½‚ßA‚»‚ê‚¼‚ê•ÊX‚Ìƒ†[ƒU[‚ÅƒƒOƒCƒ“‚µ‚Ü‚·B
 
-LinuxƒT[ƒo‚Æ‚Í•Ê‚Ì’[––‚Å‘€ì‚ğs‚Á‚Ä‚¢‚éê‡‚É‚ÍA‚»‚ê‚¼‚ê‚Ìƒ†[ƒU‚ÅƒƒOƒCƒ“‚µ‚Ü‚·B
+LinuxƒT[ƒo[‚Æ‚Í•Ê‚Ì’[––‚Å‘€ì‚ğs‚Á‚Ä‚¢‚éê‡‚É‚ÍA‚»‚ê‚¼‚ê‚Ìƒ†[ƒU[‚ÅƒƒOƒCƒ“‚µ‚Ü‚·B
 
-LinuxƒT[ƒoã‚ÌX Window System‚Å‘€ì‚ğs‚Á‚Ä‚¢‚éê‡‚É‚ÍArootƒ†[ƒU‚ÅƒƒOƒCƒ“‚µ‚½ŒãA•ÊX‚Ìƒ^[ƒ~ƒiƒ‹‚ğ‹N“®‚µAsuƒRƒ}ƒ“ƒh‚ğg‚Á‚Äƒ†[ƒU‚ğØ‚è‘Ö‚¦‚é‚Æ‚æ‚¢‚Å‚µ‚å‚¤B
+LinuxƒT[ƒo[ã‚ÌGUI‚Å‘€ì‚ğs‚Á‚Ä‚¢‚éê‡‚É‚ÍArootƒ†[ƒU[‚ÅƒƒOƒCƒ“‚µ‚½ŒãA•ÊX‚Ìƒ^[ƒ~ƒiƒ‹‚ğ‹N“®‚µAsuƒRƒ}ƒ“ƒh‚ğg‚Á‚Äƒ†[ƒU[‚ğØ‚è‘Ö‚¦‚é‚Æ‚æ‚¢‚Å‚µ‚å‚¤B
 
 
-ƒ^[ƒ~ƒiƒ‹A‚Åƒ†[ƒUsato‚ÉØ‚è‘Ö‚¦‚Ü‚·B
+ƒ^[ƒ~ƒiƒ‹A‚Åƒ†[ƒU[sato‚ÉØ‚è‘Ö‚¦‚Ü‚·B
 
-```shell-session
+```
 [root@server ~]# su - sato
 [sato@server ~]$ id
 uid=500(sato) gid=500(sato) Š‘®ƒOƒ‹[ƒv=500(sato) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
 ```
 
-ƒ^[ƒ~ƒiƒ‹B‚Åƒ†[ƒUsuzuki‚ÉØ‚è‘Ö‚¦‚Ü‚·B
+ƒ^[ƒ~ƒiƒ‹B‚Åƒ†[ƒU[suzuki‚ÉØ‚è‘Ö‚¦‚Ü‚·B
 
-```shell-session
+```
 [root@server ~]# su - suzuki
 [suzuki@server ~]$ id
 uid=501(suzuki) gid=501(suzuki) Š‘®ƒOƒ‹[ƒv=501(suzuki),10(wheel),5000(eigyou) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
 ```
 
 ### ƒvƒƒZƒX‚ÌÀsŒ ‚ÌŠÇ—
-Linux‚Å‚ÍArootƒ†[ƒU‚ğœ‚¢‚Ä‘¼‚Ìƒ†[ƒU‚ª‹N“®‚µ‚½ƒvƒƒZƒX‚ğ’â~‚³‚¹‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñB
+Linux‚Å‚ÍArootƒ†[ƒU[‚ğœ‚¢‚Ä‘¼‚Ìƒ†[ƒU[‚ª‹N“®‚µ‚½ƒvƒƒZƒX‚ğ’â~‚³‚¹‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñB
 
-ˆÈ‰º‚Ì—á‚Å‚ÍAƒ†[ƒUsato‚ÅviƒGƒfƒBƒ^ivimj‚ğ‹N“®‚µ‚Ä/tmp‚Éƒtƒ@ƒCƒ‹‚ğì¬‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚éƒvƒƒZƒX‚ğƒ†[ƒUsuzuki‚ªkillƒRƒ}ƒ“ƒh‚Å’â~‚µ‚æ‚¤‚Æ‚µ‚Ü‚·‚ªA’â~‚Å‚«‚Ü‚¹‚ñB
+ˆÈ‰º‚Ì—á‚Å‚ÍAƒ†[ƒU[sato‚ÅviƒGƒfƒBƒ^ivimj‚ğ‹N“®‚µ‚Ä/tmp‚Éƒtƒ@ƒCƒ‹‚ğì¬‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚éƒvƒƒZƒX‚ğƒ†[ƒU[suzuki‚ªkillƒRƒ}ƒ“ƒh‚Å’â~‚µ‚æ‚¤‚Æ‚µ‚Ü‚·‚ªA’â~‚Å‚«‚Ü‚¹‚ñB
 
 
-ƒ†[ƒUsato‚ªviƒGƒfƒBƒ^‚Å/tmp/sato‚ğì¬‚µ‚Ü‚·B
+ƒ†[ƒU[sato‚ªviƒGƒfƒBƒ^‚Å/tmp/sato‚ğì¬‚µ‚Ü‚·B
 
-```shell-session
+```
 [sato@server ~]$ vi /tmp/sato
 ```
 
-ƒ†[ƒUsuzuki‚ªvimƒvƒƒZƒX‚ğŠm”F‚µ‚Ü‚·B
+ƒ†[ƒU[suzuki‚ªvimƒvƒƒZƒX‚ğŠm”F‚µ‚Ü‚·B
 
-```shell-session
+```
 [suzuki@server ~]$ ps aux | grep vim
 sato      6456  0.1  0.3 148100  3692 pts/2    S+   19:46   0:00 vim /tmp/sato
 suzuki    6462  0.0  0.0 107464   916 pts/3    S+   19:46   0:00 grep vim
 ```
 
-ƒ†[ƒUsuzuki‚ªƒ†[ƒUsato‚ªÀs’†‚ÌvimƒGƒfƒBƒ^‚ÌƒvƒƒZƒX‚ğkillƒRƒ}ƒ“ƒh‚Å’â~‚µ‚æ‚¤‚Æ‚µ‚Ü‚·‚ªA’â~‚Å‚«‚Ü‚¹‚ñBw’è‚·‚éƒvƒƒZƒXID‚ÍApsƒRƒ}ƒ“ƒh‚Ì2”Ô–Ú‚Ì•\¦€–Ú‚Å‚·B
+ƒ†[ƒU[suzuki‚ªƒ†[ƒU[sato‚ªÀs’†‚ÌvimƒGƒfƒBƒ^‚ÌƒvƒƒZƒX‚ğkillƒRƒ}ƒ“ƒh‚Å’â~‚µ‚æ‚¤‚Æ‚µ‚Ü‚·‚ªA’â~‚Å‚«‚Ü‚¹‚ñBw’è‚·‚éƒvƒƒZƒXID‚ÍApsƒRƒ}ƒ“ƒh‚Ì2”Ô–Ú‚Ì•\¦€–Ú‚Å‚·B
 
-```shell-session
+```
 [suzuki@server ~]$ kill 6456
 -bash: kill: (6456) - ‹–‰Â‚³‚ê‚Ä‚¢‚È‚¢‘€ì‚Å‚·
 ```
 
-ƒ†[ƒUsato‚Íu:q!v‚Æ“ü—Í‚µ‚ÄvimƒGƒfƒBƒ^‚ğI—¹‚µ‚Ü‚·B
+ƒ†[ƒU[sato‚Íu:q!v‚Æ“ü—Í‚µ‚ÄvimƒGƒfƒBƒ^‚ğI—¹‚µ‚Ü‚·B
 
 ### ƒtƒ@ƒCƒ‹‚ÌƒAƒNƒZƒXŒ ‚ÌŠÇ—
-ƒ†[ƒUsato‚ªì¬‚µ‚½ƒtƒ@ƒCƒ‹/tmp/sato‚ğg‚Á‚ÄAƒAƒNƒZƒXŒ ‚Ì“®ì‚ğŒŸØ‚µ‚Ü‚·B
+ƒ†[ƒU[sato‚ªì¬‚µ‚½ƒtƒ@ƒCƒ‹/tmp/sato‚ğg‚Á‚ÄAƒAƒNƒZƒXŒ ‚Ì“®ì‚ğŒŸØ‚µ‚Ü‚·B
 
-ƒ†[ƒUsato‚Åƒtƒ@ƒCƒ‹/tmp/sato‚ÌƒAƒNƒZƒXŒ ‚ğŠm”F‚µ‚Ü‚·B‚»‚Ì‘¼‚Ìƒ†[ƒU‚Ö‚ÌƒAƒNƒZƒXŒ ‚Í“Ç‚İæ‚è‚Ì‚İ—^‚¦‚ç‚ê‚Ä‚¢‚Ü‚·B
+ƒ†[ƒU[sato‚Åƒtƒ@ƒCƒ‹/tmp/sato‚ÌƒAƒNƒZƒXŒ ‚ğŠm”F‚µ‚Ü‚·B‚»‚Ì‘¼‚Ìƒ†[ƒU[‚Ö‚ÌƒAƒNƒZƒXŒ ‚Í“Ç‚İæ‚è‚Ì‚İ—^‚¦‚ç‚ê‚Ä‚¢‚Ü‚·B
 
-```shell-session
+```
 [sato@server ~]$ ls -l /tmp/sato
 -rw-rw-r--. 1 sato sato 5 12Œ  9 17:51 2014 /tmp/sato
 ```
 
-ƒ†[ƒUsuzuki‚ÅcatƒRƒ}ƒ“ƒh‚ğÀs‚µAƒtƒ@ƒCƒ‹/tmp/sato‚Ì“à—e‚ğŠm”F‚µ‚Ü‚·B‚»‚Ì‘¼‚Ìƒ†[ƒU‚Ö‚Ì“Ç‚İæ‚è‚Í‹–‰Â‚³‚ê‚Ä‚¢‚é‚Ì‚ÅA“à—e‚ğŠm”F‚Å‚«‚Ü‚·B
+ƒ†[ƒU[suzuki‚ÅcatƒRƒ}ƒ“ƒh‚ğÀs‚µAƒtƒ@ƒCƒ‹/tmp/sato‚Ì“à—e‚ğŠm”F‚µ‚Ü‚·B‚»‚Ì‘¼‚Ìƒ†[ƒU[‚Ö‚Ì“Ç‚İæ‚è‚Í‹–‰Â‚³‚ê‚Ä‚¢‚é‚Ì‚ÅA“à—e‚ğŠm”F‚Å‚«‚Ü‚·B
 
-```shell-session
+```
 [suzuki@server ~]$ cat /tmp/sato
 sato
 ```
 
-ƒ†[ƒUsuzuki‚Åƒtƒ@ƒCƒ‹/tmp/sato‚É’Ç‹L‚µ‚Ä‚İ‚Ü‚·B‘‚«‚İ‚ÌƒAƒNƒZƒXŒ ‚Í—^‚¦‚ç‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅƒGƒ‰[‚Æ‚È‚è‚Ü‚·B
+ƒ†[ƒU[suzuki‚Åƒtƒ@ƒCƒ‹/tmp/sato‚É’Ç‹L‚µ‚Ä‚İ‚Ü‚·B‘‚«‚İ‚ÌƒAƒNƒZƒXŒ ‚Í—^‚¦‚ç‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅƒGƒ‰[‚Æ‚È‚è‚Ü‚·B
 
-```shell-session
+```
 [suzuki@server ~]$ echo "suzuki" >> /tmp/sato
 -bash: /tmp/sato: ‹–‰Â‚ª‚ ‚è‚Ü‚¹‚ñ
 ```
@@ -102,26 +102,26 @@ sato
 ### umask‚ÆƒfƒtƒHƒ‹ƒg‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“‚ÌŠÖŒW
 umask‚Æ‚ÍAƒtƒ@ƒCƒ‹‚âƒfƒBƒŒƒNƒgƒŠ‚ªV‹K‚Éì¬‚³‚ê‚éÛ‚ÉƒfƒtƒHƒ‹ƒg‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“‚ğŒˆ’è‚·‚é‚½‚ß‚Ì’l‚Å‚·BumaskƒRƒ}ƒ“ƒh‚ÅŠm”F‚Å‚«‚Ü‚·B
 
-```shell-session
+```
 [sato@server ~]$ umask
 0002
 ```
 
 umask‚Ìİ’è’l‚É‚ÍAV‚µ‚­ƒtƒ@ƒCƒ‹‚ğì¬‚·‚éÛ‚Éİ’è‚µ‚È‚¢i‹–‰Â‚µ‚È‚¢jƒp[ƒ~ƒbƒVƒ‡ƒ“‚ğ8i”‚Åw’è‚µ‚Ü‚·B
 
-||“Ç‚İæ‚è|‘‚«‚İ|Às|
+| | “Ç‚İæ‚è | ‘‚«‚İ | Às |
 |-------|-------|-------|-------|
-|ƒp[ƒ~ƒbƒVƒ‡ƒ“|r|w|x|
-|8i”’l|4|2|1|
+| ƒp[ƒ~ƒbƒVƒ‡ƒ“ | r | w | x |
+| 8i”’l | 4 | 2 | 1 |
 
 ƒtƒ@ƒCƒ‹‚ÆƒfƒBƒŒƒNƒgƒŠ‚Å‚Íİ’è‚³‚ê‚éƒfƒtƒHƒ‹ƒg‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“‚ª•Ï‚í‚é‚Ì‚ÅA‚»‚ê‚¼‚êŠm”F‚µ‚Ä‚İ‚Ü‚µ‚å‚¤B
 
 ### ƒtƒ@ƒCƒ‹ì¬‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“‚Æumask
 ƒtƒ@ƒCƒ‹‚ªV‹Kì¬‚³‚ê‚éÛ‚É‚Íƒtƒ@ƒCƒ‹‚ÌÀsƒp[ƒ~ƒbƒVƒ‡ƒ“(eXecute)‚Íİ’è‚µ‚È‚¢‚Ì‚ÅA0666(rw-rw-rw-)‚É‘Î‚µ‚Äumask‚Ì’l‚ª“K—p‚³‚ê‚Ü‚·B
 
-umask‚ª0002‚Æİ’è‚³‚ê‚Ä‚¢‚é‚ÆA‚»‚Ì‘¼‚Ìƒ†[ƒU‚Ì‘‚«‚İ‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“iwj‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢ƒtƒ@ƒCƒ‹i-rw-rw-r--A0664j‚ªì¬‚³‚ê‚Ü‚·B
+umask‚ª0002‚Æİ’è‚³‚ê‚Ä‚¢‚é‚ÆA‚»‚Ì‘¼‚Ìƒ†[ƒU[‚Ì‘‚«‚İ‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“iwj‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢ƒtƒ@ƒCƒ‹i-rw-rw-r--A0664j‚ªì¬‚³‚ê‚Ü‚·B
 
-```shell-session
+```
 [sato@server ~]$ umask
 0002
 [sato@server ~]$ touch testfile
@@ -132,9 +132,9 @@ umask‚ª0002‚Æİ’è‚³‚ê‚Ä‚¢‚é‚ÆA‚»‚Ì‘¼‚Ìƒ†[ƒU‚Ì‘‚«‚İ‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“iwj‚ªİ
 ### ƒfƒBƒŒƒNƒgƒŠì¬‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“‚Æumask
 ƒfƒBƒŒƒNƒgƒŠ‚ªV‹Kì¬‚³‚ê‚éÛ‚É‚ÍAÀsƒp[ƒ~ƒbƒVƒ‡ƒ“(eXecute)‚ª•K—v‚É‚È‚é‚Ì‚ÅA0777(rwxrwxrwx)‚É‘Î‚µ‚Äumask‚Ì’l‚ª“K—p‚³‚ê‚Ü‚·BÀsƒp[ƒ~ƒbƒVƒ‡ƒ“‚ª•K—v‚É‚È‚é‚Ì‚ÍA1Í‚Å‚àà–¾‚µ‚½‚Æ‚¨‚èA‚»‚ÌƒfƒBƒŒƒNƒgƒŠ‚ğƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚É‚·‚é‚½‚ß‚É‚ÍÀsƒp[ƒ~ƒbƒVƒ‡ƒ“‚ª•K—v‚É‚È‚é‚©‚ç‚Å‚·B
 
-umask‚ª0002‚Æİ’è‚³‚ê‚Ä‚¢‚é‚ÆA‚»‚Ì‘¼‚Ìƒ†[ƒU‚Ì‘‚«‚İ‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“iwj‚ªİ’è‚³‚ê‚È‚¢ƒfƒBƒŒƒNƒgƒŠi-rwxrwxr-xA0775j‚ªì¬‚³‚ê‚Ä‚¢‚Ü‚·B
+umask‚ª0002‚Æİ’è‚³‚ê‚Ä‚¢‚é‚ÆA‚»‚Ì‘¼‚Ìƒ†[ƒU[‚Ì‘‚«‚İ‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“iwj‚ªİ’è‚³‚ê‚È‚¢ƒfƒBƒŒƒNƒgƒŠi-rwxrwxr-xA0775j‚ªì¬‚³‚ê‚Ä‚¢‚Ü‚·B
 
-```shell-session
+```
 [sato@server ~]$ umask
 0002
 [sato@server ~]$ mkdir testdir
@@ -143,11 +143,11 @@ drwxrwxr-x. 2 sato sato 4096  1Œ 14 19:52 2015 testdir
 ```
 
 ### umask‚ª4Œ…‚Ì——R
-ƒp[ƒ~ƒbƒVƒ‡ƒ“‚Í’ÊíAƒ†[ƒUAƒOƒ‹[ƒvA‚»‚Ì‘¼‚Ìƒ†[ƒU‚Ì3‚Â‚É‘Î‚·‚éƒAƒNƒZƒXŒ ‚ªİ’è‚³‚ê‚Ü‚·‚ªAumask‚Ì’l‚Í4Œ…‚É‚È‚Á‚Ä‚¢‚Ü‚·B‚±‚ê‚ÍA’Êí‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“‚Ìæ“ª‚ÉAsetUID/setGID/ƒXƒeƒBƒbƒL[ƒrƒbƒg‚ğ•\‚·Œ…‚ªŠÜ‚Ü‚ê‚é‚½‚ß‚Å‚·BsetUID‚È‚Ç‚É‚Â‚¢‚Ä‚ÍŒãq‚µ‚Ü‚·B
+ƒp[ƒ~ƒbƒVƒ‡ƒ“‚Í’ÊíAƒ†[ƒU[AƒOƒ‹[ƒvA‚»‚Ì‘¼‚Ìƒ†[ƒU[‚Ì3‚Â‚É‘Î‚·‚éƒAƒNƒZƒXŒ ‚ªİ’è‚³‚ê‚Ü‚·‚ªAumask‚Ì’l‚Í4Œ…‚É‚È‚Á‚Ä‚¢‚Ü‚·B‚±‚ê‚ÍA’Êí‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“‚Ìæ“ª‚ÉAsetUID/setGID/ƒXƒeƒBƒbƒL[ƒrƒbƒg‚ğ•\‚·Œ…‚ªŠÜ‚Ü‚ê‚é‚½‚ß‚Å‚·BsetUID‚È‚Ç‚É‚Â‚¢‚Ä‚ÍŒãq‚µ‚Ü‚·B
 ‚Ü‚½A’ÊísetUID‚È‚Ç‚ğƒfƒtƒHƒ‹ƒgƒp[ƒ~ƒbƒVƒ‡ƒ“‚Æ‚µ‚Äİ’è‚·‚é‚±‚Æ‚Í‚È‚¢‚Ì‚ÅAumask‚Íæ“ª‚ğÈ—ª‚µ‚Ä3Œ…‚Åİ’è‚·‚é‚±‚Æ‚à‚Å‚«‚Ü‚·B
 ˆÈ‰º‚Ì—á‚Å‚ÍAumask‚ğ022‚Æ3Œ…‚Åİ’è‚µ‚Ä‚¢‚Ü‚·‚ªAumaskƒRƒ}ƒ“ƒh‚ÌŒ‹‰Ê‚Í0022‚É‚È‚Á‚Ä‚¢‚Ü‚·B
 
-```shell-session
+```
 [sato@server ~]$ umask 022
 [sato@server ~]$ umask
 0022
@@ -157,61 +157,60 @@ drwxrwxr-x. 2 sato sato 4096  1Œ 14 19:52 2015 testdir
 umask‚ğ•ÏX‚µ‚½‚¢ê‡‚É‚ÍAumaskƒRƒ}ƒ“ƒh‚Åİ’è‚µ‚½umask’l‚ğˆø”‚Æ‚µ‚Ä—^‚¦‚Ü‚·B
 ˆÈ‰º‚Ì—á‚Å‚ÍAumask‚Ì’l‚ğ0022‚É•ÏX‚µ‚½‚Ì‚ÅAV‹K‚Éì¬‚µ‚½ƒtƒ@ƒCƒ‹‚ÌƒAƒNƒZƒXŒ ‚Í644(-rw-r--r--)‚Éİ’è‚³‚ê‚Ä‚¢‚Ü‚·B
 
-```shell-session
+```
 [sato@server ~]$ umask 0022
 [sato@server ~]$ touch umasktest
 [sato@server ~]$ ls -l umasktest 
 -rw-r--r--. 1 sato sato 0  1Œ 14 19:53 2015 umasktest
 ```
 
-### rootƒ†[ƒU‚Ìumask‚ÆƒfƒtƒHƒ‹ƒg‚Ìumask
-ˆê”Êƒ†[ƒU‚Ìumask‚Ì’l‚Í0002‚Å‚·‚ªArootƒ†[ƒU‚Ìumask‚Ì’l‚Í0022‚Éİ’è‚³‚ê‚Ä‚¢‚Ü‚·B
+### ƒfƒtƒHƒ‹ƒg‚Ìumask
+ƒfƒtƒHƒ‹ƒg‚Ìumask‚Ì’l‚Í0022‚Å‚·‚ªA‚±‚ê‚Í/etc/login.defs‚ÉUMASK‚Æ‚µ‚Ä’è‹`‚³‚ê‚Ä‚¢‚Ü‚·B
 
-```shell-session
-[root@server ~]# umask
-0022
+```
+[root@server ~]# cat /etc/login.defs
+i—ªj
+# Default initial "umask" value used by login(1) on non-PAM enabled systems.
+# Default "umask" value for pam_umask(8) on PAM enabled systems.
+# UMASK is also used by useradd(8) and newusers(8) to set the mode for new
+# home directories if HOME_MODE is not set.
+# 022 is the default value, but 027, or even 077, could be considered
+# for increased privacy. There is no One True Answer here: each sysadmin
+# must make up their mind.
+UMASK		022
+i—ªj
+
 ```
 
-‚±‚ê‚ÍAbashƒVƒFƒ‹‚ğ‹N“®‚·‚éÛ‚É“Ç‚İ‚Ü‚ê‚éƒVƒFƒ‹ƒXƒNƒŠƒvƒg/etc/bashrc‚Ì’†‚ÅƒfƒtƒHƒ‹ƒg‚Ìumask‚ªİ’è‚³‚ê‚Ä‚¢‚é‚½‚ß‚Å‚·BˆÈ‰º‚Ì‚æ‚¤‚ÉAuid‚ª200ˆÈã‚ÅA‚©‚Âuid‚Ægid‚ª“¯‚¶ê‡‚É‚Íumask‚Ì’l‚Í0002i002‚Æ3Œ…•\‹LjA‚»‚êˆÈŠO‚Í0022‚Éİ’è‚³‚ê‚é‚æ‚¤‚Éˆ—‚³‚ê‚Ä‚¢‚Ü‚·B
+‚Ü‚½AƒƒOƒCƒ“ƒVƒFƒ‹ˆÈŠO‚Å‚Ìumask‚Ìİ’è‚ÍAbashƒVƒFƒ‹‚ğ‹N“®‚·‚éÛ‚É“Ç‚İ‚Ü‚ê‚éƒVƒFƒ‹ƒXƒNƒŠƒvƒg/etc/bashrc‚Ì’†‚Åumask‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚·B
 
-“¯—l‚Ìˆ—‚Í/etc/profile‚Å‚às‚í‚ê‚Ä‚¢‚Ü‚·B
-
-```shell-session
+```
 # cat /etc/bashrc
 i—ªj
-    # By default, we want umask to get set. This sets it for non-login shell.
-    # Current threshold for system reserved uid/gids is 200
-    # You could check uidgid reservation validity in
-    # /usr/share/doc/setup-*/uidgid file
-    if [ $UID -gt 199 ] && [ "`id -gn`" = "`id -un`" ]; then
-       umask 002
-    else
-       umask 022
-    fi
+    # Set default umask for non-login shell only if it is set to 0
+    [ `umask` -eq 0 ] && umask 022
 i—ªj
 ```
 
-uid‚Ægid‚ª“¯‚¶‚Å‚ ‚é‚±‚Æ‚ğŠm”F‚µ‚Ä‚¢‚é‚Ì‚ÍAuseraddƒRƒ}ƒ“ƒh‚Åƒ†[ƒUƒAƒJƒEƒ“ƒg‚ğV‹K‚Éì¬‚·‚é‚ÆA“Á•Êİ’è‚µ‚È‚¢ŒÀ‚èw’è‚³‚ê‚½ƒ†[ƒU–¼‚Æ“¯‚¶–¼‘O‚ÌƒOƒ‹[ƒv‚ğì¬‚µAuid‚Ægid‚ª“¯‚¶‚É‚È‚é‚½‚ß‚Å‚·B‚Â‚Ü‚èAuid‚Ægid‚ª“¯‚¶ƒ†[ƒU‚ÍAuseraddƒRƒ}ƒ“ƒh‚ğg‚Á‚ÄƒVƒ“ƒvƒ‹‚Éì¬‚³‚ê‚½ƒ†[ƒUƒAƒJƒEƒ“ƒg‚Æ”»’è‚Å‚«‚é‚Æ‚¢‚¤‚±‚Æ‚É‚È‚è‚Ü‚·B
-
 ### setUID‚ÌŠm”F
-setUID‚ªÀsƒtƒ@ƒCƒ‹‚Éİ’è‚³‚ê‚Ä‚¢‚é‚ÆA‚»‚ÌÀsƒtƒ@ƒCƒ‹‚ÍŠ—Lƒ†[ƒU‚ÌŒ ŒÀ‚ÅÀs‚³‚ê‚Ü‚·BsetUID‚ªİ’è‚³‚ê‚Ä‚¢‚éê‡AlsƒRƒ}ƒ“ƒh‚Ìo—Í‚ÅŠ—Lƒ†[ƒU‚ÌÀsƒp[ƒ~ƒbƒVƒ‡ƒ“‚ªusv‚Æ•\¦‚³‚ê‚Ü‚·B
+setUID‚ªÀsƒtƒ@ƒCƒ‹‚Éİ’è‚³‚ê‚Ä‚¢‚é‚ÆA‚»‚ÌÀsƒtƒ@ƒCƒ‹‚ÍŠ—Lƒ†[ƒU[‚ÌŒ ŒÀ‚ÅÀs‚³‚ê‚Ü‚·BsetUID‚ªİ’è‚³‚ê‚Ä‚¢‚éê‡AlsƒRƒ}ƒ“ƒh‚Ìo—Í‚ÅŠ—Lƒ†[ƒU[‚ÌÀsƒp[ƒ~ƒbƒVƒ‡ƒ“‚ªusv‚Æ•\¦‚³‚ê‚Ü‚·B
 
-setUID‚ªİ’è‚³‚ê‚Ä‚¢‚é—á‚Æ‚µ‚ÄApasswdƒRƒ}ƒ“ƒh‚ª‚ ‚è‚Ü‚·Bˆê”Êƒ†[ƒU‚ªƒpƒXƒ[ƒh‚ğ•ÏX‚·‚é‚É‚ÍArootƒ†[ƒU‚¾‚¯‚ª‘‚«‚ß‚é/etc/shadowƒtƒ@ƒCƒ‹‚É‘Î‚·‚é•ÏX‚ª•K—v‚Å‚·BƒpƒXƒ[ƒh‚ğ•ÏX‚·‚épasswdƒRƒ}ƒ“ƒh‚ÍAŠ—Lƒ†[ƒU‚ªrootƒ†[ƒU‚ÅsetUID‚ªİ’è‚³‚ê‚Ä‚¢‚é‚Ì‚ÅAˆê”Êƒ†[ƒU‚ªpasswdƒRƒ}ƒ“ƒh‚ğÀs‚·‚é‚ÆArootƒ†[ƒU‚ÌŒ ŒÀ‚ÅÀs‚³‚ê‚Ä/etc/shadowƒtƒ@ƒCƒ‹‚É•ÏX‚ğ‰Á‚¦‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
+setUID‚ªİ’è‚³‚ê‚Ä‚¢‚é—á‚Æ‚µ‚ÄApasswdƒRƒ}ƒ“ƒh‚ª‚ ‚è‚Ü‚·Bˆê”Êƒ†[ƒU[‚ªƒpƒXƒ[ƒh‚ğ•ÏX‚·‚é‚É‚ÍArootƒ†[ƒU[‚¾‚¯‚ª‘‚«‚ß‚é/etc/shadowƒtƒ@ƒCƒ‹‚É‘Î‚·‚é•ÏX‚ª•K—v‚Å‚·BƒpƒXƒ[ƒh‚ğ•ÏX‚·‚épasswdƒRƒ}ƒ“ƒh‚ÍAŠ—Lƒ†[ƒU[‚ªrootƒ†[ƒU[‚ÅsetUID‚ªİ’è‚³‚ê‚Ä‚¢‚é‚Ì‚ÅAˆê”Êƒ†[ƒU[‚ªpasswdƒRƒ}ƒ“ƒh‚ğÀs‚·‚é‚ÆArootƒ†[ƒU[‚ÌŒ ŒÀ‚ÅÀs‚³‚ê‚Ä/etc/shadowƒtƒ@ƒCƒ‹‚É•ÏX‚ğ‰Á‚¦‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
 
-ƒRƒ}ƒ“ƒh‚ğÀs‚µ‚½ƒ†[ƒU‚ğuÀsƒ†[ƒUvAsetUID‚ÅŒ ŒÀ‚ª•ÏX‚³‚ê‚½ƒ†[ƒU‚ğuÀŒøƒ†[ƒUv‚ÆŒÄ‚Ñ‚Ü‚·B
+ƒRƒ}ƒ“ƒh‚ğÀs‚µ‚½ƒ†[ƒU[‚ğuÀsƒ†[ƒU[vAsetUID‚ÅŒ ŒÀ‚ª•ÏX‚³‚ê‚½ƒ†[ƒU[‚ğuÀŒøƒ†[ƒU[v‚ÆŒÄ‚Ñ‚Ü‚·B
 
-ˆÈ‰º‚Ì—á‚Å‚ÍApasswdƒRƒ}ƒ“ƒh‚ğˆê’â~‚µ‚ÄApsƒRƒ}ƒ“ƒh‚ÅÀŒøƒ†[ƒU‚ğŠm”F‚µ‚Ä‚¢‚Ü‚·B
+ˆÈ‰º‚Ì—á‚Å‚ÍApasswdƒRƒ}ƒ“ƒh‚ğˆê’â~‚µ‚ÄApsƒRƒ}ƒ“ƒh‚ÅÀŒøƒ†[ƒU[‚ğŠm”F‚µ‚Ä‚¢‚Ü‚·B
 
 setUID‚ªİ’è‚³‚ê‚Ä‚¢‚é‚±‚Æ‚ğŠm”F‚µ‚Ü‚·B
 
-```shell-session
+```
 [sato@server ~]$ ls -l /usr/bin/passwd 
 -rwsr-xr-x. 1 root root 30768  2Œ 22 20:48 2012 /usr/bin/passwd
 ```
 
 passwd‚ğÀs‚µACtrl+ZƒL[‚Åˆê’â~‚µ‚Ü‚·Bˆê’â~ŒãAƒVƒFƒ‹ƒvƒƒ“ƒvƒg‚É–ß‚·‚½‚ß‚É‚ÍEnterƒL[‚ğ‰Ÿ‚·•K—v‚ª‚ ‚è‚Ü‚·B
 
-```shell-session
+```
 [sato@server ~]$ passwd
 ƒ†[ƒU[ sato ‚ÌƒpƒXƒ[ƒh‚ğ•ÏXB
 sato —p‚ÉƒpƒXƒ[ƒh‚ğ•ÏX’†
@@ -219,9 +218,9 @@ sato —p‚ÉƒpƒXƒ[ƒh‚ğ•ÏX’†
 [1]+  ’â~                  passwd
 ```
 
-psƒRƒ}ƒ“ƒh‚ÅÀŒøƒ†[ƒU‚ğŠm”F‚µ‚Ü‚·BpasswdƒRƒ}ƒ“ƒh‚ÌÀŒøƒ†[ƒU‚ªroot‚Å‚ ‚é‚±‚Æ‚ªŠm”F‚Å‚«‚Ü‚·B
+psƒRƒ}ƒ“ƒh‚ÅÀŒøƒ†[ƒU[‚ğŠm”F‚µ‚Ü‚·BpasswdƒRƒ}ƒ“ƒh‚ÌÀŒøƒ†[ƒU[‚ªroot‚Å‚ ‚é‚±‚Æ‚ªŠm”F‚Å‚«‚Ü‚·B
 
-```shell-session
+```
 [sato@server ~]$ ps aux | grep passwd
 root     15052  0.0  0.2 164012  2068 pts/1    T    10:47   0:00 passwd
 sato     15178  0.0  0.0 107464   916 pts/1    S+   10:48   0:00 grep passwd
@@ -229,7 +228,7 @@ sato     15178  0.0  0.0 107464   916 pts/1    S+   10:48   0:00 grep passwd
 
 fgƒRƒ}ƒ“ƒh‚Åˆê’â~‚µ‚½passwdƒRƒ}ƒ“ƒh‚ğƒtƒHƒAƒOƒ‰ƒEƒ“ƒhƒvƒƒZƒX‚É–ß‚µACtrl+CƒL[‚ÅI—¹‚µ‚Ü‚·B
 
-```shell-session
+```
 [sato@server ~]$ fg
 passwd
 ¦^C ©Ctrl+CƒL[‚ğ“ü—Í
@@ -239,21 +238,19 @@ passwd
 ### setGID‚ÌŠm”F
 setGID‚ªİ’è‚³‚ê‚Ä‚¢‚é‚ÆAŠ—LƒOƒ‹[ƒv‚ÌŒ ŒÀ‚ÅÀs‚³‚ê‚Ü‚·BsetGID‚ÍŠ—LƒOƒ‹[ƒv‚ÌÀsƒp[ƒ~ƒbƒVƒ‡ƒ“‚ªusv‚Æ•\¦‚³‚ê‚Ü‚·B
 
-setGID‚ªİ’è‚³‚ê‚Ä‚¢‚é—á‚Æ‚µ‚ÄAwriteƒRƒ}ƒ“ƒh‚âslocateƒRƒ}ƒ“ƒh‚ª‚ ‚è‚Ü‚·B
+setGID‚ªİ’è‚³‚ê‚Ä‚¢‚é—á‚Æ‚µ‚ÄAwriteƒRƒ}ƒ“ƒh‚ª‚ ‚è‚Ü‚·B
 
-```shell-session
+```
 $ ls -l /usr/bin/write
 -rwxr-sr-x  1 root tty 10124 2Œ 18“ú  2011 /usr/bin/write
-$ ls -l /usr/bin/slocate
--rwxr-sr-x  1 root slocate 38516 11Œ 17“ú  2007 /usr/bin/slocate
 ```
 
-writeƒRƒ}ƒ“ƒh‚ÍAƒƒOƒCƒ“‚µ‚Ä‚¢‚é‘¼‚Ìƒ†[ƒU‚É‘Î‚µ‚ÄƒƒbƒZ[ƒW‚ğ‘—‚éƒRƒ}ƒ“ƒh‚Å‚·BˆÈ‰º‚Ì—á‚Å‚ÍAwriteƒRƒ}ƒ“ƒh‚ğˆê’â~‚µ‚ÄApsƒRƒ}ƒ“ƒh‚ÅÀŒøƒOƒ‹[ƒv‚ğŠm”F‚µ‚Ä‚¢‚Ü‚·B
+writeƒRƒ}ƒ“ƒh‚ÍAƒƒOƒCƒ“‚µ‚Ä‚¢‚é‘¼‚Ìƒ†[ƒU[‚É‘Î‚µ‚ÄƒƒbƒZ[ƒW‚ğ‘—‚éƒRƒ}ƒ“ƒh‚Å‚·BˆÈ‰º‚Ì—á‚Å‚ÍAwriteƒRƒ}ƒ“ƒh‚ğˆê’â~‚µ‚ÄApsƒRƒ}ƒ“ƒh‚ÅÀŒøƒOƒ‹[ƒv‚ğŠm”F‚µ‚Ä‚¢‚Ü‚·B
 
-2‚Â‚Ìƒ†[ƒUƒAƒJƒEƒ“ƒg‚ÅƒƒOƒCƒ“‚µ‚Ü‚·B“¯‚¶ƒ†[ƒUƒAƒJƒEƒ“ƒg‚Å‚à\‚¢‚Ü‚¹‚ñB
+2‚Â‚Ìƒ†[ƒU[ƒAƒJƒEƒ“ƒg‚ÅƒƒOƒCƒ“‚µ‚Ü‚·B“¯‚¶ƒ†[ƒU[ƒAƒJƒEƒ“ƒg‚Å‚à\‚¢‚Ü‚¹‚ñB
 writeƒRƒ}ƒ“ƒh‚ğÀs‚µACtrl+ZƒL[‚Åˆê’â~‚µ‚Ü‚·B
 
-```shell-session
+```
 [sato@server ~]$ write suzuki
 ¦^Z ©Ctrl+ZƒL[‚ğ“ü—Í
 [1]+  ’â~                  write suzuki
@@ -261,287 +258,58 @@ writeƒRƒ}ƒ“ƒh‚ğÀs‚µACtrl+ZƒL[‚Åˆê’â~‚µ‚Ü‚·B
 
 psƒRƒ}ƒ“ƒh‚ÅÀŒøƒOƒ‹[ƒv‚ğŠm”F‚µ‚Ü‚·B
 
-```shell-session
+```
 [sato@server ~]$ ps a -eo "%p %u %g %G %y %c" | grep write
 23400 sato     sato     ¦tty¦      pts/1    write
 ```
 
-•\¦‚Í¶‚©‚çAƒvƒƒZƒXIDi%pjAÀsƒ†[ƒUi%ujAÀsƒOƒ‹[ƒvi%gjAÀŒøƒOƒ‹[ƒvi%GjAÀŒø’[––i%yjAƒRƒ}ƒ“ƒhi%cj‚Æ‚È‚Á‚Ä‚¢‚Ü‚·BÀs‚µ‚½‚Ì‚Íƒ†[ƒUsato‚Å‚·‚ªAsetGID‚³‚ê‚Ä‚¢‚é‚½‚ßttyƒOƒ‹[ƒv‚Æ‚µ‚Ä“®ì‚µ‚Ä‚¢‚é‚±‚Æ‚ªŠm”F‚Å‚«‚Ü‚·B
+•\¦‚Í¶‚©‚çAƒvƒƒZƒXIDi%pjAÀsƒ†[ƒU[i%ujAÀsƒOƒ‹[ƒvi%gjAÀŒøƒOƒ‹[ƒvi%GjAÀs’[––i%yjAƒRƒ}ƒ“ƒhi%cj‚Æ‚È‚Á‚Ä‚¢‚Ü‚·BÀs‚µ‚½‚Ì‚Íƒ†[ƒU[sato‚Å‚·‚ªAsetGID‚³‚ê‚Ä‚¢‚é‚½‚ßttyƒOƒ‹[ƒv‚Æ‚µ‚Ä“®ì‚µ‚Ä‚¢‚é‚±‚Æ‚ªŠm”F‚Å‚«‚Ü‚·B
 
-tty‚Æ‚ÍuTele-TYpewriterv‚ÌˆÓ–¡‚ÅA’[––‚ğ•\‚µ‚Ü‚·BwriteƒRƒ}ƒ“ƒh‚ÍƒƒOƒCƒ“‚µ‚Ä‚¢‚é‘¼‚Ìƒ†[ƒU‚Ì’[––‚ÉƒƒbƒZ[ƒW‚ğ•\¦‚·‚é‚½‚ß‚ÉsetGID‚ğs‚Á‚ÄÀŒøƒOƒ‹[ƒv‚ğttyƒOƒ‹[ƒv‚É‚µ‚Ä‚¢‚é‚í‚¯‚Å‚·B
+tty‚Æ‚ÍuTele-TYpewriterv‚ÌˆÓ–¡‚ÅA’[––‚ğ•\‚µ‚Ü‚·BwriteƒRƒ}ƒ“ƒh‚ÍƒƒOƒCƒ“‚µ‚Ä‚¢‚é‘¼‚Ìƒ†[ƒU[‚Ì’[––‚ÉƒƒbƒZ[ƒW‚ğ•\¦‚·‚é‚½‚ß‚ÉsetGID‚ğs‚Á‚ÄÀŒøƒOƒ‹[ƒv‚ğttyƒOƒ‹[ƒv‚É‚µ‚Ä‚¢‚é‚í‚¯‚Å‚·B
 
 ### ƒXƒeƒBƒbƒL[ƒrƒbƒg
-ƒXƒeƒBƒbƒL[ƒrƒbƒg‚ªİ’è‚³‚ê‚½ƒtƒ@ƒCƒ‹‚âƒfƒBƒŒƒNƒgƒŠ‚ÍAu‚·‚×‚Ä‚Ìƒ†[ƒU‚ª‘‚«‚ß‚é‚ªAŠ—LÒ‚µ‚©íœ‚Å‚«‚È‚¢v‚Æ‚¢‚¤ƒAƒNƒZƒXŒ ŒÀ‚ªİ’è‚³‚ê‚Ü‚·B
+ƒXƒeƒBƒbƒL[ƒrƒbƒg‚ªİ’è‚³‚ê‚½ƒtƒ@ƒCƒ‹‚âƒfƒBƒŒƒNƒgƒŠ‚ÍAu‚·‚×‚Ä‚Ìƒ†[ƒU[‚ª‘‚«‚ß‚é‚ªAŠ—LÒ‚µ‚©íœ‚Å‚«‚È‚¢v‚Æ‚¢‚¤ƒAƒNƒZƒXŒ ŒÀ‚ªİ’è‚³‚ê‚Ü‚·B
 
-‚½‚Æ‚¦‚Î/tmpƒfƒBƒŒƒNƒgƒŠ‚É‘Î‚µ‚ÄƒXƒeƒBƒbƒL[ƒrƒbƒg‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚·B/tmpƒfƒBƒŒƒNƒgƒŠ‚Í‘S‚Ä‚Ìƒ†[ƒU‚âƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ª‘‚«‚ß‚éƒfƒBƒŒƒNƒgƒŠ‚Æ‚µ‚ÄAˆêƒtƒ@ƒCƒ‹‚Ìì¬‚È‚Ç‚Ég—p‚³‚ê‚Ä‚¢‚Ü‚·B‚µ‚©‚µ/tmpƒfƒBƒŒƒNƒgƒŠ‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“‚ğ777irwxrwxrwxj‚Éİ’è‚·‚é‚ÆAì¬‚µ‚½ƒtƒ@ƒCƒ‹‚ğ‘¼‚Ìƒ†[ƒU‚ªíœ‚Å‚«‚Ä‚µ‚Ü‚¢‚Ü‚·B‚»‚±‚Å/tmpƒfƒBƒŒƒNƒgƒŠ‚ÉƒXƒeƒBƒbƒL[ƒrƒbƒg‚ğİ’è‚·‚é‚ÆA‚»‚Ìƒtƒ@ƒCƒ‹‚ğíœ‚Å‚«‚é‚Ì‚Íì¬‚µ‚½ƒ†[ƒU‚Ì‚İ‚Æ‚È‚è‚Ü‚·B
+‚½‚Æ‚¦‚Î/tmpƒfƒBƒŒƒNƒgƒŠ‚É‘Î‚µ‚ÄƒXƒeƒBƒbƒL[ƒrƒbƒg‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚·B/tmpƒfƒBƒŒƒNƒgƒŠ‚Í‘S‚Ä‚Ìƒ†[ƒU[‚âƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ª‘‚«‚ß‚éƒfƒBƒŒƒNƒgƒŠ‚Æ‚µ‚ÄAˆêƒtƒ@ƒCƒ‹‚Ìì¬‚È‚Ç‚Ég—p‚³‚ê‚Ä‚¢‚Ü‚·B‚µ‚©‚µ/tmpƒfƒBƒŒƒNƒgƒŠ‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“‚ğ777irwxrwxrwxj‚Éİ’è‚·‚é‚ÆAì¬‚µ‚½ƒtƒ@ƒCƒ‹‚ğ‘¼‚Ìƒ†[ƒU[‚ªíœ‚Å‚«‚Ä‚µ‚Ü‚¢‚Ü‚·B‚»‚±‚Å/tmpƒfƒBƒŒƒNƒgƒŠ‚ÉƒXƒeƒBƒbƒL[ƒrƒbƒg‚ğİ’è‚·‚é‚ÆA‚»‚Ìƒtƒ@ƒCƒ‹‚ğíœ‚Å‚«‚é‚Ì‚Íì¬‚µ‚½ƒ†[ƒU[‚Ì‚İ‚Æ‚È‚è‚Ü‚·B
 
-ƒXƒeƒBƒbƒL[ƒrƒbƒg‚ªİ’è‚³‚ê‚Ä‚¢‚é‚ÆAlsƒRƒ}ƒ“ƒh‚Ìo—Í‚Å‚»‚Ì‘¼‚Ìƒ†[ƒU‚ÌÀsƒp[ƒ~ƒbƒVƒ‡ƒ“‚ªutv‚Æ•\¦‚³‚ê‚Ü‚·B
+ƒXƒeƒBƒbƒL[ƒrƒbƒg‚ªİ’è‚³‚ê‚Ä‚¢‚é‚ÆAlsƒRƒ}ƒ“ƒh‚Ìo—Í‚Å‚»‚Ì‘¼‚Ìƒ†[ƒU[‚ÌÀsƒp[ƒ~ƒbƒVƒ‡ƒ“‚ªutv‚Æ•\¦‚³‚ê‚Ü‚·B
 
-```shell-session
+```
 [sato@server ~]$ ls -ld /tmp
 drwxrwxrwt. 16 root root 4096  1Œ 14 20:26 2015 /tmp
 ```
 
-ƒ†[ƒUsato‚Å/tmp/sbittest‚ğì¬‚µAƒp[ƒ~ƒbƒVƒ‡ƒ“‚ğ666‚Éİ’è‚µ‚Ü‚·B
+ƒ†[ƒU[sato‚Å/tmp/sbittest‚ğì¬‚µAƒp[ƒ~ƒbƒVƒ‡ƒ“‚ğ666‚Éİ’è‚µ‚Ü‚·B
 
-```shell-session
+```
 [sato@server ~]$ touch /tmp/sbittest
 [sato@server ~]$ chmod 666 /tmp/sbittest 
 [sato@server ~]$ ls -l /tmp/sbittest 
 -rw-rw-rw-. 1 sato sato 0  1Œ 14 20:28 2015 /tmp/sbittest
 ```
 
-ƒ†[ƒUsuzuki‚Å/tmp/sbittest‚É‘‚«‚İ‚ğ‚µ‚Ü‚·B‚»‚Ì‘¼‚Ìƒ†[ƒU[‚É‘Î‚·‚é‘‚«‚İ‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“‚ª•t—^‚³‚ê‚Ä‚¢‚é‚Ì‚Å‘‚«‚İ‚ªs‚¦‚Ü‚·B
+ƒ†[ƒU[suzuki‚Å/tmp/sbittest‚É‘‚«‚İ‚ğ‚µ‚Ü‚·B‚»‚Ì‘¼‚Ìƒ†[ƒU[‚É‘Î‚·‚é‘‚«‚İ‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“‚ª•t—^‚³‚ê‚Ä‚¢‚é‚Ì‚Å‘‚«‚İ‚ªs‚¦‚Ü‚·B
 
-```shell-session
+```
 [suzuki@server ~]$ echo "suzuki" >> /tmp/sbittest
 [suzuki@server ~]$ cat /tmp/sbittest
 suzuki
 ```
 
-ƒ†[ƒUsuzuki‚Å/tmp/sbittest‚ğíœ‚µ‚æ‚¤‚Æ‚µ‚Ü‚·‚ªAƒXƒeƒBƒbƒL[ƒrƒbƒg‚ª“­‚¢‚Äíœ‚Å‚«‚Ü‚¹‚ñB
+ƒ†[ƒU[suzuki‚Å/tmp/sbittest‚ğíœ‚µ‚æ‚¤‚Æ‚µ‚Ü‚·‚ªAƒXƒeƒBƒbƒL[ƒrƒbƒg‚ª“­‚¢‚Äíœ‚Å‚«‚Ü‚¹‚ñB
 
-```shell-session
+```
 [suzuki@server ~]$ rm /tmp/sbittest 
 rm: cannot remove `/tmp/sbittest': ‹–‰Â‚³‚ê‚Ä‚¢‚È‚¢‘€ì‚Å‚·
 ```
 
-ƒ†[ƒUsato‚Å/tmp/sbittest‚ğíœ‚µ‚Ü‚·BŠ—Lƒ†[ƒU‚Ííœ‚ªs‚¦‚Ü‚·B
+ƒ†[ƒU[sato‚Å/tmp/sbittest‚ğíœ‚µ‚Ü‚·BŠ—Lƒ†[ƒU[‚Ííœ‚ªs‚¦‚Ü‚·B
 
-```shell-session
+```
 [sato@server ~]$ rm /tmp/sbittest
 ```
-
-## POSIX ACL
-ACL(Access Control ListBPOSIX€‹’‚ÌACL‚Ì‚½‚ßAPOSIX ACL‚Æ‚àŒÄ‚Î‚ê‚é)‚ÍALinuxƒJ[ƒlƒ‹2.6‚©‚ç•W€Ì—p‚³‚ê‚Ä‚¨‚èA]—ˆ‚ÌLinux‚Å‚ÌƒAƒNƒZƒXŒ ŒÀ‚æ‚è‚à×‚©‚ÉƒAƒNƒZƒXŒ ŒÀ‚ğİ’è‚Å‚«‚é‹Zp‚Å‚·B
-LinuxˆÈŠO‚ÌOSA‚½‚Æ‚¦‚ÎWindows‚È‚Ç‚Å‚àACL‚ğƒTƒ|[ƒg‚µ‚Ä‚¨‚èA•t‰Á‚Å‚«‚éŒ ŒÀ‚Ìí—Ş‚à‚æ‚è×‚â‚©‚È‚à‚Ì‚É‚È‚Á‚Ä‚¢‚Ü‚·BLinux‚Å‚àAWindowsŒü‚¯‚Ìƒtƒ@ƒCƒ‹ƒT[ƒo‚Æ‚µ‚ÄSamba‚ğ—˜—p‚·‚éê‡‚È‚Ç‚É‚ÍA“¯—l‚ÌƒAƒNƒZƒXŒ ŒÀİ’è‚ğs‚¤‚½‚ß‚ÉACL‚ª•K—v‚Å‚·B
-
-### ACL‚ğ—LŒø‚É‚·‚éğŒ‚ÆŠm”F
-ACL‚Íƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ÌŠg’£‘®«‚ğ—˜—p‚µ‚Ä‚¢‚é‚½‚ßAŠg’£‘®«‚ªƒTƒ|[ƒg‚³‚ê‚Ä‚¢‚éƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ğ—p‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·Bext3‚âext4AXFS‚È‚Ç‚Ù‚Æ‚ñ‚Ç‚Ìƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Å‚ÍŠg’£‘®«‚ªƒTƒ|[ƒg‚³‚ê‚Ä‚¢‚Ü‚·B
-‚Ü‚½Aƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚É‚æ‚Á‚Ä‚Íƒ}ƒEƒ“ƒg‚·‚éÛ‚ÉmountƒRƒ}ƒ“ƒh‚ÉaclƒIƒvƒVƒ‡ƒ“‚ğw’è‚·‚é•K—v‚ª‚ ‚è‚Ü‚·‚ªACentOS 6‚Å•W€‚Å—˜—p‚µ‚Ä‚¢‚éext4‚Å‚ÍƒfƒtƒHƒ‹ƒg‚ÅACL‚ª—LŒø‚É‚È‚Á‚Ä‚¢‚é‚Ì‚ÅAaclƒIƒvƒVƒ‡ƒ“‚Ìw’è‚Í•K—v‚ ‚è‚Ü‚¹‚ñB
-
-ACL‚ªg—p‚Å‚«‚é‚©‚ÍAlsƒRƒ}ƒ“ƒh‚Åƒp[ƒ~ƒbƒVƒ‡ƒ“‚ğŠm”F‚µ‚½‚ÉAƒp[ƒ~ƒbƒVƒ‡ƒ“‚ÌÅŒã‚É"."‚ª•\¦‚³‚ê‚Ä‚¢‚é‚±‚Æ‚Å”»•Ê‚Å‚«‚Ü‚·B
-
-"."‚ÍA‚»‚Ìƒtƒ@ƒCƒ‹‚ÉACL‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢‚±‚Æ‚ğˆÓ–¡‚µ‚Ä‚¢‚Ü‚·BACL‚ªİ’è‚³‚ê‚é‚Æ"+"‚É•\¦‚ª•ÏX‚³‚ê‚Ü‚·B
-
-### ACL‚Ìİ’è—á
-ÀÛ‚ÉACL‚ğİ’è‚µ‚Ä‚İ‚Ü‚·BgetfaclƒRƒ}ƒ“ƒh‚Íƒtƒ@ƒCƒ‹‚âƒfƒBƒŒƒNƒgƒŠ‚É‘Î‚µ‚ÄAİ’è‚³‚ê‚Ä‚¢‚éACL‚ğ•\¦‚·‚éƒRƒ}ƒ“ƒh‚Å‚·B‚Ü‚½Asetfacl‚Íƒtƒ@ƒCƒ‹‚âƒfƒBƒŒƒNƒgƒŠ‚É‘Î‚µ‚ÄAACL‚ğİ’è‚·‚éƒRƒ}ƒ“ƒh‚Å‚·B
-
-ƒ†[ƒUsato‚Å/tmp/acltestƒtƒ@ƒCƒ‹‚ğì¬‚µ‚Ü‚·B
-
-```shell-session
-[sato@server ~]$ touch /tmp/acltest
-```
-
-getfaclƒRƒ}ƒ“ƒh‚Å/tmp/acltestƒtƒ@ƒCƒ‹‚ÌACL‚ğŠm”F‚µ‚Ü‚·B
-
-```shell-session
-[sato@server ~]$ getfacl /tmp/acltest
-getfacl: Removing leading '/' from absolute path names
-# file: tmp/acltest
-# owner: sato
-# group: sato
-user::rw-
-group::r--
-other::r--
-```
-
-ƒ†[ƒUsuzuki‚Å/tmp/acltestƒtƒ@ƒCƒ‹‚É‘‚«‚İ‚ğ‚µ‚Ü‚·B‚»‚Ì‘¼‚Ìƒ†[ƒU‚É‚Íƒp[ƒ~ƒbƒVƒ‡ƒ“‚ª•t—^‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚Å‘‚«‚İ‚ªs‚¦‚Ü‚¹‚ñB
-
-```shell-session
-[suzuki@server ~]$ echo "suzuki" >> /tmp/acltest
--bash: /var/tmp/acltest: ‹–‰Â‚ª‚ ‚è‚Ü‚¹‚ñ
-```
-
-ƒ†[ƒUsato‚ÅsetfaclƒRƒ}ƒ“ƒh‚ğÀs‚µ‚ÄAƒ†[ƒUsuzuki‚Ì/tmp/acltest‚É‘Î‚·‚é“Ç‚İ‘‚«‚ÌACL‚ğİ’è‚µ‚Ü‚·B
-
-```shell-session
-[sato@server ~]$ setfacl -m u:suzuki:rw /tmp/acltest 
-[sato@server ~]$ getfacl /tmp/acltest 
-getfacl: Removing leading '/' from absolute path names
-# file: tmp/acltest
-# owner: sato
-# group: sato
-user::rw-
-¦user:suzuki:rw- ƒ†[ƒUsuzuki‚É‘Î‚·‚éACL‚ªİ’è‚³‚ê‚Ä‚¢‚é
-group::rw-
-mask::rw-
-other::r--
-```
-
-ƒ†[ƒUsuzuki‚ÅÄ“x/tmp/acltestƒtƒ@ƒCƒ‹‚É‘‚«‚İ‚ğ‚µ‚Ü‚·BACL‚ªİ’è‚³‚ê‚½‚Ì‚Å‘‚«‚İ‚ªs‚¦‚Ü‚·B
-
-```shell-session
-[suzuki@server ~]$ echo "suzuki" >> /tmp/acltest
-[suzuki@server ~]$ cat /tmp/acltest 
-suzuki
-```
-
-ƒ†[ƒUsato‚ÅsetfaclƒRƒ}ƒ“ƒh‚ğÀs‚µ‚ÄAƒ†[ƒUsuzuki‚Ì/tmp/acltest‚É‘Î‚·‚é“Ç‚İ‘‚«‚ÌACL‚ğíœ‚µ‚Ü‚·B
-
-```shell-session
-[sato@server ~]$ setfacl -x u:suzuki /tmp/acltest 
-[sato@server ~]$ getfacl /tmp/acltest
-getfacl: Removing leading '/' from absolute path names
-# file: tmp/acltest
-# owner: sato
-# group: sato
-user::rw-
-group::rw-
-mask::rw-
-other::r--
-```
-
-ƒ†[ƒUsuzuki‚Å/tmp/acltestƒtƒ@ƒCƒ‹‚ÉÄ“x‘‚«‚İ‚ğ‚µ‚Ü‚·BACL‚ªíœ‚³‚ê‚½‚Ì‚Å‘‚«‚İ‚ªs‚¦‚Ü‚¹‚ñB
-
-```shell-session
-[suzuki@server ~]$ echo "suzuki" >> /tmp/acltest
--bash: /var/tmp/acltest: ‹–‰Â‚ª‚ ‚è‚Ü‚¹‚ñ
-```
-
-### Samba‚ÆACL‚ÌŠÖŒW
-Samba‚ÅWindowsƒNƒ‰ƒCƒAƒ“ƒg‚É‘Î‚µ‚Äƒtƒ@ƒCƒ‹‹¤—L‚ğ’ñ‹Ÿ‚µ‚½Û‚ÉAWindows‚Åİ’è‚µ‚½×‚©‚ÈŒ ŒÀ‚ÍLinuxã‚Å‚ÍACL‚ğ—p‚¢‚ÄÀŒ»‚³‚ê‚Ä‚¢‚Ü‚·B
-
-—á‚Æ‚µ‚ÄA/home/satoˆÈ‰º‚Ésamba_ACL_testƒfƒBƒŒƒNƒgƒŠ‚ğì¬‚µAACL‚Ìİ’è‚ğs‚Á‚Ä‚İ‚Ü‚·B
-
-#### Samba‚ÌƒCƒ“ƒXƒg[ƒ‹‚Æİ’è
-Samba‚ğƒCƒ“ƒXƒg[ƒ‹‚µ‚Ü‚·B
-
-```shell-session
-# yum install samba
-```
-
-Samba‚Ìİ’èƒtƒ@ƒCƒ‹/etc/samba/smb.conf‚Ìworkgroupİ’è‚ğ•ÏX‚µ‚Ü‚·Bƒ[ƒNƒOƒ‹[ƒv–¼‚ÍWindowsƒNƒ‰ƒCƒAƒ“ƒg‚ÌQ‰Á‚µ‚Ä‚¢‚éƒ[ƒNƒOƒ‹[ƒv‚É‡‚í‚¹‚Ü‚·BWindowsƒNƒ‰ƒCƒAƒ“ƒg‚ÌƒfƒtƒHƒ‹ƒg‚Ìƒ[ƒNƒOƒ‹[ƒv‚ÍWORKGROUP‚Å‚·B
-
-```shell-session
-vi /etc/samba/smb.conf
-
-        workgroup = ¦WORKGROUP ©ƒ[ƒNƒOƒ‹[ƒv–¼‚ğ•ÏX¦
-```
-
-Samba‚ğ‹N“®‚µ‚Ü‚·BsmbƒT[ƒrƒX‚ÆnmbƒT[ƒrƒX‚ğ‹N“®‚µ‚Ü‚·B
-
-```shell-session
-# service smb start
-SMB ƒT[ƒrƒX‚ğ‹N“®’†:                                      [  OK  ]
-# service nmb start
-NMB ƒT[ƒrƒX‚ğ‹N“®’†:                                      [  OK  ]
-```
-
-#### iptables‚Ìİ’è•ÏX
-iptables‚Ìİ’è‚ğ•ÏX‚µ‚Ü‚·Bsystem-config-firewall-tuiƒRƒ}ƒ“ƒh‚ğÀs‚µ‚ÄƒJƒXƒ^ƒ}ƒCƒYİ’è‚ÅSamba‚ğ‹–‰Â‚·‚é‚©A/etc/sysconfig/iptables‚ÉˆÈ‰º‚Ì4s‚ğİ’è‚µ‚ÄiptablesƒT[ƒrƒX‚ğreload‚µ‚Ü‚·BSamba‚Ìg—p‚µ‚Ä‚¢‚éSMB/CIFSƒvƒƒgƒRƒ‹‚ÍTCP‚ÆUDP‚Ì2í—Ş‚Å‚ ‚é“_‚É’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢B
-
-```shell-session
--A INPUT -m state --state NEW -m udp -p udp --dport 137 -j ACCEPT
--A INPUT -m state --state NEW -m udp -p udp --dport 138 -j ACCEPT
--A INPUT -m state --state NEW -m tcp -p tcp --dport 139 -j ACCEPT
--A INPUT -m state --state NEW -m tcp -p tcp --dport 445 -j ACCEPT
-```
-
-#### SELinux‚Ìİ’è•ÏX
-SELinux‚ª—LŒø‚Èê‡ASELinux‚Ìİ’è‚ğ•ÏX‚µ‚Ü‚·BˆÈ‰º‚ÌsetseboolƒRƒ}ƒ“ƒh‚ğÀs‚µ‚ÄASambaŒo—R‚Åƒ†[ƒU‚Ìƒz[ƒ€ƒfƒBƒŒƒNƒgƒŠ‚Ö‚ÌƒAƒNƒZƒX‚ğ‹–‰Â‚µ‚Ü‚·BSELinux‚Ìİ’è‚É‚Â‚¢‚Ä‚ÍŒãq‚µ‚Ü‚·B
-
-```shell-session
-# setsebool -P samba_enable_home_dirs on
-```
-
-#### Sambaƒ†[ƒU‚Ì“o˜^
-smbpasswdƒRƒ}ƒ“ƒh‚ÅSambaƒ†[ƒU‚ğ“o˜^‚µ‚Ü‚·Bƒ†[ƒUƒAƒJƒEƒ“ƒg‚Í‚ ‚ç‚©‚¶‚ßLinux‚É“o˜^‚³‚ê‚Ä‚¢‚éƒ†[ƒUƒAƒJƒEƒ“ƒg‚ğw’è‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B‚±‚±‚Å‚Íƒ†[ƒUsato‚ğw’è‚µ‚Ä‚¢‚Ü‚·B“ü—Í‚µ‚½ƒpƒXƒ[ƒh‚ÍAWindowsƒNƒ‰ƒCƒAƒ“ƒg‚©‚çƒtƒ@ƒCƒ‹‹¤—L‚ÖƒAƒNƒZƒX‚·‚éÛ‚Ì”FØ‚Ég—p‚µ‚Ü‚·B
-
-```shell-session
-# smbpasswd -a sato
-New SMB password: ¦ƒpƒXƒ[ƒh‚ğ“ü—Í
-Retype new SMB password: ¦ƒpƒXƒ[ƒh‚ğÄ“ü—Í
-Added user sato.
-```
-
-#### WindowsƒNƒ‰ƒCƒAƒ“ƒg‚©‚çSamba‚Ö‚ÌƒAƒNƒZƒX
-WindowsƒNƒ‰ƒCƒAƒ“ƒg‚©‚çSamba‚Ìƒtƒ@ƒCƒ‹‹¤—L‚ÉƒAƒNƒZƒX‚µ‚Ü‚·B
-
-1. Samba‚Ö‚ÌƒAƒNƒZƒX‚ğw’è‚µ‚Ü‚·B
-
-![Samba‚Ö‚ÌƒAƒNƒZƒX](samba0.png)
-
-uƒXƒ^[ƒgvƒ{ƒ^ƒ“¨uƒvƒƒOƒ‰ƒ€‚Æƒtƒ@ƒCƒ‹‚ÌŒŸõv‚Éu\\server\vA‚ ‚é‚¢‚Íu\\192.168.0.10v‚Æ“ü—Í‚µ‚Ü‚·B
-
-”2
-
-2. ƒ†[ƒU”FØ‚ğs‚¢‚Ü‚·B
-
-![ƒ†[ƒU”FØ](samba1.png)
-
-ƒ†[ƒU”FØ‚ª—v‹‚³‚ê‚½ê‡‚É‚ÍA‘O‚Ìè‡‚Å“o˜^‚µ‚½ƒ†[ƒU–¼AƒpƒXƒ[ƒh‚Å”FØ‚ğs‚¢‚Ü‚·B
-
-”3
-
-3. ƒ†[ƒUƒz[ƒ€‹¤—L‚ÉƒAƒNƒZƒX‚µ‚Ü‚·B
-
-![ƒ†[ƒUƒz[ƒ€‹¤—L](samba2.png)
-
-ƒ†[ƒUƒAƒJƒEƒ“ƒg–¼‚Ìƒtƒ@ƒCƒ‹‹¤—Lisatoj‚ÌƒAƒCƒRƒ“‚ğƒ_ƒuƒ‹ƒNƒŠƒbƒN‚ÅŠJ‚«‚Ü‚·B‚±‚ê‚ÍSamba‚ªƒ†[ƒU‚Ìƒz[ƒ€ƒfƒBƒŒƒNƒgƒŠ‚ğ©“®“I‚É‹¤—L‚Æ‚µ‚Äˆµ‚¤Aƒ†[ƒUƒz[ƒ€‹¤—L‚Ì‹@”\‚ğg‚Á‚Ä‚¢‚Ü‚·B
-
-”4
-
-4. ƒeƒXƒg—p‚ÌƒtƒHƒ‹ƒ_‚ğì¬‚µ‚Ü‚·B
-
-![samba_acl_testƒtƒHƒ‹ƒ_](samba3.png)
-
-samba_acl_testƒtƒHƒ‹ƒ_‚ğì¬‚µ‚Ü‚·B
-
-”5
-
-5. ƒtƒHƒ‹ƒ_‚ÌƒvƒƒpƒeƒBƒEƒCƒ“ƒhƒE‚ğŒÄ‚Ño‚µ‚Ü‚·B
-
-![ƒvƒƒpƒeƒB](samba4.png)
-
-WindowsƒNƒ‰ƒCƒAƒ“ƒg‚Åsamba_acl_testƒtƒHƒ‹ƒ_‚ğ‰EƒNƒŠƒbƒN‚µ‚ÄAuƒvƒƒpƒeƒBv‚ğ‘I‘ğ‚µ‚Ü‚·BuƒZƒLƒ…ƒŠƒeƒBvƒ^ƒu‚ğƒNƒŠƒbƒN‚µ‚ÄAuÚ×İ’èvƒ{ƒ^ƒ“‚ğƒNƒŠƒbƒN‚µ‚Ü‚·B
-
-”6
-
-6. ƒAƒNƒZƒX‹–‰ÂƒGƒ“ƒgƒŠ‚ğŠm”F‚µ‚Ü‚·B
-
-![“Ç‚İ‘‚«‚Ì‚İ](samba5.png)
-
-uEveryonev‚ğƒ_ƒuƒ‹ƒNƒŠƒbƒN‚µ‚ÄAu‹–‰Âv‚ª5‚Âƒ`ƒFƒbƒN‚³‚ê‚Ä‚¢‚é‚±‚Æ‚ğŠm”F‚µ‚Ü‚·BuOKvƒ{ƒ^ƒ“‚ğƒNƒŠƒbƒN‚µ‚Ü‚·B‚³‚ç‚ÉOKƒ{ƒ^ƒ“‚ğƒNƒŠƒbƒN‚µ‚ÄAƒvƒƒpƒeƒB‚ÌƒEƒCƒ“ƒhƒE‚É–ß‚è‚Ü‚·B
-
-#### Linux‚©‚çACL‚ğŠm”F
-1. ƒ†[ƒUsato‚ÅƒƒOƒCƒ“‚µAƒz[ƒ€ƒfƒBƒŒƒNƒgƒŠ‚Éì‚ç‚ê‚½samba_acl_testƒfƒBƒŒƒNƒgƒŠ‚ÌACL‚ğŠm”F‚µ‚Ü‚·B
-
-```shell-session
-[sato@server ~]$ getfacl samba_acl_test/
-# file: samba_acl_test/
-# owner: sato
-# group: sato
-user::rwx
-group::r-x
-other::r-x
-```
-
-”2
-
-2. setfaclƒRƒ}ƒ“ƒh‚ğÀs‚µ‚ÄAsamba_acl_testƒfƒBƒŒƒNƒgƒŠ‚É‘Î‚µ‚ÄA‚»‚Ì‘¼‚Ìƒ†[ƒU‚É‘‚«‚İ‚ÌACL‚ğ•t—^‚µ‚Ü‚·B
-
-```shell-session
-[sato@server ~]$ setfacl -m o::rwx samba_acl_test
-[sato@server ~]$ getfacl samba_acl_test/
-# file: samba_acl_test/
-# owner: sato
-# group: sato
-user::rwx
-group::r-x
-other::r¦w¦x ¦©‘‚«‚İŒ ŒÀ‚ª•t—^‚³‚ê‚Ä‚¢‚é
-```
-
-”3
-
-3. WindowsƒNƒ‰ƒCƒAƒ“ƒg‚ÅÄ“xƒAƒNƒZƒX‹–‰ÂƒGƒ“ƒgƒŠ‚ğŠm”F‚µ‚Ü‚·B
-
-![‚·‚×‚Ä‚ÌƒAƒNƒZƒX‹–‰Â](samba5.png)
-
-WindowsƒNƒ‰ƒCƒAƒ“ƒg‚ÅÄ“xuÚ×İ’èvƒ{ƒ^ƒ“‚ğƒNƒŠƒbƒN‚µ‚Ü‚·BuEveryonev‚ğƒ_ƒuƒ‹ƒNƒŠƒbƒN‚µ‚ÄA‚·‚×‚Ä‚ÌƒAƒNƒZƒX‹–‰Â€–Ú‚ªƒ`ƒFƒbƒN‚³‚ê‚Ä‚¢‚é‚±‚Æ‚ğŠm”F‚µ‚Ü‚·B
-
 ## SELinux
-SELinux‚ÍLinuxƒJ[ƒlƒ‹2.6‚©‚çÀ‘•‚³‚ê‚½Arootƒ†[ƒU‚Ì“ÁŒ ‚É‘Î‚µ‚Ä‚à§ŒÀ‚ğŠ|‚¯‚é‚±‚Æ‚ª‚Å‚«‚é‹­§ƒAƒNƒZƒX§ŒäiMACAMandatory Access Controlj‚Ìd‘g‚İ‚Å‚·B
+SELinux‚ÍLinuxƒJ[ƒlƒ‹2.6‚©‚çÀ‘•‚³‚ê‚½Arootƒ†[ƒU[‚Ì“ÁŒ ‚É‘Î‚µ‚Ä‚à§ŒÀ‚ğŠ|‚¯‚é‚±‚Æ‚ª‚Å‚«‚é‹­§ƒAƒNƒZƒX§ŒäiMACAMandatory Access Controlj‚Ìd‘g‚İ‚Å‚·B
 
 –{‹³‰È‘‚Å‚ÍASELinux‚ÌŠî–{“I‚ÈŠÇ—‚É‚Â‚¢‚Ä‰ğà‚µ‚Ü‚·BSELinux‚Ì‚æ‚èÚ‚µ‚¢à–¾‚É‚Â‚¢‚Ä‚ÍAwLinuxƒZƒLƒ…ƒŠƒeƒB•W€‹³‰È‘x‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
 
@@ -553,7 +321,7 @@ SELinux‚Å‚ÍAƒvƒƒZƒX‚âƒtƒ@ƒCƒ‹‚È‚ÇLinux‚Ì‘S‚Ä‚ÌƒŠƒ\[ƒX‚É‘Î‚µ‚ÄuƒRƒ“ƒeƒLƒXƒgv
 ### SELinux‚Ì—LŒøA–³Œø‚ÌŠm”F
 SELinux‚Ìó‘Ô‚ÍgetenforceƒRƒ}ƒ“ƒh‚ÅŠm”F‚Å‚«‚Ü‚·B
 
-```shell-session
+```
 [root@server ~]# getenforce 
 Enforcing
 ```
@@ -566,13 +334,13 @@ getenforceƒRƒ}ƒ“ƒh‚ÌŒ‹‰Ê‚ÍˆÈ‰º‚Ì’Ê‚è‚Å‚·B
 |Permissive|SELinux‚Í—LŒø‚Å‚ ‚é‚ª“®ì‹‘”Û‚Ís‚í‚È‚¢|
 |Disabled|SELinux‚É‚æ‚éƒAƒNƒZƒX§Œä‚ª–³Œø|
 
-SELinux‚Ìó‘Ô‚ÍAsetenforceƒRƒ}ƒ“ƒh‚É‚æ‚é“®“I‚È•ÏX‚©Aİ’èƒtƒ@ƒCƒ‹/etc/selinux/config‚É‚æ‚éÃ“I‚È•ÏX‚Ì‚¢‚¸‚ê‚©‚Å•ÏX‚Å‚«‚Ü‚·B
+SELinux‚Ìó‘Ô‚ÍAsetenforceƒRƒ}ƒ“ƒh‚É‚æ‚é“®“I‚È•ÏX‚©Aİ’èƒtƒ@ƒCƒ‹/etc/selinux/config‚É‚æ‚é‰i‘±“I‚È•ÏX‚Ì‚¢‚¸‚ê‚©‚Å•ÏX‚Å‚«‚Ü‚·B
+Å‹ß‚ÌƒfƒBƒXƒgƒŠƒrƒ…[ƒVƒ‡ƒ“‚Å‚ÍASELinux‚ğ–³ŒøiDisabledj‚É‚·‚é‚Ì‚Í„§‚³‚ê‚¸A‚Ü‚½“®“I•ÏXAİ’èƒtƒ@ƒCƒ‹‚É‚æ‚é•ÏX‚às‚¦‚È‚­‚È‚Á‚Ä‚¢‚é‚Ì‚ÅA–³Œø‰»‚Ì•û–@‚É‚Â‚¢‚Ä‚Í‰ğà‚µ‚Ü‚¹‚ñBSELinux‚ğ–³Œø‰»‚·‚é‚Ì‚Å‚Í‚È‚­A³‚µ‚­İ’è‚·‚é•û–@A‚Ü‚½³í‚É“®ì‚µ‚È‚¢ê‡‚É‚ÍPermissive‚Éˆê“I‚Éİ’è‚µ‚ÄƒƒO‚ğŠm”F‚µA“KØ‚Éİ’è‚·‚é•û–@‚ğŠw‚ñ‚Å‚­‚¾‚³‚¢B
 
 ### setenforceƒRƒ}ƒ“ƒh‚É‚æ‚éSELinux‚Ì“®“I‚È•ÏX
-setenforceƒRƒ}ƒ“ƒh‚ÅSELinux‚Ìó‘Ô‚ğ“®“I‚É•ÏX‚Å‚«‚Ü‚·B•ÏX‚Írootƒ†[ƒU‚ÅÀs‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+setenforceƒRƒ}ƒ“ƒh‚ÅSELinux‚Ìó‘Ô‚ğ“®“I‚É•ÏX‚Å‚«‚Ü‚·B•ÏX‚Írootƒ†[ƒU[‚ÅÀs‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
 
 ‚½‚¾‚µA“®“I‚É•ÏX‚Å‚«‚é‚Ì‚ÍEnforcing‚ÆPermissive‚ÌØ‚è‘Ö‚¦‚Ì‚İ‚ÅASELinux‚ğ—LŒø‚©‚ç–³ŒøiDisabledj‚ÉA‚ ‚é‚¢‚Í–³Œø‚©‚ç—LŒø‚É•ÏX‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñB
-—LŒøA–³Œø‚ÌØ‚è‘Ö‚¦‚ÍAŒãq‚·‚éİ’èƒtƒ@ƒCƒ‹‚É‚æ‚éÃ“I‚È•ÏX‚ÆƒVƒXƒeƒ€‚ÌÄ‹N“®‚ª•K—v‚Å‚·B
 
 ```
 setenforce [ Enforcing | Permissive | 1 | 0 ]
@@ -581,40 +349,40 @@ setenforce [ Enforcing | Permissive | 1 | 0 ]
 ‚½‚Æ‚¦‚ÎAƒVƒXƒeƒ€‚ÌSELinux‚É‚æ‚éƒAƒNƒZƒX§Œä‚ğˆê“I‚É“K—p‚µ‚È‚¢‚æ‚¤‚É‚µ‚½‚¢‚Æ‚«‚É‚Íó‘Ô‚ğPermissive‚É•ÏX‚µ‚Ü‚·BSELinux‚É‚æ‚éƒAƒNƒZƒX§Œä‚Å‚Ì“®ì‚Ì‹‘”Û‚Ís‚í‚ê‚È‚­‚È‚è‚Ü‚·‚ªAƒfƒoƒbƒO‚È‚Ç‚Ì—p“r‚Ì‚½‚ß‚ÉSELinux‚Ìƒ|ƒŠƒV[ˆá”½‚ª”­¶‚·‚é‚ÆƒƒO‚Ío—Í‚³‚ê‚Ü‚·B
 ƒVƒXƒeƒ€‚ªv‚Á‚½‚æ‚¤‚É“®ì‚¹‚¸ASELinux‚ªŒ´ˆö‚Æv‚í‚ê‚é‚È‚Ç‚ÉPermissive‚Éİ’è‚µ‚ÄASELinux‚ªŒ´ˆö‚©‚Ç‚¤‚©‚ÌØ‚è•ª‚¯ì‹Æ‚ğs‚¢‚Ü‚·B
 
-```shell-session
+```
 # setenforce permissive
 # getenforce 
 Permissive
 ```
 
-### SELinux‚Ì–³Œø‰»
+### SELinux‚Ì‰i‘±“I‚È•ÏX
 SELinux‚ğ–³Œø‚É‚·‚éA‚ ‚é‚¢‚Í–³Œø‚©‚ç—LŒø‚É•ÏX‚·‚é‚É‚ÍSELinux‚Ìİ’èƒtƒ@ƒCƒ‹/etc/selinux/config‚Ìİ’è‚ğ•ÏX‚µ‚Ü‚·BƒVƒXƒeƒ€‚ğÄ‹N“®‚·‚é‚ÆAİ’è‚ª”½‰f‚³‚ê‚Ü‚·B
 
-/etc/selinux/config‚ğ•ÒW‚µAİ’è€–ÚSELINUX‚Ì’l‚ğdisabled‚É•ÏX‚µ‚Ü‚·B
+/etc/selinux/config‚ğ•ÒW‚µAİ’è€–ÚSELINUX‚Ì’l‚ğpermissive‚É•ÏX‚µ‚Ü‚·B
 
-```shell-session
+```
 # vi /etc/selinux/config
 
 ¦#¦SELINUX=enforcing ¦©s“ª‚É#‚ğ’Ç‰Á
-¦SELINUX=disabled ©V‚½‚É’Ç‰Á
+¦SELINUX=permissive ©V‚½‚É’Ç‰Á
 ```
 
 ƒVƒXƒeƒ€‚ğÄ‹N“®‚µ‚Ü‚·B
 
-```shell-session
+```
 # reboot
 ```
 
 getenforceƒRƒ}ƒ“ƒh‚ÅSELinux‚ª–³ŒøiDisabledj‚É‚È‚Á‚½‚±‚Æ‚ğŠm”F‚µ‚Ü‚·B
 
-```shell-session
+```
 # getenforce
-Disabled
+Permissive
 ```
 
 /etc/selinux/config‚ğ•ÒW‚µAİ’è€–ÚSELINUX‚Ì’l‚ğenforcing‚É•ÏX‚µ‚Ü‚·B
 
-```shell-session
+```
 # vi /etc/selinux/config
 
 SELINUX=enforcing ¦©s“ª‚Ì#‚ğíœ
@@ -623,21 +391,21 @@ SELINUX=enforcing ¦©s“ª‚Ì#‚ğíœ
 
 ƒVƒXƒeƒ€‚ğÄ‹N“®‚µ‚Ü‚·B
 
-```shell-session
+```
 # reboot
 ```
 
 getenforceƒRƒ}ƒ“ƒh‚ÅSELinux‚ª—LŒøiEnforcingj‚É‚È‚Á‚½‚±‚Æ‚ğŠm”F‚µ‚Ü‚·B
 
-```shell-session
+```
 # getenforce
 Enforcing
 ```
 
 ### ƒRƒ“ƒeƒLƒXƒg‚ÌŠm”F
-ƒRƒ“ƒeƒLƒXƒg‚Íƒtƒ@ƒCƒ‹‚È‚Ç‚Éİ’è‚³‚êAƒAƒNƒZƒX§Œä‚É—˜—p‚³‚ê‚Ü‚·BƒRƒ“ƒeƒLƒXƒg‚ÍAŸ‚Ì4‚Â‚Ì¯•Êq‚Å\¬‚³‚ê‚Ä‚¢‚Ü‚·B
+ƒRƒ“ƒeƒLƒXƒg‚Íƒtƒ@ƒCƒ‹‚È‚Ç‚Éİ’è‚³‚êASELinux‚ÌƒAƒNƒZƒX§Œä‚É—˜—p‚³‚ê‚Ü‚·BƒRƒ“ƒeƒLƒXƒg‚ÍAŸ‚Ì4‚Â‚Ì¯•Êq‚Å\¬‚³‚ê‚Ä‚¢‚Ü‚·B
 
-* ƒ†[ƒU(user)
+* ƒ†[ƒU[(user)
 * ƒ[ƒ‹(role)
 * ƒ^ƒCƒv(type)FƒvƒƒZƒX‚Ìê‡‚É‚Í“Á‚ÉuƒhƒƒCƒ“v‚Æ‚àŒ¾‚¢‚Ü‚·
 * MLSF‚“x‚ÈMulti Level Security‚ğ’ñ‹Ÿ‚Å‚«‚Ü‚·‚ªA’Êí‚ÌƒVƒXƒeƒ€‚Å‚Í‚ ‚Ü‚èg‚í‚ê‚Ü‚¹‚ñ
@@ -645,45 +413,44 @@ Enforcing
 ƒRƒ“ƒeƒLƒXƒg‚ÍA‚±‚ê‚ç‚Ì¯•Êq‚ğ‘g‚İ‡‚í‚¹‚ÄAˆÈ‰º‚ÌŒ`®‚Å•\‚³‚ê‚Ü‚·B
 
 ```
-ƒ†[ƒU:ƒ[ƒ‹:ƒ^ƒCƒv:MLSƒŒƒxƒ‹
+ƒ†[ƒU[:ƒ[ƒ‹:ƒ^ƒCƒv:MLSƒŒƒxƒ‹
 ```
 
-SELinux‚Å‚ÌƒAƒNƒZƒX§Œä‚ÍAƒ^ƒCƒv^ƒhƒƒCƒ“‚É‘Î‚µ‚Ä‹–‰Â‚·‚é“®ì‚ğ’è‹`‚µ‚½uƒ|ƒŠƒV[v‚ÉŠî‚Ã‚¢‚Äs‚í‚ê‚Ü‚·Bƒ^ƒCƒv^ƒhƒƒCƒ“‚Ì–¼‘O‚ÍA–ğŠ„‚âƒvƒƒZƒX–¼‚©‚ç‚Â‚¯‚ç‚ê‚Ä‚¢‚Ü‚·B‚½‚Æ‚¦‚ÎAApache WebƒT[ƒo‚ÌƒvƒƒZƒX‚Å‚ ‚éhttpd‚É‚Íuhttpd_tv‚Æ‚¢‚¤ƒhƒƒCƒ“‚ª‚Â‚¯‚ç‚ê‚Ä‚¢‚Ü‚·B
+SELinux‚Å‚ÌƒAƒNƒZƒX§Œä‚ÍAƒ^ƒCƒv^ƒhƒƒCƒ“‚É‘Î‚µ‚Ä‹–‰Â‚·‚é“®ì‚ğ’è‹`‚µ‚½uƒ|ƒŠƒV[v‚ÉŠî‚Ã‚¢‚Äs‚í‚ê‚Ü‚·Bƒ^ƒCƒv^ƒhƒƒCƒ“‚Ì–¼‘O‚ÍA–ğŠ„‚âƒvƒƒZƒX–¼‚©‚ç‚Â‚¯‚ç‚ê‚Ä‚¢‚Ü‚·B‚½‚Æ‚¦‚ÎAApache WebƒT[ƒo[‚ÌƒvƒƒZƒX‚Å‚ ‚éhttpd‚É‚Íuhttpd_tv‚Æ‚¢‚¤ƒhƒƒCƒ“‚ª‚Â‚¯‚ç‚ê‚Ä‚¢‚Ü‚·B
 
 ### ƒRƒ“ƒeƒLƒXƒg‚ÌŠm”F
 SELinux‚ÌƒAƒNƒZƒX§Œä‚Å—p‚¢‚ç‚ê‚éƒRƒ“ƒeƒLƒXƒg‚ÍAƒvƒƒZƒX‚âƒtƒ@ƒCƒ‹‚ğQÆ‚·‚éƒRƒ}ƒ“ƒh‚É-ZƒIƒvƒVƒ‡ƒ“‚ğ‚Â‚¯‚ÄÀs‚·‚é‚±‚Æ‚ÅŠm”F‚Å‚«‚Ü‚·B
 
-‚½‚Æ‚¦‚ÎAƒtƒ@ƒCƒ‹‚âƒfƒBƒŒƒNƒgƒŠ‚É•t—^‚³‚ê‚Ä‚¢‚éƒRƒ“ƒeƒLƒXƒg‚ğŠm”F‚·‚é‚É‚Íls -lZƒRƒ}ƒ“ƒh‚ğÀs‚µ‚Ü‚·B—á‚Æ‚µ‚ÄAApache WebƒT[ƒoihttpdj‚ÉŠÖ‚·‚éƒtƒ@ƒCƒ‹‚ğŠm”F‚µ‚Ä‚İ‚Ü‚·B
+‚½‚Æ‚¦‚ÎAƒtƒ@ƒCƒ‹‚âƒfƒBƒŒƒNƒgƒŠ‚É•t—^‚³‚ê‚Ä‚¢‚éƒRƒ“ƒeƒLƒXƒg‚ğŠm”F‚·‚é‚É‚Íls -lZƒRƒ}ƒ“ƒh‚ğÀs‚µ‚Ü‚·B—á‚Æ‚µ‚ÄAApache WebƒT[ƒo[ihttpdj‚ÉŠÖ‚·‚éƒtƒ@ƒCƒ‹‚ğŠm”F‚µ‚Ä‚İ‚Ü‚·B
 
-```shell-session
+```
 # ls -lZ /var/www
-drwxr-xr-x. root root system_u:object_r:httpd_sys_script_exec_t:s0 cgi-bin
-drwxr-xr-x. root root system_u:object_r:httpd_sys_content_t:s0 error
-drwxr-xr-x. root root system_u:object_r:httpd_sys_content_t:s0 html
-drwxr-xr-x. root root system_u:object_r:httpd_sys_content_t:s0 icons
+‡Œv 0
+drwxr-xr-x. 2 root root system_u:object_r:httpd_sys_script_exec_t:s0 6  3Œ 13 03:17 cgi-bin
+drwxr-xr-x. 2 root root system_u:object_r:httpd_sys_content_t:s0     6  3Œ 13 03:17 html
 ```
 
-/var/www/htmlƒfƒBƒŒƒNƒgƒŠ‚â/var/www/iconsƒfƒBƒŒƒNƒgƒŠ‚È‚ÇAWebƒT[ƒo‚ÌƒRƒ“ƒeƒ“ƒc‚ğŠÜ‚ŞƒfƒBƒŒƒNƒgƒŠ‚É‚Íuhttpd_sys_content_tv‚Æ‚¢‚¤ƒ^ƒCƒv‚ª•t—^‚³‚ê‚Ä‚¢‚Ü‚·B‚±‚Ì/var/www/htmlƒfƒBƒŒƒNƒgƒŠ“à‚Éƒtƒ@ƒCƒ‹‚ğì¬‚·‚é‚ÆAeƒfƒBƒŒƒNƒgƒŠ‚ÌƒRƒ“ƒeƒLƒXƒg‚É]‚Á‚Äƒtƒ@ƒCƒ‹‚ÉƒRƒ“ƒeƒLƒXƒg‚ª•t—^‚³‚ê‚Ü‚·B
+WebƒT[ƒo[‚ÌƒRƒ“ƒeƒ“ƒc‚ğŠÜ‚Ş/var/www/htmlƒfƒBƒŒƒNƒgƒŠ‚É‚Íuhttpd_sys_content_tv‚Æ‚¢‚¤ƒ^ƒCƒv‚ª•t—^‚³‚ê‚Ä‚¢‚Ü‚·B‚±‚Ì/var/www/htmlƒfƒBƒŒƒNƒgƒŠ“à‚Éƒtƒ@ƒCƒ‹‚ğì¬‚·‚é‚ÆAeƒfƒBƒŒƒNƒgƒŠ‚ÌƒRƒ“ƒeƒLƒXƒg‚É]‚Á‚Äƒtƒ@ƒCƒ‹‚ÉƒRƒ“ƒeƒLƒXƒg‚ª•t—^‚³‚ê‚Ü‚·B
 
 Šm”F‚Ì‚½‚ß‚ÉA/var/www/htmlƒfƒBƒŒƒNƒgƒŠˆÈ‰º‚Éindex.htmlƒtƒ@ƒCƒ‹‚ğì¬‚µ‚Ä‚İ‚Ü‚·B
 eƒfƒBƒŒƒNƒgƒŠ‚©‚çƒRƒ“ƒeƒLƒXƒg‚ğŒp³‚µAindex.htmlƒtƒ@ƒCƒ‹‚Éuhttpd_sys_content_tv‚Æ‚¢‚¤ƒ^ƒCƒv‚ª•t—^‚³‚ê‚Ä‚¢‚Ü‚·B
 
-```shell-session
+```
 # touch /var/www/html/index.html 
 # ls -lZ /var/www/html/index.html 
--rw-r--r--. root root unconfined_u:object_r:¦httpd_sys_content_t¦:s0 /var/www/html/index.html
+-rw-r--r--. 1 root root unconfined_u:object_r:httpd_sys_content_t:s0 0  7Œ 19 12:18 index.html
 ```
 
 ‚Ü‚½AƒvƒƒZƒX‚ÌƒRƒ“ƒeƒLƒXƒg‚Ìî•ñ‚ğŠm”F‚·‚é‚É‚ÍAps axZƒRƒ}ƒ“ƒh‚ğÀs‚µ‚Ü‚·B
 
 ˆÈ‰º‚Ì—á‚Å‚ÍAhttpd‚ÌƒvƒƒZƒX‚ğŠm”F‚·‚é‚ÆAhttpd_tƒhƒƒCƒ“‚ª•t—^‚³‚ê‚Ä‚¢‚é‚±‚Æ‚ª•ª‚©‚è‚Ü‚·B
 
-```shell-session
+```
 [root@server ~]# service httpd start
 httpd ‚ğ‹N“®’†:                                            [  OK  ]
 [root@server ~]# ps axZ | grep httpd
-unconfined_u:system_r:httpd_t:s0 27104 ?       Ss     0:00 /usr/sbin/httpd
-unconfined_u:system_r:httpd_t:s0 27106 ?       S      0:00 /usr/sbin/httpd
+system_u:system_r:httpd_t:s0      37922 ?        Ss     0:00 /usr/sbin/httpd -DFOREGROUND
+system_u:system_r:httpd_t:s0      37923 ?        S      0:00 /usr/sbin/httpd -DFOREGROUND
 i—ªj
 ```
 
@@ -692,15 +459,15 @@ SELinux‚Ìƒ|ƒŠƒV[‚Å‚ÍAhttpdƒvƒƒZƒX‚É•t—^‚³‚ê‚Ä‚¢‚éhttpd_tƒhƒƒCƒ“‚ªAuhttpd_s
 ### Boolean‚ğg‚Á‚½SELinux‚Ì§Œä
 SELinux‚ğ—LŒø‚É‚µ‚ÄƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ª‚¤‚Ü‚­“®ì‚µ‚È‚¢ê‡‚É‚ÍASELinux‚ÌƒAƒNƒZƒX§Œä‚É‚æ‚Á‚ÄƒvƒƒZƒX‚ªƒtƒ@ƒCƒ‹‚âƒfƒBƒŒƒNƒgƒŠ‚ÉƒAƒNƒZƒX‚Å‚«‚È‚¢‚±‚Æ‚ªŒ´ˆö‚Ìê‡‚ª‚ ‚è‚Ü‚·B‚»‚Ì‚æ‚¤‚È‚É‚ÍASELinux‚Ìƒ|ƒŠƒV[‚ğİ’è‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
 
-ˆê”Ê“I‚Èƒ|ƒŠƒV[‚Ìİ’è‚ÍuBooleanviƒu[ƒŠƒAƒ“j‚ÆŒÄ‚Î‚ê‚éİ’è‚Ì—LŒøA–³Œø‚Å‘Î‰‚Å‚«‚Ü‚·BBoolean‚Åİ’è‚Å‚«‚é€–Ú‚ÍACentOS 6‚Å‚ÍA200í‚Ù‚Ç‚ ‚è‚Ü‚·B
+ˆê”Ê“I‚Èƒ|ƒŠƒV[‚Ìİ’è‚ÍuBooleanviƒu[ƒŠƒAƒ“j‚ÆŒÄ‚Î‚ê‚éİ’è‚Ì—LŒøA–³Œø‚Å‘Î‰‚Å‚«‚Ü‚·BBoolean‚ÍAƒpƒbƒP[ƒW‚ğƒCƒ“ƒXƒg[ƒ‹‚·‚é‚ÆA‚»‚Ìƒ\ƒtƒgƒEƒFƒA—p‚É—pˆÓ‚³‚ê‚½Boolean‚ª’Ç‰Á‚³‚ê‚éê‡‚ª‚ ‚è‚Ü‚·B
 
 ‚à‚µA“Æ©‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ğg—p‚µ‚½‚èAƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ìİ’è‚ğ‘å•‚É•ÏX‚µ‚½ê‡‚É‚ÍAƒ|ƒŠƒV[‚ğ’Ç‰ÁAC³‚·‚é•K—v‚ª‚ ‚è‚Ü‚·Bƒ|ƒŠƒV[‚Ì’Ç‰ÁAC³•û–@‚É‚Â‚¢‚Ä‚ÍwLinuxƒZƒLƒ…ƒŠƒeƒB•W€‹³‰È‘x‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
 
-ˆÈ‰º‚Ì—á‚Å‚ÍAApache WebƒT[ƒo(httpd)‚ÉŠÖ‚·‚éƒ|ƒŠƒV[‚ğİ’è‚µ‚Ä‚¢‚Ü‚·B
+ˆÈ‰º‚Ì—á‚Å‚ÍAApache WebƒT[ƒo[(httpd)‚ÉŠÖ‚·‚éƒ|ƒŠƒV[‚ğİ’è‚µ‚Ä‚¢‚Ü‚·B
 
 getseboolƒRƒ}ƒ“ƒh‚ÅBoolean‚Ìİ’èó‹µˆê——‚ğŠm”F‚µ‚Ü‚·BBoolean–¼‚É‚ÍŠÖŒW‚·‚éƒvƒƒZƒX–¼‚ªŠÜ‚Ü‚ê‚Ä‚¢‚é‚Ì‚ÅAgrepƒRƒ}ƒ“ƒh‚Åuhttpdv‚ğƒL[ƒ[ƒh‚É‚µ‚ÄŒŸõ‚µ‚Ü‚·B
 
-```shell-session
+```
 # getsebool -a | grep httpd
 allow_httpd_anon_write --> off
 allow_httpd_mod_auth_ntlm_winbind --> off
@@ -709,11 +476,11 @@ httpd_enable_homedirs --> off
 i—ªj
 ```
 
-Œã‚Ìì‹Æ‚Åhttpd_enable_homedirs‚ÌBoolean‚ğİ’è‚µ‚Ü‚·B‚±‚ÌBoolean‚ÍAApache WebƒT[ƒo‚Ìƒ†[ƒUƒz[ƒ€ƒfƒBƒŒƒNƒgƒŠ‹@”\‚ÉŠÖ‚·‚éİ’è‚Å‚·Bƒ†[ƒUƒz[ƒ€ƒfƒBƒŒƒNƒgƒŠ‹@”\‚ÍAŠeƒ†[ƒU‚Ìƒz[ƒ€ƒfƒBƒŒƒNƒgƒŠ‚Éì¬‚³‚ê‚½public_htmlƒfƒBƒŒƒNƒgƒŠ“à‚ğWebƒRƒ“ƒeƒ“ƒc‚Æ‚µ‚ÄŒöŠJ‚·‚éd‘g‚İ‚Å‚·B
+Œã‚Ìì‹Æ‚Åhttpd_enable_homedirs‚ÌBoolean‚ğİ’è‚µ‚Ü‚·B‚±‚ÌBoolean‚ÍAApache WebƒT[ƒo[‚Ìƒ†[ƒU[ƒz[ƒ€ƒfƒBƒŒƒNƒgƒŠ‹@”\‚ÉŠÖ‚·‚éİ’è‚Å‚·Bƒ†[ƒU[ƒz[ƒ€ƒfƒBƒŒƒNƒgƒŠ‹@”\‚ÍAŠeƒ†[ƒU[‚Ìƒz[ƒ€ƒfƒBƒŒƒNƒgƒŠ‚Éì¬‚³‚ê‚½public_htmlƒfƒBƒŒƒNƒgƒŠ“à‚ğWebƒRƒ“ƒeƒ“ƒc‚Æ‚µ‚ÄŒöŠJ‚·‚éd‘g‚İ‚Å‚·B
 
-Apache WebƒT[ƒo‚Ìİ’èƒtƒ@ƒCƒ‹/etc/httpd/conf/httpd.conf‚ğC³‚µAUserDirƒfƒBƒŒƒNƒeƒBƒu‚ğİ’è‚µ‚Äƒ†[ƒUƒz[ƒ€ƒfƒBƒŒƒNƒgƒŠ‹@”\‚ğ—LŒø‚É‚µ‚Ü‚·B
+Apache WebƒT[ƒo[‚Ìİ’èƒtƒ@ƒCƒ‹/etc/httpd/conf/httpd.conf‚ğC³‚µAUserDirƒfƒBƒŒƒNƒeƒBƒu‚ğİ’è‚µ‚Äƒ†[ƒU[ƒz[ƒ€ƒfƒBƒŒƒNƒgƒŠ‹@”\‚ğ—LŒø‚É‚µ‚Ü‚·B
 
-```shell-session
+```
 # vi /etc/httpd/conf/httpd.conf
 
 i—ªj
@@ -736,15 +503,15 @@ Apache WebƒT[ƒo‚Ìİ’èƒtƒ@ƒCƒ‹/etc/httpd/conf/httpd.conf‚ğC³‚µAUserDirƒfƒBƒŒƒ
 
 httpdƒT[ƒrƒX‚ğÄ‹N“®‚µ‚Ü‚·B
 
-```shell-session
+```
 # service httpd restart
 httpd ‚ğ’â~’†:                                            [  OK  ]
 httpd ‚ğ‹N“®’†:                                            [  OK  ]
 ```
 
-ƒ†[ƒUsato‚ÅƒƒOƒCƒ“‚µAƒz[ƒ€ƒfƒBƒŒƒNƒgƒŠ‚Épublic_htmlƒfƒBƒŒƒNƒgƒŠ‚ğì¬‚µ‚Ü‚·B
+ƒ†[ƒU[sato‚ÅƒƒOƒCƒ“‚µAƒz[ƒ€ƒfƒBƒŒƒNƒgƒŠ‚Épublic_htmlƒfƒBƒŒƒNƒgƒŠ‚ğì¬‚µ‚Ü‚·B
 
-```shell-session
+```
 $ pwd
 /home/sato
 $ mkdir public_html
@@ -752,14 +519,14 @@ $ mkdir public_html
 
 /home/satoƒfƒBƒŒƒNƒgƒŠA/home/sato/public_htmlƒfƒBƒŒƒNƒgƒŠ‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“‚ğ711‚Éİ’è‚µ‚Ü‚·B
 
-```shell-session
+```
 $ chmod 711 /home/sato
 $ chmod 711 /home/sato/public_html/
 ```
 
 public_htmlƒfƒBƒŒƒNƒgƒŠ‚Éindex.htmlƒtƒ@ƒCƒ‹‚ğì¬‚µ‚Ü‚·B
 
-```shell-session
+```
 [sato@server ~]$ echo "SELinux test" > /home/sato/public_html/index.html
 ```
 
@@ -767,9 +534,9 @@ public_htmlƒfƒBƒŒƒNƒgƒŠ‚Éindex.htmlƒtƒ@ƒCƒ‹‚ğì¬‚µ‚Ü‚·B
 
 ![Forbidden](Forbidden.png)
 
-rootƒ†[ƒU‚ÅƒƒOƒtƒ@ƒCƒ‹/var/log/audit/audit.log‚ğŠm”F‚µ‚Ü‚·Bhttpd(httpd_t)‚ªƒ†[ƒUƒz[ƒ€ƒfƒBƒŒƒNƒgƒŠ(user_home_dir_t)‚ÉƒAƒNƒZƒX‚Å‚«‚È‚©‚Á‚½‚Æ‚¢‚¤ƒƒO‚ªo—Í‚³‚ê‚Ä‚¢‚Ü‚·B
+rootƒ†[ƒU[‚ÅƒƒOƒtƒ@ƒCƒ‹/var/log/audit/audit.log‚ğŠm”F‚µ‚Ü‚·Bhttpd(httpd_t)‚ªƒ†[ƒU[ƒz[ƒ€ƒfƒBƒŒƒNƒgƒŠ(user_home_dir_t)‚ÉƒAƒNƒZƒX‚Å‚«‚È‚©‚Á‚½‚Æ‚¢‚¤ƒƒO‚ªo—Í‚³‚ê‚Ä‚¢‚Ü‚·B
 
-```shell-session
+```
 [root@server ~]# tail /var/log/audit/audit.log 
 i—ªj
 type=AVC msg=audit(1421241819.317:804): avc:  ¦denied  { search }¦ for  pid=7357 comm="httpd" name="sato" dev=dm-2 ino=130305 scontext=unconfined_u:system_r:¦httpd_t¦:s0 tcontext=unconfined_u:object_r:¦user_home_dir_t¦:s0 tclass=dir
@@ -780,7 +547,7 @@ type=SYSCALL msg=audit(1421241819.317:805): arch=c000003e syscall=6 success=no e
 
 setseboolƒRƒ}ƒ“ƒh‚ğÀs‚µ‚ÄABooleanuhttpd_enable_homedirsv‚ğ—LŒø‚Éİ’è‚µ‚Ü‚·B
 
-```shell-session
+```
 [root@server ~]# getsebool httpd_enable_homedirs
 httpd_enable_homedirs --> off
 [root@server ~]# setsebool httpd_enable_homedirs on
@@ -798,7 +565,7 @@ LVM‚ğg‚¤‚±‚Æ‚ÅA•¡”‚Ìƒn[ƒhƒfƒBƒXƒN‚É‚Ü‚½‚ª‚Á‚½ƒ{ƒŠƒ…[ƒ€‚ªì¬‚Å‚«‚é‚æ‚¤‚É‚È‚
 ‚Ü‚½Aƒn[ƒhƒfƒBƒXƒN‚ÉáŠQ‚ª”­¶‚µ‚½‚É‚ÍAV‚µ‚¢HDD‚ğ’Ç‰Á‚µ‚ÄA‰ó‚ê‚Ä‚¢‚éHDD‚ğŠO‚·‚È‚Ç‚ÌáŠQ‘Î‰‚ª—eˆÕ‚É‚È‚è‚Ü‚·B
 ‘¼‚É‚àAƒXƒiƒbƒvƒVƒ‡ƒbƒg‚ğæ‚é‚±‚Æ‚ª‚Å‚«‚é‚È‚Ç‚ÌƒƒŠƒbƒg‚ª‚ ‚è‚Ü‚·B
 
-Œ»İ‚Ìˆê”Ê“I‚ÈLinuxƒfƒBƒXƒgƒŠƒrƒ…[ƒVƒ‡ƒ“‚Å‚ÍAƒCƒ“ƒXƒg[ƒ‹‚ÉLVM‚Åƒp[ƒeƒBƒVƒ‡ƒ“‚ğì¬‚Å‚«‚Ü‚·BCentOS‚Å‚ÍAƒCƒ“ƒXƒg[ƒ‹‚É©“®ƒp[ƒeƒBƒVƒ‡ƒ“İ’è‚ğ‘I‘ğ‚·‚é‚ÆAƒfƒtƒHƒ‹ƒg‚ÅLVM‚ğg—p‚µ‚ÄƒXƒgƒŒ[ƒW‚ğİ’è‚µ‚Ü‚·B
+Œ»İ‚Ìˆê”Ê“I‚ÈLinuxƒfƒBƒXƒgƒŠƒrƒ…[ƒVƒ‡ƒ“‚Å‚ÍAƒCƒ“ƒXƒg[ƒ‹‚ÉLVM‚Åƒp[ƒeƒBƒVƒ‡ƒ“‚ğì¬‚Å‚«‚Ü‚·BAlmaLinux‚Å‚ÍAƒCƒ“ƒXƒg[ƒ‹‚É©“®ƒp[ƒeƒBƒVƒ‡ƒ“İ’è‚ğ‘I‘ğ‚·‚é‚ÆAƒfƒtƒHƒ‹ƒg‚ÅLVM‚ğg—p‚µ‚ÄƒXƒgƒŒ[ƒW‚ğİ’è‚µ‚Ü‚·B
 
 LVM‚ÌÚ‚µ‚¢à–¾‚ÉŠÖ‚µ‚Ä‚ÍAw‚M—ŠƒVƒXƒeƒ€\’z•W€‹³‰È‘x‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
 
@@ -811,7 +578,7 @@ PV‚ğì¬‚·‚é‚É‚ÍAƒp[ƒeƒBƒVƒ‡ƒ“‚ğì¬‚µAƒp[ƒeƒBƒVƒ‡ƒ“ƒ^ƒCƒv‚ğ8E‚Éİ’è‚µ‚Ü‚·B
 
 ˆÈ‰º‚Ì—á‚Å‚ÍALinuxƒ}ƒVƒ“‚ÉV‹K‚É’Ç‰Á‚µ‚½/dev/sdb‚Æ‚µ‚Ä”F¯‚³‚ê‚Ä‚¢‚éƒn[ƒhƒfƒBƒXƒN‚ğLVM‚Åg—p‚Å‚«‚é‚æ‚¤Afdisk‚Åƒp[ƒeƒBƒVƒ‡ƒ“‚ğì¬‚µ‚ÄPV‚Æ‚µ‚Äİ’è‚µ‚Ä‚¢‚Ü‚·B“¯‚ÉAŒã‚Ìì‹Æ‚Å—ÌˆæŠg’£‚ğs‚¤‚½‚ß‚Ì’Ç‰Áƒp[ƒeƒBƒVƒ‡ƒ“‚àì¬‚µ‚Ä‚¨‚«‚Ü‚·B
 
-```shell-session
+```
 # fdisk /dev/sdb
 ƒfƒoƒCƒX‚Í³í‚È DOS —Ìˆæƒe[ƒuƒ‹‚àASun, SGI ‚â OSF ƒfƒBƒXƒNƒ‰ƒxƒ‹‚à
 ŠÜ‚ñ‚Å‚¢‚Ü‚¹‚ñ
@@ -864,7 +631,7 @@ vgcreate ƒ{ƒŠƒ…[ƒ€–¼ PVƒfƒoƒCƒX–¼ [PVƒfƒoƒCƒX–¼ ...]
 
 ‚½‚Æ‚¦‚ÎA•¨—ƒ{ƒŠƒ…[ƒ€iPVj‚Æ‚µ‚Äì¬‚µ‚½/dev/sdb1‚ğg‚Á‚ÄVolume00‚Æ‚¢‚¤–¼‘O‚Ìƒ{ƒŠƒ…[ƒ€ƒOƒ‹[ƒv‚ğì¬‚·‚é‚É‚ÍAˆÈ‰º‚ÌvgcreateƒRƒ}ƒ“ƒh‚ğÀs‚µ‚Ü‚·B
 
-```shell-session
+```
 # vgcreate Volume00 /dev/sdb1
   Physical volume "/dev/sdb1" successfully created
   Volume group "Volume00" successfully created
@@ -872,7 +639,7 @@ vgcreate ƒ{ƒŠƒ…[ƒ€–¼ PVƒfƒoƒCƒX–¼ [PVƒfƒoƒCƒX–¼ ...]
 
 ‚Ü‚½Aƒ{ƒŠƒ…[ƒ€ƒOƒ‹[ƒv‚Ìî•ñ‚ÍvgscanƒRƒ}ƒ“ƒh‚ÅŠm”F‚Å‚«‚Ü‚·B
 
-```shell-session
+```
 # vgscan
   Reading all physical volumes.  This may take a while...
   Found volume group "Volume00" using metadata type lvm2
@@ -890,7 +657,7 @@ lvcreate -L ƒTƒCƒY -n ˜_—ƒ{ƒŠƒ…[ƒ€–¼ ƒ{ƒŠƒ…[ƒ€ƒOƒ‹[ƒv–¼
 
 ‚½‚Æ‚¦‚ÎAƒ{ƒŠƒ…[ƒ€ƒOƒ‹[ƒvVolume00‚ÉƒTƒCƒY1GBA˜_—ƒ{ƒŠƒ…[ƒ€–¼uLogVol01v‚Ì˜_—ƒ{ƒŠƒ…[ƒ€‚ğì¬‚·‚é‚É‚ÍAˆÈ‰º‚ÌlvcreateƒRƒ}ƒ“ƒh‚ğÀs‚µ‚Ü‚·B
 
-```shell-session
+```
 # lvcreate -L 1024M -n LogVol01 Volume00
 ```
 
@@ -903,7 +670,7 @@ lvcreate -L ƒTƒCƒY -n ˜_—ƒ{ƒŠƒ…[ƒ€–¼ ƒ{ƒŠƒ…[ƒ€ƒOƒ‹[ƒv–¼
 
 /dev/Volume00/LogVol01ã‚Éext4ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ğì¬‚·‚é‚½‚ß‚ÉAmkfsƒRƒ}ƒ“ƒh‚ğÀs‚µ‚Ü‚·B
 
-```shell-session
+```
 # mkfs -t ext4 /dev/Volume00/LogVol01 
 mke2fs 1.41.12 (17-May-2010)
 Discarding device blocks: done                            
@@ -916,7 +683,7 @@ This filesystem will be automatically checked every 33 mounts or
 
 mountƒRƒ}ƒ“ƒh‚ğg‚Á‚ÄA/dev/Volume00/LogVol01‚ğƒ}ƒEƒ“ƒg‚µ‚Ü‚·B
 
-```shell-session
+```
 # mkdir /mnt/LVMtest
 # mount -t ext4 /dev/Volume00/LogVol01 /mnt/LVMtest/
 # mount /mnt/LVMtest/
@@ -929,7 +696,7 @@ mount: mtab ‚É‚æ‚é‚ÆA/dev/mapper/Volume00-LogVol01 ‚Í /mnt/LVMtest ‚Éƒ}ƒEƒ“ƒgÏ
 
 vgextendƒRƒ}ƒ“ƒh‚ğÀs‚µ‚ÄA•¨—ƒ{ƒŠƒ…[ƒ€/dev/sdb2‚ğƒ{ƒŠƒ…[ƒ€ƒOƒ‹[ƒvVolume00‚É’Ç‰Á‚µ‚Ü‚·B
 
-```shell-session
+```
 # vgextend Volume00 /dev/sdb2
   Physical volume "/dev/sdb2" successfully created
   Volume group "Volume00" successfully extended
@@ -937,7 +704,7 @@ vgextendƒRƒ}ƒ“ƒh‚ğÀs‚µ‚ÄA•¨—ƒ{ƒŠƒ…[ƒ€/dev/sdb2‚ğƒ{ƒŠƒ…[ƒ€ƒOƒ‹[ƒvVolume00‚
 
 vgdisplayƒRƒ}ƒ“ƒh‚ğÀs‚µ‚ÄAƒ{ƒŠƒ…[ƒ€ƒOƒ‹[ƒvVolume00‚Ìî•ñ‚ğŠm”F‚µ‚Ü‚·BPViPhysical volumej‚Ì”‚ª2‚Æ‚È‚Á‚Ä‚¨‚èA/dev/sdb2‚ª‰Á‚í‚Á‚Ä‚¢‚é‚±‚Æ‚ª•ª‚©‚è‚Ü‚·B
 
-```shell-session
+```
 # vgdisplay Volume00
   --- Volume group ---
   VG Name               Volume00
@@ -966,7 +733,7 @@ LVM‚Å‚ÍA˜_—ƒ{ƒŠƒ…[ƒ€‚ÌƒTƒCƒY‚ğ•ÏX‚Å‚«‚Ü‚·B‚Ü‚½ALVM‚Ì˜_—ƒ{ƒŠƒ…[ƒ€ã‚Éì¬
 
 dfƒRƒ}ƒ“ƒh‚ğÀs‚µ‚ÄAŒ»İ‚Ìƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Ì—e—Ê‚ğŠm”F‚µ‚Ü‚·BŒ»İ‚Ì—e—Ê‚Í1GB‚Å‚·B
 
-```shell-session
+```
 # df /mnt/LVMtest/
 Filesystem           1K-blocks  Used Available Use% Mounted on
 /dev/mapper/Volume00-LogVol01
@@ -975,7 +742,7 @@ Filesystem           1K-blocks  Used Available Use% Mounted on
 
 lvextendƒRƒ}ƒ“ƒh‚ğÀs‚µ‚ÄA˜_—ƒ{ƒŠƒ…[ƒ€LogVol01‚ÌƒTƒCƒY‚ğ2G‚Ü‚ÅŠg‘å‚µ‚Ü‚·B
 
-```shell-session
+```
 # lvextend -L 2G /dev/Volume00/LogVol01
  Size of logical volume Volume00/LogVol01 changed from 1.00 GiB (256 extents) to 2.00 GiB (512 extents).
   Logical volume LogVol01 successfully resized
@@ -983,7 +750,7 @@ lvextendƒRƒ}ƒ“ƒh‚ğÀs‚µ‚ÄA˜_—ƒ{ƒŠƒ…[ƒ€LogVol01‚ÌƒTƒCƒY‚ğ2G‚Ü‚ÅŠg‘å‚µ‚Ü‚·B
 
 resize2fsƒRƒ}ƒ“ƒh‚ğÀs‚µ‚ÄAƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ğŠg‘å‚µ‚Ü‚·B
 
-```shell-session
+```
 # resize2fs /dev/Volume00/LogVol01
 resize2fs 1.41.12 (17-May-2010)
 Filesystem at /dev/Volume00/LogVol01 is mounted on /mnt/LVMtest; on-line resizing required
@@ -994,7 +761,7 @@ The filesystem on /dev/Volume00/LogVol01 is now 524288 blocks long.
 
 dfƒRƒ}ƒ“ƒh‚ÅÄ“x—e—Ê‚ğŠm”F‚µ‚Ü‚·B—e—Ê‚ª2GB‚É‘‚¦‚Ä‚¢‚é‚±‚Æ‚ªŠm”F‚Å‚«‚Ü‚·B
 
-```shell-session
+```
 # df /mnt/LVMtest/
 Filesystem           1K-blocks  Used Available Use% Mounted on
 /dev/mapper/Volume00-LogVol01
@@ -1007,13 +774,13 @@ Filesystem           1K-blocks  Used Available Use% Mounted on
 
 k¬‚µ‚½‚¢ƒ{ƒŠƒ…[ƒ€‚ğƒAƒ“ƒ}ƒEƒ“ƒg‚µ‚Ü‚·BumountƒRƒ}ƒ“ƒh‚ğÀs‚µ‚ÄA/mnt/LVMtest‚ğƒAƒ“ƒ}ƒEƒ“ƒg‚µ‚Ü‚·B
 
-```shell-session
+```
 # umount /mnt/LVMtest/
 ```
 
 k¬‚µ‚½‚¢˜_—ƒ{ƒŠƒ…[ƒ€/dev/Volume00/LogVol01‚É‘Î‚µ‚ÄfsckƒRƒ}ƒ“ƒh‚ğÀs‚µ‚Ü‚·B‹­§“I‚Éƒ`ƒFƒbƒN‚ğs‚¤‚½‚ß‚É-fƒIƒvƒVƒ‡ƒ“‚ğ•t—^‚µ‚ÄÀs‚µ‚Ü‚·B
 
-```shell-session
+```
 # fsck -f /dev/Volume00/LogVol01 
 fsck from util-linux-ng 2.17.2
 e2fsck 1.41.12 (17-May-2010)
@@ -1027,7 +794,7 @@ Pass 5: Checking group summary information
 
 resize2fsƒRƒ}ƒ“ƒh‚ğÀs‚µ‚ÄAƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ğk¬‚µ‚Ü‚·B—á‚Æ‚µ‚ÄA1GB‚Ü‚Åk¬‚µ‚Ü‚·B
 
-```shell-session
+```
 # resize2fs /dev/Volume00/LogVol01 1G
 resize2fs 1.41.12 (17-May-2010)
 Resizing the filesystem on /dev/Volume00/LogVol01 to 262144 (4k) blocks.
@@ -1036,7 +803,7 @@ The filesystem on /dev/Volume00/LogVol01 is now 262144 blocks long.
 
 lvreduceƒRƒ}ƒ“ƒh‚ğÀs‚µ‚ÄA˜_—ƒ{ƒŠƒ…[ƒ€/dev/Volume00/LogVol01‚ğk¬‚µ‚Ü‚·B
 
-```shell-session
+```
 # lvreduce -L 1G /dev/Volume00/LogVol01
   WARNING: Reducing active logical volume to 1.00 GiB
   THIS MAY DESTROY YOUR DATA (filesystem etc.)
@@ -1047,345 +814,11 @@ Do you really want to reduce LogVol01? [y/n]: ¦y ©y‚ğ“ü—Í
 
 /mnt/LVMtest‚ÉÄƒ}ƒEƒ“ƒg‚µ‚ÄA—e—Ê‚ğŠm”F‚µ‚Ü‚·B
 
-```shell-session
+```
 # mount -t ext4 /dev/Volume00/LogVol01 /mnt/LVMtest/
 # df /mnt/LVMtest/
 Filesystem           1K-blocks  Used Available Use% Mounted on
 /dev/mapper/Volume00-LogVol01
                         999320  1284    945616   1% /mnt/LVMtest
-```
-
-## ƒoƒbƒNƒAƒbƒv^ƒŠƒXƒgƒA
-ƒVƒXƒeƒ€‚ğ‰^—p‚µ‚Ä‚¢‚­Û‚É‚ÍAƒoƒbƒNƒAƒbƒv‚Íd—v‚Å‚·B“Á‚ÉáŠQ‚©‚çƒVƒXƒeƒ€‚ğ•œ‹Œ‚³‚¹‚é‚Æ‚«‚âAd—v‚Èƒtƒ@ƒCƒ‹‚ğŒë‚Á‚Äíœ‚µ‚½‚è‚·‚éƒŠƒXƒN‚ğl‚¦‚é‚ÆA‚«‚¿‚ñ‚ÆƒoƒbƒNƒAƒbƒv^ƒŠƒXƒgƒA‚Ìƒvƒ‰ƒ“‚ğ—§‚Ä‚ÄA‘O‚à‚Á‚ÄƒeƒXƒg‚ğ‚µ‚Ä‚¨‚­‚±‚Æ‚ªd—v‚Å‚·B
-
-### ƒoƒbƒNƒAƒbƒvƒƒfƒBƒA‚É‚Â‚¢‚Ä
-Å‹ß‚ÌƒXƒgƒŒ[ƒW‚Ì‘å—e—Ê‰»‚ğl‚¦‚é‚ÆAƒVƒXƒeƒ€‚Æ‚Í•Ê‚Ìƒn[ƒhƒfƒBƒXƒN‚ÉƒoƒbƒNƒAƒbƒv‚ğæ‚é‚Ì‚ªˆê”ÔŠÈ’P‚Èè’i‚Å‚·B‚Ü‚½A—e—Ê‚ğŠÈ’P‚É‘‚â‚·‚±‚Æ‚ª‚Å‚«‚éƒtƒ@ƒCƒ‹ƒT[ƒo‚ÍAƒlƒbƒgƒ[ƒN‚ğŒo—R‚µ‚½ƒoƒbƒNƒAƒbƒvæ‚Ì‘ÎÛ‚Æ‚µ‚Ä‚à‚æ‚­—˜—p‚³‚ê‚Ä‚¢‚Ü‚·B
-‚Ü‚½AÌ‚©‚çg‚í‚ê‚Ä‚¢‚éƒe[ƒv‚ÍŒ»İ‚Å‚àƒoƒbƒNƒAƒbƒvƒƒfƒBƒA‚Æ‚µ‚Ä‚æ‚­—˜—p‚³‚ê‚Ä‚¢‚Ü‚·B
-‘¼‚É‚àAƒoƒbƒNƒAƒbƒv‘ÎÛ‚Ì—e—Ê‚ª‘½‚­‚È‚¢ê‡‚É‚ÍCD‚âDVD‚àƒoƒbƒNƒAƒbƒvƒƒfƒBƒA‚ÌŒó•â‚Æ‚È‚è‚Ü‚·B‚½‚¾‚µA”}‘Ì‚Ìõ–½‚ª”äŠr“I’Z‚¢‚½‚ßA’·Šú•Û‘¶‚·‚éê‡‚É‚Í•ÛŠÇêŠ‚È‚Ç‚É’ˆÓ‚ª•K—v‚Å‚·B
-
-### ‘ã•\“I‚ÈƒoƒbƒNƒAƒbƒvƒc[ƒ‹
-Šé‹Æ“™‚Ì‰^—pŒ»ê‚Å‚ÍƒoƒbƒNƒAƒbƒvê—p‚Ì¤—pƒ\ƒtƒgƒEƒFƒA‚ª‘½‚­g‚í‚ê‚Ä‚¢‚Ü‚·‚ªALinux‚Å•W€‚Å—˜—p‰Â”\‚È—lX‚Èƒc[ƒ‹‚àg—p‚³‚ê‚Ä‚¢‚Ü‚·B‚»‚ê‚ç‚Ì’†‚Å‚à‘ã•\“I‚ÈˆÈ‰º‚Ìƒc[ƒ‹‚É‚Â‚¢‚Ä‰ğà‚µ‚Ü‚·B
-
-* ddƒRƒ}ƒ“ƒh
-* dumpƒRƒ}ƒ“ƒh
-* tarƒRƒ}ƒ“ƒh
-* rsyncƒRƒ}ƒ“ƒh
-
-### ddƒRƒ}ƒ“ƒh
-ƒfƒBƒXƒN‘S‘Ì‚ÌƒCƒ[ƒW‚ğo—Í‚·‚éƒc[ƒ‹‚Å‚·BddƒRƒ}ƒ“ƒh‚ğ—p‚¢‚ÄƒoƒbƒNƒAƒbƒv‚ğs‚¤‚±‚Æ‚É‚æ‚èAƒfƒBƒXƒN‚Ì’†g‚ğŠ®‘S‚ÉƒRƒs[‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
-
-#### ddƒRƒ}ƒ“ƒh‚Ì’·Š
-* ƒfƒBƒXƒN‚Ì’†g‚ğŠÛ‚²‚ÆƒRƒs[‚Å‚«‚é‚½‚ßAMBR(Master Boot Record)‚àƒoƒbƒNƒAƒbƒv‚Å‚«‚Ü‚·B
-* iƒm[ƒh”Ô†AatimeActime‚È‚Ç‚Ì‘®«‚àƒoƒbƒNƒAƒbƒv‚Å‚«‚Ü‚·B
-* ƒfƒBƒXƒN‚©‚çƒfƒBƒXƒN‚É’¼ÚƒoƒbƒNƒAƒbƒv‚ğs‚¤ê‡‚É‚ÍAƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ğ‰î‚³‚¸‚É’¼ÚƒRƒs[‚ğs‚¤‚Ì‚Å‚‘¬‚Å‚·B
-
-#### ddƒRƒ}ƒ“ƒh‚Ì’ZŠ
-* ƒfƒBƒXƒN‚ğŠÛ‚²‚ÆƒRƒs[‚·‚é‚½‚ßAƒŠƒXƒgƒA‚Éƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ÌƒTƒCƒY‚âƒpƒ‰ƒ[ƒ^‚ğ•ÏX‚Å‚«‚Ü‚¹‚ñB‚Ü‚½Aƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Éƒtƒ‰ƒOƒƒ“ƒgi’f•Ğ‰»j‚ª‚ ‚éê‡‚É‚àA‚»‚Ì‚Ü‚ÜƒRƒs[‚³‚ê‚Ü‚·B
-* ƒoƒbƒNƒAƒbƒv‚ÌÛ‚É‚ÍAƒtƒ@ƒCƒ‹•ÏX‚ğ”ğ‚¯‚é‚½‚ßƒAƒ“ƒ}ƒEƒ“ƒg‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
-
-### dumpƒRƒ}ƒ“ƒh
-ŒÃ‚­‚©‚ç‚ ‚éƒoƒbƒNƒAƒbƒvê—pƒRƒ}ƒ“ƒhBƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€’PˆÊ‚Å‚ÌƒoƒbƒNƒAƒbƒv‚ğs‚¦‚Ü‚·B
-
-#### dumpƒRƒ}ƒ“ƒh‚Ì’·Š
-* ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€’PˆÊ‚ÅƒoƒbƒNƒAƒbƒv‚·‚é‚½‚ßAŒø—¦‚æ‚­ƒoƒbƒNƒAƒbƒv‚ª‚Å‚«‚Ü‚·B
-* ·•ª^‘•ªƒoƒbƒNƒAƒbƒv‚ªŠÈ’P‚É‚Å‚«‚Ü‚·B
-* ƒe[ƒv‚Ö‚ÌƒoƒbƒNƒAƒbƒv‚ª‚Å‚«‚Ü‚·B
-* iƒm[ƒh”Ô†AatimeActime‚È‚Ç‚Ì‘®«‚àƒoƒbƒNƒAƒbƒv‚Å‚«‚Ü‚·B
-* ƒŠƒXƒgƒA‚Éƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ÌƒTƒCƒY‚âƒpƒ‰ƒ[ƒ^‚ğ•ÏX‚Å‚«‚Ü‚·B
-* V‚µ‚¢ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ÉƒŠƒXƒgƒA‚·‚ê‚ÎAƒtƒ‰ƒOƒƒ“ƒg‚ğ‰ğÁ‚Å‚«‚Ü‚·B
-
-#### dumpƒRƒ}ƒ“ƒh‚Ì’ZŠ
-* ƒfƒBƒŒƒNƒgƒŠ’PˆÊ‚âƒtƒ@ƒCƒ‹’PˆÊ‚Å‚ÌƒoƒbƒNƒAƒbƒv‚Í‚Å‚«‚Ü‚¹‚ñB
-* ƒoƒbƒNƒAƒbƒvƒtƒ@ƒCƒ‹‚ª‰ó‚ê‚é‚ÆAˆê•”‚Ìƒtƒ@ƒCƒ‹‚¾‚¯‚ğ‹~Ï‚Å‚«‚Ü‚¹‚ñB
-* ‘¬“x‚Í‚ ‚Ü‚è‘¬‚­‚ ‚è‚Ü‚¹‚ñB
-* ext2/3/4‚Å‚µ‚©g—p‚Å‚«‚Ü‚¹‚ñB‚»‚êˆÈŠO‚Ìƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Ìê‡A‚½‚Æ‚¦‚ÎXFS‚É‚Íxfsdump‚È‚Çê—p‚ÌƒRƒ}ƒ“ƒh‚ğg—p‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
-
-### tarƒRƒ}ƒ“ƒh
-uTape Archiverv‚Ì–¼‘O‚Ì’Ê‚èAŒ³X‚Íƒe[ƒv‚Ö‚ÌƒA[ƒJƒCƒu‚ğì¬‚·‚é‚½‚ß‚ÌƒRƒ}ƒ“ƒh‚Å‚·‚ªAƒtƒ@ƒCƒ‹‚Æ‚µ‚ÄƒA[ƒJƒCƒu‚ğì¬‚·‚é‚±‚Æ‚à‚Å‚«A_“î«‚ª‚ ‚è‚Ü‚·B
-
-#### tarƒRƒ}ƒ“ƒh‚Ì’·Š
-* ƒtƒ@ƒCƒ‹’PˆÊ‚ÌƒoƒbƒNƒAƒbƒvAƒŠƒXƒgƒA‚ª‚Å‚«‚Ü‚·B
-* ‘•ªƒoƒbƒNƒAƒbƒv‚ª‚Å‚«‚Ü‚·B
-* ƒe[ƒv‚Ö‚ÌƒoƒbƒNƒAƒbƒv‚ª‚Å‚«‚Ü‚·B
-* ƒoƒbƒNƒAƒbƒvƒf[ƒ^‚ª‚±‚í‚ê‚Ä‚¢‚Ä‚àA•”•ª“I‚É•œ‹Œ‚Å‚«‚Ü‚·B
-
-#### tarƒRƒ}ƒ“ƒh‚Ì’ZŠ
-* ‘¬“x‚Í‚ ‚Ü‚è‘¬‚­‚ ‚è‚Ü‚¹‚ñB
-* ƒŠƒXƒgƒA‚Éiƒm[ƒh”Ô†‚ª•Ï‚í‚é‚½‚ßAiƒm[ƒh‚ğ’¼ÚQÆ‚µ‚Ä‚¢‚éƒvƒƒOƒ‰ƒ€‚Å‚ÍƒŠƒXƒgƒA‚µ‚½ƒtƒ@ƒCƒ‹‚ªŒ³‚Ìƒtƒ@ƒCƒ‹‚Æ“¯‚¶‚¾‚Æ”F¯‚Å‚«‚Ü‚¹‚ñB
-
-### rsyncƒRƒ}ƒ“ƒh
-uremote syncv‚Ì–¼‘O‚Ì’Ê‚èAƒŠƒ‚[ƒg‚Åƒtƒ@ƒCƒ‹‚âƒfƒBƒŒƒNƒgƒŠ‚ğ“¯Šú‚·‚é‚½‚ß‚Éì‚ç‚ê‚½ƒRƒ}ƒ“ƒh‚Å‚·‚ªAƒoƒbƒNƒAƒbƒv‚É‚àg—p‚Å‚«‚Ü‚·BƒoƒbƒNƒAƒbƒvæ‚Æ‚µ‚Äƒ[ƒJƒ‹ƒzƒXƒg‚ğw’è‚·‚é‚±‚Æ‚à‚Å‚«‚é‚½‚ßAƒ[ƒJƒ‹‚Éƒ}ƒEƒ“ƒg‚³‚ê‚½ŠO•”ƒXƒgƒŒ[ƒW‚ÉƒoƒbƒNƒAƒbƒv‚·‚é‚±‚Æ‚à‚Å‚«‚Ü‚·B
-
-#### rsyncƒRƒ}ƒ“ƒh‚Ì’·Š
-* ƒtƒ@ƒCƒ‹’PˆÊ‚ÌƒoƒbƒNƒAƒbƒvAƒŠƒXƒgƒA‚ª‚Å‚«‚Ü‚·B
-* tarƒRƒ}ƒ“ƒh‚æ‚è‚àŒø—¦‚æ‚­ƒoƒbƒNƒAƒbƒv‚Å‚«‚Ü‚·B
-* ‘•ª^·•ªƒoƒbƒNƒAƒbƒv‚ª‚Å‚«‚Ü‚·B
-
-#### rsyncƒRƒ}ƒ“ƒh‚Ì’ZŠ
-* ƒfƒBƒXƒN‚ğ‚Ü‚é‚²‚ÆƒoƒbƒNƒAƒbƒv‚·‚éê‡‚É‚ÍAdd‚âdump‚Æ”ä‚×‚Ä’x‚¢‚Å‚·B
-* ƒŠƒXƒgƒA‚Éiƒm[ƒh”Ô†‚ª•Ï‚í‚é‚½‚ßAiƒm[ƒh‚ğ’¼ÚQÆ‚µ‚Ä‚¢‚éƒvƒƒOƒ‰ƒ€‚Å‚ÍƒŠƒXƒgƒA‚µ‚½ƒtƒ@ƒCƒ‹‚ªŒ³‚Ìƒtƒ@ƒCƒ‹‚Æ“¯‚¶‚¾‚Æ”F¯‚Å‚«‚Ü‚¹‚ñB
-
-### ƒoƒbƒNƒAƒbƒv‚ÆƒŠƒXƒgƒA‚Ì€”õ
-ŠeƒRƒ}ƒ“ƒh‚ğg—p‚µ‚½ƒoƒbƒNƒAƒbƒv‚ÆƒŠƒXƒgƒA‚Ì•û–@‚ğAÀÛ‚ÉƒRƒ}ƒ“ƒh‚ğ“®‚©‚µ‚È‚ª‚ç‰ğà‚µ‚Ü‚·B
-
-ƒoƒbƒNƒAƒbƒv‘ÎÛ‚ğ/mnt/backup_testi/dev/sdb1jAƒŠƒXƒgƒAæ‚ğ/mnt/restore_testi/dev/sdc1j‚Æ‚µ‚Ü‚·B
-
-‰¼‘zƒ}ƒVƒ“‚É‰¼‘zƒn[ƒhƒfƒBƒXƒN‚ğ2‚ÂA“¯‚¶ƒTƒCƒY‚Å’Ç‰Á‚µ‚Ü‚·B’Ç‰Á‚µ‚½‰¼‘zƒn[ƒhƒfƒBƒXƒN‚ğ/dev/sdb‚Æ/dev/sdc‚Æ‚µ‚ÄOS‚©‚ç”F¯‚Å‚«‚é‚æ‚¤‚ÉA‰¼‘zƒ}ƒVƒ“‚ğÄ‹N“®‚µ‚Ü‚·B
-
-•¨—ƒ}ƒVƒ“‚ğg—p‚µ‚Ä‚¢‚éê‡‚É‚ÍA•¨—ƒn[ƒhƒfƒBƒXƒN‚ğ2‘ä’Ç‰Á‚·‚é‚©A1‘ä‚Ì’Ç‰Á‚µ‚½ƒn[ƒhƒfƒBƒXƒN‚É2‚Â‚Ìƒp[ƒeƒBƒVƒ‡ƒ“i/dev/sdb1‚Æ/dev/sdb2j‚ğì¬‚µ‚Ä‚­‚¾‚³‚¢B
-
-‚à‚µALVM‚ÌÀK‚Åg—p‚µ‚½ƒn[ƒhƒfƒBƒXƒN/dev/sdb‚ğ‚»‚Ì‚Ü‚Ü—˜—p‚·‚éê‡‚É‚ÍAƒAƒ“ƒ}ƒEƒ“ƒg‚µ‚½ŒãfdiskƒRƒ}ƒ“ƒh“™‚Åƒp[ƒeƒBƒVƒ‡ƒ“‚ğˆê“xíœ‚µ‚ÄÀK‚ğs‚¢‚Ü‚·B
-
-fdiskƒRƒ}ƒ“ƒh‚È‚Ç‚Å/dev/sdb‚Éƒp[ƒeƒBƒVƒ‡ƒ“/dev/sdb1‚ğì¬‚µAmkfs.ext4ƒRƒ}ƒ“ƒh‚Åext4ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Å‰Šú‰»‚µ‚½ŒãA/mnt/backup_test‚Éƒ}ƒEƒ“ƒg‚µ‚Ü‚·B‹ï‘Ì“I‚Èƒp[ƒeƒBƒVƒ‡ƒ“ì¬è‡‚ÍALVM‚ÌÀK‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B‚½‚¾‚µA‚±‚ÌÀK‚Å‚ÍLVM‚Íg—p‚µ‚È‚¢‚Ì‚ÅAƒp[ƒeƒBƒVƒ‡ƒ“ƒ^ƒCƒv‚Ì•ÏX‚Í•s—v‚Å‚·B
-
-```shell-session
-# fdisk /dev/sdb
-¦ƒp[ƒeƒBƒVƒ‡ƒ“‚ğì¬
-# mkfs.ext4 /dev/sdb1 
-# mkdir /mnt/backup_test
-# mount -t ext4 /dev/sdb1 /mnt/backup_test/
-```
-
-/mnt/backup_testƒfƒBƒŒƒNƒgƒŠ‚ÉAƒeƒXƒg—p‚ÌƒfƒBƒŒƒNƒgƒŠ‚Æƒtƒ@ƒCƒ‹‚ğì¬‚µ‚Ä‚¨‚«‚Ü‚·B
-
-```shell-session
-# mkdir /mnt/backup_test/test_dir
-# touch /mnt/backup_test/test_dir/test_file
-```
-
-### ddƒRƒ}ƒ“ƒh‚ğg‚Á‚½ƒoƒbƒNƒAƒbƒv
-ddƒRƒ}ƒ“ƒh‚Å‚Íƒtƒ@ƒCƒ‹’PˆÊ‚ÅƒoƒbƒNƒAƒbƒv‚ª‚Å‚«‚È‚¢‚½‚ßA/dev/sdbƒfƒoƒCƒX©‘Ì‚ğƒoƒbƒNƒAƒbƒv‚µ‚Ü‚·B
-
-/dev/sdc‚Í‰Šú‰»‚µ‚Ä‚¢‚È‚¢ó‘Ô‚ÅAddƒRƒ}ƒ“ƒh‚ğÀs‚µ‚Ü‚·B/dev/sdb‚ªŠÛ‚²‚Æ/dev/sdc‚ÉƒoƒbƒNƒAƒbƒv‚³‚ê‚Ü‚·B
-
-```shell-session
-#  dd if=/dev/sdb of=/dev/sdc
-208896+0 records in
-208896+0 records out
-106954752 bytes (107 MB) copied, 1.29132 s, 82.8 MB/s
-```
-
-fdiskƒRƒ}ƒ“ƒh‚ğg‚Á‚ÄA/dev/sdc1‚ªì¬‚³‚ê‚Ä‚¢‚é‚±‚Æ‚ğƒp[ƒeƒBƒVƒ‡ƒ“î•ñ‚ÅŠm”F‚µ‚Ü‚·B/dev/sdc‚É‘‚«‚Ü‚ê‚½ƒp[ƒeƒBƒVƒ‡ƒ“î•ñ‚ğOS‚É”F¯‚³‚¹‚é‚½‚ß‚ÉOS‚ÌÄ‹N“®‚ğs‚Á‚Ä‚©‚çAŠm”F‚µ‚Ü‚·B
-
-```shell-session
-# reboot
-¦ƒVƒXƒeƒ€Ä‹N“®Œã‚ÉŠm”F
-# fdisk /dev/sdc
-i—ªj
-ƒRƒ}ƒ“ƒh (m ‚Åƒwƒ‹ƒv): ¦p ©ƒp[ƒeƒBƒVƒ‡ƒ“î•ñ•\¦‚Ìp‚ğ“ü—Í
-
-ƒfƒBƒXƒN /dev/sdc: 106 MB, 106954752 ƒoƒCƒg
-ƒwƒbƒh 255, ƒZƒNƒ^ 63, ƒVƒŠƒ“ƒ_ 13
-Units = ƒVƒŠƒ“ƒ_” of 16065 * 512 = 8225280 ƒoƒCƒg
-ƒZƒNƒ^ƒTƒCƒY (˜_— / •¨—): 512 ƒoƒCƒg / 4096 ƒoƒCƒg
-I/O size (minimum/optimal): 4096 bytes / 4096 bytes
-ƒfƒBƒXƒN¯•Êq: 0x43b56949
-
-ƒfƒoƒCƒX ƒu[ƒg      n“_        I“_     ƒuƒƒbƒN   Id  ƒVƒXƒeƒ€
-/dev/sdc1               1          13      104391   83  Linux
-Partition 1 does not start on physical sector boundary.
-
-ƒRƒ}ƒ“ƒh (m ‚Åƒwƒ‹ƒv): ¦q ©I—¹‚Ìq‚ğ“ü—Í
-```
-
-/dev/sdc1‚ğ/mnt/restore_test‚Æ‚µ‚Äƒ}ƒEƒ“ƒg‚µ‚Ü‚·Bæ‚Ù‚Ç/mnt/backup_testƒfƒBƒŒƒNƒgƒŠˆÈ‰º‚Éì¬‚µ‚½ƒeƒXƒg—p‚ÌƒfƒBƒŒƒNƒgƒŠ‚¨‚æ‚Ñƒtƒ@ƒCƒ‹‚ªƒŠƒXƒgƒA‚³‚ê‚Ä‚¢‚é‚Ì‚ªŠm”F‚Å‚«‚Ü‚·B
-
-```shell-session
-# mount /dev/sdc1 /mnt/restore_test
-# cd /mnt/restore_test
-# ls -l
-‡Œv 14
-drwx------. 2 root root 12288 12Œ 22 13:16 2014 lost+found
-drwxr-xr-x. 3 root root  1024 12Œ 22 13:16 2014 test_dir
-[root@server restore_test]# ls -l test_dir/
-‡Œv 0
--rw-r--r--. 1 root root 0  12Œ 22 13:16 2014 test_file
-```
-
-### dumpƒRƒ}ƒ“ƒh‚É‚æ‚éƒoƒbƒNƒAƒbƒv
-dumpƒRƒ}ƒ“ƒh‚É‚æ‚éƒoƒbƒNƒAƒbƒv‚Íƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€’PˆÊ‚Ås‚¢‚Ü‚·BƒoƒbƒNƒAƒbƒv‘ÎÛ‚Ì‘I‘ğ‚ÍAİ’èƒtƒ@ƒCƒ‹/etc/fstab‚Ås‚¢‚Ü‚·B
-
-‚±‚±‚Å‚Í—á‚Æ‚µ‚Ä/bootƒfƒBƒŒƒNƒgƒŠ‘S‘Ì‚ğƒtƒ@ƒCƒ‹‚Æ‚µ‚ÄƒoƒbƒNƒAƒbƒv‚µ‚Ü‚·B/bootƒfƒBƒŒƒNƒgƒŠ‚ÍA/iƒ‹[ƒgjƒfƒBƒŒƒNƒgƒŠ‚Æ‚Í•Ê‚Ìƒp[ƒeƒBƒVƒ‡ƒ“‚Éƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ªì‚ç‚ê‚Ä/bootƒfƒBƒŒƒNƒgƒŠ‚Éƒ}ƒEƒ“ƒg‚³‚ê‚Ä‚¢‚é‚Ì‚ÅA/bootƒfƒBƒŒƒNƒgƒŠˆÈ‰º‚ğ‚·‚×‚ÄdumpƒRƒ}ƒ“ƒh‚ÅƒoƒbƒNƒAƒbƒv‚Å‚«‚Ü‚·B
-
-CentOS 6‚Å‚ÍdumpƒRƒ}ƒ“ƒh‚ª•W€‚ÅƒCƒ“ƒXƒg[ƒ‹‚³‚ê‚Ä‚¢‚È‚¢‚½‚ßAdumpƒpƒbƒP[ƒW‚ğƒCƒ“ƒXƒg[ƒ‹‚µ‚Ü‚·B
-
-```shell-session
-# yum install dump
-```
-
-dumpƒRƒ}ƒ“ƒh‚É‚æ‚éƒoƒbƒNƒAƒbƒv‘ÎÛ‚ğ/etc/fstab‚Éİ’è‚µ‚Ü‚·B/etc/fstab‚Ì5”Ô–Ú‚ÌƒtƒB[ƒ‹ƒhiŒã‚©‚ç2”Ô–Új‚ªu1v‚Éİ’è‚³‚ê‚Ä‚¢‚éƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ªdumpƒRƒ}ƒ“ƒh‚Ì‘ÎÛ‚Æ‚È‚è‚Ü‚·B/bootƒfƒBƒŒƒNƒgƒŠ‚Éƒ}ƒEƒ“ƒg‚³‚ê‚éƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ªdumpƒRƒ}ƒ“ƒh‚Ì‘ÎÛ‚É‚È‚Á‚Ä‚¢‚é‚±‚Æ‚ğŠm”F‚µ‚Ü‚·B/proc‚â/sys‚È‚Ç‚Ì‹[—ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Í‘ÎÛŠO‚Æ‚È‚è‚Ü‚·B
-
-```shell-session
-# vi /etc/fstab
-
-/dev/mapper/vg_cent65-lv_root /                       ext4    defaults
-1 1
-UUID=fe4d3f56-a570-44b4-a863-418b789b42bc /boot                   ext4
-defaults        ¦1¦ 2
-/dev/mapper/vg_cent65-lv_swap swap                    swap    defaults
-0 0
-tmpfs                   /dev/shm                tmpfs   defaults        0 0
-devpts                  /dev/pts                devpts  gid=5,mode=620  0 0
-sysfs                   /sys                    sysfs   defaults        0 0
-proc                    /proc                   proc    defaults        0 0
-```
-
-dumpƒRƒ}ƒ“ƒh‚ğÀs‚µ‚ÄA/bootƒfƒBƒŒƒNƒgƒŠ‚ğƒoƒbƒNƒAƒbƒv‚µ‚Ü‚·B’Êí‚Íƒe[ƒv‚È‚Ç‚ÌƒoƒbƒNƒAƒbƒvƒƒfƒBƒA‚É‘Î‚µ‚ÄƒoƒbƒNƒAƒbƒv‚ğs‚¢‚Ü‚·‚ªAdumpƒRƒ}ƒ“ƒh‚Ìo—Í‚ğƒpƒCƒv‚ÅddƒRƒ}ƒ“ƒh‚É“n‚·‚±‚Æ‚Åƒtƒ@ƒCƒ‹‚Æ‚µ‚ÄƒoƒbƒNƒAƒbƒv‚Å‚«‚Ü‚·B
-•t—^‚µ‚Ä‚¢‚éƒIƒvƒVƒ‡ƒ“‚ÌˆÓ–¡‚ÍˆÈ‰º‚Ì’Ê‚è‚Å‚·B—á‚Å‚ÍAo—Íæ‚É•W€o—Í‚Å‚ ‚éu-viƒnƒCƒtƒ“j‚ğw’è‚µ‚Ä‚¢‚é“_‚É’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢B
-
-|ƒIƒvƒVƒ‡ƒ“|ˆÓ–¡|
-|-------|-------|
-|-0|ƒŒƒxƒ‹0‚ÌƒoƒbƒNƒAƒbƒv‚ğæ“¾‚·‚éBƒŒƒxƒ‹0‚Íƒtƒ‹ƒoƒbƒNƒAƒbƒv|
-|-u|ƒoƒbƒNƒAƒbƒvŠ®—¹ŒãA/etc/dumpdates‚ğXVB·•ªƒoƒbƒNƒAƒbƒv‚É•K—v|
-|-a|©“®ƒTƒCƒYBƒoƒbƒNƒAƒbƒvƒƒfƒBƒA‚©‚çI—¹’Ê’m‚ª‚ ‚é‚Ü‚Å‘‚«‚Ş|
-|-n|operatorƒOƒ‹[ƒv‚É‘Î‚µ‚Ä’Ê’m‚ğs‚¤|
-|-f|o—Íæ‚ğw’è|
-
-```shell-session
-# dump -0uan -f - /boot | dd of=/tmp/boot.dump
-  DUMP: No group entry for operator.
-  DUMP: Date of this level 0 dump: Thu Jan 15 00:07:19 2015
-  DUMP: Dumping /dev/sda1 (/boot) to standard output
-i—ªj
-  DUMP: Date this dump completed:  Thu Jan 15 00:07:20 2015
-  DUMP: Average transfer rate: 26570 kB/s
-  DUMP: DUMP IS DONE
-53140+0 records in
-53140+0 records out
-27207680 bytes (27 MB) copied, 0.202273 s, 135 MB/s
-
-# ls -l /tmp/boot.dump 
--rw-r--r--. 1 root root 27207680  1Œ 15 00:07 2015 /tmp/boot.dump
-```
-
-restoreƒRƒ}ƒ“ƒh‚ğÀs‚µ‚ÄA/tmp/restore_testƒfƒBƒŒƒNƒgƒŠ‚ÉƒŠƒXƒgƒA‚µ‚Ü‚·B-rƒIƒvƒVƒ‡ƒ“‚ÍAƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ğ‚·‚×‚ÄƒŠƒXƒgƒA‚·‚é‚±‚Æ‚ğw’è‚µ‚Ä‚¢‚Ü‚·B-fƒIƒvƒVƒ‡ƒ“‚ÍA“ü—Í‚Æ‚µ‚Ä•W€“ü—Í‚Å‚ ‚éu-viƒnƒCƒtƒ“j‚ğw’è‚µ‚Ä‚¢‚Ü‚·BdumpƒRƒ}ƒ“ƒh‚Åì¬‚µ‚½ƒoƒbƒNƒAƒbƒvƒtƒ@ƒCƒ‹‚ğcatƒRƒ}ƒ“ƒh‚Å“Ç‚İ‚İA•W€o—Í‚ğƒpƒCƒv‚ÅrestoreƒRƒ}ƒ“ƒh‚Ì•W€“ü—Í‚É“n‚µ‚Ä‚¢‚Ü‚·B
-
-```shell-session
-# mkdir /tmp/restore_test
-# cd /tmp/restore_test
-# cat /tmp/boot.dump | restore -rf -
-# ls
-System.map-2.6.32-504.el6.x86_64  initramfs-2.6.32-504.el6.x86_64.img
-config-2.6.32-504.el6.x86_64      lost+found
-efi                               symvers-2.6.32-504.el6.x86_64.gz
-grub                              vmlinuz-2.6.32-504.el6.x86_64
-```
-
-/tmp/restore_testƒfƒBƒŒƒNƒgƒŠ“à‚Ìƒtƒ@ƒCƒ‹‚ğ‚·‚×‚Äíœ‚µ‚Ü‚·B
-
-```shell-session
-# rm -rf /tmp/restore_test/*
-```
-
-### tarƒRƒ}ƒ“ƒh‚É‚æ‚éƒoƒbƒNƒAƒbƒv
-tarƒRƒ}ƒ“ƒh‚Íƒtƒ@ƒCƒ‹AƒfƒBƒŒƒNƒgƒŠ‚ğƒA[ƒJƒCƒu‚Æ‚µ‚Ä‚Ğ‚Æ‚Ü‚Æ‚ß‚É‚µ‚ÄƒoƒbƒNƒAƒbƒv‚ªs‚¦‚Ü‚·BƒoƒbƒNƒAƒbƒv‚ğ–Ú“I‚Æ‚µ‚½g—p‚Ì‚Ù‚©A‚½‚Æ‚¦‚ÎLinuxƒJ[ƒlƒ‹‚Ìƒ\[ƒXƒR[ƒh‚È‚Ç‚ğˆê‚Â‚É‚Ü‚Æ‚ß‚Ä”z•z‚·‚é–Ú“I‚Å‚àg—p‚³‚ê‚Ä‚¢‚Ü‚·B
-
-/bootƒfƒBƒŒƒNƒgƒŠˆÈ‰º‚Ìƒtƒ@ƒCƒ‹‚¨‚æ‚ÑƒfƒBƒŒƒNƒgƒŠ‚ğƒoƒbƒNƒAƒbƒv‚µ‚Ü‚·BƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚Í/tmp/boot_backup.tar‚Æ‚µ‚Ü‚·BƒA[ƒJƒCƒu‚Ìì¬‚ÍAtarƒRƒ}ƒ“ƒh‚É-cƒIƒvƒVƒ‡ƒ“‚ğ•t—^‚µ‚ÄÀs‚µ‚Ü‚·B
-
-```shell-session
-# tar -cvf /tmp/boot_backup.tar /boot
-tar: ƒƒ“ƒo–¼‚©‚çæ“ª‚Ì `/' ‚ğæ‚èœ‚«‚Ü‚·
-/boot/
-/boot/grub/
-i—ªj
-/boot/System.map-2.6.32-504.el6.x86_64
-/boot/.vmlinuz-2.6.32-504.el6.x86_64.hmac
-
-# ls -l /tmp/boot_backup.tar
--rw-r--r--. 1 root root 26982400  1Œ 15 00:15 2015 /tmp/boot_backup.tar
-```
-
-/tmp/restore_testƒfƒBƒŒƒNƒgƒŠ‚Éƒtƒ@ƒCƒ‹‚ğƒŠƒXƒgƒA‚µ‚Ü‚·BƒA[ƒJƒCƒu‚©‚ç‚Ìƒtƒ@ƒCƒ‹‚Ìæ‚èo‚µ‚ÍAtarƒRƒ}ƒ“ƒh‚É-xƒIƒvƒVƒ‡ƒ“‚ğ•t—^‚µ‚ÄÀs‚µ‚Ü‚·Bƒtƒ@ƒCƒ‹‚ÍƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠˆÈ‰º‚É“WŠJ‚³‚ê‚Ü‚·B
-
-```shell-session
-# cd /tmp/restore_test
-# tar -xvf /tmp/boot_backup.tar
-boot/
-boot/grub/
-i—ªj
-boot/System.map-2.6.32-504.el6.x86_64
-boot/.vmlinuz-2.6.32-504.el6.x86_64.hmac
-# ls -l
-‡Œv 4
-dr-xr-xr-x. 5 root root 4096  1Œ  6 06:20 2015 boot
-# ls boot/
-System.map-2.6.32-504.el6.x86_64  initramfs-2.6.32-504.el6.x86_64.img
-config-2.6.32-504.el6.x86_64      lost+found
-efi                               symvers-2.6.32-504.el6.x86_64.gz
-grub                              vmlinuz-2.6.32-504.el6.x86_64
-```
-
-/tmp/restore_testƒfƒBƒŒƒNƒgƒŠ“à‚Ìƒtƒ@ƒCƒ‹‚ğíœ‚µ‚Ü‚·B
-
-```shell-session
-# rm -rf /tmp/restore_test/*
-```
-
-### rsyncƒRƒ}ƒ“ƒh‚É‚æ‚éƒoƒbƒNƒAƒbƒv
-rsyncƒRƒ}ƒ“ƒh‚ÍAƒtƒ@ƒCƒ‹AƒfƒBƒŒƒNƒgƒŠ‚ğƒoƒbƒNƒAƒbƒv‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·Bƒlƒbƒgƒ[ƒNŒo—R‚Å•Ê‚ÌƒzƒXƒg‚ÖƒoƒbƒNƒAƒbƒv‚ğs‚¤‚È‚Ç‚Ì—p“r‚Ég—p‚µ‚Ü‚·B“Á’¥‚Æ‚µ‚ÄAV‚½‚É’Ç‰Á‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ì‚İƒoƒbƒNƒAƒbƒv‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
-
-ˆÈ‰º‚Ì—á‚Å‚ÍA“¯ˆêƒzƒXƒg“à‚Å/bootƒfƒBƒŒƒNƒgƒŠ“à‚Ìƒtƒ@ƒCƒ‹‚ğ•Ê‚ÌƒfƒBƒŒƒNƒgƒŠ‚ÉƒoƒbƒNƒAƒbƒv‚µ‚Ä‚¢‚Ü‚·B
-
-rsyncƒRƒ}ƒ“ƒh‚ğÀs‚µ‚ÄA/bootƒfƒBƒŒƒNƒgƒŠ‚ğ/tmp/restore_testƒfƒBƒŒƒNƒgƒŠˆÈ‰º‚ÉƒoƒbƒNƒAƒbƒv‚µ‚Ü‚·B
-
-```shell-session
-# rsync -av /boot /tmp/restore_test
-sending incremental file list
-boot/
-boot/.vmlinuz-2.6.32-504.el6.x86_64.hmac
-i—ªj
-boot/grub/xfs_stage1_5
-boot/lost+found/
-
-sent 26964672 bytes  received 457 bytes  53930258.00 bytes/sec
-total size is 26959690  speedup is 1.00
-```
-
-/tmp/restore_testƒfƒBƒŒƒNƒgƒŠˆÈ‰º‚Ìƒtƒ@ƒCƒ‹‚ğŠm”F‚µ‚Ü‚·B
-
-```shell-session
-# ls -l /tmp/restore_test
-‡Œv 4
-dr-xr-xr-x. 5 root root 4096  1Œ  6 06:20 2015 boot
-# ls -l /tmp/restore_test/boot
-‡Œv 25848
--rw-r--r--. 1 root root  2544748 10Œ 15 13:54 2014 System.map-2.6.32-504.el6.x86_64
--rw-r--r--. 1 root root   106308 10Œ 15 13:54 2014 config-2.6.32-504.el6.x86_64
-i—ªj
--rw-r--r--. 1 root root   200191 10Œ 15 13:55 2014 symvers-2.6.32-504.el6.x86_64.gz
--rwxr-xr-x. 1 root root  4152336 10Œ 15 13:54 2014 vmlinuz-2.6.32-504.el6.x86_64
-```
-
-/boot/rsync_testƒtƒ@ƒCƒ‹‚ğV‹K‚Éì¬‚µ‚Ü‚·B
-
-```shell-session
-# touch /boot/rsync_test
-# ls -l /boot/rsync_test 
--rw-r--r--. 1 root root 0  1Œ 15 00:23 2015 /boot/rsync_test
-```
-
-Ä“xrsyncƒRƒ}ƒ“ƒh‚ğÀs‚µ‚Ü‚·BV‚½‚É’Ç‰Á‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ì‚İƒoƒbƒNƒAƒbƒv‚³‚ê‚Ü‚·B
-
-```shell-session
-# rsync -av /boot /tmp/restore_test
-sending incremental file list
-boot/
-boot/rsync_test
-
-sent 832 bytes  received 40 bytes  1744.00 bytes/sec
-total size is 26959690  speedup is 30917.08
-```
-
-V‚½‚ÉƒoƒbƒNƒAƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ğŠm”F‚µ‚Ü‚·B
-
-```shell-session
-# ls -l /tmp/restore_test/boot/rsync_test
--rw-r--r--. 1 root root 0  1Œ 15 00:23 2015 /tmp/restore_test/boot/rsync_test
-```
-
-tmp/restore_testƒfƒBƒŒƒNƒgƒŠ“à‚Ìƒtƒ@ƒCƒ‹‚ğíœ‚µ‚Ü‚·B
-
-```shell-session
-# rm -rf /tmp/restore_test/*
 ```
 
