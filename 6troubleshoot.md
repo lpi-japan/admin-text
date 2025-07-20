@@ -19,7 +19,7 @@ AlmaLinux‚Å‚ÍAƒƒOƒtƒ@ƒCƒ‹‚Í/var/logƒfƒBƒŒƒNƒgƒŠˆÈ‰º‚ÉŠi”[‚³‚ê‚Ä‚¢‚Ü‚·B
 |maillog|ƒ[ƒ‹ŠÔ˜A‚ÌƒƒO|
 |dmesg|ƒJ[ƒlƒ‹‚ªo—Í‚µ‚½ƒƒbƒZ[ƒW‚ÌƒƒO|
 
-‚Ü‚½Asystemd‚ª‹L˜^‚·‚éƒƒO‚ª‘¶İ‚µ‚Ü‚·B‚±‚¿‚ç‚Í•Ê“r‰ğà‚µ‚Ü‚·B
+‚Ü‚½Asystemd‚ª‹L˜^‚·‚éjournald‚ÌƒƒO‚ª‘¶İ‚µ‚Ü‚·B‚±‚¿‚ç‚Í•Ê“r‰ğà‚µ‚Ü‚·B
 
 ### ƒƒO‚ÌŠm”F
 ƒT[ƒo‚ÌƒƒO‚ÉƒT[ƒrƒX‹N“®A‚Ü‚½‚Í“®ì‚ÌƒGƒ‰[ƒƒO‚ª‹L˜^‚³‚ê‚Ä‚¢‚È‚¢‚©‚ğŠm”F‚µ‚Ü‚·B‚Ü‚½AƒNƒ‰ƒCƒAƒ“ƒg‘¤‚É‚àƒGƒ‰[ƒƒO‚ª‹L˜^‚³‚ê‚Ä‚¢‚È‚¢‚©‚ğŠm”F‚µ‚Ü‚·B
@@ -332,7 +332,7 @@ Dec 25 17:18:03 client root: This is mail log over TCP
 ### logrotate‚É‚æ‚éƒƒOƒ[ƒe[ƒVƒ‡ƒ“
 ƒƒOƒtƒ@ƒCƒ‹‚Íí‚É’Ç‹L‚³‚ê‚Ä‚¢‚­‚½‚ßAƒtƒ@ƒCƒ‹ƒTƒCƒY‚ªŸ‘æ‚É”ì‘å‰»‚µ‚ÄƒfƒBƒXƒN—e—Ê‚ğˆ³”—‚µAŒã‚ÅƒƒO‚ğŠm”F‚·‚éÛ‚É•K—v‚ÈƒƒO‚ğŒ©‚Â‚¯‚É‚­‚­‚È‚è‚Ü‚·B‚±‚ê‚ç‚Ì–â‘è‚ğ‰ñ”ğ‚·‚é‚½‚ßAƒƒO‚ğˆê’èŠúŠÔ‚Åƒ[ƒe[ƒVƒ‡ƒ“‚·‚élogrotate‚ªg‚í‚ê‚Ä‚¢‚Ü‚·B
 
-logrotate‚ÍAcron‚©‚ç1“ú1‰ñA/etc/cron.daily/logrotateƒXƒNƒŠƒvƒg‚É‚æ‚Á‚Ä‹N“®‚³‚ê‚Ü‚·B/etc/logrotate.conf‚ªlogrotate‚Ìİ’èƒtƒ@ƒCƒ‹‚Æ‚È‚Á‚Ä‚¨‚èAƒƒOƒtƒ@ƒCƒ‹‚ğƒ[ƒe[ƒVƒ‡ƒ“‚·‚éƒ^ƒCƒ~ƒ“ƒO‚âAƒƒOƒtƒ@ƒCƒ‹‚ğ‰½¢‘ã‚Ü‚Åc‚·‚©‚È‚Ç‚Ìİ’è‚ª‹Lq‚³‚ê‚Ä‚¢‚Ü‚·BƒT[ƒrƒX–ˆ‚ÌÚ×‚Èİ’è‚ÍA/etc/logrotate.dƒfƒBƒŒƒNƒgƒŠ‚ÉŠi”[‚³‚ê‚Ä‚¢‚Ü‚·B
+logrotate‚ÍAsystemd timer‚©‚ç1“ú1‰ñ‹N“®‚³‚ê‚Ü‚·B/etc/logrotate.conf‚ªlogrotate‚Ìİ’èƒtƒ@ƒCƒ‹‚Æ‚È‚Á‚Ä‚¨‚èAƒƒOƒtƒ@ƒCƒ‹‚ğƒ[ƒe[ƒVƒ‡ƒ“‚·‚éƒ^ƒCƒ~ƒ“ƒO‚âAƒƒOƒtƒ@ƒCƒ‹‚ğ‰½¢‘ã‚Ü‚Åc‚·‚©‚È‚Ç‚Ìİ’è‚ª‹Lq‚³‚ê‚Ä‚¢‚Ü‚·BƒT[ƒrƒX–ˆ‚ÌÚ×‚Èİ’è‚ÍA/etc/logrotate.dƒfƒBƒŒƒNƒgƒŠ‚ÉŠi”[‚³‚ê‚Ä‚¢‚Ü‚·B
 
 logrotate‚Ìİ’è‚Åg—p‚Å‚«‚éƒfƒBƒŒƒNƒeƒBƒu‚ÍˆÈ‰º‚Ì‚Æ‚¨‚è‚Å‚·B
 
@@ -423,6 +423,8 @@ include‚Ì‹Lq‚Ì‚ ‚éˆÊ’u‚É•Ê‚Ìİ’èƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İ‚Ü‚·BƒfƒBƒŒƒNƒgƒŠ‚ğw’è‚µ‚½
 #### tabooext [+] Šg’£q[,Šg’£q,...]
 include‚ÅƒfƒBƒŒƒNƒgƒŠ‚ğw’è‚µ‚½ê‡‚É“Ç‚İ‚Şƒtƒ@ƒCƒ‹‚©‚çœŠO‚·‚éƒtƒ@ƒCƒ‹‚ÌŠg’£q‚ğw’è‚µ‚Ü‚·BƒfƒtƒHƒ‹ƒg‚Åu.rpmorigvu.rpmsavevu,vvu.swpvu.rpmnewvu~vu.cfsavedvu.rhn-cfg-tmp-*v‚ªw’è‚³‚ê‚Ä‚¢‚Ü‚·B+‚ğw’è‚·‚é‚ÆƒfƒtƒHƒ‹ƒgw’è‚É‘Î‚µ‚Ä’Ç‰Á‚ÅŠg’£q‚ğw’è‚Å‚«‚Ü‚·B+‚ğw’è‚µ‚È‚¢‚ÆƒfƒtƒHƒ‹ƒgw’è‚ğ”jŠü‚µ‚ÄV‹K‚ÉŠg’£q‚ğw’è‚µ‚Ü‚·B
 
+‚±‚±‚ÉĞ‰î‚µ‚½ˆÈŠO‚ÌƒfƒBƒŒƒNƒeƒBƒu‚à‘½”‚ ‚é‚Ì‚ÅAƒ}ƒjƒ…ƒAƒ‹“™‚ğQÆ‚µ‚Ä‚İ‚Ä‚­‚¾‚³‚¢B
+
 ### ƒƒOƒ[ƒe[ƒgİ’èƒtƒ@ƒCƒ‹‚ÌŠm”F
 /etc/logrotate.d/httpd‚ğQl‚ÉAƒ[ƒe[ƒg‚Ìİ’è‚ğŠm”F‚µ‚Ü‚·B
 
@@ -448,6 +450,63 @@ include‚ÅƒfƒBƒŒƒNƒgƒŠ‚ğw’è‚µ‚½ê‡‚É“Ç‚İ‚Şƒtƒ@ƒCƒ‹‚©‚çœŠO‚·‚éƒtƒ@ƒCƒ‹‚ÌŠg’£
 * 3s–Ú‚Ìsharedscripts‚Åprerotate,postrotate ‚ÌƒXƒNƒŠƒvƒg‚ğˆê“x‚¾‚¯Às‚µ‚Ü‚·B
 * 4s–Ú‚Ìdelaycompress‚Åˆ³kˆ—‚ğŸ‚Ìƒ[ƒe[ƒVƒ‡ƒ“‚Ü‚Å’x‚ç‚¹‚Ü‚·B
 * 5s–Ú‚Ì"postrotate"‚©‚ç"endscript"‚Ü‚Å‚ªAƒ[ƒe[ƒVƒ‡ƒ“‚ªs‚í‚ê‚½Œã‚ÉÀs‚³‚ê‚éƒXƒNƒŠƒvƒg‚Å‚·BserviceƒRƒ}ƒ“ƒh‚ğÀs‚µ‚ÄhttpdƒT[ƒrƒX‚ğreload‚·‚é‚±‚Æ‚ÅAV‚µ‚¢ƒƒOƒtƒ@ƒCƒ‹‚ª¶¬‚³‚ê‚Ü‚·B
+
+## journald‚ÌƒƒO‚ÌŠm”F
+journald‚ÌƒƒO‚ğŠm”F‚·‚é‚É‚ÍAjournalctlƒRƒ}ƒ“ƒh‚ğÀs‚µ‚Ü‚·BƒIƒvƒVƒ‡ƒ“‚ğ•t—^‚µ‚È‚¢‚ÅÀs‚·‚é‚ÆA‚·‚×‚Ä‚ÌƒƒO‚ª•\¦‚³‚ê‚Ü‚·B
+
+ˆÈ‰º‚Ì—á‚Å‚ÍALinuxƒJ[ƒlƒ‹‹N“®‚ÌƒƒO‚ª‹L˜^‚³‚ê‚Ä‚¢‚é‚Ì‚ª•ª‚©‚è‚Ü‚·B
+
+```
+# journalctl
+ 7Œ 19 11:48:51 localhost kernel: Linux version 5.14.0-570.12.1.el9_6.x86_64 (mockbuild@x64-builder02.almalinux.org) (gcc (GCC) 11.5.0 20240719 (R>
+ 7Œ 19 11:48:51 localhost kernel: The list of certified hardware and cloud instances for Red Hat Enterprise Linux 9 can be viewed at the Red Hat E>
+ 7Œ 19 11:48:51 localhost kernel: Command line: BOOT_IMAGE=(hd0,gpt2)/vmlinuz-5.14.0-570.12.1.el9_6.x86_64 root=/dev/mapper/almalinux_vbox-root ro>
+ 7Œ 19 11:48:51 localhost kernel: [Firmware Bug]: TSC doesn't count with P0 frequency!
+ 7Œ 19 11:48:51 localhost kernel: BIOS-provided physical RAM map:
+i—ªj
+```
+
+
+“Á’è‚ÌƒT[ƒrƒX‚ÌƒƒO‚Éi‚é‚É‚ÍA-uƒIƒvƒVƒ‡ƒ“‚ğ•t—^‚µ‚ÄÀs‚µ‚Ü‚·B
+
+ˆÈ‰º‚Ì—á‚Å‚ÍAhttpdƒT[ƒrƒX‹N“®‚ÌƒƒO‚ªŠm”F‚Å‚«‚Ü‚·B
+
+```
+# journalctl -u httpd
+ 7Œ 19 12:19:23 vbox systemd[1]: Starting The Apache HTTP Server...
+ 7Œ 19 12:19:23 vbox httpd[37922]: AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using fe80::a00:27ff:fee>
+ 7Œ 19 12:19:23 vbox systemd[1]: Started The Apache HTTP Server.
+ 7Œ 19 12:19:23 vbox httpd[37922]: Server configured, listening on: port 80
+```
+
+### journald‚ÌƒƒO‚Ì•Û‘¶
+journald‚ÌƒƒO‚ÍAÄ‹N“®‚·‚é‚ÆÁ‚¦‚Ä‚µ‚Ü‚¤İ’è‚ªƒfƒtƒHƒ‹ƒg‚Æ‚È‚Á‚Ä‚¢‚Ü‚·Bjournald‚Ìİ’èƒtƒ@ƒCƒ‹/etc/systemd/journald.conf‚ÌStorageİ’è‚Ì’l‚ªƒfƒtƒHƒ‹ƒg‚Å‚Íauto‚Éİ’è‚³‚ê‚Ä‚¢‚Ü‚·B‚±‚Ìİ’è‚ÍAˆÈ‰º‚Ì‚æ‚¤‚É“®ì‚µ‚Ü‚·B
+
+1. /var/log/journalƒfƒBƒŒƒNƒgƒŠ‚ª‘¶İ‚·‚ê‚Î‘‚«‚Ş
+1. /var/log/journalƒfƒBƒŒƒNƒgƒŠ‚ª‘¶İ‚µ‚È‚¢‚©A‘‚«‚ß‚È‚¢ê‡‚É‚ÍA/run/log/journalƒfƒBƒŒƒNƒgƒŠ‚É‘‚«‚Ş
+
+ƒfƒtƒHƒ‹ƒg‚Å‚Í/var/log/journalƒfƒBƒŒƒNƒgƒŠ‚Í‘¶İ‚µ‚È‚¢‚½‚ßA/run/log/journalƒfƒBƒŒƒNƒgƒŠ‚ÉƒƒO‚ª‘‚«‚Ü‚ê‚Ü‚·B/run/log/journalƒfƒBƒŒƒNƒgƒŠ‚Ítmpfs‚Åƒƒ‚ƒŠã‚Éì‚ç‚ê‚½ˆê—Ìˆæ‚È‚Ì‚ÅAƒVƒXƒeƒ€Ä‹N“®‚ÉƒƒO‚Ìƒtƒ@ƒCƒ‹‚ÍÁ‚¦‚Ä‚µ‚Ü‚¢‚Ü‚·B
+
+journald‚ÌƒƒO‚ğƒVƒXƒeƒ€Ä‹N“®‚ÉÁ‚¦‚È‚¢‚æ‚¤‚É‚·‚é‚É‚ÍAˆÈ‰º‚Ì‚æ‚¤‚É/var/log/journalƒfƒBƒŒƒNƒgƒŠ‚ğì¬‚µ‚ÄAƒVƒXƒeƒ€‚ğÄ‹N“®‚µ‚Ü‚·B
+
+```
+# mkdir /var/log/journal
+# chmod 700 /var/log/journal
+# reboot
+```
+
+ƒƒOƒtƒ@ƒCƒ‹‚ªì¬‚³‚ê‚½‚±‚Æ‚ğŠm”F‚µ‚Ü‚·
+
+```
+# ls -l /var/log/journal/
+‡Œv 0
+drwxr-sr-x+ 2 root systemd-journal 53  7Œ 20 12:32 65dd8a0b080e4373a5633404cabaac84
+# ls -l /var/log/journal/3b71b9857a284561a3450996bf78a306/
+‡Œv 16384
+-rw-r-----+ 1 root systemd-journal 8388608  7Œ 20 12:33 system.journal
+-rw-r-----+ 1 root systemd-journal 8388608  7Œ 20 12:33 user-1000.journal
+```
+
 
 ## ƒlƒbƒgƒ[ƒNƒc[ƒ‹‚ğg‚Á‚½ƒgƒ‰ƒuƒ‹ƒVƒ…[ƒeƒBƒ“ƒO
 ƒT[ƒo‚ÉÚ‘±‚Å‚«‚È‚¢‚È‚Çƒlƒbƒgƒ[ƒN‚É‹Nˆö‚·‚é–â‘è‚ª”­¶‚µ‚½ê‡AŠî–{“I‚ÈŒ´ˆö‚Ì’²¸‚ğs‚¤‚½‚ß‚Ìƒc[ƒ‹‚Æ‚µ‚ÄAˆÈ‰º‚Ì‚æ‚¤‚Èƒlƒbƒgƒ[ƒNƒc[ƒ‹‚ğg—p‚µ‚Ü‚·B
