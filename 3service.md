@@ -93,7 +93,7 @@ GRUBで指定されたLinuxカーネルイメージがメモリに読み込ま�
 #### dmesgによるカーネル起動時の動作の確認
 カーネルが起動する際の動作の様子は、dmesgコマンドで確認できます。
 
-```shell-session
+```
 # dmesg
 Initializing cgroup subsys cpuset
 Initializing cgroup subsys cpu
@@ -135,7 +135,7 @@ Webサービスの起動や停止、再起動、そして状態の確認を行�
 #### サービスの起動
 systemctl startコマンドで、サービスを起動します。
 
-```shell-session
+```
 # systemctl start httpd
 ```
 
@@ -144,7 +144,7 @@ systemctl statusコマンドで、サービスのステータスを確認でき�
 
 systemdでは、サービスのプロセスを「コントロールグループ」（cgroup）というLinuxカーネルの仕組みで実行するように変わりました。cgroupを使うことで、CPUやメモリなどのリソースを柔軟に割り当てることができる利点があります。
 
-```shell-session
+```
 # systemctl status httpd
 httpd.service - The Apache HTTP Server
    Loaded: loaded (/usr/lib/systemd/system/httpd.service; disabled)
@@ -168,7 +168,7 @@ Hint: Some lines were ellipsized, use -l to show in full.
 #### サービスの再起動
 systemctl restartコマンドで、サービスを再起動します。
 
-```shell-session
+```
 # systemctl restart httpd
 # systemctl status httpd
 httpd.service - The Apache HTTP Server
@@ -182,7 +182,7 @@ httpd.service - The Apache HTTP Server
 #### サービスの停止
 systemctl stopコマンドで、サービスを停止します。
 
-```shell-session
+```
 # systemctl stop httpd
 # systemctl status httpd
 httpd.service - The Apache HTTP Server
@@ -193,7 +193,7 @@ httpd.service - The Apache HTTP Server
 ### ユニット一覧の取得
 systemdで管理されているユニットの一覧を取得するには、systemctl list-unit-filesコマンドを実行します。
 
-```shell-session
+```
 # systemctl list-unit-files
 ```
 
@@ -201,7 +201,7 @@ systemdで管理されているユニットの一覧を取得するには、syst
 
 たとえば、serviceユニットだけを表示するには以下のsystemctlコマンドを実行します。
 
-```shell-session
+```
 # systemctl list-unit-files -t service
 ```
 
@@ -219,14 +219,14 @@ systemdで管理されているユニットの一覧を取得するには、syst
 
 以下の例は同じ結果を返します。
 
-```shell-session
+```
 # systemctl list-units
 # systemctl
 ```
 
 -tオプションを使って、serviceユニットだけに絞り込むこともできます。
 
-```shell-session
+```
 # systemctl -t service
 UNIT                         LOAD   ACTIVE SUB     DESCRIPTION
 abrt-ccpp.service            loaded active exited  Install ABRT coredump hook
@@ -259,7 +259,7 @@ kdump.service                loaded failed failed  Crash recovery kernel arming
 ### デバイス一覧の確認
 -t deviceオプションを付与して、デバイス一覧を表示します。
 
-```shell-session
+```
 # systemctl list-units -t device
 UNIT                                                                                     LOAD   ACTIVE SUB     DESCRIPTION
 sys-devices-pci0000:00-0000:00:05.0-virtio0-net-eth0.device                              loaded active plugged Virtio network device
@@ -270,7 +270,7 @@ sys-devices-pci0000:00-0000:00:1f.2-ata3-host2-target2:0:0-2:0:0:0-block-sda-sda
 ### マウント状況の確認
 -t mountオプションを付与して、マウントの状況一覧を表示します。
 
-```shell-session
+```
 # systemctl list-units -t mount
 UNIT                         LOAD   ACTIVE SUB     DESCRIPTION
 -.mount                      loaded active mounted /
@@ -284,7 +284,7 @@ home.mount                   loaded active mounted /home
 ### スワップ状況の確認
 -t swapオプションを付与して、スワップの状況一覧を表示します。
 
-```shell-session
+```
 # systemctl list-units -t swap
 UNIT             LOAD   ACTIVE SUB    DESCRIPTION
 dev-dm¥x2d0.swap loaded active active /dev/dm-0
@@ -298,14 +298,14 @@ dev-dm¥x2d0.swap loaded active active /dev/dm-0
 
 この動作は、multi-user.targetターゲットユニットが呼び出された時に、シンボリックリンクの起動スクリプトが実行されるように設定しています。
 
-```shell-session
+```
 # systemctl enable httpd
 ln -s '/usr/lib/systemd/system/httpd.service' '/etc/systemd/system/multi-user.target.wants/httpd.service'
 ```
 
 システム起動時の自動起動を行わないようにするには、systemctl disableコマンドを実行します。作成されたシンボリックリンクが削除され、起動スクリプトは呼び出されなくなります。
 
-```shell-session
+```
 # systemctl disable httpd
 rm '/etc/systemd/system/multi-user.target.wants/httpd.service'
 ```
@@ -317,7 +317,7 @@ systemctl maskコマンドを実行すると、指定したサービスがsystem
 
 Webサービスをsystemdから除外します。
 
-```shell-session
+```
 # systemctl mask httpd
 ln -s '/dev/null' '/etc/systemd/system/httpd.service'
 # systemctl start httpd
@@ -326,14 +326,14 @@ Failed to issue method call: Unit httpd.service is masked.
 
 systemctl is-enabledコマンドで、サービスの状態が確認できます。httpdサービスの状態はmaskedとなっています。
 
-```shell-session
+```
 # systemctl is-enabled httpd
 masked
 ```
 
 systemctl unmaskコマンドを実行すると、シンボリックリンクが削除されて、指定したサービスがsystemdで管理されるようになります。httpdサービスの状態はdisabledになります。
 
-```shell-session
+```
 # systemctl unmask httpd
 rm '/etc/systemd/system/httpd.service'
 # systemctl is-enabled httpd
@@ -379,7 +379,7 @@ systemdではランレベルではなく、サービス起動スクリプトを�
 #### デフォルトターゲットの確認
 systemctl get-defaultコマンドで、現在のデフォルトターゲットを確認します。
 
-```shell-session
+```
 # systemctl get-default
 graphical.target
 ```
@@ -387,7 +387,7 @@ graphical.target
 #### デフォルトターゲットをCUIに変更
 デフォルトターゲットをmulti-user.targetに変更し、再起動します。CUIで起動してくることを確認します。
 
-```shell-session
+```
 # systemctl set-default multi-user.target
 # reboot
 ```
@@ -395,7 +395,7 @@ graphical.target
 #### デフォルトターゲットをGUIに変更
 GUIでの起動に戻すには、以下のsystemctl set-defaultコマンドを実行します。
 
-```shell-session
+```
 # systemctl set-default graphical.target
 # reboot
 ```
@@ -405,17 +405,90 @@ systemdでの現在のターゲットを一時的に変更するには、systemc
 
 GUIからCUIに変更します。GUIログインしている場合、ログアウトします。
 
-```shell-session
+```
 # systemctl isolate multi-user.target
 ```
 
 CUIからGUIに変更します。
 
-```shell-session
+```
 # systemctl isolate graphical.target
 ```
 
-### anacron によるジョブの実行 
+## systemdのタイマーによるジョブのスケジュール実行
+システムのメンテナンスなどで定期的にプロセスを実行するには、systemdのタイマーを使います。
+
+## 有効なタイマーの一覧
+
+
+linuc@localhost:/usr/lib/systemd/system$ systemctl list-timers
+NEXT                            LEFT LAST                          PASSED UNIT                         ACTIVATES
+Sat 2025-06-28 16:03:42 JST    31min Sat 2025-06-28 15:07:02 JST        - fwupd-refresh.timer          fwupd-refresh.service
+Sat 2025-06-28 16:05:11 JST    32min -                                  - dnf-makecache.timer          dnf-makecache.service
+Sun 2025-06-29 00:00:00 JST       8h -                                  - sysstat-rotate.timer         sysstat-rotate.service
+Sun 2025-06-29 00:27:55 JST       8h Sat 2025-06-28 14:50:20 JST        - logrotate.timer              logrotate.service
+Sun 2025-06-29 00:39:12 JST       9h Sat 2025-06-28 14:50:20 JST        - plocate-updatedb.timer       plocate-updatedb.service
+Sun 2025-06-29 01:00:00 JST       9h Wed 2025-06-25 15:08:20 JST        - raid-check.timer             raid-check.service
+Sun 2025-06-29 15:24:09 JST      23h Sat 2025-06-28 15:24:09 JST 8min ago systemd-tmpfiles-clean.timer systemd-tmpfiles-clean.service
+Mon 2025-06-30 00:50:21 JST 1 day 9h Wed 2025-06-25 16:09:18 JST        - fstrim.timer                 fstrim.service
+
+8 timers listed.
+Pass --all to see loaded but inactive timers, too.
+
+タイマーの確認をするには、systemctl statusコマンドを使います。ログのローテーションを行うlogrotate.timerの状態を確認してみます。
+
+linuc@localhost:/usr/lib/systemd/system$ systemctl status logrotate.timer
+Warning: The unit file, source configuration file or drop-ins of logrotate.timer changed on disk. Run 'systemctl daemon-reload' to reload units.
+● logrotate.timer - Daily rotation of log files
+     Loaded: loaded (/usr/lib/systemd/system/logrotate.timer; enabled; preset: enabled)
+     Active: active (waiting) since Sat 2025-06-28 15:09:21 JST; 26min ago
+ Invocation: 9e94ba61ce2847eda12b927a0f467346
+    Trigger: Sun 2025-06-29 00:27:55 JST; 8h left
+   Triggers: ● logrotate.service
+       Docs: man:logrotate(8)
+             man:logrotate.conf(5)
+
+ 6月 28 15:09:21 localhost systemd[1]: Started logrotate.timer - Daily rotation of log files.
+
+設定ファイルの内容を確認するには、sysmctl catコマンドを使います。
+
+llinuc@localhost:~$ sudo systemctl cat logrotate.timer
+# /usr/lib/systemd/system/logrotate.timer
+[Unit]
+Description=Daily rotation of log files
+Documentation=man:logrotate(8) man:logrotate.conf(5)
+
+[Timer]
+OnCalendar=daily
+RandomizedDelaySec=1h
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+
+[Timer]セクションがスケジュール実行を定義しています。OnCalendarが実行するタイミングを指定しています。dailyは毎日0時を意味しています。このようなキーワードでの指定の他、時間や実行間隔などを指定することもできます。RandomizedDelaySecは、複数のタイマーがdailyなど同じスケジュールを指定していて同時実行されるとシステムに大きな負荷がかかるのを避けるため、ランダムに指定された値を上限に遅延を入れて実行します。1hが指定されているので最大60分（1時間）の遅延を入れて実行することになります。先ほど確認したタイマーの状態のうちTriggerが実際に実行される予定の時刻を表していますが、00:27:55に実行される予定になっています。Persistentは、このタイマーを実行するタイミングにシステムが停止していた時、再度システムが起動した際の挙動を定義しています。trueに設定されていると、再度のシステム起動時にこのタイマーを実行します。
+
+## タイマーで実行されるサービス
+タイマーで実行されるサービスは同一の名前のサービスになります。実行内容はsystemctl catコマンドを使って確認できます。
+
+linuc@localhost:~$ systemctl cat logrotate.service
+# /usr/lib/systemd/system/logrotate.service
+[Unit]
+Description=Rotate log files
+Documentation=man:logrotate(8) man:logrotate.conf(5)
+RequiresMountsFor=/var/log
+ConditionACPower=true
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/logrotate /etc/logrotate.conf
+（略）
+
+サービスの定義ファイルは、タイマーの定義ファイル同様、/usr/lib/systemd/systemディレクトリに配置されているのがわかります。
+
+
+
+## anacron によるジョブの実行 
 cronを使って決められた時刻に一斉にcronジョブを実行すると、システムの負荷が集中してしまう欠点があります。特にクラウド環境において同じ時刻にcronジョブが実行されてしまうと、CPUやメモリ、I/Oなどの共有リソースを複数の仮想マシンが一斉に取り合うことになります。
 そこでanacronを使ってジョブを実行すると、ジョブが実行されるタイミングがランダムに決められるので、ジョブ実行が同時発生しないようになります。
 
@@ -432,7 +505,7 @@ anacronは、1時間おきにcrondから起動されます。起動時に設定�
 
 デフォルトの設定ファイルは以下の通りです。
 
-```shell-session
+```
 # cat /etc/anacrontab
 # /etc/anacrontab: configuration file for anacron
 
@@ -479,20 +552,20 @@ NTPクライアントに対して時刻を提供するNTPサーバを実行す�
 
 NTPサービスがインストールされていない場合には、yumコマンドでインストールします。
 
-```shell-session
+```
 # yum install ntp
 ```
 
 ### NTPサービスの起動と自動起動の有効化
 NTPサービス（ntpd）を起動します。
 
-```shell-session
+```
 # service ntpd start
 ```
 
 chkconfigコマンドで自動起動を有効化します。
 
-```shell-session
+```
 # chkconfig ntpd on
 # chkconfig --list ntpd
 ntpd            0:off   1:off   2:off   3:on    4:off   5:off   6:off
@@ -512,7 +585,7 @@ server 3.centos.pool.ntp.org iburst
 
 ntpqコマンドを実行して、外部のNTPサーバとの時刻同期の状態を確認します。
 
-```shell-session
+```
 # ntpq -p
      remote           refid      st t when poll reach   delay   offset  jitter
 ==============================================================================
@@ -536,7 +609,7 @@ NTPサービスは、デフォルトではNTPクライアントからの時刻�
 
 以下の例では、NTPサーバの設定ファイル/etc/ntp.confに「192.168.0.0/255.255.255.0」のネットワークに属しているNTPクライアントからの時刻同期リクエストを許可するように設定しています。
 
-```shell-session
+```
 # vi /etc/ntp.conf
 
 # Hosts on local network are less restricted.
@@ -546,7 +619,7 @@ NTPサービスは、デフォルトではNTPクライアントからの時刻�
 
 設定を変更したらntpサービスを再起動します。
 
-```shell-session
+```
 # service ntpd restart
 ntpd を停止中:                                             [  OK  ]
 ntpd を起動中:                                             [  OK  ]
@@ -557,7 +630,7 @@ NTPサーバはUDPのポート番号123番でNTPクライアントからの時�
 
 /etc/sysconfig/iptablesを編集してルールを追加し、iptablesサービスをリロードします。
 
-```shell-session
+```
 # vi /etc/sysconfig/iptables
 
 # Firewall configuration written by system-config-firewall
@@ -579,7 +652,7 @@ COMMIT
 
 serviceコマンドで、iptablesサービスをリロードします。
 
-```shell-session
+```
 # service iptables reload
 iptables: Trying to reload firewall rules:                 [  OK  ]
 # iptables -L
@@ -598,7 +671,7 @@ REJECT     all  --  anywhere             anywhere            reject-with icmp-ho
 
 クライアントにNTPサービスがインストールされていない場合には、yumコマンドでインストールします。
 
-```shell-session
+```
 [root@client ~]# yum install ntp
 [root@client ~]# vi /etc/ntp.conf
 
@@ -611,7 +684,7 @@ REJECT     all  --  anywhere             anywhere            reject-with icmp-ho
 
 クライアントのNTPサービスを再起動します。
 
-```shell-session
+```
 # service ntpd restart
 ntpd を停止中:                                             [  OK  ]
 ntpd を起動中:                                             [  OK  ]
@@ -619,7 +692,7 @@ ntpd を起動中:                                             [  OK  ]
 
 ntpqコマンドで、時刻同期の状態を確認します。
 
-```shell-session
+```
 [root@client ~]# ntpq -p
      remote           refid      st t when poll reach   delay   offset  jitter
 ==============================================================================
