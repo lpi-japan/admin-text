@@ -8,7 +8,7 @@
 ‚±‚±‚Å‚ÍA‘ã•\“I‚ÈƒƒO‚ÌŽí—Þ‚ÆŠm”F•û–@AÝ’è•û–@‚È‚Ç‚ð‰ðà‚µ‚Ü‚·B
 
 ### ƒƒO‚ÌŽí—Þ
-CentOS‚Å‚ÍAƒƒOƒtƒ@ƒCƒ‹‚Í/var/logƒfƒBƒŒƒNƒgƒŠˆÈ‰º‚ÉŠi”[‚³‚ê‚Ä‚¢‚Ü‚·B
+AlmaLinux‚Å‚ÍAƒƒOƒtƒ@ƒCƒ‹‚Í/var/logƒfƒBƒŒƒNƒgƒŠˆÈ‰º‚ÉŠi”[‚³‚ê‚Ä‚¢‚Ü‚·B
 
 ˆÈ‰º‚Í‘ã•\“I‚ÈƒƒOƒtƒ@ƒCƒ‹‚Å‚·B
 
@@ -18,6 +18,8 @@ CentOS‚Å‚ÍAƒƒOƒtƒ@ƒCƒ‹‚Í/var/logƒfƒBƒŒƒNƒgƒŠˆÈ‰º‚ÉŠi”[‚³‚ê‚Ä‚¢‚Ü‚·B
 |secure|”FØAƒZƒLƒ…ƒŠƒeƒBŠÖŒW‚ÌƒƒO|
 |maillog|ƒ[ƒ‹ŠÔ˜A‚ÌƒƒO|
 |dmesg|ƒJ[ƒlƒ‹‚ªo—Í‚µ‚½ƒƒbƒZ[ƒW‚ÌƒƒO|
+
+‚Ü‚½Asystemd‚ª‹L˜^‚·‚éƒƒO‚ª‘¶Ý‚µ‚Ü‚·B‚±‚¿‚ç‚Í•Ê“r‰ðà‚µ‚Ü‚·B
 
 ### ƒƒO‚ÌŠm”F
 ƒT[ƒo‚ÌƒƒO‚ÉƒT[ƒrƒX‹N“®ŽžA‚Ü‚½‚Í“®ìŽž‚ÌƒGƒ‰[ƒƒO‚ª‹L˜^‚³‚ê‚Ä‚¢‚È‚¢‚©‚ðŠm”F‚µ‚Ü‚·B‚Ü‚½AƒNƒ‰ƒCƒAƒ“ƒg‘¤‚É‚àƒGƒ‰[ƒƒO‚ª‹L˜^‚³‚ê‚Ä‚¢‚È‚¢‚©‚ðŠm”F‚µ‚Ü‚·B
@@ -31,23 +33,19 @@ CentOS‚Å‚ÍAƒƒOƒtƒ@ƒCƒ‹‚Í/var/logƒfƒBƒŒƒNƒgƒŠˆÈ‰º‚ÉŠi”[‚³‚ê‚Ä‚¢‚Ü‚·B
 dmesgƒRƒ}ƒ“ƒh‚Íudisplay messagev‚Ì—ª‚ÅALinuxƒJ[ƒlƒ‹‚ªƒƒbƒZ[ƒW‚ðo—Í‚·‚éƒŠƒ“ƒOƒoƒbƒtƒ@izŠÂƒoƒbƒtƒ@j‚Ì“à—e‚ð•\Ž¦‚µ‚Ü‚·B‚±‚ÌƒŠƒ“ƒOƒoƒbƒtƒ@‚Íˆê’è‚ÌƒTƒCƒY“à‚ÅzŠÂ‚·‚é‚æ‚¤‚É‚È‚Á‚Ä‚¨‚èAŒÃ‚¢ƒƒO‚ÍÁ‚¦‚Ä‚¢‚«‚Ü‚·B
 dmesgƒRƒ}ƒ“ƒh‚ð—p‚¢‚é‚±‚Æ‚É‚æ‚èAƒVƒXƒeƒ€‹N“®Žž‚Éo—Í‚³‚ê‚éƒJ[ƒlƒ‹ƒƒbƒZ[ƒW‚ÌŠm”F‚ª‚Å‚«‚Ü‚·BƒJ[ƒlƒ‹‚ª³‚µ‚­ƒn[ƒhƒEƒFƒA‚ð”FŽ¯‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ðŠm”F‚·‚éê‡‚È‚Ç‚ÉŽQÆ‚µ‚Ü‚·B
 
-```shell-session
+```
 # dmesg
-Initializing cgroup subsys cpuset
-Initializing cgroup subsys cpu
-Linux version 2.6.32-504.el6.x86_64 (mockbuild@c6b9.bsys.dev.centos.org) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-11) (GCC) ) #1 SMP Wed Oct 15 04:27:16 UTC 2014
-Command line: ro root=/dev/mapper/vg_server-lv_root rd_LVM_LV=vg_server/lv_swap rd_NO_LUKS rd_LVM_LV=vg_server/lv_root rd_NO_MD crashkernel=auto  KEYBOARDTYPE=pc KEYTABLE=jp106 LANG=ja_JP.UTF-8 rd_NO_DM rhgb quiet
-KERNEL supported cpus:
-  Intel GenuineIntel
-  AMD AuthenticAMD
-  Centaur CentaurHauls
-Disabled fast string operations
+[    0.000000] Linux version 5.14.0-570.12.1.el9_6.x86_64 (mockbuild@x64-builder02.almalinux.org) (gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-5), GNU ld version 2.35.2-63.el9) #1 SMP PREEMPT_DYNAMIC Tue May 13 06:11:55 EDT 2025
+[    0.000000] The list of certified hardware and cloud instances for Red Hat Enterprise Linux 9 can be viewed at the Red Hat Ecosystem Catalog, https://catalog.redhat.com.
+[    0.000000] Command line: BOOT_IMAGE=(hd0,gpt2)/vmlinuz-5.14.0-570.12.1.el9_6.x86_64 root=/dev/mapper/almalinux_vbox-root ro crashkernel=1G-4G:192M,4G-64G:256M,64G-:512M resume=/dev/mapper/almalinux_vbox-swap rd.lvm.lv=almalinux_vbox/root rd.lvm.lv=almalinux_vbox/swap rhgb quiet
+[    0.000000] [Firmware Bug]: TSC doesn't count with P0 frequency!
+[    0.000000] BIOS-provided physical RAM map:
 i—ªj
 ```
 
 ### syslog‚É‚Â‚¢‚Ä
 syslog‚ÍAƒJ[ƒlƒ‹‚âƒvƒƒOƒ‰ƒ€‚È‚Ç‚©‚ço—Í‚³‚ê‚éƒƒO‚ð‚Ü‚Æ‚ß‚Ä‹L˜^‚·‚éŽd‘g‚Ý‚Å‚·Bsyslog‚ðŽg‚¤‚±‚Æ‚ÅAŠeƒvƒƒOƒ‰ƒ€‚Í“ÆŽ©‚ÉƒƒO‚ð‹L˜^‚·‚éŽd‘g‚Ý‚ðŠJ”­‚·‚é•K—v‚ª–³‚­‚È‚è‚Ü‚·B‚Ü‚½AsyslogƒT[ƒo‚ðƒlƒbƒgƒ[ƒNã‚Å“®ì‚³‚¹‚é‚±‚Æ‚ÅA•¡”‚ÌƒzƒXƒg‚©‚ç‚ÌƒƒO‚ð‚Ü‚Æ‚ß‚Ä‹L˜^‚·‚é‚±‚Æ‚ÅAƒƒO‚ðˆêŒ³ŠÇ—‚·‚é‚±‚Æ‚à‚Å‚«‚Ü‚·B
-CentOS 6‚Å‚ÍAsyslogƒT[ƒo‚Æ‚µ‚Ärsyslog‚ªŽg—p‚Å‚«‚Ü‚·B
+AlmaLinux‚Å‚ÍAsyslogƒT[ƒo‚Æ‚µ‚Ärsyslog‚ªŽg—p‚Å‚«‚Ü‚·B
 
 rsyslog‚ÍA]—ˆ‚Ìsyslogƒf[ƒ‚ƒ“isyslogdj‚É’u‚«Š·‚í‚éAƒ}ƒ‹ƒ`ƒXƒŒƒbƒh‚Ìsyslogƒf[ƒ‚ƒ“‚Å‚·BrsyslogiReliable syslogj‚Æ‚¢‚¤–¼‘O‚©‚ç‚à•ª‚©‚é’Ê‚èA‚‚¢M—Š«‚ðŽÀŒ»‚·‚é‚æ‚¤‚ÉŠJ”­‚³‚ê‚Ä‚¢‚Ü‚·B‚»‚Ì‚½‚ßAƒƒO‚Ì“]‘—‚ÉTCP‚ðŽg—p‚µ‚½‚èAƒf[ƒ^ƒx[ƒX‚Ö‚ÌƒƒO•Û‘¶AˆÃ†‰»‚µ‚½ƒƒO‚Ì“]‘—‚È‚Ç‚às‚¤‚±‚Æ‚ª‚Å‚«‚Ü‚·BŠî–{“I‚ÈÝ’è‚É‚Â‚¢‚Ä‚ÍA]—ˆ‚Ìsyslogd‚ÆŒÝŠ·«‚ª‚ ‚è‚Ü‚·B
 
@@ -102,12 +100,23 @@ syslogƒT[ƒo‚ÌÝ’èƒtƒ@ƒCƒ‹‚Å‚ ‚é/etc/rsyslog.conf‚É‚ÍAŽó‚¯Žæ‚Á‚½ƒƒOƒƒbƒZ[ƒW‚
 ƒtƒ@ƒVƒŠƒeƒB.ƒvƒ‰ƒCƒIƒŠƒeƒB	ƒAƒNƒVƒ‡ƒ“
 ```
 
-syslogƒT[ƒo‚ÌÝ’èƒtƒ@ƒCƒ‹’†‚ÅA•¡”‚Ìƒtƒ@ƒVƒŠƒeƒB‚ðŽw’è‚µ‚½‚¢ê‡‚É‚ÍAu,viƒRƒ“ƒ}j‚Å‹æØ‚è‚Ü‚·B‚½‚Æ‚¦‚ÎAUUCP“]‘—‚Æƒ[ƒ‹ŠÖ˜A‚Ìƒtƒ@ƒVƒŠƒeƒB‚ð“¯Žž‚ÉŽw’è‚µ‚½‚¢ê‡‚É‚ÍAˆÈ‰º‚Ì‚æ‚¤‚ÉŽw’è‚µ‚Ü‚·B
+syslogƒT[ƒo‚ÌÝ’èƒtƒ@ƒCƒ‹’†‚ÅA•¡”‚Ìƒtƒ@ƒVƒŠƒeƒB‚ðŽw’è‚µ‚½‚¢ê‡‚É‚ÍAu,viƒRƒ“ƒ}j‚Å‹æØ‚è‚Ü‚·B‚½‚Æ‚¦‚ÎA/var/log/messages‚É‚Í—lX‚Èƒtƒ@ƒVƒŠƒeƒB‚©‚ç‚ÌƒƒO‚ª‹L˜^‚³‚ê‚é‚æ‚¤‚ÉÝ’è‚³‚ê‚Ä‚¢‚Ü‚·B‚±‚ÌÝ’è‚ÍA‚·‚×‚Ä‚Ìƒtƒ@ƒVƒŠƒeƒB‚Ìinfoƒvƒ‰ƒCƒIƒŠƒeƒBˆÈã‚ÌƒƒO‚ð‚·‚×‚Ä/var/log/messages‚Éo—Í‚·‚é‚æ‚¤‚É‚µ‚Ä‚¢‚Ü‚·B‚½‚¾‚µAmailAauthprivAcron‚Ì3‚Â‚Ìƒtƒ@ƒVƒŠƒeƒB‚É‚Ínoneƒvƒ‰ƒCƒIƒŠƒeƒB‚ªŽw’è‚³‚ê‚Ä‚¢‚é‚½‚ßA‘ÎÛ‚©‚ç‚ÍœŠO‚³‚ê‚Ä‚¢‚Ü‚·B
 
-```shell-session
-uucp,news.crit	/var/log/spooler
+```
+*.info;mail.none;authpriv.none;cron.none                /var/log/messages
 ```
 
+œŠO‚³‚ê‚½Šeƒtƒ@ƒVƒŠƒeƒB‚Ìo—Í‚ÍAˆÈ‰º‚Ì‚æ‚¤‚É•Ê“rŽw’è‚³‚ê‚Ä‚¢‚Ü‚·B
+
+mailƒtƒ@ƒVƒŠƒeƒB‚ÌƒƒO‚ÍAƒƒ‚ƒŠã‚É‚ ‚é’ö“xƒoƒbƒtƒ@ƒŠƒ“ƒO‚µ‚½ã‚ÅƒƒOƒtƒ@ƒCƒ‹‚É‘‚«ž‚Þ‚æ‚¤‚Éu-iƒnƒCƒtƒ“jv‚ðŽw’è‚µ‚Ä‚¢‚Ü‚·Bƒ[ƒ‹ƒT[ƒo‚Íˆê“x‚É‘å—Ê‚ÌƒƒO‚ð‘‚«ž‚Þ‚±‚Æ‚ª‘½‚¢‚©‚ç‚Å‚·B
+
+```
+authpriv.*						/var/log/secure
+mail.*							-/var/log/maillog
+cron.*							/var/log/cron
+```
+
+### ƒvƒ‰ƒCƒIƒŠƒeƒB‚Ì“®ì
 syslogÝ’èƒtƒ@ƒCƒ‹’†‚Åƒvƒ‰ƒCƒIƒŠƒeƒB‚ðŽw’è‚·‚é‚ÆA‚»‚Ìƒvƒ‰ƒCƒIƒŠƒeƒBˆÈã‚Ìd—v“x‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB‚ª‚·‚×‚Ä“–‚Ä‚Í‚Ü‚è‚Ü‚·B‚½‚Æ‚¦‚ÎAˆÈ‰º‚Ì‚æ‚¤‚ÉÝ’è‚µ‚½‚Æ‚µ‚Ü‚·B
 
 ```
@@ -124,8 +133,6 @@ mail.=warning
 
 ‚±‚ÌŽw’è‚Ímailƒtƒ@ƒVƒŠƒeƒB‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB‚ªwarning‚ÌƒƒbƒZ[ƒW‚Ì‚Ý‚ª“–‚Ä‚Í‚Ü‚è‚Ü‚·B
 
-noneƒtƒ@ƒVƒŠƒeƒB‚Í‚â‚â“ÁŽê‚È“®‚«‚ð‚·‚é‚Ì‚ÅAŒãq‚Ì—á‚Å‰ðà‚µ‚Ü‚·B
-
 ### ƒAƒNƒVƒ‡ƒ“‚ÌÝ’è
 ƒtƒ@ƒVƒŠƒeƒB‚Æƒvƒ‰ƒCƒIƒŠƒeƒB‚ð‹Lq‚µ‚½‰E‘¤‚ÉAŠY“–‚·‚éƒƒO‚ð‚Ç‚¤‚·‚é‚©‚ðŽw’è‚·‚éƒAƒNƒVƒ‡ƒ“‚ð‹Lq‚µ‚Ü‚·B
 
@@ -141,7 +148,10 @@ noneƒtƒ@ƒVƒŠƒeƒB‚Í‚â‚â“ÁŽê‚È“®‚«‚ð‚·‚é‚Ì‚ÅAŒãq‚Ì—á‚Å‰ðà‚µ‚Ü‚·B
 ƒƒOƒƒbƒZ[ƒW‚ðƒvƒƒOƒ‰ƒ€‚Éˆø‚«“n‚·B
 
 #### *
-‚·‚×‚Ä‚Ìƒ†[ƒU‚ÌƒRƒ“ƒ\[ƒ‹‚ÉƒƒbƒZ[ƒW‚ð•\Ž¦‚·‚éB
+‚·‚×‚Ä‚Ìƒ†[ƒU‚ÌƒRƒ“ƒ\[ƒ‹‚ÉƒƒbƒZ[ƒW‚ð•\Ž¦‚·‚éB¡ŒãAŽg—p‚Å‚«‚È‚­‚È‚é‰Â”\«‚ª‚ ‚è‚Ü‚·B
+
+#### :omusrmsg:*
+*“¯—l‚É‚·‚×‚Ä‚Ìƒ†[ƒU‚ÌƒRƒ“ƒ\[ƒ‹‚ÉƒƒbƒZ[ƒW‚ð•\Ž¦‚·‚éB¡Œã‚Í‚±‚¿‚ç‚ðŽg—p‚·‚é‚±‚Æ‚ª„§‚³‚ê‚Ä‚¢‚Ü‚·B
 
 #### @ƒzƒXƒg–¼i‚ ‚é‚¢‚ÍIPƒAƒhƒŒƒXj
 UDP‚ÅsyslogƒT[ƒo‚ÉƒƒOƒƒbƒZ[ƒW‚ð‘—M‚·‚éB
@@ -149,87 +159,47 @@ UDP‚ÅsyslogƒT[ƒo‚ÉƒƒOƒƒbƒZ[ƒW‚ð‘—M‚·‚éB
 #### @@ƒzƒXƒg–¼i‚ ‚é‚¢‚ÍIPƒAƒhƒŒƒXj
 TCP‚ÅsyslogƒT[ƒo‚ÉƒƒOƒƒbƒZ[ƒW‚ð‘—M‚·‚éB
 
-### syslogƒT[ƒo‚ÌƒfƒtƒHƒ‹ƒgÝ’è‚ðŠm”F‚·‚é
-Ý’èƒtƒ@ƒCƒ‹/etc/rsyslog.conf‚ÉŠù‚ÉÝ’è‚³‚ê‚Ä‚¢‚é“à—e‚ðŠm”F‚µ‚Ü‚·B
-
-```shell-session
-authpriv.*	/var/log/secure
-```
-
-‚±‚ÌÝ’è‚ÍAƒtƒ@ƒVƒŠƒeƒB‚ªauthprivi”FØŠÖŒWjAƒvƒ‰ƒCƒIƒŠƒeƒB‚ª*i‘S‚Ä‚Ìƒvƒ‰ƒCƒIƒŠƒeƒBj‚ÌƒƒOƒƒbƒZ[ƒW‚Í/var/log/secure‚Éo—Í‚·‚é‚æ‚¤‚ÉŽw’è‚µ‚Ä‚¢‚Ü‚·B
-
-```shell-session
-*.info;mail.none;authpriv.none;cron.none		/var/log/messages
-```
-
-‚±‚ÌÝ’è‚ÍA‚·‚×‚Ä‚Ìƒtƒ@ƒVƒŠƒeƒB‚Ìinfoƒvƒ‰ƒCƒIƒŠƒeƒBˆÈã‚ÌƒƒO‚ð‚·‚×‚Ä/var/log/messages‚Éo—Í‚·‚é‚æ‚¤‚É‚µ‚Ä‚¢‚Ü‚·B‚½‚¾‚µAmailAauthprivAcron‚Ì3‚Â‚Ìƒtƒ@ƒVƒŠƒeƒB‚É‚Ínoneƒvƒ‰ƒCƒIƒŠƒeƒB‚ªŽw’è‚³‚ê‚Ä‚¢‚é‚½‚ßA‘ÎÛ‚©‚ç‚ÍœŠO‚³‚ê‚Ä‚¢‚Ü‚·B
-
-œŠO‚³‚ê‚½Šeƒtƒ@ƒVƒŠƒeƒB‚Ìo—Í‚ÍAˆÈ‰º‚Ì‚æ‚¤‚É•Ê“rŽw’è‚³‚ê‚Ä‚¢‚Ü‚·B
-
-mailƒtƒ@ƒVƒŠƒeƒB‚ÌƒƒO‚ÍAƒƒ‚ƒŠã‚É‚ ‚é’ö“xƒoƒbƒtƒ@ƒŠƒ“ƒO‚µ‚½ã‚ÅƒƒOƒtƒ@ƒCƒ‹‚É‘‚«ž‚Þ‚æ‚¤‚Éu-iƒnƒCƒtƒ“jv‚ðŽw’è‚µ‚Ä‚¢‚Ü‚·Bƒ[ƒ‹ƒT[ƒo‚Íˆê“x‚É‘å—Ê‚ÌƒƒO‚ð‘‚«ž‚Þ‚±‚Æ‚ª‘½‚¢‚©‚ç‚Å‚·B
-
-```shell-session
-authpriv.*						/var/log/secure
-mail.*							-/var/log/maillog
-cron.*							/var/log/cron
-```
-
 ### ƒJ[ƒlƒ‹ƒƒO‚Ìsyslogo—ÍÝ’è
-ƒfƒtƒHƒ‹ƒg‚ÌÝ’è‚Å‚ÍƒRƒƒ“ƒgƒAƒEƒg‚³‚ê‚Ä–³Œø‚É‚È‚Á‚Ä‚¢‚éƒJ[ƒlƒ‹‚©‚ç‚ÌƒƒOo—Í‚ÌÝ’è‚ð—LŒø‚É‚µ‚Ü‚·BƒJ[ƒlƒ‹‚ÌƒƒO‚ÍA‚½‚Æ‚¦‚Îiptables‚Ì‚æ‚¤‚ÈƒJ[ƒlƒ‹‚Ì‹@”\‚ªƒƒO‚ðo—Í‚µ‚Ü‚·B
+ƒfƒtƒHƒ‹ƒg‚ÌÝ’è‚Å‚ÍƒRƒƒ“ƒgƒAƒEƒg‚³‚ê‚Ä–³Œø‚É‚È‚Á‚Ä‚¢‚éƒJ[ƒlƒ‹‚©‚ç‚ÌƒƒOo—Í‚ÌÝ’è‚ð—LŒø‚É‚µ‚Ü‚·BƒJ[ƒlƒ‹‚ÌƒƒO‚ÍA‚½‚Æ‚¦‚Înftables‚É‚æ‚éƒpƒPƒbƒgƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚Ì‚æ‚¤‚ÈƒJ[ƒlƒ‹‚Ì‹@”\‚ªƒƒO‚ðo—Í‚µ‚Ü‚·B
 
-iptables‚ÌÝ’èƒtƒ@ƒCƒ‹/etc/sysconfig/iptables‚ð•ÒW‚µAƒ|[ƒg”Ô†22”Ô‚Ì‹–‰ÂiACCEPTj‚ÆA‚»‚Ì‘¼‚Ì‘S‚Ä‚ð‹‘”ÛiREJECTj‚·‚éƒ‹[ƒ‹‚ÌŠÔ‚ÉAƒƒO‚ðŽæ“¾‚·‚éƒ‹[ƒ‹‚ð’Ç‰Á‚µ‚Ü‚·B
+firewalld‚ÌÝ’è‚ð•ÏX‚µ‚ÄA‹‘”Û‚µ‚½’ÊM‚ð‚·‚×‚ÄƒƒOo—Í‚·‚é‚æ‚¤‚É•ÏX‚µ‚Ü‚·B
 
-```shell-session
-# Firewall configuration written by system-config-firewall
-# Manual customization of this file is not recommended.
-*filter
-:INPUT ACCEPT [0:0]
-:FORWARD ACCEPT [0:0]
-:OUTPUT ACCEPT [0:0]
--A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
--A INPUT -p icmp -j ACCEPT
--A INPUT -i lo -j ACCEPT
--A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT
-¦-A INPUT -j LOG --log-level debug --log-prefix '[iptables_test]:' ©V‹K‚É’Ç‰Á
--A INPUT -j REJECT --reject-with icmp-host-prohibited
--A FORWARD -j REJECT --reject-with icmp-host-prohibited
-COMMIT
+```
+$ sudo firewall-cmd --get-log-denied
+off
+[linuc@vbox ~]$ sudo firewall-cmd --set-log-denied=all
+success
+[linuc@vbox ~]$ sudo firewall-cmd --get-log-denied
+all
+[linuc@vbox ~]$ sudo firewall-cmd --reload
+success
 ```
 
-iptablesƒT[ƒrƒX‚ðreload‚µ‚ÄAV‚µ‚¢Ý’è‚ð“Ç‚Ýž‚Ü‚¹‚Ü‚·B
+‚±‚Ìó‘Ô‚Å‚ÍAƒJ[ƒlƒ‹‚©‚ç‚ÌƒƒOo—Í‚Í‚·‚×‚Ä/var/log/messages‚É‹L˜^‚³‚ê‚Ü‚·B/etc/rsyslog.conf‚ð•ÒW‚µAƒtƒ@ƒVƒŠƒeƒB‚ªkernAƒvƒ‰ƒCƒIƒŠƒeƒB‚ª‘S‚Ä‚ÌƒƒbƒZ[ƒW‚ð/var/log/kern.log‚Éo—Í‚·‚éÝ’è‚ð’Ç‰Á‚µ‚Ü‚·B
 
-```shell-session
-# service iptables reload
-iptables: Trying to reload firewall rules:                 [  OK  ]
 ```
-
-/etc/rsyslog.conf‚ð•ÒW‚µAƒtƒ@ƒVƒŠƒeƒB‚ªkernAƒvƒ‰ƒCƒIƒŠƒeƒB‚ª‘S‚Ä‚ÌƒƒbƒZ[ƒW‚ð/var/log/kern.log‚Éo—Í‚·‚éÝ’è‚ð’Ç‰Á‚µ‚Ü‚·B
-
-```shell-session
 # vi /etc/rsyslog.conf
 
 # Log all kernel messages to the console.
 # Logging much else clutters up the screen.
 #kern.*                                                 /dev/console
-¦kern.*                                                 /var/log/kern.log ©V‹K‚É’Ç‰Á
+kern.*                                                 /var/log/kern.log
 ```
 
 rsyslogƒT[ƒrƒX‚ðÄ‹N“®‚µ‚ÄAV‚µ‚¢Ý’è‚ð“Ç‚Ýž‚Ü‚¹‚Ü‚·B
 
-```shell-session
-# service rsyslog restart
-ƒVƒXƒeƒ€ƒƒK[‚ð’âŽ~’†:                                    [  OK  ]
-ƒVƒXƒeƒ€ƒƒK[‚ð‹N“®’†:                                    [  OK  ]
+```
+$ sudo systemctl restart rsyslog
 ```
 
-ŠO•”‚ÌƒzƒXƒg‚©‚çÝ’è‚ðs‚Á‚½ƒzƒXƒg‚É‘Î‚µ‚ÄAiptables‚Å‹–‰Â‚³‚ê‚Ä‚¢‚È‚¢ƒ|[ƒg”Ô†80”Ô‚ÉWebƒuƒ‰ƒEƒU“™‚ÅƒAƒNƒZƒX‚µ‚Ü‚·B
+ŠO•”‚ÌƒzƒXƒg‚©‚çÝ’è‚ðs‚Á‚½ƒzƒXƒg‚É‘Î‚µ‚ÄAnftables‚Å‹–‰Â‚³‚ê‚Ä‚¢‚È‚¢ƒ|[ƒg”Ô†80”Ô‚Æ443”Ô‚ÉWebƒuƒ‰ƒEƒU“™‚ÅƒAƒNƒZƒX‚µ‚Ü‚·B
 
-/var/log/kern.log‚Éƒ|[ƒg”Ô†80”Ô‚É‘Î‚·‚é’ÊM‚ð‹‘”Û‚µ‚½Ž|‚ÌƒƒO‚ªo—Í‚³‚ê‚Ü‚·B
+/var/log/kern.log‚Éƒ|[ƒg”Ô†80”Ô‚É‘Î‚·‚é’ÊM‚ð‹‘”Û‚µ‚½Ž|‚ÌƒƒO‚ªo—Í‚³‚ê‚Ü‚·BDPT‚ªˆ¶æ‚Ìƒ|[ƒg‚Å‚·B
 
-```shell-session
-# tail /var/log/kern.log 
-Dec 25 14:54:16 server kernel: imklog 5.8.10, log source = /proc/kmsg started.
-Dec 25 14:54:50 server kernel: ¦'[iptables_test]:'¦IN=eth0 OUT= MAC=00:1c:42:65:af:c4:00:1c:42:00:00:08:08:00 SRC=192.168.0.2 DST=192.168.0.10 LEN=64 TOS=0x00 PREC=0x00 TTL=64 ID=24955 DF PROTO=TCP SPT=57191 ¦DPT=80¦ WINDOW=65535 RES=0x00 SYN URGP=0 
+```
+# sudo tail /var/log/kern.log 
+Jul 19 19:21:07 vbox kernel: filter_IN_public_REJECT: IN=enp0s8 OUT= MAC=08:00:27:40:b7:96:d0:11:e5:1a:ce:3b:08:00 SRC=192.168.11.115 DST=192.168.11.108 LEN=64 TOS=0x00 PREC=0x00 TTL=64 ID=0 DF PROTO=TCP SPT=62290 DPT=80 WINDOW=65535 RES=0x00 CWR ECE SYN URGP=0
+Jul 19 19:21:07 vbox kernel: filter_IN_public_REJECT: IN=enp0s8 OUT= MAC=08:00:27:40:b7:96:d0:11:e5:1a:ce:3b:08:00 SRC=192.168.11.115 DST=192.168.11.108 LEN=64 TOS=0x00 PREC=0x00 TTL=64 ID=0 DF PROTO=TCP SPT=62291 DPT=443 WINDOW=65535 RES=0x00 CWR ECE SYN URGP=0
 ```
 
 ### ƒŠƒ‚[ƒgƒzƒXƒg‚ÌƒƒO‚ðUDP‚ÅŽó‚¯Žæ‚é
@@ -237,30 +207,27 @@ syslogƒT[ƒo‚Æ‚µ‚ÄƒŠƒ‚[ƒgƒzƒXƒg‚ÌƒƒO‚ðŽó‚¯Žæ‚é‚½‚ß‚ÌÝ’è‚ðs‚¢‚Ü‚·Bsyslog‚Ìƒ
 
 Ý’èƒtƒ@ƒCƒ‹/etc/rsyslog.conf“à‚É‚ ‚éˆÈ‰º‚Ì2s‚©‚çAs“ª‚ÌƒRƒƒ“ƒgƒAƒEƒg‚ðíœ‚µ‚ÄÝ’è‚ð—LŒø‚É‚µ‚Ü‚·B
 
-$ModLoad‚ÍAUDP—p‚ÌƒvƒƒgƒRƒ‹ƒ‚ƒWƒ…[ƒ‹‚Ìƒ[ƒh‚ðÝ’è‚µ‚Ä‚¢‚Ü‚·B$UDPServerRun‚ÍAUDP‚ÅƒƒOƒƒbƒZ[ƒW‚ðŽó‚¯Žæ‚éƒ|[ƒg”Ô†‚ðŽw’è‚µ‚Ä‚¢‚Ü‚·B
+module(load="imudp")‚ÍAUDP—p‚ÌƒvƒƒgƒRƒ‹ƒ‚ƒWƒ…[ƒ‹‚Ìƒ[ƒh‚ðÝ’è‚µ‚Ä‚¢‚Ü‚·Binput(type="imudp" port="514")‚ÍAUDP‚ÅƒƒOƒƒbƒZ[ƒW‚ðŽó‚¯Žæ‚éƒ|[ƒg”Ô†‚ð514”Ô‚Æ‚µ‚ÄŽw’è‚µ‚Ä‚¢‚Ü‚·B
 
-```shell-session
+```
 [root@server ~]## vi /etc/rsyslog.conf
 
 i—ªj
 # Provides UDP syslog reception
-$ModLoad imudp ¦©s“ª‚Ì#‚ðíœ
-$UDPServerRun 514 ¦©s“ª‚Ì#‚ðíœ
+module(load="imudp") # needs to be done just once
+input(type="imudp" port="514")
 ```
 
 rsyslogƒT[ƒrƒX‚ðÄ‹N“®‚µ‚Ü‚·Brsyslogd‚ªUDP‚Ìƒ|[ƒg”Ô†514”Ô‚Å‘Ò‚¿Žó‚¯‚é‚æ‚¤‚É‚È‚è‚Ü‚·B
 
-```shell-session
-[root@server ~]# service rsyslog restart
-ƒVƒXƒeƒ€ƒƒK[‚ð’âŽ~’†:                                    [  OK  ]
-ƒVƒXƒeƒ€ƒƒK[‚ð‹N“®’†:                                    [  OK  ]
-[root@server ~]# lsof -i:514
-COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
-rsyslogd 9282 root    3u  IPv4 134339      0t0  UDP *:syslog 
-rsyslogd 9282 root    4u  IPv6 134340      0t0  UDP *:syslog 
+```
+$ sudo systemctl restart rsyslog
+[linuc@vbox ~]$ ss -uln | grep 514
+UNCONN 0      0                                0.0.0.0:514        0.0.0.0:*
+UNCONN 0      0                                   [::]:514           [::]:*
 ```
 
-Ý’èŒãAiptables‚ÌÝ’è‚ð•ÏX‚µAUDP‚Ìƒ|[ƒg”Ô†514”Ô‚Ö‚ÌƒpƒPƒbƒg‚ð‹–‰Â‚·‚é‚æ‚¤‚ÉÝ’è‚ð•ÏX‚·‚é•K—v‚ª‚ ‚è‚Ü‚·BÝ’è‚É‚Â‚¢‚Ä‚ÍŒãq‚µ‚Ü‚·B
+Ý’èŒãAfirewalld‚ÌÝ’è‚ð•ÏX‚µAŠO•”‚©‚ç‚ÌUDP‚Ìƒ|[ƒg”Ô†514”Ô‚Ö‚ÌƒpƒPƒbƒg‚ð‹–‰Â‚·‚é‚æ‚¤‚ÉÝ’è‚ð•ÏX‚·‚é•K—v‚ª‚ ‚è‚Ü‚·BÝ’è‚É‚Â‚¢‚Ä‚ÍŒãq‚µ‚Ü‚·B
 
 ### ƒŠƒ‚[ƒgƒzƒXƒg‚ÌƒƒO‚ðTCP‚ÅŽó‚¯Žæ‚é
 ƒƒOƒƒbƒZ[ƒW‚Ì‘—ŽóM‚ÉTCP‚ðŽg—p‚·‚é‚±‚Æ‚É‚æ‚èAUDP‚Å”­¶‚µ‚Ä‚¢‚½ƒƒO‚ÌŽæ‚è‚±‚Ú‚µ‚ð–h‚®‚±‚Æ‚ª‚Å‚«‚Ü‚·BUDP‚ÍƒZƒbƒVƒ‡ƒ“ƒŒƒX‚ÈƒvƒƒgƒRƒ‹‚Ì‚½‚ßA‘—ŽóM‚ÉŽ¸”s‚µ‚½Žž‚ÉÄ‘—M‚·‚éŽd‘g‚Ý‚ª–³‚¢‚½‚ß‚Å‚·B
@@ -271,66 +238,42 @@ rsyslogd 9282 root    4u  IPv6 134340      0t0  UDP *:syslog
 
 Ý’èƒtƒ@ƒCƒ‹/etc/rsyslog.conf“à‚É‚ ‚éˆÈ‰º‚Ì2s‚©‚çAs“ª‚ÌƒRƒƒ“ƒgƒAƒEƒg‚ðíœ‚µ‚ÄÝ’è‚ð—LŒø‚É‚µ‚Ü‚·B
 
-$ModLoad‚ÍATCP—p‚ÌƒvƒƒgƒRƒ‹ƒ‚ƒWƒ…[ƒ‹‚Ìƒ[ƒh‚ðÝ’è‚µ‚Ä‚¢‚Ü‚·B$InputTCPServerRun‚ÍATCP‚ÅƒƒOƒƒbƒZ[ƒW‚ðŽó‚¯Žæ‚éƒ|[ƒg”Ô†‚ðŽw’è‚µ‚Ä‚¢‚Ü‚·B
+module(load="imtcp")‚ÍATCP—p‚ÌƒvƒƒgƒRƒ‹ƒ‚ƒWƒ…[ƒ‹‚Ìƒ[ƒh‚ðÝ’è‚µ‚Ä‚¢‚Ü‚·Binput(type="imtcp" port="514")‚ÍATCP‚ÅƒƒOƒƒbƒZ[ƒW‚ðŽó‚¯Žæ‚éƒ|[ƒg”Ô†‚ð514”Ô‚Æ‚µ‚ÄŽw’è‚µ‚Ä‚¢‚Ü‚·B
 
-```shell-session
+```
 [root@server ~]# vi /etc/rsyslog.conf
 
 i—ªj
 # Provides TCP syslog reception
-$ModLoad imtcp ¦©s“ª‚Ì#‚ðíœ
-$InputTCPServerRun 514 ¦©s“ª‚Ì#‚ðíœ
+module(load="imtcp") # needs to be done just once
+input(type="imtcp" port="514")
 ```
 
 rsyslogƒT[ƒrƒX‚ðÄ‹N“®‚µ‚Ü‚·Brsyslogd‚ªTCP‚Ìƒ|[ƒg”Ô†514”Ô‚Å‘Ò‚¿Žó‚¯‚é‚æ‚¤‚É‚È‚è‚Ü‚·B
 
-```shell-session
-[root@server ~]# service rsyslog restart
-ƒVƒXƒeƒ€ƒƒK[‚ð’âŽ~’†:                                    [  OK  ]
-ƒVƒXƒeƒ€ƒƒK[‚ð‹N“®’†:                                    [  OK  ]
-[root@server ~]# lsof -i:514
-COMMAND    PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
-rsyslogd 24138 root    1u  IPv4 107209      0t0  TCP *:shell (LISTEN)
-rsyslogd 24138 root    3u  IPv4 107202      0t0  UDP *:syslog 
-rsyslogd 24138 root    4u  IPv6 107203      0t0  UDP *:syslog 
-rsyslogd 24138 root    8u  IPv6 107210      0t0  TCP *:shell (LISTEN)
+```
+$ sudo systemctl restart rsyslog
+[linuc@vbox ~]$ ss -tln | grep 514
+LISTEN 0      25           0.0.0.0:514       0.0.0.0:*
+LISTEN 0      25              [::]:514          [::]:*
 ```
 
-ƒ|[ƒg‚ªshell‚Æ•\Ž¦‚³‚ê‚Ä‚¢‚é‚Ì‚ÍAƒ|[ƒg”Ô†‚ÌÝ’èƒtƒ@ƒCƒ‹/etc/services‚Å’è‹`‚³‚ê‚Ä‚¢‚é‚½‚ß‚Å‚·B“®ì‚É‰e‹¿‚Í‚ ‚è‚Ü‚¹‚ñB
+Ý’èŒãAfirewalld‚ÌÝ’è‚ð•ÏX‚µAŠO•”‚©‚ç‚ÌTCP‚Ìƒ|[ƒg”Ô†514”Ô‚Ö‚ÌƒpƒPƒbƒg‚ð‹–‰Â‚·‚é‚æ‚¤‚ÉÝ’è‚ð•ÏX‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
 
-```shell-session
-# grep 514 /etc/services
-shell           514/tcp         cmd             # no passwords used
-syslog          514/udp
-i—ªj
+### syslogƒT[ƒo[‚Ì‚½‚ß‚Ìfirewalld‚ÌÝ’è
+firewalld‚ÌÝ’è‚ð•ÏX‚µATCP‚¨‚æ‚ÑUDP‚Ìƒ|[ƒg”Ô†514”Ô‚ÌÚ‘±‚ð‹–‰Â‚µ‚Ä‚¨‚«‚Ü‚·B
+
+
 ```
-
-Ý’èŒãAiptables‚ÌÝ’è‚ð•ÏX‚µATCP‚Ìƒ|[ƒg”Ô†514”Ô‚Ö‚ÌƒpƒPƒbƒg‚ð‹–‰Â‚·‚é‚æ‚¤‚ÉÝ’è‚ð•ÏX‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
-
-### syslogƒT[ƒo‚Ìiptables‚ÌÝ’è
-syslogƒT[ƒo‚Ìiptables‚ÌÝ’è‚ð•ÏX‚µATCP‚¨‚æ‚ÑUDP‚Ìƒ|[ƒg”Ô†514”Ô‚ÌÚ‘±‚ð‹–‰Â‚µ‚Ä‚¨‚«‚Ü‚·B‚ ‚é‚¢‚ÍAiptablesƒT[ƒrƒX‚ð’âŽ~‚µ‚Ä‚¨‚«‚Ü‚·B
-
-```shell-session
-[root@server ~]# service iptables stop
-iptables: ƒ`ƒFƒCƒ“‚ðƒ|ƒŠƒV[ ACCEPT ‚ÖÝ’è’†filter         [  OK  ]
-iptables: ƒtƒ@ƒCƒAƒEƒH[ƒ‹ƒ‹[ƒ‹‚ðÁ‹Ž’†:                  [  OK  ]
-iptables: ƒ‚ƒWƒ…[ƒ‹‚ðŽæ‚èŠO‚µ’†:                          [  OK  ]
-```
-
-/etc/sysconfig/iptables‚Ö‚Ìiptables‚Ìƒ‹[ƒ‹‚ð’Ç‰Á‚·‚é‚É‚ÍAˆÈ‰º‚Ì‚æ‚¤‚É‚È‚è‚Ü‚·BƒpƒPƒbƒg‚ðReject‚·‚éƒ‹[ƒ‹‚Ì‘O‚ÉAƒ‹[ƒ‹Ý’è‚ð’Ç‰Á‚µ‚Ü‚·Bƒ‹[ƒ‹Ý’è‚ð’Ç‰Á‚µ‚½‚çiptablesƒT[ƒrƒX‚ðreload‚µ‚Ä‚¨‚«‚Ü‚·B
-
-```shell-session
-[root@server ~]# vi /etc/sysconfig/iptables
-i—ªj
-¦-A INPUT -m state --state NEW -m udp -p udp --dport 514 -j ACCEPT ©V‹K‚É’Ç‰Á
-¦-A INPUT -m state --state NEW -m tcp -p tcp --dport 514 -j ACCEPT ©V‹K‚É’Ç‰Á
--A INPUT -j REJECT --reject-with icmp-host-prohibited
+sudo firewall-cmd --add-port=514/udp --permanent
+sudo firewall-cmd --add-port=514/tcp --permanent
+sudo firewall-cmd --reload
 ```
 
 ### syslogƒNƒ‰ƒCƒAƒ“ƒg‚ÌÝ’è
-ƒlƒbƒgƒ[ƒN‚ÅÚ‘±‚³‚ê‚½syslogƒT[ƒo‚É‘Î‚µ‚ÄƒƒOƒƒbƒZ[ƒW‚ð‘—M‚·‚ésyslogƒNƒ‰ƒCƒAƒ“ƒg‚ðÝ’è‚µ‚Ü‚·B
+ƒlƒbƒgƒ[ƒN‚ÅÚ‘±‚³‚ê‚½syslogƒT[ƒo[‚É‘Î‚µ‚ÄƒƒOƒƒbƒZ[ƒW‚ð‘—M‚·‚ésyslogƒNƒ‰ƒCƒAƒ“ƒg‚ðÝ’è‚µ‚Ü‚·B
 
-syslogƒNƒ‰ƒCƒAƒ“ƒg‘¤‚ÌƒzƒXƒg‚Å‚àrsyslog‚ðÝ’è‚µAƒAƒNƒVƒ‡ƒ“‚ÌÝ’è‚Åƒlƒbƒgƒ[ƒNã‚ÌsyslogƒT[ƒo‚ðŽw’è‚µ‚Ü‚·B
+syslogƒNƒ‰ƒCƒAƒ“ƒg‘¤‚ÌƒzƒXƒg‚Å‚àrsyslog‚ðÝ’è‚µAƒAƒNƒVƒ‡ƒ“‚ÌÝ’è‚Åƒlƒbƒgƒ[ƒNã‚Ìsyslog ƒT[ƒo[‚ðŽw’è‚µ‚Ü‚·B
 
 syslogƒNƒ‰ƒCƒAƒ“ƒg‚ÌÝ’èƒtƒ@ƒCƒ‹/etc/rsyslog.conf‚ðC³‚µ‚Ü‚·B
 
@@ -338,35 +281,34 @@ authprivƒtƒ@ƒVƒŠƒeƒB‚ÉŠÖ‚·‚é‚·‚×‚Ä‚ÌƒƒO‚ðsyslogƒT[ƒo‚É‘—M‚·‚é‚æ‚¤‚ÉÝ’è‚ð’Ç‰Á
 
 ‚Ü‚½Amailƒtƒ@ƒVƒŠƒeƒB‚ÉŠÖ‚·‚é‚·‚×‚Ä‚ÌƒƒO‚ðsyslogƒT[ƒo‚É‘—M‚·‚é‚æ‚¤‚ÉÝ’è‚ð’Ç‰Á‚µ‚Ü‚·B@@‘—Mæ‚ÆŽw’è‚·‚é‚±‚Æ‚ÅTCP‚ðŽg—p‚µ‚½‘—M‚ðŽw’è‚Å‚«‚Ü‚·B
 
-```shell-session
+```
 # vi /etc/rsyslog.conf
 
 # The authpriv file has restricted access.
 authpriv.*                                              /var/log/secure
-¦authpriv.*                                              @192.168.0.10 ©V‹K‚É’Ç‰Á
+authpriv.*                                              @192.168.0.10
 
 # Log all the mail messages in one place.
 mail.*                                                  -/var/log/maillog
-¦mail.*                                                  @@192.168.0.10 ©V‹K‚É’Ç‰Á```
+mail.*                                                  @@192.168.0.10
+```
 
 syslogƒNƒ‰ƒCƒAƒ“ƒg‚ÌrsyslogƒT[ƒrƒX‚ðÄ‹N“®‚µ‚Ü‚·B
 
-```shell-session
-[root@client ~]# service rsyslog restart
-ƒVƒXƒeƒ€ƒƒK[‚ð’âŽ~’†:                                    [  OK  ]
-ƒVƒXƒeƒ€ƒƒK[‚ð‹N“®’†:                                    [  OK  ]
+```
+$ sudo systemctl restart rsyslog
 ```
 
 #### UDP‚ÅƒƒO‚ð‘—M
 syslogƒNƒ‰ƒCƒAƒ“ƒg‚ÅloggerƒRƒ}ƒ“ƒh‚ðŽÀs‚µ‚ÄAauthpriv.debugƒvƒ‰ƒCƒIƒŠƒeƒB‚ÅƒƒO‚ðo—Í‚µ‚Ü‚·B
 
-```shell-session
+```
 [root@client ~]# logger -p authpriv.debug "This is auth log over UDP"
 ```
 
 syslogƒT[ƒoã‚Ì/var/log/secure‚ÉƒƒO‚ªo—Í‚³‚ê‚é‚±‚Æ‚ðŠm”F‚µ‚Ü‚·B
 
-```shell-session
+```
 [root@server ~]# tail -f /var/log/secure 
 i—ªj
 Dec 25 17:16:50 client root: This is auth log over UDP
@@ -375,13 +317,13 @@ Dec 25 17:16:50 client root: This is auth log over UDP
 #### TCP‚ÅƒƒO‚ð‘—M
 syslogƒNƒ‰ƒCƒAƒ“ƒg‚ÅloggerƒRƒ}ƒ“ƒh‚ðŽÀs‚µ‚ÄAmail.debugƒvƒ‰ƒCƒIƒŠƒeƒB‚ÅƒƒO‚ðo—Í‚µ‚Ü‚·B
 
-```shell-session
+```
 [root@client ~]# logger -p mail.debug "This is mail log over TCP"
 ```
 
 syslogƒT[ƒoã‚Ì/var/log/maillog‚ÉƒƒO‚ªo—Í‚³‚ê‚é‚±‚Æ‚ðŠm”F‚µ‚Ü‚·B
 
-```shell-session
+```
 [root@server ~]# tail /var/log/secure
 i—ªj
 Dec 25 17:18:03 client root: This is mail log over TCP
@@ -484,7 +426,7 @@ include‚ÅƒfƒBƒŒƒNƒgƒŠ‚ðŽw’è‚µ‚½ê‡‚É“Ç‚Ýž‚Þƒtƒ@ƒCƒ‹‚©‚çœŠO‚·‚éƒtƒ@ƒCƒ‹‚ÌŠg’£Ž
 ### ƒƒOƒ[ƒe[ƒgÝ’èƒtƒ@ƒCƒ‹‚ÌŠm”F
 /etc/logrotate.d/httpd‚ðŽQl‚ÉAƒ[ƒe[ƒg‚ÌÝ’è‚ðŠm”F‚µ‚Ü‚·B
 
-```shell-session
+```
 # cat /etc/logrotate.d/httpd 
 /var/log/httpd/*log {
     missingok
@@ -544,7 +486,7 @@ telnet Ú‘±æIPƒAƒhƒŒƒX ƒ|[ƒg”Ô†
 
 ‚½‚¾‚µAƒfƒBƒXƒgƒŠƒrƒ…[ƒVƒ‡ƒ“‚É‚æ‚Á‚Ä‚ÍtelnetƒRƒ}ƒ“ƒh‚ªƒCƒ“ƒXƒg[ƒ‹‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅAƒCƒ“ƒXƒg[ƒ‹‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
 
-```shell-session
+```
 # yum install telnet
 ```
 
@@ -563,7 +505,7 @@ netstatƒRƒ}ƒ“ƒh‚ðŽg‚Á‚ÄAƒT[ƒrƒXƒvƒƒZƒX‚Æƒ|[ƒg”Ô†A‚³‚ç‚ÉIPƒAƒhƒŒƒX‚Æ‚ÌƒoƒCƒ
 
 netstatƒRƒ}ƒ“ƒh‚É-pƒIƒvƒVƒ‡ƒ“‚ðŽw’è‚µ‚ÄŽÀs‚µ‚Ü‚·B
 
-```shell-session
+```
 # netstat -anp | grep sshd
 tcp        0      0 0.0.0.0:22     0.0.0.0:*  LISTEN   1493/sshd
 ```
@@ -577,54 +519,7 @@ tcp        0      0 0.0.0.0:22     0.0.0.0:*  LISTEN   1493/sshd
 
 ### ƒpƒPƒbƒgƒLƒƒƒvƒ`ƒƒ‚É‚æ‚é’ÊM“à—e‚ÌŠm”F
 ƒT[ƒo‚Æ‚ÌÚ‘±‚ªs‚¦‚Ä‚¨‚èAƒƒO‚É‚àŽè‚ª‚©‚è‚Æ‚È‚éƒGƒ‰[‚ª–³‚¢‚ªAƒT[ƒrƒX‚ª³‚µ‚­“®ì‚µ‚È‚¢‚æ‚¤‚Èê‡‚É‚ÍA’ÊMƒpƒPƒbƒg‚ðƒLƒƒƒvƒ`ƒƒ‚µ‚ÄA’ÊM“à—e‚ðŠm”F‚µ‚Ü‚·BƒpƒPƒbƒg‚ðƒLƒƒƒvƒ`ƒƒ‚·‚é‚±‚Æ‚ÅAƒT[ƒo‚ÆƒNƒ‰ƒCƒAƒ“ƒg‚ÌŠÔ‚Å‚Ç‚Ì‚æ‚¤‚È’ÊM‚ªs‚í‚ê‚Ä‚¢‚é‚©‚ðŠm”F‚Å‚«‚Ü‚·B
-ƒpƒPƒbƒgƒLƒƒƒvƒ`ƒƒ‚Ìƒc[ƒ‹‚Æ‚µ‚Ä‚ÍAƒVƒ“ƒvƒ‹‚É‹@”\‚·‚étcpdumpƒRƒ}ƒ“ƒh‚ÆAGUI‚Å‘€ì‚Å‚«‚éWireshark‚È‚Ç‚ª‚ ‚è‚Ü‚·B
-
-### tcpdumpƒRƒ}ƒ“ƒh‚ðŽg‚Á‚½ƒpƒPƒbƒgƒLƒƒƒvƒ`ƒƒ
-tcpdumpƒRƒ}ƒ“ƒh‚ÍA‘—ŽóM‚µ‚Ä‚¢‚éƒpƒPƒbƒg‚ðƒLƒƒƒvƒ`ƒƒ‚µ‚ÄA‚»‚Ìî•ñ‚ð•W€o—Í‚Éo—Í‚·‚éƒRƒ}ƒ“ƒh‚Å‚·B
-tcpdumpƒRƒ}ƒ“ƒh‚ÍƒfƒtƒHƒ‹ƒg‚Å‚Í‘S‚Ä‚ÌƒpƒPƒbƒg‚Ìî•ñ‚ðo—Í‚·‚é‚Ì‚ÅAƒIƒvƒVƒ‡ƒ“‚Åo—ÍŒ‹‰Ê‚ðƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚µ‚ÄA•K—v‚Èî•ñ‚ð“¾‚ç‚ê‚é‚æ‚¤‚É‚µ‚Ü‚·B
-
-—á‚Æ‚µ‚ÄA-iƒIƒvƒVƒ‡ƒ“‚Åƒlƒbƒgƒ[ƒNƒCƒ“ƒ^[ƒtƒF[ƒX‚ðŽw’è‚µ‚ÄAeth0‚ð’Ê‚¶‚Ä“ü‚Á‚Ä‚­‚é’ÊM‚ÌƒpƒPƒbƒg‚ðŽæ“¾‚µ‚Ä‚Ý‚Ü‚·B
-
-ƒT[ƒoã‚ÅtcpdumpƒRƒ}ƒ“ƒh‚ðŽÀs‚µ‚Ü‚·BŒ‹‰Ê‚ðƒŠƒ_ƒCƒŒƒNƒg‚µ‚ÄAtcpdump.outƒtƒ@ƒCƒ‹‚É‹L˜^‚µ‚Ü‚·B
-
-```shell-session
-# tcpdump -i eth0 > tcpdump.out
-tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
-listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes
-```
-
-ƒNƒ‰ƒCƒAƒ“ƒg‚©‚çSSH‚ÅƒT[ƒo‚ÉƒƒOƒCƒ“‚µAƒƒOƒAƒEƒg‚µ‚Ü‚·B
-
-ƒT[ƒo‚ÅCtrl+CƒL[‚ð“ü—Í‚µ‚ÄAtcpdumpƒRƒ}ƒ“ƒh‚ðI—¹‚µ‚Ü‚·B
-
-```shell-session
-listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes
-¦^C¦216 packets captured ¦©Ctrl+CƒL[‚ð“ü—Í
-216 packets received by filter
-0 packets dropped by kernel
-```
-
-ì¬‚³‚ê‚½tcpdump.outƒtƒ@ƒCƒ‹‚Ì“à—e‚ðŠm”F‚µ‚Ü‚·B
-
-```shell-session
-# grep ssh tcpdump.out
-13:17:06.041096 IP client.example.com.43880 > server.example.com.ssh: ¦Flags [S]¦, seq 4050960604, win 14600, options [mss 1460,sackOK,TS val 13231 ecr 0,nop,wscale 6], length 0
-13:17:06.041125 IP server.example.com.ssh > client.example.com.43880: ¦Flags [S.]¦, seq 3335753529, ¦ack 4050960605¦, win 14480, options [mss 1460,sackOK,TS val 22019990 ecr 13231,nop,wscale 6], length 0
-13:17:06.041240 IP client.example.com.43880 > server.example.com.ssh: ¦Flags [.]¦, ¦ack 1¦, win 229, options [nop,nop,TS val 13231 ecr 22019990], length 0
-```
-
-¶‚©‚çŽžŠÔiƒ}ƒCƒNƒ•b’PˆÊ)A‘—MŒ³IPƒAƒhƒŒƒX.ƒ|[ƒg”Ô†A’ÊM‚ÌŒü‚«‚Ì–îˆóAˆ¶æƒzƒXƒg.ƒ|[ƒg”Ô†Aƒtƒ‰ƒOiSYN)AƒV[ƒPƒ“ƒXAƒEƒBƒ“ƒhƒEAƒIƒvƒVƒ‡ƒ“AÅ‘åƒZƒOƒƒ“ƒgƒTƒCƒY‚Æ‚È‚Á‚Ä‚¢‚Ü‚·B
-
-#### 1s–Ú
-ƒNƒ‰ƒCƒAƒ“ƒg‚Ìƒ|[ƒg43880‚©‚çƒT[ƒo‚Ìƒ|[ƒg22isshj‚ÉŒü‚¯‚ÄSYNƒtƒ‰ƒO‚ÌTCPƒpƒPƒbƒg‚Æ‘—M‚µ‚ÄÚ‘±‚Ì—v‹
-
-#### 2s–Ú
-1s–Ú‚ÌƒpƒPƒbƒg‚É‘Î‚µ‚ÄASYN+ACKƒtƒ‰ƒO‚ÌTCPƒpƒPƒbƒg‚ð‘—M
-
-#### 3s–Ú
-ACKƒtƒ‰ƒO‚ÌTCPƒpƒPƒbƒg‚ð‘—M‚µ‚ÄATCP‚ÌƒXƒŠ[ƒEƒFƒCƒnƒ“ƒhƒVƒFƒCƒN‚ªŠ®—¹
-
-‚±‚Ì‚æ‚¤‚ÉAƒT[ƒo‚ÆƒNƒ‰ƒCƒAƒ“ƒg‚ÌŠÔ‚Ì’ÊM‚ðŠm”F‚Å‚«‚Ü‚·B
+ƒpƒPƒbƒgƒLƒƒƒvƒ`ƒƒ‚Ìƒc[ƒ‹‚Æ‚µ‚Ä‚ÍAGUI‚Å‘€ì‚Å‚«‚éWireshark‚È‚Ç‚ª‚ ‚è‚Ü‚·B
 
 ### Wireshark‚ðŽg‚Á‚½Šm”F
 tcpdump‚Ìo—Íƒtƒ@ƒCƒ‹‚Í­—Ê‚ÌƒpƒPƒbƒg‚ðŒ©‚éê‡‚É‚Í[•ª‚Å‚·‚ªA‘å—Ê‚ÌƒpƒPƒbƒg‚ðŠm”F‚·‚é‚É‚Í‰Â“Ç«‚ª’á‚¢‚Ì‚ª“ï“_‚Å‚·B
@@ -633,14 +528,14 @@ GUI‚ðŽ‚ÂƒpƒPƒbƒgƒLƒƒƒvƒ`ƒƒƒŠƒ“ƒOƒ\ƒtƒg‚Å‚ ‚éWireshark‚ðŽg‚¦‚ÎAƒpƒPƒbƒgƒLƒƒƒvƒ`
 
 Wireshark‚ðƒCƒ“ƒXƒg[ƒ‹‚µ‚Ü‚·BGUI”Å‚ðƒCƒ“ƒXƒg[ƒ‹‚·‚é‚½‚ßAwireshark-gnomeƒpƒbƒP[ƒW‚ðƒCƒ“ƒXƒg[ƒ‹‚µ‚Ü‚·B
 
-```shell-session
+```
 # yum install wireshark-gnome
 ```
 
 1. Wireshark‚ð‹N“®‚µ‚Ü‚·B
 CentOS‚ÉGUI‚ÅƒƒOƒCƒ“‚µA’[––‚©‚çwiresharkƒRƒ}ƒ“ƒh‚ðŽÀs‚·‚é‚©AuƒAƒvƒŠƒP[ƒVƒ‡ƒ“vƒƒjƒ…[¨uƒCƒ“ƒ^[ƒlƒbƒgv¨uWireshark Network Analyzerv‚ð‹N“®‚µ‚Ü‚·B
 
-```shell-session
+```
 # wireshark &
 ```
 
@@ -679,72 +574,53 @@ CentOS‚ÉGUI‚ÅƒƒOƒCƒ“‚µA’[––‚©‚çwiresharkƒRƒ}ƒ“ƒh‚ðŽÀs‚·‚é‚©AuƒAƒvƒŠƒP[ƒVƒ‡
 uFilter:v‚ÌƒeƒLƒXƒgƒ{ƒbƒNƒX‚Éuhttpv‚Æ“ü—Í‚µ‚ÄAEnterƒL[‚ð‰Ÿ‚µ‚Äi‚èž‚Ý‚Ü‚·B
 ŽQÆ‚µ‚½‚¢ƒpƒPƒbƒg‚ð‘I‘ð‚µAƒEƒCƒ“ƒhƒE^‚ñ’†‚ÌÚ×î•ñ‚ÅuHypertext Transfer Protocolv‚ðƒ_ƒuƒ‹ƒNƒŠƒbƒN‚µ‚ÄAHTTP’ÊM‚Ì“à—e‚ðŠm”F‚µ‚Ü‚·B
 
-## ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€áŠQ‚ÌC•œ
-ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€áŠQ‚ª”­¶‚µ‚ÄOS‚ª³í‚É‹N“®‚µ‚È‚­‚È‚Á‚½ê‡A‹N“®ƒfƒBƒXƒN‚Å‚ ‚é’ö“x‚Ü‚ÅƒVƒXƒeƒ€‹N“®‚ª‰Â”\‚È‚ç‚ÎƒVƒ“ƒOƒ‹ƒ†[ƒU[ƒ‚[ƒh‚Å‹N“®‚µ‚½‚èA‹N“®ƒfƒBƒXƒN‚ÅƒVƒXƒeƒ€‚ð‹N“®‚Å‚«‚È‚¢ê‡‚É‚ÍƒCƒ“ƒXƒg[ƒ‹—p‚ÌƒƒfƒBƒA‚ðƒŒƒXƒLƒ…[ƒ‚[ƒh‚Å‹N“®‚·‚é‚±‚Æ‚ÅAƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ðC•œ‚Å‚«‚Ü‚·B
 
-### ƒVƒ“ƒOƒ‹ƒ†[ƒUƒ‚[ƒh‚Å‚Ì‹N“®
-ƒVƒ“ƒOƒ‹ƒ†[ƒUƒ‚[ƒh‚ÅLinux‚ð‹N“®‚·‚é‚ÆAƒ‰ƒ“ƒŒƒxƒ‹1‚Å‹N“®‚·‚é‚½‚ßŠeŽíƒT[ƒrƒX‚Ì‹N“®‚ªs‚í‚ê‚¸Arootƒ†[ƒU‚¾‚¯‚ªƒVƒXƒeƒ€‚ÉƒAƒNƒZƒX‚Å‚«‚éó‘Ô‚Å‹N“®‚µ‚Ü‚·B
-‚½‚Æ‚¦‚ÎAƒT[ƒrƒX‚ÌÝ’è‚ðŠÔˆá‚¦‚½‚½‚ßƒ‰ƒ“ƒŒƒxƒ‹3‚âƒ‰ƒ“ƒŒƒxƒ‹5‚Å‹N“®‚·‚é‚ÆƒVƒXƒeƒ€‚É•s‹ï‡‚ª”­¶‚·‚éê‡‚É‚ÍAƒVƒ“ƒOƒ‹ƒ†[ƒU[ƒ‚[ƒh‚Å‹N“®‚µ‚ÄÝ’è‚ðC³‚µ‚Ü‚·B
+¦ˆÈ‰ºAWireshark‚Å“¯—l‚Ì‚±‚Æ‚ð‚â‚é‚Æ‚«‚ÌŽQl—p‚ÉƒL[ƒv
 
-‹N“®Žž‚É•\Ž¦‚Å‚«‚éGRUBƒƒjƒ…[‚Å‹N“®ƒpƒ‰ƒ[ƒ^[‚ð•ÒW‚µ‚ÄƒVƒ“ƒOƒ‹ƒ‚[ƒh‚Å‹N“®‚µ‚Ü‚·B
+### tcpdumpƒRƒ}ƒ“ƒh‚ðŽg‚Á‚½ƒpƒPƒbƒgƒLƒƒƒvƒ`ƒƒ
+tcpdumpƒRƒ}ƒ“ƒh‚ÍA‘—ŽóM‚µ‚Ä‚¢‚éƒpƒPƒbƒg‚ðƒLƒƒƒvƒ`ƒƒ‚µ‚ÄA‚»‚Ìî•ñ‚ð•W€o—Í‚Éo—Í‚·‚éƒRƒ}ƒ“ƒh‚Å‚·B
+tcpdumpƒRƒ}ƒ“ƒh‚ÍƒfƒtƒHƒ‹ƒg‚Å‚Í‘S‚Ä‚ÌƒpƒPƒbƒg‚Ìî•ñ‚ðo—Í‚·‚é‚Ì‚ÅAƒIƒvƒVƒ‡ƒ“‚Åo—ÍŒ‹‰Ê‚ðƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚µ‚ÄA•K—v‚Èî•ñ‚ð“¾‚ç‚ê‚é‚æ‚¤‚É‚µ‚Ü‚·B
 
-1. ‹N“®Žž‚ÌƒfƒtƒHƒ‹ƒg‚Å‚ÍAÝ’è‚³‚ê‚½•b”iƒfƒtƒHƒ‹ƒg‚Å‚Í5•bj‚ª‰ß‚¬‚é‚ÆŽ©“®“I‚É‹N“®‚µ‚Ü‚·‚ªA‰½‚©ƒL[‚ð“ü—Í‚·‚é‚ÆGRUBƒƒjƒ…[‚ª•\Ž¦‚³‚ê‚Ü‚·B
-2. ƒL[ƒ{[ƒh‚ÌeƒL[‚ð‰Ÿ‚µ‚Ä‹N“®ƒpƒ‰ƒ[ƒ^[‚Ì•ÒWƒ‚[ƒh‚É“ü‚èAkernels‚ð‘I‘ð‚µ‚Ä‚³‚ç‚ÉeƒL[‚ð‰Ÿ‚µA––”ö‚Éusinglevi‚ ‚é‚¢‚Í1j‚Æƒpƒ‰ƒ[ƒ^[‚ð’Ç‹L‚µ‚Ü‚·B
-3. EnterƒL[‚ð‰Ÿ‚µ‚Ä•ÒWƒ‚[ƒh‰æ–Ê‚É–ß‚è‚Ü‚·B
-4. bƒL[‚ð‰Ÿ‚µ‚ÄƒVƒ“ƒOƒ‹ƒ†[ƒUƒ‚[ƒh‹N“®‚µ‚Ü‚·B
+—á‚Æ‚µ‚ÄA-iƒIƒvƒVƒ‡ƒ“‚Åƒlƒbƒgƒ[ƒNƒCƒ“ƒ^[ƒtƒF[ƒX‚ðŽw’è‚µ‚ÄAeth0‚ð’Ê‚¶‚Ä“ü‚Á‚Ä‚­‚é’ÊM‚ÌƒpƒPƒbƒg‚ðŽæ“¾‚µ‚Ä‚Ý‚Ü‚·B
 
-![ƒJ[ƒlƒ‹ƒpƒ‰ƒ[ƒ^‚ÅƒVƒ“ƒOƒ‹ƒ†[ƒU[ƒ‚[ƒh‹N“®‚ðÝ’è‚µ‚Ü‚·](singleuserboot.png)
+ƒT[ƒoã‚ÅtcpdumpƒRƒ}ƒ“ƒh‚ðŽÀs‚µ‚Ü‚·BŒ‹‰Ê‚ðƒŠƒ_ƒCƒŒƒNƒg‚µ‚ÄAtcpdump.outƒtƒ@ƒCƒ‹‚É‹L˜^‚µ‚Ü‚·B
 
-”5
+```
+# tcpdump -i eth0 > tcpdump.out
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes
+```
 
-5. ƒVƒ“ƒOƒ‹ƒ†[ƒUƒ‚[ƒh‚Å‹N“®‚·‚é‚ÆAƒpƒXƒ[ƒh–³‚µ‚Årootƒ†[ƒU‚Æ‚µ‚ÄƒƒOƒCƒ“‚µ‚Ä‚¢‚éó‘Ô‚Æ‚È‚è‚Ü‚·B•K—v‚É‰ž‚¶‚ÄfsckƒRƒ}ƒ“ƒh‚Åƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ðC•œ‚µ‚½‚èAÝ’èƒtƒ@ƒCƒ‹‚ðC³‚·‚é‚È‚Ç‚µ‚Äƒgƒ‰ƒuƒ‹‚Ì‰ðŒˆ‚ðs‚¢‚Ü‚·B
-6. ƒVƒFƒ‹‚©‚çexit‚·‚é‚ÆAƒfƒtƒHƒ‹ƒg‚Ìƒ‰ƒ“ƒŒƒxƒ‹‚ÉˆÚs‚µ‚Ü‚·B
+ƒNƒ‰ƒCƒAƒ“ƒg‚©‚çSSH‚ÅƒT[ƒo‚ÉƒƒOƒCƒ“‚µAƒƒOƒAƒEƒg‚µ‚Ü‚·B
 
-### ƒCƒ“ƒXƒg[ƒ‹DVDƒƒfƒBƒA‚©‚çƒŒƒXƒLƒ…[ƒ‚[ƒh‚Å‹N“®
-‹N“®ƒfƒBƒXƒN‚Ìƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ÉáŠQ‚ª”­¶‚µ‚ÄA³í‚ÉOS‚ª‹N“®‚Å‚«‚È‚­‚È‚Á‚Ä‚µ‚Ü‚Á‚½ê‡‚É‚ÍAƒCƒ“ƒXƒg[ƒ‹DVDƒƒfƒBƒA‚©‚çƒŒƒXƒLƒ…[ƒ‚[ƒh‚Å‹N“®‚µAƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ÌC•œ‚ðs‚¢‚Ü‚·B
+ƒT[ƒo‚ÅCtrl+CƒL[‚ð“ü—Í‚µ‚ÄAtcpdumpƒRƒ}ƒ“ƒh‚ðI—¹‚µ‚Ü‚·B
 
-1. CentOS‚ÌƒCƒ“ƒXƒg[ƒ‹DVDƒƒfƒBƒA‚ÅƒVƒXƒeƒ€‚ð‹N“®‚µ‚Ü‚·BBIOS‚Å‹N“®ƒfƒoƒCƒX‚Ì‡”Ô‚ð•ÏX‚·‚é‚È‚Ç‚µ‚ÄADVDƒhƒ‰ƒCƒu‚©‚ç‹N“®‚·‚é‚æ‚¤‚É‚µ‚Ü‚·B
+```
+listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes
+¦^C¦216 packets captured ¦©Ctrl+CƒL[‚ð“ü—Í
+216 packets received by filter
+0 packets dropped by kernel
+```
 
-1. ‹N“®ƒƒjƒ…[‚©‚çuRescue installed systemv‚ð‘I‘ð‚µ‚Ü‚·B
+ì¬‚³‚ê‚½tcpdump.outƒtƒ@ƒCƒ‹‚Ì“à—e‚ðŠm”F‚µ‚Ü‚·B
 
-![‹N“®ƒƒjƒ…[](rescue1.png)
+```
+# grep ssh tcpdump.out
+13:17:06.041096 IP client.example.com.43880 > server.example.com.ssh: ¦Flags [S]¦, seq 4050960604, win 14600, options [mss 1460,sackOK,TS val 13231 ecr 0,nop,wscale 6], length 0
+13:17:06.041125 IP server.example.com.ssh > client.example.com.43880: ¦Flags [S.]¦, seq 3335753529, ¦ack 4050960605¦, win 14480, options [mss 1460,sackOK,TS val 22019990 ecr 13231,nop,wscale 6], length 0
+13:17:06.041240 IP client.example.com.43880 > server.example.com.ssh: ¦Flags [.]¦, ¦ack 1¦, win 229, options [nop,nop,TS val 13231 ecr 22019990], length 0
+```
 
-”3
+¶‚©‚çŽžŠÔiƒ}ƒCƒNƒ•b’PˆÊ)A‘—MŒ³IPƒAƒhƒŒƒX.ƒ|[ƒg”Ô†A’ÊM‚ÌŒü‚«‚Ì–îˆóAˆ¶æƒzƒXƒg.ƒ|[ƒg”Ô†Aƒtƒ‰ƒOiSYN)AƒV[ƒPƒ“ƒXAƒEƒBƒ“ƒhƒEAƒIƒvƒVƒ‡ƒ“AÅ‘åƒZƒOƒƒ“ƒgƒTƒCƒY‚Æ‚È‚Á‚Ä‚¢‚Ü‚·B
 
-1. LanguageAƒL[ƒ{[ƒhƒŒƒCƒAƒEƒgAC•œì‹Æ’†‚Éƒlƒbƒgƒ[ƒN‚ðŽg—p‚·‚é‚©‚ð‘I‘ð‚µ‚Ü‚·B
+#### 1s–Ú
+ƒNƒ‰ƒCƒAƒ“ƒg‚Ìƒ|[ƒg43880‚©‚çƒT[ƒo‚Ìƒ|[ƒg22isshj‚ÉŒü‚¯‚ÄSYNƒtƒ‰ƒO‚ÌTCPƒpƒPƒbƒg‚Æ‘—M‚µ‚ÄÚ‘±‚Ì—v‹
 
-![Language‚ð‘I‘ð‚µ‚Ü‚·](rescue2.png)
-![ƒL[ƒ{[ƒhƒŒƒCƒAƒEƒg‚ð‘I‘ð‚µ‚Ü‚·](rescue3.png)
-![ƒlƒbƒgƒ[ƒNŽg—p‚Ì—L–³‚ð‘I‘ð‚µ‚Ü‚·](rescue4.png)
+#### 2s–Ú
+1s–Ú‚ÌƒpƒPƒbƒg‚É‘Î‚µ‚ÄASYN+ACKƒtƒ‰ƒO‚ÌTCPƒpƒPƒbƒg‚ð‘—M
 
-”4
+#### 3s–Ú
+ACKƒtƒ‰ƒO‚ÌTCPƒpƒPƒbƒg‚ð‘—M‚µ‚ÄATCP‚ÌƒXƒŠ[ƒEƒFƒCƒnƒ“ƒhƒVƒFƒCƒN‚ªŠ®—¹
 
-1. ƒn[ƒhƒfƒBƒXƒN‚ðŒŸõ‚µA/mnt/sysimageˆÈ‰º‚Éƒ}ƒEƒ“ƒg‚·‚éŽ|‚Ìà–¾‚ª•\Ž¦‚³‚ê‚Ü‚·BuRead-Onlyv‚ð‘I‚Ô‚ÆAƒn[ƒhƒfƒBƒXƒN‚ª“Ç‚ÝŽæ‚èê—p‚Åƒ}ƒEƒ“ƒg‚³‚ê‚Ü‚·BC•œ‚ðs‚¤‚½‚ßAuContinuev‚ð‘I‘ð‚µ‚Ü‚·B
+‚±‚Ì‚æ‚¤‚ÉAƒT[ƒo‚ÆƒNƒ‰ƒCƒAƒ“ƒg‚ÌŠÔ‚Ì’ÊM‚ðŠm”F‚Å‚«‚Ü‚·B
 
-![Continue‚ð‘I‘ð‚µ‚Ü‚·](rescue5.png)
-
-”5
-
-1. ƒn[ƒhƒfƒBƒXƒN‚ðŒŸõ‚µA/mnt/sysimageˆÈ‰º‚Éƒ}ƒEƒ“ƒg‚Å‚«‚½Ž|‚ª•\Ž¦‚³‚ê‚Ü‚·B
-
-![/mnt/sysimage‚Éƒn[ƒhƒfƒBƒXƒN‚ªƒ}ƒEƒ“ƒg‚³‚ê‚Ü‚µ‚½](rescue6.png)
-
-”6
-
-1. ŽÀs‚·‚éì‹Æ‚ð‘I‘ð‚µ‚Ü‚·Bushellv‚ð‘I‚Ô‚ÆƒVƒFƒ‹‚ª‹N“®‚µ‚Ü‚·Bufakdv‚ð‘I‚Ô‚ÆFirst Aid Kit‚ªŽÀs‚³‚ê‚ÄƒVƒXƒeƒ€‚ÌŒŸ¸‚ªs‚¦‚Ü‚·Burebootv‚ð‘I‚Ô‚ÆƒVƒXƒeƒ€‚ðÄ‹N“®‚µ‚Ü‚·Bushellv‚ð‘I‘ð‚µ‚Ü‚·B
-
-![shell‚ð‘I‘ð‚µ‚Ü‚·](rescue7.png)
-
-”7
-
-1. bash‚ª‹N“®‚µ‚Ü‚·B/mnt/sysimageˆÈ‰º‚ÉAƒn[ƒhƒfƒBƒXƒN‚Ìƒ‹[ƒgƒp[ƒeƒBƒVƒ‡ƒ“‚ªƒ}ƒEƒ“ƒg‚³‚ê‚Ä‚¢‚é‚±‚Æ‚ðŠm”F‚µ‚Ü‚·B
-
-![ƒVƒFƒ‹‚ª‹N“®‚µ‚Ü‚·](rescue8.png)
-
-”8
-
-1. fsckƒRƒ}ƒ“ƒh‚È‚Ç‚ð—˜—p‚µ‚ÄAƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ÌC•œì‹Æ‚ðs‚¢‚Ü‚·BC•œì‹Æ‚ªI—¹‚µ‚½‚çAexit‚ÅƒVƒFƒ‹‚ðI—¹‚µ‚Ü‚·Bì‹Æ‚Ì‘I‘ð‰æ–Ê‚É–ß‚è‚Ü‚·B
-
-1. urebootv‚ð‘I‘ð‚µ‚ÄAƒVƒXƒeƒ€‚ðÄ‹N“®‚µ‚Ü‚·BƒCƒ“ƒXƒg[ƒ‹DVDƒƒfƒBƒA‚ÍDVDƒhƒ‰ƒCƒu‚©‚çŽæ‚èo‚µ‚Ä‚¨‚«‚Ü‚·B
-
-![reboot‚ð‘I‘ð‚µ‚ÄÄ‹N“®‚µ‚Ü‚·](rescue9.png)
