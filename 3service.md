@@ -542,161 +542,180 @@ anacronがジョブを実行するのは、START_HOURS_RANGEで設定されて�
 START_HOURS_RANGE=23-6
 ```
 
-## NTPによる時刻管理
-コンピューターの時刻は、意外と精度が低く1日ごとに数秒狂っていきます。しかも、電源OFFにした状態だとさらに狂いやすくなります。認証やデータベース、ログを集中管理するような環境の場合には、この時刻のずれが大きな問題になる場合があります。
+### NTPによる時刻合わせ
+NTP（Network Time Protocol）はマシンなどの時刻を合わせるためのプロトコルです。Linuxでは、Linuxが動作しているマシンの時刻を合わせるNTPクライアントとしての動作と、その他のマシンなどに時刻同期を提供するNTPサーバーとしての動作があります。クライアントの数が多い場合、外部のNTPサーバーに大きな負荷をかけないよう、ローカルのNTPサーバーを用意してこのサーバーのみ外部のNTPサーバーと時刻同期し、内部のクライアントはローカルNTPサーバーと時刻同期させるようにするとよいでしょう。
 
-システムの時刻を合わせる仕組みとして、NTP（Network Time Protocol）があります。NTPを利用することで、ネットワーク上のNTPサーバから時刻を取得し、システムの時刻を正確な時刻に合わせる事ができます。
-
-### NTPサービスのインストール
-NTPクライアントに対して時刻を提供するNTPサーバを実行するには、NTPサービスをインストールします。NTPサービスは、NTPサーバとしての機能と、自分自身の時刻をNTPサーバに同期させるNTPクライアントの機能の両方を備えています。
-
-NTPサービスがインストールされていない場合には、yumコマンドでインストールします。
+### Chronyの動作確認
+ 現在のLinuxでは、NTPサーバー/NTPクライアントとしてChronyが多く使われています。Chronyはデフォルトで起動しているので、動作している様子を確認してみます。AlmaLinuxではChronyはchronydというサービスとして扱われています。
+```
+$ systemctl status chronyd
+● chronyd.service - NTP client/server
+     Loaded: loaded (/usr/lib/systemd/system/chronyd.service; enabled; preset: enabled)
+     Active: active (running) since Tue 2025-01-28 07:32:57 JST; 8h left
+       Docs: man:chronyd(8)
+             man:chrony.conf(5)
+    Process: 821 ExecStart=/usr/sbin/chronyd $OPTIONS (code=exited, status=0/SUCCESS)
+   Main PID: 867 (chronyd)
+      Tasks: 1 (limit: 10118)
+     Memory: 4.2M
+        CPU: 40ms
+     CGroup: /system.slice/chronyd.service
+             └─867 /usr/sbin/chronyd -F 2
+ 1月 28 07:32:57 localhost chronyd[867]: chronyd version 4.5 starting (+CMDMON +NTP +REFCLOCK +RTC +PRIV>
+ 1月 28 07:32:57 localhost chronyd[867]: Loaded 0 symmetric keys
+ 1月 28 07:32:57 localhost chronyd[867]: Using right/UTC timezone to obtain leap second data
+ 1月 28 07:32:57 localhost chronyd[867]: Frequency -276.346 +/- 80.978 ppm read from /var/lib/chrony/dri>
+ 1月 28 07:32:57 localhost chronyd[867]: Loaded seccomp filter (level 2)
+ 1月 28 07:32:57 localhost systemd[1]: Started NTP client/server.
+ 1月 28 07:33:07 localhost.localdomain chronyd[867]: Selected source 45.76.218.37 (2.almalinux.pool.ntp.>
+ 1月 28 07:33:07 localhost.localdomain chronyd[867]: System clock wrong by -32400.283303 seconds
+ 1月 27 22:33:06 localhost.localdomain chronyd[867]: System clock was stepped by -32400.283303 seconds
+ 1月 27 22:33:06 localhost.localdomain chronyd[867]: System clock TAI offset set to 37 seconds
+```
+この環境は仮想マシンで動作させていますが、起動時のログを見てみると、最初は朝7時32分として起動していますが、NTPが外部のNTPサーバーと時刻同期し、9時間巻き戻って夜の22時33分に時刻を設定し直しているのがわかります。
+### 参照しているNTPサーバーの確認
+次に時刻同期のために参照しているNTPサーバーを確認します。クライアントとしての動作はchronycコマンドを使って操作します。
 
 ```
-# yum install ntp
+$ chronyc sources
+MS Name/IP address         Stratum Poll Reach LastRx Last sample
+===============================================================================
+^* ipv4.ntp3.rbauman.com         2   6   167    51   +164us[+3006us] +/-   11ms
+^- 122x215x240x51.ap122.ftt>     2   6   157    50   -958us[ -958us] +/-   49ms
+^- ap-northeast-1.clearnet.>     2   6   147   113  +3598us[+5467us] +/-   30ms
+^- 45.159.48.231                 3   6   147   113  +4552us[+6424us] +/-  139ms
 ```
 
-### NTPサービスの起動と自動起動の有効化
-NTPサービス（ntpd）を起動します。
+ステータスの読み方は以下の通りです。一番左のM列はソースのモードを示します。
+| 記号  | 意味   |
+| :-: | :--- |
+|  ^  | サーバー |
+|  =  | ピア   |
+|  #  | ローカル |
+
+2列目のS列はソースの状態を示します。
+| 記号  | 意味                            |
+| :-: | :---------------------------- |
+|  *  | 同期しているソース                     |
+|  +  | 同期候補のソース                      |
+|  -  | 同期候補から外れたソース                  |
+|  ?  | 切断されたソース、パケットが全てのテストをパスしないソース |
+|  x  | 偽の時計と判断したもの                   |
+|  ~  | 時刻の変動性が大きすぎるソース               |
+
+2桁目にある記号のうち、「\*」となっているのが現在参照しているサーバーです。NTPサーバーは様々な組織がサービスを提供しており、複数のサーバーが参照可能（記号「-」）になっているのがわかります。
+
+### 参照するNTPサーバーの設定を確認、変更する
+Chronyの設定は「/etc/chrony.conf」に記述されています。参照するNTPサーバーをNICTが提供している「ntp.nict.jp」に変更してみます。
 
 ```
-# service ntpd start
+$ sudo vi /etc/chrony.conf
+# Use public servers from the pool.ntp.org project.
+# Please consider joining the pool (https://www.pool.ntp.org/join.html).
+# pool 2.almalinux.pool.ntp.org iburst
+pool ntp.nict.jp iburst
 ```
-
-chkconfigコマンドで自動起動を有効化します。
-
-```
-# chkconfig ntpd on
-# chkconfig --list ntpd
-ntpd            0:off   1:off   2:off   3:on    4:off   5:off   6:off
-```
-
-NTPサーバを起動してから、しばらくすると上位のNTPサーバと時刻同期が始まります。時刻同期は徐々に行われるため、すぐには完了しません。
-
-### 上位NTPサーバの設定
-同期する時刻を提供してくれる上位NTPサーバの設定は/etc/ntp.confに記述します。サーバは複数指定できます。CentOSでは、デフォルトでpool.ntp.orgのNTPサーバに同期するように設定されています。pool.ntp.orgはインターネット上のNTPサーバのアドレスをランダムに返すようになっています。
+デフォルトではntp.orgが運営しているNTPサーバープールからランダムに参照するようになっています。ここをNICTのNTPサーバーを参照するように変更します。
+#### 設定変更を適用する
+変更を適用するには、chronydサービスを再起動してみます。
 
 ```
-server 0.centos.pool.ntp.org iburst
-server 1.centos.pool.ntp.org iburst
-server 2.centos.pool.ntp.org iburst
-server 3.centos.pool.ntp.org iburst
+$ sudo systemctl restart chronyd
 ```
-
-ntpqコマンドを実行して、外部のNTPサーバとの時刻同期の状態を確認します。
+chronycコマンドで時刻同期の様子を確認します。
 
 ```
-# ntpq -p
-     remote           refid      st t when poll reach   delay   offset  jitter
-==============================================================================
-*219x123x70x91.a 192.168.7.123    2 u  424 1024  377    2.296   -0.851   1.985
--balthasar.gimas 65.32.162.194    3 u  764 1024  377    4.574    3.282   1.737
-+ntp-v6.chobi.pa 61.114.187.55    2 u  960 1024  337    1.012    0.546   1.170
-+the.platformnin 22.42.17.250     3 u   46 1024  377    3.686    0.123   2.642
+$ chronyc sources
+MS Name/IP address         Stratum Poll Reach LastRx Last sample
+===============================================================================
+^? ntp-k1.nict.jp                1   6     3     0    -20ms[  -20ms] +/- 9780us
+^? ntp-b2.nict.go.jp             1   6     3     0    -20ms[  -20ms] +/-   13ms
+^? ntp-a3.nict.go.jp             1   6     1     2    -21ms[  -21ms] +/-   15ms
+^? ntp-b3.nict.go.jp             1   6     1     2    -21ms[  -21ms] +/-   13ms
 ```
-
-一番左に表示されているステータスの読み方は以下の通りです。
-
-|表示|意味|
-|-------|-------|
-|*|同期している|
-|+|いつでも同期可能|
-|x|クロックが不正確なため無効|
-|空白（スペース）|使用不可（通信不可、同期に時間が掛かっている等）|
-
-### NTPクライアントからの時刻同期リクエストの制御
-NTPサービスは、デフォルトではNTPクライアントからの時刻同期リクエストを受け付けないように設定されています。
-
-以下の例では、NTPサーバの設定ファイル/etc/ntp.confに「192.168.0.0/255.255.255.0」のネットワークに属しているNTPクライアントからの時刻同期リクエストを許可するように設定しています。
+記号「?」なので、まだ同期していない状態です。
 
 ```
-# vi /etc/ntp.conf
-
-# Hosts on local network are less restricted.
-#restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
-※restrict 192.168.0.0 mask 255.255.255.0 nomodify notrap ←この行を追加
+$ chronyc sources
+MS Name/IP address         Stratum Poll Reach LastRx Last sample
+===============================================================================
+^+ ntp-k1.nict.jp                1   6    77    58    +14ms[  +14ms] +/-   10ms
+^* ntp-b2.nict.go.jp             1   6    77    58    +13ms[  -10ms] +/-   13ms
+^- ntp-a3.nict.go.jp             1   6    77    57    +10ms[  +10ms] +/-   12ms
+^+ ntp-b3.nict.go.jp             1   6    77    57    +13ms[  +13ms] +/-   11ms
 ```
-
-設定を変更したらntpサービスを再起動します。
-
-```
-# service ntpd restart
-ntpd を停止中:                                             [  OK  ]
-ntpd を起動中:                                             [  OK  ]
-```
-
-### ファイアーウォールの設定変更
-NTPサーバはUDPのポート番号123番でNTPクライアントからの時刻同期リクエストを待ち受けています。iptablesでパケットフィルタリングを行っている場合、ルールを追加する必要があります。
-
-/etc/sysconfig/iptablesを編集してルールを追加し、iptablesサービスをリロードします。
+ntp-a3のみ「-」なので、3つが時刻同期可能な状態です。
 
 ```
-# vi /etc/sysconfig/iptables
-
-# Firewall configuration written by system-config-firewall
-# Manual customization of this file is not recommended.
-*filter
-:INPUT ACCEPT [0:0]
-:FORWARD ACCEPT [0:0]
-:OUTPUT ACCEPT [0:0]
--A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
--A INPUT -p icmp -j ACCEPT
--A INPUT -i lo -j ACCEPT
--A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT
--A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
-※-A INPUT -m state --state NEW -m udp -p udp --dport 123 -j ACCEPT ←この行を追加※
--A INPUT -j REJECT --reject-with icmp-host-prohibited
--A FORWARD -j REJECT --reject-with icmp-host-prohibited
-COMMIT
+$ chronyc sources
+MS Name/IP address         Stratum Poll Reach LastRx Last sample
+===============================================================================
+^+ ntp-k1.nict.jp                1   6   177    12    +21ms[  +21ms] +/-   13ms
+^* ntp-b2.nict.go.jp             1   6   177    12    +27ms[  +40ms] +/-   14ms
+^+ ntp-a3.nict.go.jp             1   6   177    10    +12ms[  +12ms] +/-   27ms
+^+ ntp-b3.nict.go.jp             1   6   177    11    +25ms[  +25ms] +/-   14ms
 ```
+4つすべてのNTPサーバーが時刻同期可能となりました。
 
-serviceコマンドで、iptablesサービスをリロードします。
+Linuxが正しい時刻で動作していることは、ログの記録やファイルなどのデータの保存にとって重要なので、正しい時刻になっているようにNTPクライアントとしてきちんと動作していることを確認しておきましょう。
+
+## NTPサーバーとして時刻を提供する
+NTPサーバーは、他のクライアントに対して自身の時刻との同期をサービスとして提供します。前節はNTPサーバー自身の時刻同期について設定・確認方法を解説しました。ここではNTPサーバーとして他のクライアントの時刻同期を許可する設定を行います。
+
+### NTPサーバー機能を有効にする
+ChronyはデフォルトではNTPサーバー機能が無効になっています。設定を変更してNTPサーバーを有効にします。有効にするには、接続を許可するクライアントのIPアドレスを指定します。
 
 ```
-# service iptables reload
-iptables: Trying to reload firewall rules:                 [  OK  ]
-# iptables -L
-Chain INPUT (policy ACCEPT)
-target     prot opt source               destination         
-（略）
-ACCEPT     udp  --  anywhere             anywhere            state NEW udp dpt:ntp 
-REJECT     all  --  anywhere             anywhere            reject-with icmp-host-prohibited 
-（略）
+$ sudo vi /etc/chrony.conf
+（中略）
+# Allow NTP client access from local network.
+#allow 192.168.0.0/16
+allow 192.168.156.0/24
+```
+デフォルトではコメントアウト状態ですが、接続を許可するIPアドレス、ここではネットワークアドレスで一括して許可するように設定しています。
+
+設定を有効にするため、chronydサービスを再起動します。
+```
+$ sudo systemctl restart chronyd
+```
+### ファイアーウォールの設定を変更して接続を許可する
+NTPはネットワークプロトコルのため、ファイアーウォールで接続の許可をする必要があります。
+```
+$ sudo firewall-cmd --add-service=ntp --permanent
+success
+$ sudo firewall-cmd --reload
+success
+$ sudo firewall-cmd --list-services
+cockpit dhcpv6-client ntp ssh
+```
+### クライアントでローカルNTPサーバーにアクセスする
+次にクライアントからローカルNTPサーバーにアクセスしてみます。設定方法はNTPサーバーをNICTのNTPサーバーを参照するように設定するのと同じです。
+以下はクライアントのAlmalinuxでの操作です。NTPサーバーとして設定したIPアドレスを指定します。
+```
+$ sudo vi /etc/chrony.conf
+# Use public servers from the pool.ntp.org project.
+# Please consider joining the pool (https://www.pool.ntp.org/join.html).
+# pool 2.almalinux.pool.ntp.org iburst
+server 192.168.156.137 iburst
+```
+NTPサーバーの参照はserverとpoolの2種類があります。serverは単一のサーバーを指定する場合、poolは名前解決で複数の結果が返る場合、最大4つまでを参照先NTPサーバーとする、という違いがあります。
+
+設定を適用します。
+```
+$ sudo systemctl restart chronyd
 ```
 
-### NTPクライアントのNTPサービスを使ってNTPサーバと時刻を同期する
-クライアントのNTPサービスは、/etc/ntp.confにserver設定で指定されたNTPサーバと時刻同期を行います。
-
-クライアントで、デフォルトで設定されているpool.ntp.orgのserver設定をコメントアウトし、構築したNTPサーバ（192.168.0.10）と時刻を同期するように設定します。
-
-クライアントにNTPサービスがインストールされていない場合には、yumコマンドでインストールします。
-
+動作を確認します。
 ```
-[root@client ~]# yum install ntp
-[root@client ~]# vi /etc/ntp.conf
-
-※#※server 0.centos.pool.ntp.org iburst ※←行頭でコメントアウト
-※#※server 1.centos.pool.ntp.org iburst ※←行頭でコメントアウト
-※#※server 2.centos.pool.ntp.org iburst ※←行頭でコメントアウト
-※#※server 3.centos.pool.ntp.org iburst ※←行頭でコメントアウト
-※server 192.168.0.10 iburst ←この行を追加
+$ chronyc sources
+MS Name/IP address         Stratum Poll Reach LastRx Last sample
+===============================================================================
+^? 192.168.156.137               2   6     1     2    -20ms[  -20ms] +/-  103ms
+$ chronyc sources
+MS Name/IP address         Stratum Poll Reach LastRx Last sample
+===============================================================================
+^* 192.168.156.137               2   6     7     1   -617ns[  -19ms] +/-  101ms
 ```
+時刻が同期しました。
 
-クライアントのNTPサービスを再起動します。
-
-```
-# service ntpd restart
-ntpd を停止中:                                             [  OK  ]
-ntpd を起動中:                                             [  OK  ]
-```
-
-ntpqコマンドで、時刻同期の状態を確認します。
-
-```
-[root@client ~]# ntpq -p
-     remote           refid      st t when poll reach   delay   offset  jitter
-==============================================================================
-*server          157.7.154.29     3 u    2   64    1    0.152    0.108   0.007
-```
-
-
+上記ではローカルNTPサーバーを1つだけ設定しましたが、このローカルNTPサーバーが停止するとクライアントは時刻同期ができなくなります。時刻設定がシビアな環境においては、ローカルNTPサーバーを複数用意する、ローカルが参照できない場合は一時的に外部NTPサーバーを参照させるなどいくつかの方法が考えられます。システム環境に合った設定を検討、実施するようにしてください。
