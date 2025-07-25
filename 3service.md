@@ -548,7 +548,7 @@ NTP（Network Time Protocol）はマシンなどの時刻を合わせるため�
 ### Chronyの動作確認
 AlmaLinuxでは、NTPサーバー/NTPクライアントとしてChronyが使われており、chronydというサービスとして扱われます。Chronyはデフォルトで起動しているので、動作している様子を確認します。
 ```
-$ systemctl status chronyd
+# systemctl status chronyd
 ● chronyd.service - NTP client/server
      Loaded: loaded (/usr/lib/systemd/system/chronyd.service; enabled; preset: enabled)
      Active: active (running) since Tue 2025-01-28 07:32:57 JST; 8h left
@@ -578,7 +578,7 @@ $ systemctl status chronyd
 次に時刻同期のために参照しているNTPサーバーを確認します。クライアントとしての動作はchronycコマンドを使って操作します。
 
 ```
-$ chronyc sources
+# chronyc sources
 MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ===============================================================================
 ^* ipv4.ntp3.rbauman.com         2   6   167    51   +164us[+3006us] +/-   11ms
@@ -609,7 +609,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 Chronyの設定は「/etc/chrony.conf」に記述されています。参照するNTPサーバーをNICTが提供している「ntp.nict.jp」に変更してみます。
 
 ```
-$ sudo vi /etc/chrony.conf
+# vi /etc/chrony.conf
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (https://www.pool.ntp.org/join.html).
 # pool 2.almalinux.pool.ntp.org iburst
@@ -620,12 +620,12 @@ pool ntp.nict.jp iburst
 #### 設定変更を適用する
 変更を適用するには、chronydサービスを再起動してみます。
 ```
-$ sudo systemctl restart chronyd
+# systemctl restart chronyd
 ```
 chronycコマンドで時刻同期の様子を確認します。
 
 ```
-$ chronyc sources
+# chronyc sources
 MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ===============================================================================
 ^? ntp-k1.nict.jp                1   6     3     0    -20ms[  -20ms] +/- 9780us
@@ -636,7 +636,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 記号「?」なので、まだ同期していない状態です。
 
 ```
-$ chronyc sources
+# chronyc sources
 MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ===============================================================================
 ^+ ntp-k1.nict.jp                1   6    77    58    +14ms[  +14ms] +/-   10ms
@@ -647,7 +647,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ntp-a3のみ「-」なので、3つが時刻同期可能な状態です。
 
 ```
-$ chronyc sources
+# chronyc sources
 MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ===============================================================================
 ^+ ntp-k1.nict.jp                1   6   177    12    +21ms[  +21ms] +/-   13ms
@@ -665,7 +665,7 @@ NTPサーバーは、他のクライアントに対して自身の時刻との�
 ### NTPサーバー機能を有効にする
 ChronyはデフォルトではNTPサーバー機能が無効になっています。設定を変更してNTPサーバーを有効にします。有効にするには、接続を許可するクライアントのIPアドレスを指定します。
 ```
-$ sudo vi /etc/chrony.conf
+# vi /etc/chrony.conf
 （中略）
 # Allow NTP client access from local network.
 #allow 192.168.0.0/16
@@ -675,24 +675,24 @@ allow 192.168.156.0/24
 
 設定を有効にするため、chronydサービスを再起動します。
 ```
-$ sudo systemctl restart chronyd
+# systemctl restart chronyd
 ```
 
 ### ファイアーウォールの設定を変更して接続を許可する
 NTPはネットワークプロトコルのため、ファイアーウォールで接続の許可をする必要があります。
 ```
-$ sudo firewall-cmd --add-service=ntp --permanent
+# firewall-cmd --add-service=ntp --permanent
 success
-$ sudo firewall-cmd --reload
+# firewall-cmd --reload
 success
-$ sudo firewall-cmd --list-services
+# firewall-cmd --list-services
 cockpit dhcpv6-client ntp ssh
 ```
 ### クライアントでローカルNTPサーバーにアクセスする
 次にクライアントからローカルNTPサーバーにアクセスしてみます。設定方法はNTPサーバーをNICTのNTPサーバーを参照するように設定するのと同じです。
 以下はクライアントのAlmalinuxでの操作です。NTPサーバーとして設定したホストのIPアドレスを指定します。
 ```
-$ sudo vi /etc/chrony.conf
+# vi /etc/chrony.conf
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (https://www.pool.ntp.org/join.html).
 # pool 2.almalinux.pool.ntp.org iburst
@@ -702,16 +702,17 @@ NTPサーバーの参照はserverとpoolの2種類があります。serverは単
 
 設定を適用します。
 ```
-$ sudo systemctl restart chronyd
+# systemctl restart chronyd
 ```
 
 動作を確認します。
 ```
-$ chronyc sources
+# chronyc sources
 MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ===============================================================================
 ^? 192.168.156.137               2   6     1     2    -20ms[  -20ms] +/-  103ms
-$ chronyc sources
+
+# chronyc sources
 MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ===============================================================================
 ^* 192.168.156.137               2   6     7     1   -617ns[  -19ms] +/-  101ms
