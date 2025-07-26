@@ -1,22 +1,23 @@
 # サービスの管理
+
 ## OSが起動するまでのプロセス
 マシンに電源を入れた後、以下のような順番でシステムの初期化が行われ、OSが起動します。
 
 1. 電源オン
-1. BIOS起動とハードウェアの初期化
+1. UEFI/BIOS起動とハードウェアの初期化
 1. ブートローダー（GRUB）の起動
 1. Linuxカーネルイメージの読み込み
-1. initプロセスの起動
+1. systemdプロセスの起動
 1. 各種サービスの起動
-1. OS起動
+1. OS起動完了
 
-### ブートローダーGRUBの起動
-マシンの電源をオンにすると、BIOSが起動してハードウェアの初期化が行われ、起動に使用するブートデバイス（ハードディスクなど）が決定します。ブートデバイスからブートローダーであるGRUBが読み込まれ、起動処理が引き継がれます。
+## ブートローダーGRUBの起動
+マシンの電源をオンにすると、UEFI/BIOSが起動してハードウェアの初期化が行われ、起動に使用するブートデバイス（ハードディスクなど）が決定します。ブートデバイスからブートローダーであるGRUBが読み込まれ、起動処理が引き継がれます。
 GRUBは、Linuxカーネルのイメージをメモリ上にロードする役割を持っています。
 
 ![GRUB選択画面](grubmenu.png)
 
-Linuxカーネルイメージが複数ある場合は、GRUBの初期画面が表示されている時に何かキーを入力すると、GRUBのメニュー画面が表示されます。ロードしたいイメージを選択して、Enterキーを押します。
+Linuxカーネルイメージが複数ある場合は、GRUBのメニュー画面でロードしたいイメージを選択して、Enterキーを押します。
 
 
 GRUBの設定確認
@@ -36,32 +37,35 @@ GRUBのデフォルト起動カーネルのインデックスによる変更
 grubby --set-default 1
 
 
-### GRUB設定
-$ sudo grubby --info=ALL
-[sudo] linuc のパスワード:
-index=0
-kernel="/boot/vmlinuz-5.14.0-570.25.1.el9_6.aarch64"
-args="ro crashkernel=1G-4G:256M,4G-64G:320M,64G-:576M rd.lvm.lv=almalinux_vbox/root rd.lvm.lv=almalinux_vbox/swap rhgb quiet $tuned_params"
-root="/dev/mapper/almalinux_vbox-root"
-initrd="/boot/initramfs-5.14.0-570.25.1.el9_6.aarch64.img $tuned_initrd"
-title="AlmaLinux (5.14.0-570.25.1.el9_6.aarch64) 9.6 (Sage Margay)"
-id="9e034831eddf4bbb9525d8a0f6676c28-5.14.0-570.25.1.el9_6.aarch64"
-index=1
-kernel="/boot/vmlinuz-5.14.0-570.12.1.el9_6.aarch64"
-args="ro crashkernel=1G-4G:256M,4G-64G:320M,64G-:576M rd.lvm.lv=almalinux_vbox/root rd.lvm.lv=almalinux_vbox/swap rhgb quiet $tuned_params"
-root="/dev/mapper/almalinux_vbox-root"
-initrd="/boot/initramfs-5.14.0-570.12.1.el9_6.aarch64.img $tuned_initrd"
-title="AlmaLinux (5.14.0-570.12.1.el9_6.aarch64) 9.6 (Sage Margay)"
-id="9e034831eddf4bbb9525d8a0f6676c28-5.14.0-570.12.1.el9_6.aarch64"
-index=2
-kernel="/boot/vmlinuz-0-rescue-9e034831eddf4bbb9525d8a0f6676c28"
-args="ro crashkernel=1G-4G:256M,4G-64G:320M,64G-:576M rd.lvm.lv=almalinux_vbox/root rd.lvm.lv=almalinux_vbox/swap rhgb quiet"
-root="/dev/mapper/almalinux_vbox-root"
-initrd="/boot/initramfs-0-rescue-9e034831eddf4bbb9525d8a0f6676c28.img"
-title="AlmaLinux (0-rescue-9e034831eddf4bbb9525d8a0f6676c28) 9.6 (Sage Margay)"
-id="9e034831eddf4bbb9525d8a0f6676c28-0-rescue"
+### GRUBの設定確認
+GRUBの設定を確認したい場合には、grubbyコマンドに--info=ALLオプションをつけて実行します。
 
-設定の意味は以下の通りです。
+```
+$ sudo grubby --info=ALL
+index=0
+kernel="/boot/vmlinuz-5.14.0-570.26.1.el9_6.x86_64"
+args="ro crashkernel=1G-4G:192M,4G-64G:256M,64G-:512M resume=/dev/mapper/almalinux_vbox-swap rd.lvm.lv=almalinux_vbox/root rd.lvm.lv=almalinux_vbox/swap rhgb quiet $tuned_params"
+root="/dev/mapper/almalinux_vbox-root"
+initrd="/boot/initramfs-5.14.0-570.26.1.el9_6.x86_64.img $tuned_initrd"
+title="AlmaLinux (5.14.0-570.26.1.el9_6.x86_64) 9.6 (Sage Margay)"
+id="65dd8a0b080e4373a5633404cabaac84-5.14.0-570.26.1.el9_6.x86_64"
+index=1
+kernel="/boot/vmlinuz-5.14.0-570.12.1.el9_6.x86_64"
+args="ro crashkernel=1G-4G:192M,4G-64G:256M,64G-:512M resume=/dev/mapper/almalinux_vbox-swap rd.lvm.lv=almalinux_vbox/root rd.lvm.lv=almalinux_vbox/swap rhgb quiet $tuned_params"
+root="/dev/mapper/almalinux_vbox-root"
+initrd="/boot/initramfs-5.14.0-570.12.1.el9_6.x86_64.img $tuned_initrd"
+title="AlmaLinux (5.14.0-570.12.1.el9_6.x86_64) 9.6 (Sage Margay)"
+id="65dd8a0b080e4373a5633404cabaac84-5.14.0-570.12.1.el9_6.x86_64"
+index=2
+kernel="/boot/vmlinuz-0-rescue-65dd8a0b080e4373a5633404cabaac84"
+args="ro crashkernel=1G-4G:192M,4G-64G:256M,64G-:512M resume=/dev/mapper/almalinux_vbox-swap rd.lvm.lv=almalinux_vbox/root rd.lvm.lv=almalinux_vbox/swap rhgb quiet"
+root="/dev/mapper/almalinux_vbox-root"
+initrd="/boot/initramfs-0-rescue-65dd8a0b080e4373a5633404cabaac84.img"
+title="AlmaLinux (0-rescue-65dd8a0b080e4373a5633404cabaac84) 9.6 (Sage Margay)"
+id="65dd8a0b080e4373a5633404cabaac84-0-rescue"
+```
+
+3つの設定が存在しているのがわかります。各設定項目の意味は以下の通りです。
 
 index
 ブートメニューの選択肢のインデックス番号です。
@@ -84,38 +88,53 @@ title
 id
 マシンのユニークIDとカーネルバージョンを組み合わせた値です。
 
+### GRUBのデフォルト起動の確認
+GRUBがデフォルトで起動するカーネルの確認は、grubbyコマンドに--default-kernelオプション、または--default-indexオプションをつけて実行すると確認できます。
 
-### カーネルの起動
+```
+$ sudo grubby --default-kernel
+/boot/vmlinuz-5.14.0-570.26.1.el9_6.x86_64
+$ sudo grubby --default-index
+0
+```
+
+### GRUBのデフォルト起動カーネルの変更
+GRUBのデフォルト起動カーネルを変更したい場合には、grubbyコマンドに--set-defaultオプションでカーネル、またはindexの番号を指定することで変更できます。
+
+```
+$ sudo grubby --set-default /boot/vmlinuz-5.14.0-570.12.1.el9_6.x86_64
+The default is /boot/loader/entries/65dd8a0b080e4373a5633404cabaac84-5.14.0-570.12.1.el9_6.x86_64.conf with index 1 and kernel /boot/vmlinuz-5.14.0-570.12.1.el9_6.x86_64
+$ sudo grubby --set-default 0
+The default is /boot/loader/entries/65dd8a0b080e4373a5633404cabaac84-5.14.0-570.26.1.el9_6.x86_64.conf with index 0 and kernel /boot/vmlinuz-5.14.0-570.26.1.el9_6.x86_64
+```
+
+## カーネルの起動
 GRUBで指定されたLinuxカーネルイメージがメモリに読み込まれて、カーネルが起動します。カーネルはハードウェアを初期化し、カーネルの各種機能を有効にしていきます。
 
 カーネルは必要に応じてモジュールを読み込みますが、モジュールは初期化RAMディスク（initramfs）に含まれています。カーネルは初期化RAMディスクをメモリに読み込み、仮のルートファイルシステムとして利用可能にすることで、必要となるモジュールのファイルが読み込めるようになります。
 
-#### dmesgによるカーネル起動時の動作の確認
+### dmesgによるカーネル起動時の動作の確認
 カーネルが起動する際の動作の様子は、dmesgコマンドで確認できます。
 
 ```
 # dmesg
-Initializing cgroup subsys cpuset
-Initializing cgroup subsys cpu
-Linux version 2.6.32-504.el6.x86_64 (mockbuild@c6b9.bsys.dev.centos.org) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-11) (GCC) ) #1 SMP Wed Oct 15 04:27:16 UTC 2014
-Command line: ro root=/dev/mapper/vg_server-lv_root rd_LVM_LV=vg_server/lv_swap rd_NO_LUKS rd_LVM_LV=vg_server/lv_root rd_NO_MD crashkernel=auto  KEYBOARDTYPE=pc KEYTABLE=jp106 LANG=ja_JP.UTF-8 rd_NO_DM rhgb quiet
-KERNEL supported cpus:
-  Intel GenuineIntel
-  AMD AuthenticAMD
-  Centaur CentaurHauls
-Disabled fast string operations
-BIOS-provided physical RAM map:
- BIOS-e820: 0000000000000000 - 000000000009ec00 (usable)
+I[    0.000000] Linux version 5.14.0-570.26.1.el9_6.x86_64 (mockbuild@x64-builder03.almalinux.org) (gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-5), GNU ld version 2.35.2-63.el9) #1 SMP PREEMPT_DYNAMIC Wed Jul 16 09:12:04 EDT 2025
+[    0.000000] The list of certified hardware and cloud instances for Red Hat Enterprise Linux 9 can be viewed at the Red Hat Ecosystem Catalog, https://catalog.redhat.com.
+[    0.000000] Command line: BOOT_IMAGE=(hd0,gpt2)/vmlinuz-5.14.0-570.26.1.el9_6.x86_64 root=/dev/mapper/almalinux_vbox-root ro crashkernel=1G-4G:192M,4G-64G:256M,64G-:512M resume=/dev/mapper/almalinux_vbox-swap rd.lvm.lv=almalinux_vbox/root rd.lvm.lv=almalinux_vbox/swap rhgb quiet
+[    0.000000] [Firmware Bug]: TSC doesn't count with P0 frequency!
+[    0.000000] BIOS-provided physical RAM map:
 （略）
 ```
 
-## systemdについて
+特定のデバイスが動作しないなどのトラブルは、カーネル起動時のメッセージで発生している問題を特定できることがあります。デバイス名等で検索してみるとよいでしょう。
 
+## systemdについて
+systemdは、カーネル起動後、最初に起動されるプロセスです。Linuxのシステムを構成する各種サービスの起動などを行う役目を担っています。
 
 ### ユニットでの管理
 systemdでは「ユニット」という単位でシステムを管理します。ユニットには、「ターゲット」（ランレベルに相当）ユニットや「サービス」ユニットがあり、それぞれのユニットは依存関係の定義ができるようになっています。
 
-依存関係とは、たとえば「このサービスを実行するにはあらかじめこのサービスが実行されていなければならない」という関係です。systemdでは依存関係にないサービスを「並列処理」で実行するため、高速にシステムを起動できるという利点があります。
+依存関係とは、たとえば「このサービスを実行するにはあらかじめこのサービスが実行されていなければならない」という関係です。systemdでは依存関係にないサービスを並列処理で実行するため、高速にシステムを起動できるという利点があります。
 
 主なユニットの種類は以下の通りです。
 
@@ -127,74 +146,62 @@ systemdでは「ユニット」という単位でシステムを管理します�
 |swap|スワップ領域|
 |device|デバイス|
 
+mountユニット、swapユニット、deviceユニットは直接操作することはありません。主にserviceユニットを操作することになります。targetユニットは、システムをGUIで起動するかCUIで起動するかなどで操作する程度にしか使用しません。
+
 ### サービスの操作
 systemdでは、サービスの起動や停止を行うのにsystemctlコマンドを使用します。
 
 Webサービスの起動や停止、再起動、そして状態の確認を行うには、以下のsystemctlコマンドを使用します。
 
-#### サービスの起動
-systemctl startコマンドで、サービスを起動します。
+#### サービスの起動と停止、再起動
+systemctl startコマンドで、サービスを起動します。systemctl stopコマンドでサービスを停止します。systemctl restartコマンドで、サービスを再起動します。
+
 
 ```
-# systemctl start httpd
+$ sudo systemctl start firewalld
+$ sudo systemctl stop firewalld
+$ sudo systemctl restart firewalld
 ```
 
 #### サービスのステータス確認
 systemctl statusコマンドで、サービスのステータスを確認できます。
 
-systemdでは、サービスのプロセスを「コントロールグループ」（cgroup）というLinuxカーネルの仕組みで実行するように変わりました。cgroupを使うことで、CPUやメモリなどのリソースを柔軟に割り当てることができる利点があります。
-
 ```
-# systemctl status httpd
-httpd.service - The Apache HTTP Server
-   Loaded: loaded (/usr/lib/systemd/system/httpd.service; disabled)
-   Active: active (running) since 水 2015-01-28 15:23:50 JST; 33s ago
- Main PID: 2926 (httpd)
-   Status: "Total requests: 0; Current requests/sec: 0; Current traffic:   0 B/sec"
-   CGroup: /system.slice/httpd.service
-           ├─2926 /usr/sbin/httpd -DFOREGROUND
-           ├─2927 /usr/sbin/httpd -DFOREGROUND
-           ├─2928 /usr/sbin/httpd -DFOREGROUND
-           ├─2929 /usr/sbin/httpd -DFOREGROUND
-           ├─2930 /usr/sbin/httpd -DFOREGROUND
-           └─2931 /usr/sbin/httpd -DFOREGROUND
+$ sudo systemctl status firewalld
+● firewalld.service - firewalld - dynamic firewall daemon
+     Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; preset: enabled)
+     Active: active (running) since Sat 2025-07-26 15:13:03 JST; 2s ago
+       Docs: man:firewalld(1)
+   Main PID: 3400 (firewalld)
+      Tasks: 2 (limit: 10816)
+     Memory: 23.1M
+        CPU: 367ms
+     CGroup: /system.slice/firewalld.service
+             └─3400 /usr/bin/python3 -s /usr/sbin/firewalld --nofork --nopid
 
- 1月 28 15:23:50 centos7.example.com httpd[2926]: AH00557: httpd: apr_sockad...
- 1月 28 15:23:50 centos7.example.com httpd[2926]: AH00558: httpd: Could not ...
- 1月 28 15:23:50 centos7.example.com systemd[1]: Started The Apache HTTP Ser...
-Hint: Some lines were ellipsized, use -l to show in full.
-```
-
-#### サービスの再起動
-systemctl restartコマンドで、サービスを再起動します。
-
-```
-# systemctl restart httpd
-# systemctl status httpd
-httpd.service - The Apache HTTP Server
-   Loaded: loaded (/usr/lib/systemd/system/httpd.service; disabled)
-   Active: active (running) since 水 2015-01-28 15:24:40 JST; 2s ago
-  Process: 2945 ExecStop=/bin/kill -WINCH ${MAINPID} (code=exited, status=0/SUCCESS)
- Main PID: 2950 (httpd)
-（略）
-```
-
-#### サービスの停止
-systemctl stopコマンドで、サービスを停止します。
-
-```
-# systemctl stop httpd
-# systemctl status httpd
-httpd.service - The Apache HTTP Server
-   Loaded: loaded (/usr/lib/systemd/system/httpd.service; disabled)
-   Active: inactive (dead)
+ 7月 26 15:13:03 vbox systemd[1]: Starting firewalld - dynamic firewall daemon...
+ 7月 26 15:13:03 vbox systemd[1]: Started firewalld - dynamic firewall daemon.
 ```
 
 ### ユニット一覧の取得
 systemdで管理されているユニットの一覧を取得するには、systemctl list-unit-filesコマンドを実行します。
 
 ```
-# systemctl list-unit-files
+$ systemctl list-unit-files
+UNIT FILE                                  STATE           PRESET
+proc-sys-fs-binfmt_misc.automount          static          -
+-.mount                                    generated       -
+boot-efi.mount                             generated       -
+boot.mount                                 generated       -
+dev-hugepages.mount                        static          -
+dev-mqueue.mount                           static          -
+proc-sys-fs-binfmt_misc.mount              disabled        disabled
+（略）
+systemd-sysupdate-reboot.timer             disabled        disabled
+systemd-sysupdate.timer                    disabled        disabled
+systemd-tmpfiles-clean.timer               static          -
+
+427 unit files listed.
 ```
 
 すべての種類のユニットが表示されてしまうので、ユニットの種類を絞り込むには-tオプションを付与して実行します。
@@ -202,17 +209,22 @@ systemdで管理されているユニットの一覧を取得するには、syst
 たとえば、serviceユニットだけを表示するには以下のsystemctlコマンドを実行します。
 
 ```
-# systemctl list-unit-files -t service
+$ systemctl list-unit-files -t service
+UNIT FILE                                  STATE           PRESET
+accounts-daemon.service                    enabled         enabled
+alsa-restore.service                       static          -
+alsa-state.service                         static          -
+（略）
 ```
 
 表示されるステータス（STATE）の意味は以下の通りです。
-
 
 |ステータス|意味|
 |-------|-------|
 |enabled|システム起動時に実行される|
 |disabled|システム起動時に実行されない|
 |static|システム起動時の実行の有無は設定できない|
+|generated|systemdが生成したユニット|
 
 ### 現在のユニットの状況を確認
 現在のユニットの状況を確認するには、systemctl list-unitsコマンドを実行します。systemctlコマンドのデフォルトはこのサブコマンドの指定になっています。
@@ -220,24 +232,28 @@ systemdで管理されているユニットの一覧を取得するには、syst
 以下の例は同じ結果を返します。
 
 ```
-# systemctl list-units
-# systemctl
+$ systemctl list-units
+$ systemctl
 ```
 
 -tオプションを使って、serviceユニットだけに絞り込むこともできます。
 
 ```
-# systemctl -t service
-UNIT                         LOAD   ACTIVE SUB     DESCRIPTION
-abrt-ccpp.service            loaded active exited  Install ABRT coredump hook
-abrt-oops.service            loaded active running ABRT kernel log watcher
-abrt-xorg.service            loaded active running ABRT Xorg log watcher
-abrtd.service                loaded active running ABRT Automated Bug Reporting 
-alsa-state.service           loaded active running Manage Sound Card State (rest
-atd.service                  loaded active running Job spooling tools
+$ systemctl -t service
+  UNIT                                                  LOAD   ACTIVE SUB     DESCRIPTION
+  accounts-daemon.service                               loaded active running Accounts Service
+  alsa-state.service                                    loaded active running Manage Sound Card State (restore and store)
+  atd.service                                           loaded active running Deferred execution scheduler
+  auditd.service                                        loaded active running Security Auditing Service
 （略）
-kdump.service                loaded failed failed  Crash recovery kernel arming
+● mcelog.service                                        loaded failed failed  Machine Check Exception Logging Daemon
 （略）
+
+LOAD   = Reflects whether the unit definition was properly loaded.
+ACTIVE = The high-level unit activation state, i.e. generalization of SUB.
+SUB    = The low-level unit activation state, values depend on unit type.
+58 loaded units listed. Pass --all to see loaded but inactive units, too.
+To show all installed unit files use 'systemctl list-unit-files'.
 ```
 
 表示の意味は以下の通りです。
@@ -250,20 +266,22 @@ kdump.service                loaded failed failed  Crash recovery kernel arming
 |SUB|実行状態の詳細。running（実行中）やexited（実行したが終了した）などで表される。|
 |DESCRIPTION|ユニットの説明|
 
-デフォルトでは、項目ACTIVEの実行状態がactiveになっているもののみが表示されています。inactiveのユニットも表示するには--allオプションを付与して実行します。
+デフォルトでは、項目ACTIVEの実行状態がactiveになっているもののみが表示されています。inactiveのユニットも表示するには--allオプションをつけて実行します。
 
 項目LOADは、systemctl maskコマンドで無効化されるとmaskedに変わります。詳細は後述します。
 
-項目ACTIVEがfailedになっていると、何らかの原因で起動失敗しているということになります。上記の例では、kdump（カーネルダンプ）サービスの起動に失敗しています。
+項目ACTIVEがfailedになっていると、何らかの原因で起動失敗しているということになります。上記の例では、mcelogサービスの起動に失敗しています。
 
 ### デバイス一覧の確認
 -t deviceオプションを付与して、デバイス一覧を表示します。
 
 ```
-# systemctl list-units -t device
-UNIT                                                                                     LOAD   ACTIVE SUB     DESCRIPTION
-sys-devices-pci0000:00-0000:00:05.0-virtio0-net-eth0.device                              loaded active plugged Virtio network device
-sys-devices-pci0000:00-0000:00:1f.2-ata3-host2-target2:0:0-2:0:0:0-block-sda-sda1.device loaded active plugged CentOS_7-0_SSD
+$ systemctl list-units -t device
+  UNIT                                                                                     LOAD   ACTIVE SUB     DESCRIPTION                              >
+  sys-devices-pci0000:00-0000:00:01.1-ata2-host2-target2:0:0-2:0:0:0-block-sr0.device      loaded active plugged VBOX_CD-ROM
+  sys-devices-pci0000:00-0000:00:03.0-net-enp0s3.device                                    loaded active plugged 82540EM Gigabit Ethernet Controller (PRO/>
+  sys-devices-pci0000:00-0000:00:05.0-sound-card0-controlC0.device                         loaded active plugged /sys/devices/pci0000:00/0000:00:05.0/soun>
+  sys-devices-pci0000:00-0000:00:08.0-net-enp0s8.device                                    loaded active plugged 82540EM Gigabit Ethernet Controller (PRO/>
 （略）
 ```
 
@@ -271,13 +289,12 @@ sys-devices-pci0000:00-0000:00:1f.2-ata3-host2-target2:0:0-2:0:0:0-block-sda-sda
 -t mountオプションを付与して、マウントの状況一覧を表示します。
 
 ```
-# systemctl list-units -t mount
-UNIT                         LOAD   ACTIVE SUB     DESCRIPTION
--.mount                      loaded active mounted /
-boot.mount                   loaded active mounted /boot
-dev-hugepages.mount          loaded active mounted Huge Pages File System
-dev-mqueue.mount             loaded active mounted POSIX Message Queue File Syst
-home.mount                   loaded active mounted /home
+$ systemctl list-units -t mount
+  UNIT                                                              LOAD   ACTIVE SUB     DESCRIPTION
+  -.mount                                                           loaded active mounted Root Mount
+  boot-efi.mount                                                    loaded active mounted /boot/efi
+  boot.mount                                                        loaded active mounted /boot
+  dev-hugepages.mount                                               loaded active mounted Huge Pages File System
 （略）
 ```
 
@@ -285,30 +302,31 @@ home.mount                   loaded active mounted /home
 -t swapオプションを付与して、スワップの状況一覧を表示します。
 
 ```
-# systemctl list-units -t swap
-UNIT             LOAD   ACTIVE SUB    DESCRIPTION
-dev-dm¥x2d0.swap loaded active active /dev/dm-0
+$ systemctl list-units -t swap
+  UNIT                                   LOAD   ACTIVE SUB    DESCRIPTION
+  dev-mapper-almalinux_vbox\x2dswap.swap loaded active active /dev/mapper/almalinux_vbox-swap
 （略）
 ```
 
 ### サービスの自動起動の設定
-システム起動時にサービスを自動起動するには、systemctl enableコマンドを実行します。
+システム起動時にサービスを自動起動するには、systemctl enableコマンドを実行します。自動起動しないようにするにはsystemctl disableコマンドを実行します。
 
-例として、Webサービスをシステム起動時に自動起動するように設定します。/usr/lib/systemd/system/httpd.serviceがWebサービスの起動スクリプトです。systemctl enableコマンドを実行すると、/etc/systemd/system/multi-user.target.wantsディレクトリにシンボリックリンクが作成されます。
+例として、firewalldをシステム起動時に自動起動するように設定します。すでにデフォルトで自動起動する設定のため、一度systemctl disableコマンドを実行した後、systemctl enableコマンドを実行します。
+
+```
+$ sudo systemctl disable firewalld
+Removed "/etc/systemd/system/multi-user.target.wants/firewalld.service".
+Removed "/etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service".
+$ sudo systemctl enable firewalld
+Created symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service → /usr/lib/systemd/system/firewalld.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/firewalld.service → /usr/lib/systemd/system/firewalld.service.
+```
+
+/usr/lib/systemd/system/firewalld.serviceがWebサービスの起動スクリプトです。systemctl enableコマンドを実行すると、/etc/systemd/system/multi-user.target.wantsディレクトリにシンボリックリンクが作成されます。
 
 この動作は、multi-user.targetターゲットユニットが呼び出された時に、シンボリックリンクの起動スクリプトが実行されるように設定しています。
 
-```
-# systemctl enable httpd
-ln -s '/usr/lib/systemd/system/httpd.service' '/etc/systemd/system/multi-user.target.wants/httpd.service'
-```
-
-システム起動時の自動起動を行わないようにするには、systemctl disableコマンドを実行します。作成されたシンボリックリンクが削除され、起動スクリプトは呼び出されなくなります。
-
-```
-# systemctl disable httpd
-rm '/etc/systemd/system/multi-user.target.wants/httpd.service'
-```
+systemctl disableコマンドを実行すると、作成されたシンボリックリンクが削除され、起動スクリプトは呼び出されなくなります。
 
 ### サービスのsystemdからの除外
 systemctl maskコマンドを実行すると、指定したサービスがsystemdの管理から除外され、手動での起動も行えなくなります。
@@ -318,26 +336,26 @@ systemctl maskコマンドを実行すると、指定したサービスがsystem
 Webサービスをsystemdから除外します。
 
 ```
-# systemctl mask httpd
-ln -s '/dev/null' '/etc/systemd/system/httpd.service'
-# systemctl start httpd
-Failed to issue method call: Unit httpd.service is masked.
+$ sudo systemctl mask firewalld
+Created symlink /etc/systemd/system/firewalld.service → /dev/null.
+$ sudo systemctl start firewalld
+Failed to start firewalld.service: Unit firewalld.service is masked.
 ```
 
 systemctl is-enabledコマンドで、サービスの状態が確認できます。httpdサービスの状態はmaskedとなっています。
 
 ```
-# systemctl is-enabled httpd
+$ sudo systemctl is-enabled firewalld
 masked
 ```
 
 systemctl unmaskコマンドを実行すると、シンボリックリンクが削除されて、指定したサービスがsystemdで管理されるようになります。httpdサービスの状態はdisabledになります。
 
 ```
-# systemctl unmask httpd
-rm '/etc/systemd/system/httpd.service'
-# systemctl is-enabled httpd
-disabled
+$ sudo systemctl unmask firewalld
+Removed "/etc/systemd/system/firewalld.service".
+$ sudo systemctl is-enabled firewalld
+enabled
 ```
 
 ### systemdのサービスに関連するディレクトリとシステム起動の仕組み
@@ -346,10 +364,10 @@ systemdが内部的にどのような仕組みになっているのか、関連�
 systemctl enableコマンドの動作を見ても分かる通り、systemdの仕組みにおいて、関連するディレクトリは以下の2つです。
 
 #### /usr/lib/systemd/systemディレクトリ
-サービス起動スクリプトが格納されています。/etc/rc.d/init.dディレクトリに相当します。
+サービス起動スクリプトが格納されています。
 
 #### /etc/systemd/systemディレクトリ
-サービス起動スクリプトに対するシンボリックリンクが配置されます。/etc/rc.dディレクトリに相当します。
+サービス起動スクリプトに対するシンボリックリンクが配置されます。
 
 システム起動時のsystemdの動作は、/etc/systemd/systemディレクトリ以下のサブディレクトリ内に作成されたサービス起動スクリプトへのシンボリックリンクが順次実行されてサービスが起動されます。シンボリックリンクの作成される場所は、役割別のターゲットユニット毎にディレクトリが分けられています。
 
@@ -362,10 +380,10 @@ systemctl enableコマンドの動作を見ても分かる通り、systemdの仕
 システム共通に実行されるスクリプトです。
 
 #### 3. /etc/systemd/system/multi-user.target.wants/
-従来のランレベル3（CUI）に相当します。
+CUI起動の状態です。
 
 #### 4. /etc/systemd/system/graphical.target.wants/
-従来のランレベル5（GUI）に相当します。
+GUI起動の状態です。
 
 systemdではmulti-user.targetを実行後にgraphical.targetが実行されるようになっています。
 
@@ -380,7 +398,7 @@ systemdではランレベルではなく、サービス起動スクリプトを�
 systemctl get-defaultコマンドで、現在のデフォルトターゲットを確認します。
 
 ```
-# systemctl get-default
+$ systemctl get-default
 graphical.target
 ```
 
@@ -388,17 +406,23 @@ graphical.target
 デフォルトターゲットをmulti-user.targetに変更し、再起動します。CUIで起動してくることを確認します。
 
 ```
-# systemctl set-default multi-user.target
-# reboot
+$ sudo systemctl set-default multi-user.target
+Created symlink /etc/systemd/system/default.target → /usr/lib/systemd/system/multi-user.target.
+$ sudo reboot
 ```
+
+システムが再起動すると、CUIで起動し、ログインプロンプトが表示されます。
 
 #### デフォルトターゲットをGUIに変更
 GUIでの起動に戻すには、以下のsystemctl set-defaultコマンドを実行します。
 
 ```
-# systemctl set-default graphical.target
-# reboot
+$ sudo systemctl set-default graphical.target
+Created symlink /etc/systemd/system/default.target → /usr/lib/systemd/system/graphical.target.
+$ sudo reboot
 ```
+
+システムが再起動すると、GUIで起動し、ユーザー選択画面が表示されます。
 
 ### 現在のターゲットの一時的な変更
 systemdでの現在のターゲットを一時的に変更するには、systemctl isolateコマンドを実行します。
@@ -406,53 +430,53 @@ systemdでの現在のターゲットを一時的に変更するには、systemc
 GUIからCUIに変更します。GUIログインしている場合、ログアウトします。
 
 ```
-# systemctl isolate multi-user.target
+$ sudo systemctl isolate multi-user.target
 ```
 
 CUIからGUIに変更します。
 
 ```
-# systemctl isolate graphical.target
+$ sudo systemctl isolate graphical.target
 ```
 
 ## systemdのタイマーによるジョブのスケジュール実行
 システムのメンテナンスなどで定期的にプロセスを実行するには、systemdのタイマーを使います。
 
-## 有効なタイマーの一覧
+### 有効なタイマーの一覧
 
 
-linuc@localhost:/usr/lib/systemd/system$ systemctl list-timers
-NEXT                            LEFT LAST                          PASSED UNIT                         ACTIVATES
-Sat 2025-06-28 16:03:42 JST    31min Sat 2025-06-28 15:07:02 JST        - fwupd-refresh.timer          fwupd-refresh.service
-Sat 2025-06-28 16:05:11 JST    32min -                                  - dnf-makecache.timer          dnf-makecache.service
-Sun 2025-06-29 00:00:00 JST       8h -                                  - sysstat-rotate.timer         sysstat-rotate.service
-Sun 2025-06-29 00:27:55 JST       8h Sat 2025-06-28 14:50:20 JST        - logrotate.timer              logrotate.service
-Sun 2025-06-29 00:39:12 JST       9h Sat 2025-06-28 14:50:20 JST        - plocate-updatedb.timer       plocate-updatedb.service
-Sun 2025-06-29 01:00:00 JST       9h Wed 2025-06-25 15:08:20 JST        - raid-check.timer             raid-check.service
-Sun 2025-06-29 15:24:09 JST      23h Sat 2025-06-28 15:24:09 JST 8min ago systemd-tmpfiles-clean.timer systemd-tmpfiles-clean.service
-Mon 2025-06-30 00:50:21 JST 1 day 9h Wed 2025-06-25 16:09:18 JST        - fstrim.timer                 fstrim.service
+```
+$ systemctl list-timers
+NEXT                        LEFT       LAST                        PASSED    UNIT                         ACTIVATES
+Sat 2025-07-26 16:11:27 JST 13min left -                           -         systemd-tmpfiles-clean.timer systemd-tmpfiles-clean.service
+Sat 2025-07-26 16:48:06 JST 50min left -                           -         dnf-makecache.timer          dnf-makecache.service
+Sun 2025-07-27 00:00:00 JST 8h left    Sat 2025-07-26 14:58:27 JST 59min ago logrotate.timer              logrotate.service
+Sun 2025-07-27 00:00:00 JST 8h left    Sat 2025-07-26 14:58:27 JST 59min ago mlocate-updatedb.timer       mlocate-updatedb.service
 
-8 timers listed.
+4 timers listed.
 Pass --all to see loaded but inactive timers, too.
+```
 
 タイマーの確認をするには、systemctl statusコマンドを使います。ログのローテーションを行うlogrotate.timerの状態を確認してみます。
 
-linuc@localhost:/usr/lib/systemd/system$ systemctl status logrotate.timer
-Warning: The unit file, source configuration file or drop-ins of logrotate.timer changed on disk. Run 'systemctl daemon-reload' to reload units.
+```
+$ systemctl status logrotate.timer
 ● logrotate.timer - Daily rotation of log files
      Loaded: loaded (/usr/lib/systemd/system/logrotate.timer; enabled; preset: enabled)
-     Active: active (waiting) since Sat 2025-06-28 15:09:21 JST; 26min ago
- Invocation: 9e94ba61ce2847eda12b927a0f467346
-    Trigger: Sun 2025-06-29 00:27:55 JST; 8h left
+     Active: active (waiting) since Sat 2025-07-26 15:56:31 JST; 1min 50s ago
+      Until: Sat 2025-07-26 15:56:31 JST; 1min 50s ago
+    Trigger: Sun 2025-07-27 00:00:00 JST; 8h left
    Triggers: ● logrotate.service
        Docs: man:logrotate(8)
              man:logrotate.conf(5)
 
- 6月 28 15:09:21 localhost systemd[1]: Started logrotate.timer - Daily rotation of log files.
+ 7月 26 15:56:31 localhost systemd[1]: Started Daily rotation of log files.
+```
 
-設定ファイルの内容を確認するには、sysmctl catコマンドを使います。
+設定ファイルの内容を確認するには、systemctl catコマンドを使います。
 
-llinuc@localhost:~$ sudo systemctl cat logrotate.timer
+```
+$ sudo systemctl cat logrotate.timer
 # /usr/lib/systemd/system/logrotate.timer
 [Unit]
 Description=Daily rotation of log files
@@ -460,87 +484,20 @@ Documentation=man:logrotate(8) man:logrotate.conf(5)
 
 [Timer]
 OnCalendar=daily
-RandomizedDelaySec=1h
+AccuracySec=1h
 Persistent=true
 
 [Install]
 WantedBy=timers.target
-
-[Timer]セクションがスケジュール実行を定義しています。OnCalendarが実行するタイミングを指定しています。dailyは毎日0時を意味しています。このようなキーワードでの指定の他、時間や実行間隔などを指定することもできます。RandomizedDelaySecは、複数のタイマーがdailyなど同じスケジュールを指定していて同時実行されるとシステムに大きな負荷がかかるのを避けるため、ランダムに指定された値を上限に遅延を入れて実行します。1hが指定されているので最大60分（1時間）の遅延を入れて実行することになります。先ほど確認したタイマーの状態のうちTriggerが実際に実行される予定の時刻を表していますが、00:27:55に実行される予定になっています。Persistentは、このタイマーを実行するタイミングにシステムが停止していた時、再度システムが起動した際の挙動を定義しています。trueに設定されていると、再度のシステム起動時にこのタイマーを実行します。
-
-## タイマーで実行されるサービス
-タイマーで実行されるサービスは同一の名前のサービスになります。実行内容はsystemctl catコマンドを使って確認できます。
-
-linuc@localhost:~$ systemctl cat logrotate.service
-# /usr/lib/systemd/system/logrotate.service
-[Unit]
-Description=Rotate log files
-Documentation=man:logrotate(8) man:logrotate.conf(5)
-RequiresMountsFor=/var/log
-ConditionACPower=true
-
-[Service]
-Type=oneshot
-ExecStart=/usr/sbin/logrotate /etc/logrotate.conf
-（略）
-
-サービスの定義ファイルは、タイマーの定義ファイル同様、/usr/lib/systemd/systemディレクトリに配置されているのがわかります。
-
-
-
-## anacron によるジョブの実行 
-cronを使って決められた時刻に一斉にcronジョブを実行すると、システムの負荷が集中してしまう欠点があります。特にクラウド環境において同じ時刻にcronジョブが実行されてしまうと、CPUやメモリ、I/Oなどの共有リソースを複数の仮想マシンが一斉に取り合うことになります。
-そこでanacronを使ってジョブを実行すると、ジョブが実行されるタイミングがランダムに決められるので、ジョブ実行が同時発生しないようになります。
-
-anacronで実行させたいジョブはシェルスクリプトとして作成し、実行したい時間間隔に応じて以下の表のディレクトリ内に配置します。シェルスクリプトのファイルを配置するだけでジョブが定期実行されるようになるので、定期実行するジョブをパッケージのインストール時に簡単に登録できるというメリットもあります。
-
-|実行する時間間隔|ディレクトリ|
-|-------|-------|
-|1日おき|/etc/cron.daily|
-|1週間おき|/etc/cron.weekly|
-|1ヶ月おき|/etc/cron.monthly|
-
-### anacronの設定
-anacronは、1時間おきにcrondから起動されます。起動時に設定ファイルとして/etc/anacrontabを読み込み、実行が必要なジョブを実行します。
-
-デフォルトの設定ファイルは以下の通りです。
-
-```
-# cat /etc/anacrontab
-# /etc/anacrontab: configuration file for anacron
-
-# See anacron(8) and anacrontab(5) for details.
-
-SHELL=/bin/sh
-PATH=/sbin:/bin:/usr/sbin:/usr/bin
-MAILTO=root
-# the maximal random delay added to the base delay of the jobs
-RANDOM_DELAY=45
-# the jobs will be started during the following hours only
-START_HOURS_RANGE=3-22
-
-#period in days   delay in minutes   job-identifier   command
-1       5       cron.daily              nice run-parts /etc/cron.daily
-7       25      cron.weekly             nice run-parts /etc/cron.weekly
-@monthly 45     cron.monthly            nice run-parts /etc/cron.monthly
 ```
 
-ジョブの実行頻度は、ジョブ設定の最初の数字で実行間隔を日数で記述します。デフォルトでは1日おきと7日おきのジョブが設定されています。1ヶ月毎の設定のように、実行間隔の設定は数値以外にマクロが用意されています。
+最初に、このタイマーで実行されるサービスの定義ファイルが/usr/lib/systemd/system/logrotate.timerであることが分かります。
 
-|マクロ|設定値|
-|-------|-------|
-|@daily|1（毎日1回）|
-|@weekly|7（毎週1回）|
-|@monthly|毎月1回|
+[Timer]セクションがスケジュール実行を定義しています。OnCalendarが実行するタイミングを指定しています。dailyは毎日0時を意味しています。このようなキーワードでの指定の他、時間や実行間隔などを指定することもできます。
 
-各ジョブは、それぞれの基準遅延時間に最大45分のランダムに決められた遅延時間（RANDOM_DELAY）を足して実行されます。基準遅延時間は、ジョブ定義の2番目の数字です。デフォルトでは、1日おきのジョブが5分、1週間おきのジョブが25分、1ヶ月おきのジョブが45分です。仮想マシン間で同時にジョブが実行されないようにしたい場合には、基準遅延時間を大きくずらす必要があります。
+AccuracySecは、タイマーの精度を指定しています。精度を高くすると、頻繁にタイマーを制御するためCPU実行が必要となり消費電力が上がります。デフォルトは1m（1分）ですが、ここではあまり高い精度は必要ない設定を行っています。
 
-anacronがジョブを実行するのは、START_HOURS_RANGEで設定されている3時から22時の間です。anacronはシステムが停止していた場合、実行していなかったジョブを再起動後に実行する仕組みがあります。そのため、このようにジョブ実行時間が広く指定されています。
-ただし、この設定では日中でもジョブが実行される可能性があります。もし、夜間にだけジョブを実行したい場合には、/etc/anacrontabに以下のように指定するといいでしょう。ここでは夜間の23時から翌日の朝6時までを指定しています。
-
-```
-START_HOURS_RANGE=23-6
-```
+Persistentは、このタイマーを実行するタイミングにシステムが停止していた時、再度システムが起動した際の挙動を定義しています。trueに設定されていると、再度のシステム起動時にこのタイマーを実行します。
 
 ## NTPによる時刻管理
 コンピューターの時刻は、意外と精度が低く1日ごとに数秒狂っていきます。しかも、電源OFFにした状態だとさらに狂いやすくなります。認証やデータベース、ログを集中管理するような環境の場合には、この時刻のずれが大きな問題になる場合があります。
