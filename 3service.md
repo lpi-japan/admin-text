@@ -504,46 +504,50 @@ NTP（Network Time Protocol）はマシンなどの時刻を合わせるため�
 
 ### Chronyの動作確認
 AlmaLinuxでは、NTPサーバー/NTPクライアントとしてChronyが使われており、chronydというサービスとして扱われます。Chronyはデフォルトで起動しているので、動作している様子を確認します。
+
 ```
-# systemctl status chronyd
+$ systemctl status chronyd
 ● chronyd.service - NTP client/server
      Loaded: loaded (/usr/lib/systemd/system/chronyd.service; enabled; preset: enabled)
-     Active: active (running) since Tue 2025-01-28 07:32:57 JST; 8h left
+     Active: active (running) since Sat 2025-07-26 16:20:42 JST; 8s ago
        Docs: man:chronyd(8)
              man:chrony.conf(5)
-    Process: 821 ExecStart=/usr/sbin/chronyd $OPTIONS (code=exited, status=0/SUCCESS)
-   Main PID: 867 (chronyd)
-      Tasks: 1 (limit: 10118)
-     Memory: 4.2M
-        CPU: 40ms
+    Process: 750 ExecStart=/usr/sbin/chronyd $OPTIONS (code=exited, status=0/SUCCESS)
+   Main PID: 785 (chronyd)
+      Tasks: 1 (limit: 10816)
+     Memory: 4.1M
+        CPU: 47ms
      CGroup: /system.slice/chronyd.service
-             └─867 /usr/sbin/chronyd -F 2
- 1月 28 07:32:57 localhost chronyd[867]: chronyd version 4.5 starting (+CMDMON +NTP +REFCLOCK +RTC +PRIV>
- 1月 28 07:32:57 localhost chronyd[867]: Loaded 0 symmetric keys
- 1月 28 07:32:57 localhost chronyd[867]: Using right/UTC timezone to obtain leap second data
- 1月 28 07:32:57 localhost chronyd[867]: Frequency -276.346 +/- 80.978 ppm read from /var/lib/chrony/dri>
- 1月 28 07:32:57 localhost chronyd[867]: Loaded seccomp filter (level 2)
- 1月 28 07:32:57 localhost systemd[1]: Started NTP client/server.
- 1月 28 07:33:07 localhost.localdomain chronyd[867]: Selected source 45.76.218.37 (2.almalinux.pool.ntp.>
- 1月 28 07:33:07 localhost.localdomain chronyd[867]: System clock wrong by -32400.283303 seconds
- 1月 27 22:33:06 localhost.localdomain chronyd[867]: System clock was stepped by -32400.283303 seconds
- 1月 27 22:33:06 localhost.localdomain chronyd[867]: System clock TAI offset set to 37 seconds
+             └─785 /usr/sbin/chronyd -F 2
+
+ 7月 26 16:20:42 localhost chronyd[785]: chronyd version 4.6.1 starting (+CMDMON +NTP +REFCLOCK +RTC +PRIVDROP +SCFILTER +SIGND +ASYNCDNS +NTS +SECHASH +I>
+ 7月 26 16:20:42 localhost chronyd[785]: Loaded 0 symmetric keys
+ 7月 26 16:20:42 localhost chronyd[785]: Using right/UTC timezone to obtain leap second data
+ 7月 26 16:20:42 localhost chronyd[785]: Frequency -8.088 +/- 0.231 ppm read from /var/lib/chrony/drift
+ 7月 26 16:20:42 localhost chronyd[785]: Loaded seccomp filter (level 2)
+ 7月 26 16:20:42 localhost systemd[1]: Started NTP client/server.
+ 7月 26 16:20:48 vbox chronyd[785]: Selected source 139.162.81.45 (2.almalinux.pool.ntp.org)
+ 7月 26 16:20:48 vbox chronyd[785]: System clock wrong by -1.974025 seconds
+ 7月 26 16:20:46 vbox chronyd[785]: System clock was stepped by -1.974025 seconds
+ 7月 26 16:20:46 vbox chronyd[785]: System clock TAI offset set to 37 seconds
 ```
-この環境は仮想マシンで動作させていますが、起動時のログを見てみると、最初は朝7時32分として起動していますが、NTPが外部のNTPサーバーと時刻同期し、9時間巻き戻って夜の22時33分に時刻を設定し直しているのがわかります。
+
+ログを見てみると、起動時の時間が約2秒ほどずれており、時間が2秒ほど巻き戻されているのがタイムスタンプでも分かります。
 
 ### 参照しているNTPサーバーの確認
 次に時刻同期のために参照しているNTPサーバーを確認します。クライアントとしての動作はchronycコマンドを使って操作します。
 
 ```
-# chronyc sources
+$ chronyc sources
 MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ===============================================================================
-^* ipv4.ntp3.rbauman.com         2   6   167    51   +164us[+3006us] +/-   11ms
-^- 122x215x240x51.ap122.ftt>     2   6   157    50   -958us[ -958us] +/-   49ms
-^- ap-northeast-1.clearnet.>     2   6   147   113  +3598us[+5467us] +/-   30ms
-^- 45.159.48.231                 3   6   147   113  +4552us[+6424us] +/-  139ms
+^* old-tok2.jp.ntp.li            3   6    77    45  -1598us[-1688us] +/-   26ms
+^+ time.cloudflare.com           3   6    77    46    +24us[  -67us] +/-   63ms
+^+ time.cloudflare.com           3   6    77    44  +1973us[+1973us] +/-   61ms
+^+ pred-374.chl.la               3   6    77    44   +873us[ +873us] +/-   24ms
 ```
-2桁目にある記号のうち、「\*」となっているのが現在参照しているサーバーです。NTPサーバーは様々な組織がサービスを提供しており、複数のサーバーが参照可能（記号「-」）になっているのがわかります。
+
+2桁目にある記号のうち、「*」となっているのが現在参照しているNTPサーバーです。NTPサーバーは様々な組織がサービスを提供しており、複数のサーバーが参照可能（記号「+」）になっているのがわかります。
 
 ステータスの読み方は以下の通りです。1列目のM列はソースのモードを示します。
 | 記号  | 意味   |
@@ -566,69 +570,74 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 Chronyの設定は「/etc/chrony.conf」に記述されています。参照するNTPサーバーをNICTが提供している「ntp.nict.jp」に変更してみます。
 
 ```
-# vi /etc/chrony.conf
+$ sudo vi /etc/chrony.conf
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (https://www.pool.ntp.org/join.html).
 # pool 2.almalinux.pool.ntp.org iburst
 pool ntp.nict.jp iburst
 ```
-デフォルトではntp.orgが運営しているNTPサーバープールからランダムに参照するようになっています。ここをNICTのNTPサーバーを参照するように変更します。
+デフォルトではntp.orgが運営しているNTPサーバープールからランダムに参照するようになっています。この設定をコメントアウトして無効にし、NICTのNTPサーバーを参照するように設定を追加します。
 
 #### 設定変更を適用する
 変更を適用するには、chronydサービスを再起動してみます。
+
 ```
-# systemctl restart chronyd
+$ sudo systemctl restart chronyd
 ```
+
 chronycコマンドで時刻同期の様子を確認します。
 
 ```
 # chronyc sources
 MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ===============================================================================
-^? ntp-k1.nict.jp                1   6     3     0    -20ms[  -20ms] +/- 9780us
-^? ntp-b2.nict.go.jp             1   6     3     0    -20ms[  -20ms] +/-   13ms
-^? ntp-a3.nict.go.jp             1   6     1     2    -21ms[  -21ms] +/-   15ms
-^? ntp-b3.nict.go.jp             1   6     1     2    -21ms[  -21ms] +/-   13ms
+^? ntp-a3.nict.go.jp             1   6     3     2   -441us[ -441us] +/- 4866us
+^? 2001:ce8:78::2                1   6     3     1  +2926ns[+2926ns] +/- 9113us
+^? ntp-b3.nict.go.jp             1   6     3     2    -33us[  -33us] +/- 4379us
+^? ntp-a2.nict.go.jp             1   6     3     1   -285us[ -285us] +/- 4682us
 ```
+
 記号「?」なので、まだ同期していない状態です。
 
 ```
 # chronyc sources
 MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ===============================================================================
-^+ ntp-k1.nict.jp                1   6    77    58    +14ms[  +14ms] +/-   10ms
-^* ntp-b2.nict.go.jp             1   6    77    58    +13ms[  -10ms] +/-   13ms
-^- ntp-a3.nict.go.jp             1   6    77    57    +10ms[  +10ms] +/-   12ms
-^+ ntp-b3.nict.go.jp             1   6    77    57    +13ms[  +13ms] +/-   11ms
+^- ntp-a3.nict.go.jp             1   6     7     1   +356us[  -68us] +/- 4295us
+^- 2001:ce8:78::2                1   6     7     0   -827us[-1251us] +/-   10ms
+^+ ntp-b3.nict.go.jp             1   6     7     1   +281us[ -143us] +/- 4552us
+^* ntp-a2.nict.go.jp             1   6     7     0   -105us[ -529us] +/- 4624us
 ```
-ntp-a3のみ「-」なので、3つが時刻同期可能な状態です。
+
+ntp-a2と同期し、ntp-b3も時刻同期可能な状態です。
 
 ```
 # chronyc sources
 MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ===============================================================================
-^+ ntp-k1.nict.jp                1   6   177    12    +21ms[  +21ms] +/-   13ms
-^* ntp-b2.nict.go.jp             1   6   177    12    +27ms[  +40ms] +/-   14ms
-^+ ntp-a3.nict.go.jp             1   6   177    10    +12ms[  +12ms] +/-   27ms
-^+ ntp-b3.nict.go.jp             1   6   177    11    +25ms[  +25ms] +/-   14ms
+^+ ntp-a3.nict.go.jp             1   6    17    53   +369us[ +534us] +/- 4276us
+^+ 2001:ce8:78::2                1   6    17    52  -1092us[ -927us] +/-   10ms
+^+ ntp-b3.nict.go.jp             1   6    17    53   -238us[  -73us] +/- 4827us
+^* ntp-a2.nict.go.jp             1   6    17    52   +268us[ +433us] +/- 4123us
 ```
+
 4つすべてのNTPサーバーが時刻同期可能となりました。
 
 Linuxが正しい時刻で動作していることは、ログの記録やファイルなどのデータの保存にとって重要なので、正しい時刻になっているようにNTPクライアントとしてきちんと動作していることを確認しておきましょう。
 
 ## NTPサーバーとして時刻を提供する
-NTPサーバーは、他のクライアントに対して自身の時刻との同期をサービスとして提供します。前節はNTPサーバー自身の時刻同期について設定・確認方法を解説しました。ここではNTPサーバーとして他のクライアントの時刻同期を許可する設定を行います。
+NTPサーバーは、他のクライアントに対して自身の時刻との同期をサービスとして提供します。
 
 ### NTPサーバー機能を有効にする
 ChronyはデフォルトではNTPサーバー機能が無効になっています。設定を変更してNTPサーバーを有効にします。有効にするには、接続を許可するクライアントのIPアドレスを指定します。
 ```
-# vi /etc/chrony.conf
+$ sudo vi /etc/chrony.conf
 （中略）
 # Allow NTP client access from local network.
 #allow 192.168.0.0/16
-allow 192.168.156.0/24
+allow 192.168.56.0/24
 ```
-デフォルトではコメントアウト状態ですが、接続を許可するIPアドレス、ここではネットワークアドレスで一括して許可するように設定しています。
+allowディレクティブはデフォルトではコメントアウト状態ですが、接続を許可するIPアドレス、ここではネットワークアドレスで一括して許可するように設定しています。
 
 設定を有効にするため、chronydサービスを再起動します。
 ```
@@ -637,43 +646,45 @@ allow 192.168.156.0/24
 
 ### ファイアーウォールの設定を変更して接続を許可する
 NTPはネットワークプロトコルのため、ファイアーウォールで接続の許可をする必要があります。
+
 ```
-# firewall-cmd --add-service=ntp --permanent
+$ sudo firewall-cmd --add-service=ntp --permanent
 success
-# firewall-cmd --reload
+$ sudo firewall-cmd --reload
 success
-# firewall-cmd --list-services
+$ sudo firewall-cmd --list-services
 cockpit dhcpv6-client ntp ssh
 ```
-### クライアントでローカルNTPサーバーにアクセスする
-次にクライアントからローカルNTPサーバーにアクセスしてみます。設定方法はNTPサーバーをNICTのNTPサーバーを参照するように設定するのと同じです。
-以下はクライアントのAlmalinuxでの操作です。NTPサーバーとして設定したホストのIPアドレスを指定します。
+
+### クライアントでNTPサーバーにアクセスする
+次にクライアントからNTPサーバーにアクセスしてみます。
+
+以下は別途クライアント用として用意したAlmalinuxでの操作です。NTPサーバーとして設定したサーバーのIPアドレスを指定します。
+
 ```
-# vi /etc/chrony.conf
+$ sudo vi /etc/chrony.conf
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (https://www.pool.ntp.org/join.html).
 # pool 2.almalinux.pool.ntp.org iburst
-server 192.168.156.137 iburst
+server 192.168.56.101 iburst
 ```
 NTPサーバーの参照はserverとpoolの2種類があります。serverは単一のサーバーを指定する場合、poolは名前解決で複数の結果が返る場合、最大4つまでを参照先NTPサーバーとする、という違いがあります。
 
 設定を適用します。
+
 ```
-# systemctl restart chronyd
+$ sudo systemctl restart chronyd
 ```
 
 動作を確認します。
-```
-# chronyc sources
-MS Name/IP address         Stratum Poll Reach LastRx Last sample
-===============================================================================
-^? 192.168.156.137               2   6     1     2    -20ms[  -20ms] +/-  103ms
 
-# chronyc sources
-MS Name/IP address         Stratum Poll Reach LastRx Last sample
-===============================================================================
-^* 192.168.156.137               2   6     7     1   -617ns[  -19ms] +/-  101ms
 ```
+$ chronyc sources
+MMS Name/IP address         Stratum Poll Reach LastRx Last sample
+===============================================================================
+^* 192.168.56.101                2   6    17     1  +1842ns[  +11us] +/- 4560us
+```
+
 時刻が同期しました。
 
-上記ではローカルNTPサーバーを1つだけ設定しましたが、このローカルNTPサーバーが停止するとクライアントは時刻同期ができなくなります。時刻設定がシビアな環境においては、ローカルNTPサーバーを複数用意する、ローカルが参照できない場合は一時的に外部NTPサーバーを参照させるなどいくつかの方法が考えられます。システム環境に合った設定を検討、実施するようにしてください。
+NTPサーバーを1つだけ設定しましたが、NTPサーバーが停止するとクライアントは時刻同期ができなくなります。時刻設定がシビアな環境においては、NTPサーバーを複数用意する、用意したNTPサーバーが参照できない場合は一時的に外部NTPサーバーを参照させるなどいくつかの方法が考えられます。システム環境に合った設定を検討、実施するようにしてください。
