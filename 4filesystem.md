@@ -104,7 +104,7 @@ sato
 umask‚Æ‚ÍAƒtƒ@ƒCƒ‹‚âƒfƒBƒŒƒNƒgƒŠ‚ªV‹K‚Éì¬‚³‚ê‚éÛ‚ÉƒfƒtƒHƒ‹ƒg‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“‚ğŒˆ’è‚·‚é‚½‚ß‚Ì’l‚Å‚·BumaskƒRƒ}ƒ“ƒh‚ÅŠm”F‚Å‚«‚Ü‚·B
 
 ```
-[sato@vbox ~]$ umask
+$ umask
 0022
 ```
 
@@ -123,10 +123,10 @@ umask‚Ìİ’è’l‚É‚ÍAV‚µ‚­ƒtƒ@ƒCƒ‹‚ğì¬‚·‚éÛ‚Éİ’è‚µ‚È‚¢i‹–‰Â‚µ‚È‚¢jƒp[ƒ~ƒbƒ
 umask‚ª0022‚Æİ’è‚³‚ê‚Ä‚¢‚é‚ÆAƒOƒ‹[ƒv‚Æ‚»‚Ì‘¼‚Ìƒ†[ƒU[‚Ì‘‚«‚İ‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“iwj‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢ƒtƒ@ƒCƒ‹i-rw-r--r--A0644j‚ªì¬‚³‚ê‚Ü‚·B
 
 ```
-[sato@vbox ~]$ umask
+$ umask
 0022
-[sato@vbox ~]$ touch testfile
-[sato@vbox ~]$ ls -l testfile
+$ touch testfile
+$ ls -l testfile
 -rw-r--r--. 1 sato sato 0  7Œ 26 18:19 testfile
 ```
 
@@ -136,10 +136,10 @@ umask‚ª0022‚Æİ’è‚³‚ê‚Ä‚¢‚é‚ÆAƒOƒ‹[ƒv‚Æ‚»‚Ì‘¼‚Ìƒ†[ƒU[‚Ì‘‚«‚İ‚Ìƒp[ƒ~ƒbƒVƒ
 umask‚ª0022‚Æİ’è‚³‚ê‚Ä‚¢‚é‚ÆAƒOƒ‹[ƒv‚Æ‚»‚Ì‘¼‚Ìƒ†[ƒU[‚Ì‘‚«‚İ‚Ìƒp[ƒ~ƒbƒVƒ‡ƒ“iwj‚ªİ’è‚³‚ê‚È‚¢ƒfƒBƒŒƒNƒgƒŠi-rwxr-xr-xA0755j‚ªì¬‚³‚ê‚Ä‚¢‚Ü‚·B
 
 ```
-[sato@vbox ~]$ umask
+$ umask
 0022
-[sato@vbox ~]$ mkdir testdir
-[sato@vbox ~]$ ls -ld testdir
+$ mkdir testdir
+$ ls -ld testdir
 drwxr-xr-x. 2 sato sato 6  7Œ 26 18:20 testdir
 ```
 
@@ -149,8 +149,8 @@ drwxr-xr-x. 2 sato sato 6  7Œ 26 18:20 testdir
 ˆÈ‰º‚Ì—á‚Å‚ÍAumask‚ğ022‚Æ3Œ…‚Åİ’è‚µ‚Ä‚¢‚Ü‚·‚ªAumaskƒRƒ}ƒ“ƒh‚ÌŒ‹‰Ê‚Í0022‚É‚È‚Á‚Ä‚¢‚Ü‚·B
 
 ```
-[sato@server ~]$ umask 022
-[sato@server ~]$ umask
+$ umask 022
+$ umask
 0022
 ```
 
@@ -159,9 +159,9 @@ umask‚ğ•ÏX‚µ‚½‚¢ê‡‚É‚ÍAumaskƒRƒ}ƒ“ƒh‚Åİ’è‚µ‚½umask’l‚ğˆø”‚Æ‚µ‚Ä—^‚¦‚Ü‚·B
 ˆÈ‰º‚Ì—á‚Å‚ÍAumask‚Ì’l‚ğ0002‚É•ÏX‚µ‚½‚Ì‚ÅAV‹K‚Éì¬‚µ‚½ƒtƒ@ƒCƒ‹‚ÌƒAƒNƒZƒXŒ ‚Í664(-rw-rw-r--)‚Éİ’è‚³‚ê‚Ä‚¢‚Ü‚·B
 
 ```
-[sato@server ~]$ umask 0002
-[sato@server ~]$ touch umasktest
-[sato@server ~]$ ls -l umasktest 
+$ umask 0002
+$ touch umasktest
+$ ls -l umasktest 
 -rw-rw-r--. 1 sato sato 0  7Œ 26 18:21 umasktest
 ```
 
