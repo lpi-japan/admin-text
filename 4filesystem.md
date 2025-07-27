@@ -45,6 +45,7 @@ uid=1001(suzuki) gid=1001(suzuki) groups=1001(suzuki),5001(power) context=unconf
 $ sudo su - sato
 $ id
 uid=1004(sato) gid=1004(sato) groups=1004(sato) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023```
+```
 
 ### プロセスの実行権の管理
 Linuxでは、rootユーザーを除いて他のユーザーが起動したプロセスを停止させることはできません。
