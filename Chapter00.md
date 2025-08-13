@@ -80,7 +80,7 @@ Copyright©️ LPI-Japan. All Rights Reserved.
 ## 使用に関する権利 {.unlisted .unnumbered}
 本教科書は、クリエイティブ・コモンズ・ライセンスの「表示 - 非営利 - 改変禁止 4.0 国際 (CC BY-NC-ND 4.0) 」によってライセンスされています。
 
-![CC BY-NC-ND 4.0](image/Ch0/by-nc-nd.png){width=200px}
+![CC BY-NC-ND 4.0](image/Ch00/by-nc-nd.png){width=200px}
 
 
 ### 表示 {.unlisted .unnumbered}
@@ -105,7 +105,9 @@ Copyright©️ LPI-Japan. All Rights Reserved.
 https://linuc.org/textbooks/admin/
 ```
 
-![https://linuc.org/textbooks/server/](image/Ch0/QRserver.png){width=25%}
+![https://linuc.org/textbooks/server/](image/Ch00/QRserver.png){width=25%}
+
+ここは後で変更
 
 ## 本教科書の使用に関するお問合せ先 {.unlisted .unnumbered}
 特定非営利活動法人エルピーアイジャパン（LPI-Japan）事務局  
@@ -119,7 +121,7 @@ Linux技術者認定「LinuC（リナック）」とは、クラウド／DX時�
 
 LinuCの出題範囲策定や試験開発は、実際に現場で活躍しているハイレベルなITエンジニアが参加するコミュニティによって行われています。そのため、グローバルで業界標準として利用されている技術領域をカバーし、システム開発や運用管理の現場で本当に必要とされる知識や実践的なスキルを問う内容になっています。その結果として従来型のLinux領域にとどまった技術認定とは異なり、国内・海外を問わず活躍を目指すITエンジニアにとっても十分役立つ技術者認定となりました。
 
-![LinuCの体系図](image/Ch0/taikei.png){width=50%}
+![LinuCの体系図](image/Ch00/taikei.png){width=50%}
 
 ### LinuCレベル１ {.unlisted .unnumbered}
 コンピュータシステムを理解し、仮想環境を含むLinuxシステムの基本操作とシステム管理が行える即戦力エンジニアの証明（ITSSレベル1）
@@ -140,6 +142,6 @@ LinuCの詳細については、以下のWebサイトを参照してください
 https://linuc.org/about/01.html
 ```
 
-![https://linuc.org/about/01.html](image/Ch0/QRaboutLinuC.png){width=25%}
+![https://linuc.org/about/01.html](image/Ch00/QRaboutLinuC.png){width=25%}
 
 \pagebreak
