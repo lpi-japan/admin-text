@@ -994,7 +994,7 @@ drwx------. 2 sshuser sshuser 38  7月 21 14:20 .ssh
 
 本来であれば、現在使用している仮想マシンとは別の仮想マシンをサーバーとして用意して行いますが、以下の例ではその作業を省略して同一のホストをサーバーと見立てて作業を行っています。別途サーバーを用意できる場合には、あらかじめサーバーにユーザーsshuserを作成し、localhostと記述している箇所をサーバーのIPアドレスに置き換えて実行してみてください。
 
-＃1
+#1
 
 1. クライアントからサーバーに公開鍵をコピー
 
@@ -1024,7 +1024,7 @@ id_rsa.pub                                                                      
 
 sshuserとしてSSH接続するのが初めてだったので、サーバー証明書の保存が要求されました。ホームディレクトリ内に公開鍵がコピーされています。
 
-＃2
+#2
 
 1. ~/.sshディレクトリを作成
 
@@ -1042,7 +1042,7 @@ drwx------. 2 sshuser sshuser 80  7月 21 14:27 .ssh
 
 既に.sshディレクトリが作成されているのでエラーが表示されましたが、新規のサーバーの場合には存在しないのでエラーは発生しません。パーミッションの設定も忘れずに行います。
 
-＃3
+#3
 
 1. ~/.ssh/authorized_keysファイルを作成
 
@@ -1055,7 +1055,7 @@ drwx------. 2 sshuser sshuser 80  7月 21 14:27 .ssh
 -rw-------. 1 sshuser sshuser 0  7月 21 14:31 .ssh/authorized_keys
 ```
 
-＃4
+#4
 
 1. 公開鍵の内容を~/.ssh/authorized_keysに追加
 
@@ -1068,7 +1068,7 @@ authorized_keysファイルを作成する作業では、cpコマンドやmvコ�
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCiiI9Fsn0CRxaoO7Xq0q4gEsADAmJNQaWNPOj/licSYrgZBWgy2ypBArlouB229A40ySwmHQduB+dHe/k+QtIy4FCPEFM9DkKryB6YLlfRURbPl3nBmsAaJaNf148LbS6TxchXidA4qk5Mbk3ASHQMD/ofgjzV0mOpdmaUbsQo1sFdrhYs/VBAHQAxmCqFWevrTUaspVd91yt2QgPj+YHdoV997+63Nswkrw+WZmJuR9fkKru+H8qAYjQTtwS/ZwxdEhmxu1jYpTz+zvI1eluT6aoXHcIctM7lPcmxQKUakaVEnG9bK1MguKEoqobhg318ZUr785t5tbOdAtaRxUIQUxPeqovNmiNwedGdaE7u0YGVizknL/SAvC3IdvfnGk1UgI4PebuQZrAqxWcfAWlk4kAw/CEvtjvoMHzgUyWMRvq4X4eIGVhRU1EROiZXQnh2oSzBtNH4rwquTIgi0DFpXxxZ1SRyNHNpj9v7KLKX8jEyFYFIPYkzo/sU13lsxJ8= sshuser@vbox
 ```
 
-＃5
+#5
 
 1. 公開鍵認証でログインできることを確認
 
