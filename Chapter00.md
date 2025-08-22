@@ -107,8 +107,6 @@ https://linuc.org/textbooks/admin/
 
 ![https://linuc.org/textbooks/admin/](image/Ch00/QRadmin.png){width=25%}
 
-ここは後で変更
-
 ## 本教科書の使用に関するお問合せ先 {.unlisted .unnumbered}
 特定非営利活動法人エルピーアイジャパン（LPI-Japan）事務局  
 〒100-0011 東京都千代田区内幸町2-1-1 飯野ビルディング9階  
