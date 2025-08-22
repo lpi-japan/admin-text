@@ -1267,7 +1267,7 @@ LinuxのIPアドレスは 192.168.56.101 です。
 ### コマンドプロンプトの起動
 Windowsの検索ウインドウに「cmd」と入力し、コマンドプロンプトを起動します。
 
-![コマンドプロンプトの起動](image/Ch01/Runcmd.png){width=75%}
+![コマンドプロンプトの起動](image/Ch01/Runcmd.png){width=50%}
 
 
 ### sshコマンドでリモートログインかを確認
@@ -1279,6 +1279,7 @@ Windowsの検索ウインドウに「cmd」と入力し、コマンドプロン�
 
 ![パスワード認証でLinuxにリモートログイン](image/Ch01/cmdssh.png){width=75%}
 
+\pagebreak
 
 ### 公開鍵・秘密鍵を作成
 ssh-keygenコマンドで公開鍵・秘密鍵を作成します。
@@ -1289,6 +1290,7 @@ ssh-keygenコマンドで公開鍵・秘密鍵を作成します。
 
 ![ssh-keygenコマンドで公開鍵・秘密鍵を作成](image/Ch01/ssh-keygen.png){width=75%}
 
+\pagebreak
 
 ### scpで公開鍵をLinuxにコピー
 scpで公開鍵をLinuxにコピーします。
@@ -1301,6 +1303,7 @@ scpで公開鍵をLinuxにコピーします。
 
 ![scpで公開鍵をLinuxにコピー](image/Ch01/scp.png){width=75%}
 
+\pagebreak
 
 ### Linuxに公開鍵を設置
 再度Linuxにリモートログインして公開鍵を設置します。

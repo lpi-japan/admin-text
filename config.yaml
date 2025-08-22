@@ -9,7 +9,7 @@ filters:
 variables:
   documentClass: ltjarticle
   mainfont: Harano Aji Gothic
-  bookTitle: Linux標準教科書
+  bookTitle: Linuxシステム管理標準教科書
   bookVersion: 2025年9月16日 \, \, Ver.2.0.0
 
 toc: true
