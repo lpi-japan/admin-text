@@ -1267,7 +1267,7 @@ LinuxのIPアドレスは 192.168.56.101 です。
 ### コマンドプロンプトの起動
 Windowsの検索ウインドウに「cmd」と入力し、コマンドプロンプトを起動します。
 
-![コマンドプロンプトの起動](image/Ch01/Runcmd.png){width=25%}
+![コマンドプロンプトの起動](image/Ch01/Runcmd.png){width=75%}
 
 
 ### sshコマンドでリモートログインかを確認
@@ -1277,7 +1277,7 @@ Windowsの検索ウインドウに「cmd」と入力し、コマンドプロン�
 >ssh linuc@192.168.56.101
 ```
 
-![パスワード認証でLinuxにリモートログイン](image/Ch01/cmdssh.png){width=25%}
+![パスワード認証でLinuxにリモートログイン](image/Ch01/cmdssh.png){width=75%}
 
 
 ### 公開鍵・秘密鍵を作成
@@ -1287,7 +1287,7 @@ ssh-keygenコマンドで公開鍵・秘密鍵を作成します。
 >ssh-keygen
 ```
 
-![ssh-keygenコマンドで公開鍵・秘密鍵を作成](image/Ch01/ssh-keygen.png){width=25%}
+![ssh-keygenコマンドで公開鍵・秘密鍵を作成](image/Ch01/ssh-keygen.png){width=75%}
 
 
 ### scpで公開鍵をLinuxにコピー
@@ -1299,7 +1299,7 @@ scpで公開鍵をLinuxにコピーします。
 .ssh>scp id_ed25519.pub linuc@192.168.56.101:~/ 
 ```
 
-![scpで公開鍵をLinuxにコピー](image/Ch01/scp.png){width=25%}
+![scpで公開鍵をLinuxにコピー](image/Ch01/scp.png){width=75%}
 
 
 ### Linuxに公開鍵を設置
@@ -1326,7 +1326,7 @@ catコマンドの出力をauthorized_keysに追加リダイレクトするこ�
 
 パスフレーズを入力してリモートログインできたら、公開鍵認証の設定は完了です。
 
-![公開鍵認証でLinuxにリモートログイン](image/Ch01/publickey.png){width=25%}
+![公開鍵認証でLinuxにリモートログイン](image/Ch01/publickey.png){width=75%}
 
 
 ## パスワード認証の禁止と管理者ユーザーrootのログインの禁止
