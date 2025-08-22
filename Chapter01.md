@@ -787,11 +787,7 @@ catコマンドでクライアントにある\~/.ssh/known_hostsファイルの�
 [sshuser@client ~]$ cat .ssh/known_hosts 
 localhost ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF67wXfBQsFqTo7nM1aPX0yQh4DbQwvYXyBmZPepW6b9
 localhost ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDPPbQ64LradMJ8nv+A5zIe5VKbawLPNylJznt61j3BUNz6
-gfjn0sKFFBtdrpLN0lwF/UNafqo7dTuohkGmb921iryd2+Q269sLmPaYYjZpSvwVJsWJSI1SamJJo0a6
-FcsFAAHy/y4CyweoL23OLTImNP2NorQ8rv368ZdYyq0ygl6oEL7Hc1CDzr34tCpetuynNgrYgDYnOH1+V97xj29LKjGell1PPzmjaFflbzVu
-dtktpoL94aY84xq6K5HDFDPqWKAB7xy4kWTvGfo/tbcQhObH12j3dJqjd3oNxWVmOkscutzrBplCWtsBQm7vGWIa0EZNQu
-X+Dw5ErJL98bC1B+tv9wKFIwX16kzKVukYrWqYLzUgKCtOf2F4nWCO5DmxTZSWdVDcr47awh7tP+/yzeGO7Aeda2qLoBcS
-upGxhR7ujtc43ABuBBCcJA4x3JMpjQl2FXv48PWpA3BVkDqoCjAvPKLSOjSXI2TQ305wtZx/flTdiH64ljLkrYF4xl0=
+（略）
 localhost ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBpjYw71x2i6
 QU0WQa+MWhs3k7G/lJZlDsHA55siz79uQJh7d5Ya5GH8X5AmO1POOX4e3N8/t/3XTyLHwy/RA1A=
 ```
@@ -941,7 +937,9 @@ drwx------. 2 sshuser sshuser 38  7月 21 14:20 .ssh
 
 ```
 [sshuser@vbox ~]$ cat .ssh/id_rsa.pub
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCiiI9Fsn0CRxaoO7Xq0q4gEsADAmJNQaWNPOj/licSYrgZBWgy2ypBArlouB229A40ySwmHQduB+dHe/k+QtIy4FCPEFM9DkKryB6YLlfRURbPl3nBmsAaJaNf148LbS6TxchXidA4qk5Mbk3ASHQMD/ofgjzV0mOpdmaUbsQo1sFdrhYs/VBAHQAxmCqFWevrTUaspVd91yt2QgPj+YHdoV997+63Nswkrw+WZmJuR9fkKru+H8qAYjQTtwS/ZwxdEhmxu1jYpTz+zvI1eluT6aoXHcIctM7lPcmxQKUakaVEnG9bK1MguKEoqobhg318ZUr785t5tbOdAtaRxUIQUxPeqovNmiNwedGdaE7u0YGVizknL/SAvC3IdvfnGk1UgI4PebuQZrAqxWcfAWlk4kAw/CEvtjvoMHzgUyWMRvq4X4eIGVhRU1EROiZXQnh2oSzBtNH4rwquTIgi0DFpXxxZ1SRyNHNpj9v7KLKX8jEyFYFIPYkzo/sU13lsxJ8= sshuser@vbox
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCiiI9Fsn0CRxaoO7Xq0q4gEsADAmJNQaWNPOj/licSYrgZ
+（略）
+sU13lsxJ8= sshuser@vbox
 ```
 
 公開鍵は1行のテキストですが、秘密鍵は何行かに分かれたフォーマットになっています。
@@ -994,8 +992,6 @@ drwx------. 2 sshuser sshuser 38  7月 21 14:20 .ssh
 
 本来であれば、現在使用している仮想マシンとは別の仮想マシンをサーバーとして用意して行いますが、以下の例ではその作業を省略して同一のホストをサーバーと見立てて作業を行っています。別途サーバーを用意できる場合には、あらかじめサーバーにユーザーsshuserを作成し、localhostと記述している箇所をサーバーのIPアドレスに置き換えて実行してみてください。
 
-#1
-
 1. クライアントからサーバーに公開鍵をコピー
 
 サーバーに公開鍵（id_rsa.pub）をコピーします。ここではSSHプロトコルを使ったファイルコピーを行うscpコマンドを使います。
@@ -1024,9 +1020,7 @@ id_rsa.pub                                                                      
 
 sshuserとしてSSH接続するのが初めてだったので、サーバー証明書の保存が要求されました。ホームディレクトリ内に公開鍵がコピーされています。
 
-#2
-
-1. ~/.sshディレクトリを作成
+2. ~/.sshディレクトリを作成
 
 \~/.sshディレクトリを作成し、公開鍵の設置を行います。
 
@@ -1042,9 +1036,7 @@ drwx------. 2 sshuser sshuser 80  7月 21 14:27 .ssh
 
 既に.sshディレクトリが作成されているのでエラーが表示されましたが、新規のサーバーの場合には存在しないのでエラーは発生しません。パーミッションの設定も忘れずに行います。
 
-#3
-
-1. ~/.ssh/authorized_keysファイルを作成
+3. ~/.ssh/authorized_keysファイルを作成
 
 .sshディレクトリの中にauthorized_keysファイルを作成し、パーミッションを変更します。公開鍵はこのファイルの中に追加していきます。
 
@@ -1055,9 +1047,7 @@ drwx------. 2 sshuser sshuser 80  7月 21 14:27 .ssh
 -rw-------. 1 sshuser sshuser 0  7月 21 14:31 .ssh/authorized_keys
 ```
 
-#4
-
-1. 公開鍵の内容を~/.ssh/authorized_keysに追加
+4. 公開鍵の内容を~/.ssh/authorized_keysに追加
 
 公開鍵をauthorized_keysに追加します。cat コマンドで出力をリダイレクトします。出力で“>>”を使うと既存ファイルのauthorized_keysファイルを上書きせずに追記する事ができます。
 authorized_keysファイルを作成する作業では、cpコマンドやmvコマンドは使用しないでください。authorized_keysファイルを上書きする危険性がある他、SELinuxが有効になっている場合、正常に動作しないことがあります。
@@ -1065,12 +1055,12 @@ authorized_keysファイルを作成する作業では、cpコマンドやmvコ�
 ```
 [sshuser@vbox ~]$ cat id_rsa.pub >> .ssh/authorized_keys
 [sshuser@vbox ~]$ cat .ssh/authorized_keys
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCiiI9Fsn0CRxaoO7Xq0q4gEsADAmJNQaWNPOj/licSYrgZBWgy2ypBArlouB229A40ySwmHQduB+dHe/k+QtIy4FCPEFM9DkKryB6YLlfRURbPl3nBmsAaJaNf148LbS6TxchXidA4qk5Mbk3ASHQMD/ofgjzV0mOpdmaUbsQo1sFdrhYs/VBAHQAxmCqFWevrTUaspVd91yt2QgPj+YHdoV997+63Nswkrw+WZmJuR9fkKru+H8qAYjQTtwS/ZwxdEhmxu1jYpTz+zvI1eluT6aoXHcIctM7lPcmxQKUakaVEnG9bK1MguKEoqobhg318ZUr785t5tbOdAtaRxUIQUxPeqovNmiNwedGdaE7u0YGVizknL/SAvC3IdvfnGk1UgI4PebuQZrAqxWcfAWlk4kAw/CEvtjvoMHzgUyWMRvq4X4eIGVhRU1EROiZXQnh2oSzBtNH4rwquTIgi0DFpXxxZ1SRyNHNpj9v7KLKX8jEyFYFIPYkzo/sU13lsxJ8= sshuser@vbox
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCiiI9Fsn0CRxaoO7Xq0q4gEsADAmJNQaWNPOj/licSYrgZ
+（略）
+sU13lsxJ8= sshuser@vbox
 ```
 
-#5
-
-1. 公開鍵認証でログインできることを確認
+5. 公開鍵認証でログインできることを確認
 
 sshuserでログインします。公開鍵が正しく設置されていれば、秘密鍵のパスフレーズの入力が求められます。もしパスワード認証を求められるような場合には、ファイル名やパーミッションなど、設置の手順を再確認してみてください。
 
@@ -1290,7 +1280,6 @@ ssh-keygenコマンドで公開鍵・秘密鍵を作成します。
 
 ![ssh-keygenコマンドで公開鍵・秘密鍵を作成](image/Ch01/ssh-keygen.png){width=75%}
 
-\pagebreak
 
 ### scpで公開鍵をLinuxにコピー
 scpで公開鍵をLinuxにコピーします。
