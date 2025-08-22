@@ -1161,8 +1161,8 @@ test.txt  testdir  ダウンロード  テンプレート  デスクトップ  �
 file1  file2
 [linuc@vbox ~]$ scp -r testdir linuc@localhost:~/scptestdir
 Enter passphrase for key '/home/linuc/.ssh/id_rsa':
-file1                                                                                                100%    0     0.0KB/s   00:00
-file2                                                                                                100%    0     0.0KB/s   00:00
+file1                                                  100%    0     0.0KB/s   00:00
+file2                                                  100%    0     0.0KB/s   00:00
 [linuc@vbox ~]$ ls
 scptestdir  test.txt  testdir  ダウンロード  テンプレート  デスクトップ  ドキュメント  ビデオ  音楽  画像  公開
 [linuc@vbox ~]$ ls scptestdir/
@@ -1219,7 +1219,7 @@ sftp> lls
 scptestdir  sftptestfile  test.txt  testdir  ダウンロード  テンプレート  デスクトップ  ドキュメント  ビデオ  音楽  画像  公開
 sftp> put sftptestfile
 Uploading sftptestfile to /home/linuc/testdir/sftptestfile
-sftptestfile                                                                                         100%    0     0.0KB/s   00:00
+sftptestfile                                            100%    0     0.0KB/s   00:00
 sftp> ls
 file1          file2          sftptestfile
 sftp> exit
@@ -1243,6 +1243,7 @@ LinuxのIPアドレスをip aコマンドで確認します。
 
 LinuxのIPアドレスは 192.168.56.101 です。
 
+\pagebreak
 
 ### コマンドプロンプトの起動
 Windowsの検索ウインドウに「cmd」と入力し、コマンドプロンプトを起動します。
