@@ -544,7 +544,7 @@ $ echo "SELinux test" > /home/linuc/public_html/index.html
 
 ブラウザを起動し、「http://localhost/~linuc/」にアクセスします。SELinuxのアクセス制御が有効になっているため、「Forbidden」が表示されます。
 
-![Forbiddenの表示](image/Ch04/Forbidden.png)
+![Forbiddenの表示](image/Ch04/Forbidden.png){width=75%}
 
 ログファイル/var/log/audit/audit.logを確認します。httpd(httpd_t)がユーザーホームディレクトリ(user_home_dir_t)にアクセスできなかったというログが出力されています。
 
@@ -566,7 +566,7 @@ httpd_enable_homedirs --> on
 
 再度ブラウザで「http://localhost/~linuc/」にアクセスします。Booleanでアクセスが許可されたので、作成したページが表示されます。
 
-![SELinux testの表示](image/Ch04/SELinuxtest.png)
+![SELinux testの表示](image/Ch04/SELinuxtest.png){width=75%}
 
 
 ## LVMの設定
