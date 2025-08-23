@@ -77,7 +77,8 @@ $ sudo grubby --set-default /boot/vmlinuz-5.14.0-570.12.1.el9_6.x86_64
 The default is /boot/loader/entries/65dd8a0b080e4373a5633404cabaac84-5.14.0-570.12.1.el9_6
 .x86_64.conf with index 1 and kernel /boot/vmlinuz-5.14.0-570.12.1.el9_6.x86_64
 $ sudo grubby --set-default 0
-The default is /boot/loader/entries/65dd8a0b080e4373a5633404cabaac84-5.14.0-570.26.1.el9_6.x86_64.conf with index 0 and kernel /boot/vmlinuz-5.14.0-570.26.1.el9_6.x86_64
+The default is /boot/loader/entries/65dd8a0b080e4373a5633404cabaac84-5.14.0-570.26.1.el9_6
+.x86_64.conf with index 0 and kernel /boot/vmlinuz-5.14.0-570.26.1.el9_6.x86_64
 ```
 
 ## カーネルの起動
@@ -212,13 +213,13 @@ $ systemctl
 
 ```
 $ systemctl -t service
-  UNIT                                                  LOAD   ACTIVE SUB     DESCRIPTION
-  accounts-daemon.service                               loaded active running Accounts Service
-  alsa-state.service                                    loaded active running Manage Sound Card State (restore and store)
-  atd.service                                           loaded active running Deferred execution scheduler
-  auditd.service                                        loaded active running Security Auditing Service
+  UNIT                    LOAD   ACTIVE SUB     DESCRIPTION
+  accounts-daemon.service loaded active running Accounts Service
+  alsa-state.service      loaded active running Manage Sound Card State (restore and store)
+  atd.service             loaded active running Deferred execution scheduler
+  auditd.service          loaded active running Security Auditing Service
 （略）
-● mcelog.service                                        loaded failed failed  Machine Check Exception Logging Daemon
+● mcelog.service         loaded failed failed  Machine Check Exception Logging Daemon
 （略）
 
 LOAD   = Reflects whether the unit definition was properly loaded.
@@ -263,11 +264,11 @@ $ systemctl list-units -t device
 
 ```
 $ systemctl list-units -t mount
-  UNIT                                                              LOAD   ACTIVE SUB     DESCRIPTION
-  -.mount                                                           loaded active mounted Root Mount
-  boot-efi.mount                                                    loaded active mounted /boot/efi
-  boot.mount                                                        loaded active mounted /boot
-  dev-hugepages.mount                                               loaded active mounted Huge Pages File System
+  UNIT                    LOAD   ACTIVE SUB     DESCRIPTION
+  -.mount                 loaded active mounted Root Mount
+  boot-efi.mount          loaded active mounted /boot/efi
+  boot.mount              loaded active mounted /boot
+  dev-hugepages.mount     loaded active mounted Huge Pages File System
 （略）
 ```
 
@@ -523,6 +524,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 2桁目にある記号のうち、「*」となっているのが現在参照しているNTPサーバーです。NTPサーバーは様々な組織がサービスを提供しており、複数のサーバーが参照可能（記号「+」）になっているのがわかります。
 
 ステータスの読み方は以下の通りです。1列目のM列はソースのモードを示します。
+
 | 記号  | 意味   |
 |-------|-------|
 |  ^  | サーバー |
@@ -530,14 +532,15 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 |  #  | ローカル |
 
 2列目のS列はソースの状態を示します。
-| 記号  | 意味                            |
+
+| 記号  | 意味 |
 |-------|-------|
-|  *  | 同期しているソース                     |
-|  +  | 同期候補のソース                      |
-|  -  | 同期候補から外れたソース                  |
+|  *  | 同期しているソース |
+|  +  | 同期候補のソース |
+|  -  | 同期候補から外れたソース |
 |  ?  | 切断されたソース、パケットが全てのテストをパスしないソース |
-|  x  | 偽の時計と判断したもの                   |
-|  ~  | 時刻の変動性が大きすぎるソース               |
+|  x  | 偽の時計と判断したもの |
+|  ~  | 時刻の変動性が大きすぎるソース |
 
 ### 参照するNTPサーバーの設定を確認、変更する
 Chronyの設定は「/etc/chrony.conf」に記述されています。参照するNTPサーバーをNICTが提供している「ntp.nict.jp」に変更してみます。

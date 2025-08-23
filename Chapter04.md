@@ -1,4 +1,4 @@
-#ファイルシステムの管理
+# ファイルシステムの管理
 
 ## アクセス権の管理
 LinuxはPOSIXで示されているアクセス制御に準拠しています。POSIXとは「Portable Operating System Interface for UNIX」の略で、IEEE（Institute of Electrical and Electronics Engineers、アイ・トリプル・イー）によって定められた、UNIXベースのOSの仕様セットです。ユーザーID（uid）/グループID（gid）とパーミッションの組み合わせでファイルに対するアクセス権を管理しています。
