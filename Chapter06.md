@@ -595,7 +595,7 @@ $ sudo wireshark
 
 2. キャプチャを行うデバイスを選びます。
 
-![「Capture」メニュー→「Interfaces」を選択します](wireshark1.png)
+![「Capture」メニュー→「Interfaces」を選択します](image/Ch06/wireshark1.png)
 
 インターフェースの一覧からパケットキャプチャを行いたいインターフェースをクリックして選択します。複数同時に選択したい場合にはマウスの左ボタンを押しながらドラッグして複数選択します。
 アクセステストにWebサーバーが動作しているLinux上のWebブラウザを使う場合、使用するインターフェースはLoopback:loになる点に注意してください。
@@ -604,7 +604,7 @@ $ sudo wireshark
 
 3. パケットキャプチャを開始します。
 
-![eth0を選択します](wireshark2.png)
+![eth0を選択します](image/Ch06/wireshark2.png)
 
 選択したインターフェースを右クリックして「キャプチャ開始」を選択します。
 インターフェースをダブルクリックでもキャプチャを開始できます。
@@ -624,7 +624,10 @@ $ sudo wireshark
 
 6. 結果の絞り込みを行います。
 
-![httpで絞り込みを行います](wireshark3.png)
+![httpで絞り込みを行います](image/Ch06/wireshark3.png)
 
 「Filter:」のテキストボックスに「http」と入力して、Enterキーを押して絞り込みます。
 参照したいパケットを選択し、ウインドウ真ん中の詳細情報で「Hypertext Transfer Protocol」をダブルクリックして、HTTP通信の内容を確認します。
+
+\pagebreak
+
