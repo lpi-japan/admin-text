@@ -19,24 +19,6 @@ GRUBは、Linuxカーネルのイメージをメモリ上にロードする役�
 
 Linuxカーネルイメージが複数ある場合は、GRUBのメニュー画面でロードしたいイメージを選択して、Enterキーを押します。
 
-
-GRUBの設定確認
-grubby --info=ALL
-
-GRUBのデフォルト起動カーネルの確認
-grubby --default-kernel
-
-GRUBのデフォルト起動カーネルのインデックス確認
-grubby --default-index
-
-
-GRUBのデフォルト起動カーネルの変更
-grubby --set-default /boot/vmlinuz-5.14.0-503.11.1.el9_5.x86_64
-
-GRUBのデフォルト起動カーネルのインデックスによる変更
-grubby --set-default 1
-
-
 ### GRUBの設定確認
 GRUBの設定を確認したい場合には、grubbyコマンドに--info=ALLオプションをつけて実行します。
 
@@ -67,26 +49,15 @@ id="65dd8a0b080e4373a5633404cabaac84-0-rescue"
 
 3つの設定が存在しているのがわかります。各設定項目の意味は以下の通りです。
 
-index
-ブートメニューの選択肢のインデックス番号です。
-
-kernel
-起動に使用するカーネルです。
-
-args
-カーネル起動時に引き渡される値です。
-
-root
-起動時に参照されるルートデバイスです。
-
-initrd
-起動時に使用される起動RAMディスクです。
-
-title
-ブートメニューの選択肢に表示される文字列です。
-
-id
-マシンのユニークIDとカーネルバージョンを組み合わせた値です。
+| 項目 | 意味
+| - | -
+| index | ブートメニューの選択肢のインデックス番号です。
+| kernel | 起動に使用するカーネルです。
+| args | カーネル起動時に引き渡される値です。
+| root | 起動時に参照されるルートデバイスです。
+| initrd | 起動時に使用される起動RAMディスクです。
+| title | ブートメニューの選択肢に表示される文字列です。
+| id | マシンのユニークIDとカーネルバージョンを組み合わせた値です。
 
 ### GRUBのデフォルト起動の確認
 GRUBがデフォルトで起動するカーネルの確認は、grubbyコマンドに--default-kernelオプション、または--default-indexオプションをつけて実行すると確認できます。
@@ -103,7 +74,8 @@ GRUBのデフォルト起動カーネルを変更したい場合には、grubby�
 
 ```
 $ sudo grubby --set-default /boot/vmlinuz-5.14.0-570.12.1.el9_6.x86_64
-The default is /boot/loader/entries/65dd8a0b080e4373a5633404cabaac84-5.14.0-570.12.1.el9_6.x86_64.conf with index 1 and kernel /boot/vmlinuz-5.14.0-570.12.1.el9_6.x86_64
+The default is /boot/loader/entries/65dd8a0b080e4373a5633404cabaac84-5.14.0-570.12.1.el9_6
+.x86_64.conf with index 1 and kernel /boot/vmlinuz-5.14.0-570.12.1.el9_6.x86_64
 $ sudo grubby --set-default 0
 The default is /boot/loader/entries/65dd8a0b080e4373a5633404cabaac84-5.14.0-570.26.1.el9_6.x86_64.conf with index 0 and kernel /boot/vmlinuz-5.14.0-570.26.1.el9_6.x86_64
 ```
@@ -278,7 +250,8 @@ To show all installed unit files use 'systemctl list-unit-files'.
 ```
 $ systemctl list-units -t device
   UNIT                                                                                     LOAD   ACTIVE SUB     DESCRIPTION                              >
-  sys-devices-pci0000:00-0000:00:01.1-ata2-host2-target2:0:0-2:0:0:0-block-sr0.device      loaded active plugged VBOX_CD-ROM
+  sys-devices-pci0000:00-0000:00:01.1-ata2-host2-target2:0:0-2:0:0:0-block-sr0
+.device      loaded active plugged VBOX_CD-ROM
   sys-devices-pci0000:00-0000:00:03.0-net-enp0s3.device                                    loaded active plugged 82540EM Gigabit Ethernet Controller (PRO/>
   sys-devices-pci0000:00-0000:00:05.0-sound-card0-controlC0.device                         loaded active plugged /sys/devices/pci0000:00/0000:00:05.0/soun>
   sys-devices-pci0000:00-0000:00:08.0-net-enp0s8.device                                    loaded active plugged 82540EM Gigabit Ethernet Controller (PRO/>
@@ -363,26 +336,26 @@ systemdが内部的にどのような仕組みになっているのか、関連�
 
 systemctl enableコマンドの動作を見ても分かる通り、systemdの仕組みにおいて、関連するディレクトリは以下の2つです。
 
-#### /usr/lib/systemd/systemディレクトリ
+* /usr/lib/systemd/systemディレクトリ
 サービス起動スクリプトが格納されています。
 
-#### /etc/systemd/systemディレクトリ
+* /etc/systemd/systemディレクトリ
 サービス起動スクリプトに対するシンボリックリンクが配置されます。
 
 システム起動時のsystemdの動作は、/etc/systemd/systemディレクトリ以下のサブディレクトリ内に作成されたサービス起動スクリプトへのシンボリックリンクが順次実行されてサービスが起動されます。シンボリックリンクの作成される場所は、役割別のターゲットユニット毎にディレクトリが分けられています。
 
 ターゲット毎のディレクトリとその役割、実行の順番は以下の通りです。
 
-#### 1. /etc/systemd/system/sysinit.target.wants/
+1. /etc/systemd/system/sysinit.target.wants/
 システムの初期に実行されるスクリプトです。rc.sysinitスクリプトに相当します。
 
-#### 2. /etc/systemd/system/basic.target.wants/
+2. /etc/systemd/system/basic.target.wants/
 システム共通に実行されるスクリプトです。
 
-#### 3. /etc/systemd/system/multi-user.target.wants/
+3. /etc/systemd/system/multi-user.target.wants/
 CUI起動の状態です。
 
-#### 4. /etc/systemd/system/graphical.target.wants/
+4. /etc/systemd/system/graphical.target.wants/
 GUI起動の状態です。
 
 systemdではmulti-user.targetを実行後にgraphical.targetが実行されるようになっています。
