@@ -345,28 +345,22 @@ systemctl enableコマンドの動作を見ても分かる通り、systemdの仕
 
 システム起動時のsystemdの動作は、/etc/systemd/systemディレクトリ以下のサブディレクトリ内に作成されたサービス起動スクリプトへのシンボリックリンクが順次実行されてサービスが起動されます。シンボリックリンクの作成される場所は、役割別のターゲットユニット毎にディレクトリが分けられています。
 
-ターゲット毎のディレクトリとその役割、実行の順番は以下の通りです。
+/etc/systemd/systemディレクトリにあるターゲット毎のディレクトリの実行順とその役割は以下の通りです。
 
-1. /etc/systemd/system/sysinit.target.wants/
-2. /etc/systemd/system/basic.target.wants/
-3. /etc/systemd/system/multi-user.target.wants/
-4. /etc/systemd/system/graphical.target.wants/
-
-| ディレクトリ | 役割
-| - | -
-| sysinit.target.wants | システム初期に実行
-| basic.target.wants | システム共通に実行
-| multi-user.target.wants | CUI起動の状態
-| graphical.target.wants | GUI起動の状態
+| 実行順 | ディレクトリ | 役割
+| - | - | -
+| 1 | sysinit.target.wants | システム初期に実行
+| 2 | basic.target.wants | システム共通に実行
+| 3 | multi-user.target.wants | CUI起動の状態
+| 4 | graphical.target.wants | GUI起動の状態
 
 systemdではmulti-user.targetを実行後にgraphical.targetが実行されるようになっています。
 
 どこまで実行するかは、次に説明するデフォルトターゲットの設定によって決められています。
 
 ### デフォルトターゲットの変更
-systemdではランレベルではなく、サービス起動スクリプトを順番に実行していき、デフォルトターゲットで指定されたターゲットまで実行します。デフォルトターゲットを変更することで、CUI起動をするか、GUI起動にするかを選択できます。
+systemdではサービス起動スクリプトを順番に実行していき、デフォルトターゲットで指定されたターゲットまで実行します。デフォルトターゲットを変更することで、CUI起動をするか、GUI起動にするかを選択できます。
 
-デフォルトターゲットの変更は、systemctl set-defaultコマンドを実行します。
 
 systemctl get-defaultコマンドで、現在のデフォルトターゲットを確認します。
 
@@ -375,7 +369,7 @@ $ systemctl get-default
 graphical.target
 ```
 
-デフォルトターゲットをmulti-user.targetに変更し、再起動します。CUIで起動してくることを確認します。
+デフォルトターゲットの変更は、systemctl set-defaultコマンドを実行します。デフォルトターゲットをmulti-user.targetに変更し、再起動します。CUIで起動してくることを確認します。
 
 ```
 $ sudo systemctl set-default multi-user.target
@@ -414,7 +408,7 @@ $ sudo systemctl isolate graphical.target
 システムのメンテナンスなどで定期的にプロセスを実行するには、systemdのタイマーを使います。
 
 ### 有効なタイマーの一覧
-
+systemdの有効なタイマーの一覧を表示するには、systemctl list-timersコマンドを実行します。
 
 ```
 $ systemctl list-timers
@@ -428,7 +422,8 @@ Sun 2025-07-27 00:00:00 JST 8h left    Sat 2025-07-26 14:58:27 JST 59min ago mlo
 Pass --all to see loaded but inactive timers, too.
 ```
 
-タイマーの確認をするには、systemctl statusコマンドを使います。ログのローテーションを行うlogrotate.timerの状態を確認してみます。
+### タイマーの詳細の確認
+タイマーの詳細を確認をするには、systemctl statusコマンドを使います。ログのローテーションを行うlogrotate.timerの状態を確認してみます。
 
 ```
 $ systemctl status logrotate.timer
@@ -444,7 +439,8 @@ $ systemctl status logrotate.timer
  7月 26 15:56:31 localhost systemd[1]: Started Daily rotation of log files.
 ```
 
-設定ファイルの内容を確認するには、systemctl catコマンドを使います。
+### タイマーの設定ファイルの内容の確認
+タイマーの設定ファイルの内容を確認するには、systemctl catコマンドを使います。
 
 ```
 $ sudo systemctl cat logrotate.timer
