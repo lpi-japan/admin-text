@@ -76,14 +76,14 @@ ssコマンドはLinuxの通信ソケットの状態を確認するコマンド�
 
 ```
 $ ss -tan
-State                      Recv-Q                     Send-Q                                           Local Address:Port                                             Peer Address:Port
-LISTEN                     0                          128                                                    0.0.0.0:22                                                    0.0.0.0:*
-LISTEN                     0                          4096                                                 127.0.0.1:631                                                   0.0.0.0:*
-LISTEN                     0                          25                                                     0.0.0.0:514                                                   0.0.0.0:*
-ESTAB                      0                          0                                               192.168.56.101:22                                               192.168.56.1:50396
-LISTEN                     0                          128                                                       [::]:22                                                       [::]:*
-LISTEN                     0                          4096                                                     [::1]:631                                                      [::]:*
-LISTEN                     0                          25                                                        [::]:514                                                      [::]:*
+State     Recv-Q    Send-Q        Local Address:Port       Peer Address:Port
+LISTEN    0         128                 0.0.0.0:22              0.0.0.0:*
+LISTEN    0         4096              127.0.0.1:631             0.0.0.0:*
+LISTEN    0         25                  0.0.0.0:514             0.0.0.0:*
+ESTAB     0         0            192.168.56.101:22         192.168.56.1:50396
+LISTEN    0         128                    [::]:22                 [::]:*
+LISTEN    0         4096                  [::1]:631                [::]:*
+LISTEN    0         25                     [::]:514                [::]:*
 ```
 
 いくつかの待ち受けポートの他、SSHで接続しているのが分かります。
@@ -93,13 +93,13 @@ LISTEN                     0                          25                        
 
 ```
 $ ss -tl
-State                       Recv-Q                      Send-Q                                           Local Address:Port                                            Peer Address:Port
-LISTEN                      0                           128                                                    0.0.0.0:ssh                                                  0.0.0.0:*
-LISTEN                      0                           4096                                                 127.0.0.1:ipp                                                  0.0.0.0:*
-LISTEN                      0                           25                                                     0.0.0.0:shell                                                0.0.0.0:*
-LISTEN                      0                           128                                                       [::]:ssh                                                     [::]:*
-LISTEN                      0                           4096                                                     [::1]:ipp                                                     [::]:*
-LISTEN                      0                           25                                                        [::]:shell                                                   [::]:*
+State     Recv-Q    Send-Q        Local Address:Port       Peer Address:Port
+LISTEN    0         128                 0.0.0.0:ssh             0.0.0.0:*
+LISTEN    0         4096              127.0.0.1:ipp             0.0.0.0:*
+LISTEN    0         25                  0.0.0.0:shell           0.0.0.0:*
+LISTEN    0         128                    [::]:ssh                [::]:*
+LISTEN    0         4096                  [::1]:ipp                [::]:*
+LISTEN    0         25                     [::]:shell              [::]:*
 ```
 
 ### 待ち受けUDPポートの表示
@@ -107,16 +107,15 @@ LISTEN                      0                           25                      
 
 ```
 $ ss -ul
-State                  Recv-Q                  Send-Q                                                        Local Address:Port                                            Peer Address:Port
-UNCONN                 0                       0                                                                   0.0.0.0:43085                                                0.0.0.0:*
-UNCONN                 0                       0                                                                   0.0.0.0:mdns                                                 0.0.0.0:*
-UNCONN                 0                       0                                                                 127.0.0.1:323                                                  0.0.0.0:*
-UNCONN                 0                       0                                                                   0.0.0.0:syslog                                               0.0.0.0:*
-UNCONN                 0                       0                                                                      [::]:mdns                                                    [::]:*
-UNCONN                 0                       0                                                                     [::1]:323                                                     [::]:*
-UNCONN                 0                       0                                                                      [::]:syslog                                                  [::]:*
-UNCONN                 0                       0                                        [fe80::6704:7f74:b962:8c5e]%enp0s9:dhcpv6-client                                           [::]:*
-UNCONN                 0                       0                                                                      [::]:57956                                                   [::]:*
+State     Recv-Q    Send-Q        Local Address:Port       Peer Address:Port
+UNCONN    0         0                   0.0.0.0:43085           0.0.0.0:*
+UNCONN    0         0                   0.0.0.0:mdns            0.0.0.0:*
+UNCONN    0         0                   127.0.0.1:323           0.0.0.0:*
+UNCONN    0         0                   0.0.0.0:syslog          0.0.0.0:*
+UNCONN    0         0                      [::]:mdns               [::]:*
+UNCONN    0         0                     [::1]:323                [::]:*
+UNCONN    0         0                      [::]:syslog             [::]:*
+UNCONN    0         0                      [::]:57956              [::]:*
 ```
 
 ## ping コマンドを使用した疎通の確認
@@ -282,10 +281,10 @@ LISTEN 0      128             [::]:ssh           [::]:*
 たとえば、よく使用しているプロトコル番号は以下の通りです。
 
 ```
-ip	0	IP		# internet protocol, pseudo protocol number
-icmp	1	ICMP		# internet control message protocol
-tcp	6	TCP		# transmission control protocol
-udp	17	UDP		# user datagram protocol
+ip      0      IP             # internet protocol, pseudo protocol number
+icmp    1      ICMP           # internet control message protocol
+tcp     6      TCP            # transmission control protocol
+udp     17     UDP            # user datagram protocol
 ```
 
 ## firewalldによるパケットフィルタリング
