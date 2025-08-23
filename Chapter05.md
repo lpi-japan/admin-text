@@ -263,23 +263,31 @@ topコマンドを実行すると、デフォルトでは先頭五行（サマ�
 
 ```
 top - 13:59:16 up  3:35,  3 users,  load average: 0.00, 0.05, 0.05
-Tasks: 200 total,   1 running, 199 sleeping,   0 stopped,   0 zombie
-%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
-MiB Mem :   1753.5 total,    169.9 free,   1168.5 used,    602.4 buff/cache
-MiB Swap:   2048.0 total,   2040.7 free,      7.3 used.    585.0 avail Mem
+Tasks: 297 total,   1 running, 296 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.2 us,  0.0 sy,  0.0 ni, 99.7 id,  0.0 wa,  0.0 hi,  0.2 si,  0.0 st
+MiB Mem :   1700.3 total,    593.9 free,    895.9 used,    305.6 buff/cache
+MiB Swap:   2048.0 total,   1916.2 free,    131.8 used.    804.3 avail Mem
 
     PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
-   2295 linuc     20   0 1474764 108924  39448 S   0.3   6.1   0:04.40 gnome-s+   30177 linuc     20   0  225900   4224   3456 R   0.3   0.2   0:00.08 top
-      1 root      20   0  109948  18356  10912 S   0.0   1.0   0:01.80 systemd        2 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kthreadd
-      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_wo+       4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+
-      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+       6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+
-      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+       9 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+
-     11 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+      13 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tas+
-     14 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tas+      15 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tas+
-     16 root      20   0       0      0      0 S   0.0   0.0   0:00.12 ksoftir+      17 root      20   0       0      0      0 I   0.0   0.0   0:00.22 rcu_pre+
+   4310 linuc     20   0  226132   3840   3072 R   0.3   0.2   0:00.71 top
+      1 root      20   0  116536  15320   7328 S   0.0   0.9   0:01.13 systemd
+      2 root      20   0       0      0      0 S   0.0   0.0   0:00.01 kthreadd
+      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_wo+
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+
+      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+
+      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+
+      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+
+      9 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+
+     11 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+
+     13 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tas+
+     14 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tas+
+     15 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tas+
+     16 root      20   0       0      0      0 S   0.0   0.0   0:00.06 ksoftir+
+     17 root      20   0       0      0      0 I   0.0   0.0   0:00.93 rcu_pre+
      18 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_exp+
+     19 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_exp+
+     20 root      rt   0       0      0      0 S   0.0   0.0   0:00.17 migrati+
 ```
-
 先頭の5行には、以下の情報が表示されています。
 
 |行数|意味|
