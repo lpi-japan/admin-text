@@ -544,7 +544,7 @@ $ echo "SELinux test" > /home/linuc/public_html/index.html
 
 ブラウザを起動し、「http://localhost/~linuc/」にアクセスします。SELinuxのアクセス制御が有効になっているため、「Forbidden」が表示されます。
 
-![Forbidden](Forbidden.png)
+![Forbiddenの表示](image/Ch04/Forbidden.png)
 
 ログファイル/var/log/audit/audit.logを確認します。httpd(httpd_t)がユーザーホームディレクトリ(user_home_dir_t)にアクセスできなかったというログが出力されています。
 
@@ -565,6 +565,9 @@ httpd_enable_homedirs --> on
 ```
 
 再度ブラウザで「http://localhost/~linuc/」にアクセスします。Booleanでアクセスが許可されたので、作成したページが表示されます。
+
+![SELinux testの表示](image/Ch04/SELinuxtest.png)
+
 
 ## LVMの設定
 LVM（Logical Volume Manager）は、ハードディスクなどの記憶媒体の物理的な状態を隠蔽し、論理的なイメージで管理するための技術です。
