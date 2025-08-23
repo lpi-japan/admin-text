@@ -337,27 +337,26 @@ systemdが内部的にどのような仕組みになっているのか、関連�
 
 systemctl enableコマンドの動作を見ても分かる通り、systemdの仕組みにおいて、関連するディレクトリは以下の2つです。
 
-* /usr/lib/systemd/systemディレクトリ
-サービス起動スクリプトが格納されています。
-
-* /etc/systemd/systemディレクトリ
-サービス起動スクリプトに対するシンボリックリンクが配置されます。
+| ディレクトリ | 役割
+| - | -
+| /usr/lib/systemd/system | サービス起動スクリプトを格納
+| /etc/systemd/system | サービス起動スクリプトに対するシンボリックリンクを配置
 
 システム起動時のsystemdの動作は、/etc/systemd/systemディレクトリ以下のサブディレクトリ内に作成されたサービス起動スクリプトへのシンボリックリンクが順次実行されてサービスが起動されます。シンボリックリンクの作成される場所は、役割別のターゲットユニット毎にディレクトリが分けられています。
 
 ターゲット毎のディレクトリとその役割、実行の順番は以下の通りです。
 
 1. /etc/systemd/system/sysinit.target.wants/
-システムの初期に実行されるスクリプトです。rc.sysinitスクリプトに相当します。
-
 2. /etc/systemd/system/basic.target.wants/
-システム共通に実行されるスクリプトです。
-
 3. /etc/systemd/system/multi-user.target.wants/
-CUI起動の状態です。
-
 4. /etc/systemd/system/graphical.target.wants/
-GUI起動の状態です。
+
+| ディレクトリ | 役割
+| - | -
+| sysinit.target.wants | システム初期に実行
+| basic.target.wants | システム共通に実行
+| multi-user.target.wants | CUI起動の状態
+| graphical.target.wants | GUI起動の状態
 
 systemdではmulti-user.targetを実行後にgraphical.targetが実行されるようになっています。
 
@@ -368,7 +367,6 @@ systemdではランレベルではなく、サービス起動スクリプトを�
 
 デフォルトターゲットの変更は、systemctl set-defaultコマンドを実行します。
 
-#### デフォルトターゲットの確認
 systemctl get-defaultコマンドで、現在のデフォルトターゲットを確認します。
 
 ```
@@ -376,7 +374,6 @@ $ systemctl get-default
 graphical.target
 ```
 
-#### デフォルトターゲットをCUIに変更
 デフォルトターゲットをmulti-user.targetに変更し、再起動します。CUIで起動してくることを確認します。
 
 ```
@@ -387,7 +384,6 @@ $ sudo reboot
 
 システムが再起動すると、CUIで起動し、ログインプロンプトが表示されます。
 
-#### デフォルトターゲットをGUIに変更
 GUIでの起動に戻すには、以下のsystemctl set-defaultコマンドを実行します。
 
 ```
