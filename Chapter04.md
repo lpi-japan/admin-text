@@ -370,7 +370,7 @@ Permissive
 ```
 
 ### SELinuxの永続的な変更
-SELinuxを無効にする、あるいは無効から有効に変更するにはSELinuxの設定ファイル/etc/selinux/configの設定を変更します。システムを再起動すると、設定が反映されます。
+SELinuxの設定を永続的に変更するには、SELinuxの設定ファイル/etc/selinux/configの設定を変更します。システムを再起動すると、設定が反映されます。
 
 /etc/selinux/configを編集し、設定項目SELINUXの値をpermissiveに変更します。
 

@@ -505,7 +505,7 @@ Password: ※ユーザーsuzukiのパスワードを入力
 Your account has expired; please contact your system administrator
 ```
 
-有効期限をリセットして無期限有効にするには、以下のように「''」（シングルクォート2つ）で空の有効期限を指定します。アカウントの有効期限（Account expires）がなしに設定されます。
+有効期限をリセットして無期限有効にするには、以下のように「''」（シングルクォート2つ）で空の有効期限を指定します。アカウント期限切れがなしに設定されます。
 
 ```
 $ sudo usermod -e '' suzuki
@@ -607,7 +607,6 @@ userdelコマンドをオプション無しで実行すると、ユーザーの�
 
 ```
 $ ls -l /home
-[linuc@vbox ~]$ ls -l /home
 合計 4
 drwx------. 15 linuc  linuc  4096  7月 20 22:01 linuc
 drwx------.  3 suzuki suzuki   99  7月 20 21:35 suzuki
@@ -1318,7 +1317,7 @@ catコマンドの出力をauthorized_keysに追加リダイレクトするこ�
 SSHサーバーの設定ファイル/etc/ssh/sshd_configを以下のように設定変更します。
 
 ```
-[root@server ~]# sudo vi /etc/ssh/sshd_config
+[linuc@vbox ~]$ sudo vi /etc/ssh/sshd_config
 ```
 
 ```
