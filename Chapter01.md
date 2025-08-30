@@ -170,7 +170,7 @@ suzuki:$6$rounds=100000$LJ9X08ZYN/zXIRaf$MlFDUV8wemu1kcBDCmfR0kt0d7thdFo7Y9dZ9sK
 HlG6ua8TrIcMmrHkN3IGdSwFtHaW1sKdNINZtAXNAlmzl.:20289:0:99999:7:::
 ```
 
-ユーザー名の後、「`$6`」から始まる文字列がパスワードをハッシュ化したものです。$で区切られており、それぞれの項目の意味は以下の通りです。
+ユーザー名の後にある文字列がパスワードをハッシュ化したものです。$で区切られており、それぞれの項目の意味は以下の通りです。
 
 | 項目 | 意味 |
 | - | - |
