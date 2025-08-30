@@ -123,6 +123,8 @@ https://linuc.org/textbooks/admin/
 TEL：03-6205-7025  
 E-Mail：info@lpi.or.jp
 
+\pagebreak
+
 ## Linux技術者認定「LinuC（リナック）」のご紹介 {.unlisted .unnumbered}
 Linux技術者認定「LinuC（リナック）」とは、クラウド／DX時代のITエンジニアに求められるシステム構築から運用管理に必要なスキルを証明できる技術者認定です。アーキテクチャ設計からシステム構築、運用管理までの技術領域を広くカバーしており、４つのレベルの認定取得を通じて一歩ずつ確実に求められるスキルを習得し、それを証明することができます。
 
