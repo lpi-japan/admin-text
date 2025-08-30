@@ -166,10 +166,11 @@ rootユーザーで、ユーザーsuzukiのシャドウパスワードを確認�
 
 ```
 $ sudo cat /etc/shadow | grep suzuki
-suzuki:$6$rounds=100000$LJ9X08ZYN/zXIRaf$MlFDUV8wemu1kcBDCmfR0kt0d7thdFo7Y9dZ9sKHlG6ua8TrIcMmrHkN3IGdSwFtHaW1sKdNINZtAXNAlmzl.:20289:0:99999:7:::
+suzuki:$6$rounds=100000$LJ9X08ZYN/zXIRaf$MlFDUV8wemu1kcBDCmfR0kt0d7thdFo7Y9dZ9sK
+HlG6ua8TrIcMmrHkN3IGdSwFtHaW1sKdNINZtAXNAlmzl.:20289:0:99999:7:::
 ```
 
-ユーザー名の後、「$6」から始まる文字列がパスワードをハッシュ化したものです。MCF（Modular Crypt Format）という書式になっています。$で区切られており、それぞれの項目の意味は以下の通りです。
+ユーザー名の後、「$6」から始まる文字列がパスワードをハッシュ化したものです。$で区切られており、それぞれの項目の意味は以下の通りです。
 
 | 項目 | 意味 |
 | - | - |
@@ -965,7 +966,7 @@ ssh-keygenコマンドを使用して鍵を作成した際にはパーミッシ�
 
 |ディレクトリおよびファイル|パーミッション|
 |-------|-------|
-|~/.sshディレクトリ|rwx------(700)|
+|~/.sshディレクトリ|rwx\-\-\-\-\-\-(700)|
 |id_rsa（秘密鍵）|rw-------(600)|
 |id_rsa.pub（公開鍵）|rw-r--r--(644)|
 

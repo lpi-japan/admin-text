@@ -14,7 +14,7 @@
 ## ブートローダーGRUBの起動
 マシンの電源をオンにすると、UEFI/BIOSが起動してハードウェアの初期化が行われ、起動に使用するブートデバイス（ハードディスクなど）が決定します。ブートデバイスからブートローダーであるGRUBが読み込まれ、起動処理が引き継がれます。GRUBは、Linuxカーネルのイメージをメモリ上にロードする役割を持っています。
 
-GRUBは自動的にデフォルトのカーネルをロードしますが、起動時にESCキーを押しているとGRBUの起動メニューを呼び出すことができます。
+GRUBは自動的にデフォルトのカーネルをロードしますが、起動時にESCキーを押しているとGRUBの起動メニューを呼び出すことができます。
 
 ![GRUBメニュー画面](image/Ch03/grubmenu.png){width=75%}
 
@@ -92,7 +92,7 @@ GRUBで指定されたLinuxカーネルイメージがメモリに読み込ま�
 
 ```
 # dmesg
-I[    0.000000] Linux version 5.14.0-570.26.1.el9_6.x86_64 (mockbuild@x64-builder03.almalinux.org) (gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-5), GNU ld version 2.35.2-63.el9) #1 SMP PREEMPT_DYNAMIC Wed Jul 16 09:12:04 EDT 2025
+[    0.000000] Linux version 5.14.0-570.26.1.el9_6.x86_64 (mockbuild@x64-builder03.almalinux.org) (gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-5), GNU ld version 2.35.2-63.el9) #1 SMP PREEMPT_DYNAMIC Wed Jul 16 09:12:04 EDT 2025
 [    0.000000] The list of certified hardware and cloud instances for Red Hat Enterprise Linux 9 can be viewed at the Red Hat Ecosystem Catalog, https://catalog.redhat.com.
 [    0.000000] Command line: BOOT_IMAGE=(hd0,gpt2)/vmlinuz-5.14.0-570.26.1.el9_6.x86_64 root=/dev/mapper/almalinux_vbox-root ro crashkernel=1G-4G:192M,4G-64G:256M,64G-:512M resume=/dev/mapper/almalinux_vbox-swap rd.lvm.lv=almalinux_vbox/root rd.lvm.lv=almalinux_vbox/swap rhgb quiet
 [    0.000000] [Firmware Bug]: TSC doesn't count with P0 frequency!

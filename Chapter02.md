@@ -190,6 +190,7 @@ netlink error: Operation not permitted
 ドライバーなどの情報を確認するにはethtool -iコマンドを実行します。
 
 ```
+$ ethtool -i enp0s3
 driver: e1000
 version: 5.14.0-570.26.1.el9_6.x86_64
 firmware-version:
@@ -290,7 +291,7 @@ udp     17     UDP            # user datagram protocol
 ## firewalldによるパケットフィルタリング
 firewalldはLinuxカーネルに実装されたパケットフィルタリングを使用する仕組みです。
 パケットフィルタリングとは、ネットワークに対してどのようなパケットの通過を許可および拒否するか判定する機能のことです。ファイアーウォールの基本的な機能であるため、ファイアーウォール機能と説明される場合もあります。
-firewalldは、カーネル内のnetfilter機能のフロントエンドとして実装されており、ユーザーランドのパケットフィルタリングのルール定義を行うコマンドとしてfirewalld-cmdコマンドが用意されています。
+firewalldは、カーネル内のnetfilter機能のフロントエンドとして実装されており、ユーザーランドのパケットフィルタリングのルール定義を行うコマンドとしてfirewall-cmdコマンドが用意されています。
 
 ### firewalldのNAT機能
 firewalldにはパケットフィルタリング機能の他に、NAT(Network Address Translation)というパケットの送信元または宛先のIPアドレスを変換する機能があります。
@@ -308,7 +309,7 @@ IPアドレスの対応付けは通信開始時に行われるので、外部向
 複数の内部ホストのIPアドレスと1つの外部向けIPアドレスを結びつけます。内部向けIPアドレスは外部に出る際に外部向けIPアドレスに書き換えられて通信を行います。その際にNAPTではポート番号の変換も行います。ポート番号は最大65535番まであるので、1つの外部IPアドレスで沢山の内部ホストを外部と通信させることができます。
 
 ### firewalldのステータス確認
-serviceコマンドでiptablesのステータスを確認します。
+firewall-cmdコマンドでfirewalldのステータスを確認します。
 
 ```
 $ sudo firewall-cmd --list-all
