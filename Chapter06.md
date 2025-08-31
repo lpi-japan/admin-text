@@ -25,7 +25,6 @@ AlmaLinuxでは、ログファイルは/var/logディレクトリ以下に格納
 |messages|サービス起動時の出力など一般的なログ|
 |secure|認証、セキュリティ関係のログ|
 |maillog|メール間連のログ|
-|dmesg|カーネルが出力したメッセージのログ|
 
 また、systemdが記録するjournaldのログが存在します。こちらは別途解説します。
 
@@ -200,9 +199,9 @@ rsyslogサービスを再起動して、新しい設定を読み込ませます�
 $ sudo systemctl restart rsyslog
 ```
 
-外部のホストから設定を行ったホストに対して、nftablesで許可されていないポート番号80番と443番にWebブラウザ等でアクセスします。
+外部のクライアントから設定を行ったホストに対して、nftablesで許可されていないポート番号80番と443番にWebブラウザ等でアクセスしてみます。
 
-/var/log/kern.logにポート番号80番に対する通信を拒否した旨のログが出力されます。DPTが宛先のポートです。
+/var/log/kern.logにポート番号80番と443番に対する通信を拒否した旨のログが出力されます。DPTが宛先のポートです。
 
 ```
 $ sudo tail /var/log/kern.log 
@@ -506,9 +505,9 @@ journaldのログは、再起動すると消えてしまう設定がデフォル
 journaldのログをシステム再起動時に消えないようにするには、以下のように/var/log/journalディレクトリを作成して、システムを再起動します。
 
 ```
-# mkdir /var/log/journal
-# chmod 700 /var/log/journal
-# reboot
+$ sudo mkdir /var/log/journal
+$ sudo chmod 700 /var/log/journal
+$ sudo reboot
 ```
 
 ログファイルが作成されたことを確認します

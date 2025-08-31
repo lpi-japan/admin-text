@@ -50,7 +50,7 @@ enabled_metadata=1
 
 設定項目mirrorlistで指定したmirrors.almalinux.orgは、リポジトリのミラーリストから返される、ネットワークで接続しやすいリポジトリのアドレスに置き換えられます。
 
-設定項目enabledの値が0に設定されていると、そのリポジトリはdnfコマンドの--enablerepoオプションで指定されなければ参照しません。
+設定項目enabledの値が0に設定されていると、そのリポジトリはdnfコマンドの- -enablerepoオプションで指定されなければ参照しません。
 
 
 ### DNFでPROXYサーバーを使う場合
@@ -208,7 +208,7 @@ $ sudo dnf groupinstall "Development Tools"
 自動マウントされたディレクトリを確認します。
 
 ```
-# mount
+$ mount
 （略）
 /dev/sr0 on /run/media/linuc/AlmaLinux-9-6-x86_64-dvd type iso9660 (ro,nosuid,nodev,relatime,nojoliet,check=s,map=n,blocksize=2048,
 uid=1000,gid=1000,dmode=500,fmode=400,uhelper=udisks2)
@@ -238,7 +238,7 @@ gpgkey=file:///run/media/linuc/AlmaLinux-9-6-x86_64-dvd/RPM-GPG-KEY-AlmaLinux-9
 ```
 
 
-dnfコマンドを実行します。--disablerepoオプションですべてのリポジトリを参照不要とし、--enablerepoオプションでmediaリポジトリのみ参照するように指定します。以下の例では、グループリストを取得しています。
+dnfコマンドを実行します。- -disablerepoオプションですべてのリポジトリを参照不要とし、- -enablerepoオプションでmediaリポジトリのみ参照するように指定します。以下の例では、グループリストを取得しています。
 
 ```
 $ sudo dnf --disablerepo=\* --enablerepo=media* grouplist
@@ -461,6 +461,7 @@ sr0               0.01         0.94         0.00         0.00      12758        
 iostatコマンドに引数として数値を与えて実行すると、1回目の表示はシステム起動からiostatコマンド実行時までの間の情報ですが、その後指定された秒間隔で全てのデバイスのI/Oの利用状況が出力されます。終了するにはCtrl+Cを入力します。
 
 ```
+$ iostat 5
 Linux 5.14.0-570.26.1.el9_6.x86_64 (vbox) 	2025年07月27日 	_x86_64_	(2 CPU)
 
 avg-cpu:  %user   %nice %system %iowait  %steal   %idle

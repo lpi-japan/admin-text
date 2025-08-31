@@ -42,7 +42,7 @@ uid=1001(suzuki) gid=1001(suzuki) groups=1001(suzuki),5001(power) context=unconf
 ```
 $ sudo su - sato
 $ id
-uid=1004(sato) gid=1004(sato) groups=1004(sato) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023```
+uid=1004(sato) gid=1004(sato) groups=1004(sato) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
 ```
 
 ## プロセスの実行権の管理
@@ -442,7 +442,7 @@ SELinuxのアクセス制御で用いられるコンテキストは、プロセ�
 $ ls -lZ /var/www
 合計 0
 drwxr-xr-x. 2 root root system_u:object_r:httpd_sys_script_exec_t:s0  6  3月 13 03:17 cgi-bin
-drwxr-xr-x. 2 root root system_u:object_r:httpd_sys_content_t:s0     24  3月 13 03:17 html
+drwxr-xr-x. 2 root root system_u:object_r:httpd_sys_content_t:s0      6  3月 13 03:17 html
 ```
 
 Webサーバーのコンテンツを含む/var/www/htmlディレクトリには「httpd_sys_content_t」というタイプが付与されています。この/var/www/htmlディレクトリ内にファイルを作成すると、親ディレクトリのコンテキストに従ってファイルにコンテキストが付与されます。
@@ -861,7 +861,7 @@ The filesystem on /dev/Volume00/LogVol01 is now 524288 (4k) blocks long.
 dfコマンドで再度容量を確認します。容量が2GBに増えていることが確認できます。
 
 ```
-$ $ df -h /mnt/LVMtest
+$ df -h /mnt/LVMtest
 ファイルシス                  サイズ  使用  残り 使用% マウント位置
 /dev/mapper/Volume00-LogVol01   2.0G   24K  1.9G    1% /mnt/LVMtest
 ```

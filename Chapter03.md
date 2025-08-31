@@ -21,7 +21,7 @@ GRUBは自動的にデフォルトのカーネルをロードしますが、起�
 Linuxカーネルイメージが複数ある場合は、GRUBのメニュー画面でロードしたいイメージを選択して、Enterキーを押します。
 
 ### GRUBの設定確認
-GRUBの設定を確認したい場合には、grubbyコマンドに--info=ALLオプションをつけて実行します。
+GRUBの設定を確認したい場合には、grubbyコマンドに- -info=ALLオプションをつけて実行します。
 
 ```
 $ sudo grubby --info=ALL
@@ -61,7 +61,7 @@ id="65dd8a0b080e4373a5633404cabaac84-0-rescue"
 | id | マシンのユニークIDとカーネルバージョンを組み合わせた値です。
 
 ### GRUBのデフォルト起動の確認
-GRUBがデフォルトで起動するカーネルの確認は、grubbyコマンドに--default-kernelオプション、または--default-indexオプションをつけて実行すると確認できます。
+GRUBがデフォルトで起動するカーネルの確認は、grubbyコマンドに- -default-kernelオプション、または- -default-indexオプションをつけて実行すると確認できます。
 
 ```
 $ sudo grubby --default-kernel
@@ -71,7 +71,7 @@ $ sudo grubby --default-index
 ```
 
 ### GRUBのデフォルト起動カーネルの変更
-GRUBのデフォルト起動カーネルを変更したい場合には、grubbyコマンドに--set-defaultオプションでカーネル、またはindexの番号を指定することで変更できます。
+GRUBのデフォルト起動カーネルを変更したい場合には、grubbyコマンドに- -set-defaultオプションでカーネル、またはindexの番号を指定することで変更できます。
 
 ```
 $ sudo grubby --set-default /boot/vmlinuz-5.14.0-570.12.1.el9_6.x86_64
@@ -125,7 +125,7 @@ mountユニット、swapユニット、deviceユニットは直接操作する�
 ### サービスの操作
 systemdでは、サービスの起動や停止を行うのにsystemctlコマンドを使用します。
 
-Webサービスの起動や停止、再起動、そして状態の確認を行うには、以下のsystemctlコマンドを使用します。
+firewalldの起動や停止、再起動、そして状態の確認を行うには、以下のsystemctlコマンドを使用します。
 
 #### サービスの起動と停止、再起動
 systemctl startコマンドで、サービスを起動します。systemctl stopコマンドでサービスを停止します。systemctl restartコマンドで、サービスを再起動します。
@@ -141,7 +141,7 @@ $ sudo systemctl restart firewalld
 systemctl statusコマンドで、サービスのステータスを確認できます。
 
 ```
-$ sudo systemctl status firewalld
+$ systemctl status firewalld
 ● firewalld.service - firewalld - dynamic firewall daemon
      Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; preset: enabled)
      Active: active (running) since Sat 2025-07-26 15:13:03 JST; 2s ago
@@ -240,7 +240,7 @@ To show all installed unit files use 'systemctl list-unit-files'.
 |SUB|実行状態の詳細。running（実行中）やexited（実行したが終了した）などで表される。|
 |DESCRIPTION|ユニットの説明|
 
-デフォルトでは、項目ACTIVEの実行状態がactiveになっているもののみが表示されています。inactiveのユニットも表示するには--allオプションをつけて実行します。
+デフォルトでは、項目ACTIVEの実行状態がactiveになっているもののみが表示されています。inactiveのユニットも表示するには- -allオプションをつけて実行します。
 
 項目LOADは、systemctl maskコマンドで無効化されるとmaskedに変わります。詳細は後述します。
 
@@ -297,7 +297,7 @@ Created symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service �
 Created symlink /etc/systemd/system/multi-user.target.wants/firewalld.service → /usr/lib/systemd/system/firewalld.service.
 ```
 
-/usr/lib/systemd/system/firewalld.serviceがWebサービスの起動スクリプトです。systemctl enableコマンドを実行すると、/etc/systemd/system/multi-user.target.wantsディレクトリにシンボリックリンクが作成されます。
+/usr/lib/systemd/system/firewalld.serviceがfirewalldの起動スクリプトです。systemctl enableコマンドを実行すると、/etc/systemd/system/multi-user.target.wantsディレクトリにシンボリックリンクが作成されます。
 
 この動作は、multi-user.targetターゲットユニットが呼び出された時に、シンボリックリンクの起動スクリプトが実行されるように設定しています。
 
@@ -308,7 +308,7 @@ systemctl maskコマンドを実行すると、指定したサービスがsystem
 
 動作としては、/etc/systemd/system/firewalld.serviceが/dev/nullへのシンボリックリンクとして作成され、この起動スクリプトが呼び出されても何も行われなくなります。
 
-Webサービスをsystemdから除外します。
+firewalldをsystemdから除外します。
 
 ```
 $ sudo systemctl mask firewalld
@@ -443,7 +443,7 @@ $ systemctl status logrotate.timer
 タイマーの設定ファイルの内容を確認するには、systemctl catコマンドを使います。
 
 ```
-$ sudo systemctl cat logrotate.timer
+$ systemctl cat logrotate.timer
 # /usr/lib/systemd/system/logrotate.timer
 [Unit]
 Description=Daily rotation of log files
@@ -610,7 +610,7 @@ allowディレクティブはデフォルトではコメントアウト状態で
 
 設定を有効にするため、chronydサービスを再起動します。
 ```
-# systemctl restart chronyd
+$ sudo systemctl restart chronyd
 ```
 
 ### ファイアーウォールの設定を変更して接続を許可する

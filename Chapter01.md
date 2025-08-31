@@ -486,9 +486,10 @@ usermodコマンドで既存ユーザーアカウントの有効期限を設定�
 $ sudo usermod -e 2025-7-21 suzuki
 ```
 
-アカウント有効期限を確認するために、chage コマンドを使います。
+アカウント有効期限を確認するために、chageコマンドを使います。-lオプションを付与して実行することで、引数で指定したユーザーの各種有効期限などが表示されます。
 
 ```
+$ sudo chage -l suzuki
 最終パスワード変更日				: 7月 20, 2025
 パスワード期限:					: なし
 パスワード無効化中					: なし
@@ -510,7 +511,7 @@ Your account has expired; please contact your system administrator
 
 ```
 $ sudo usermod -e '' suzuki
-$ chage -l suzuki
+$ sudo chage -l suzuki
 最終パスワード変更日				: 7月 20, 2025
 パスワード期限:					: なし
 パスワード無効化中					: なし
@@ -532,6 +533,7 @@ $ sudo chage -M 30 suzuki
 パスワードの有効期限を確認します。パスワード期限で表示された日付の翌日以降になると、ユーザーログイン時、強制的にパスワードの変更要求を行います。
 
 ```
+$ sudo chage -l suzuki
 最終パスワード変更日				: 7月 21, 2025
 パスワード期限:					:  8月 20, 2025
 パスワード無効化中					: なし
@@ -560,27 +562,21 @@ $ sudo chage -l suzuki
 パスワード期限が切れる前に警告される日数		: 7
 ```
 
-確認のため、設定したユーザーアカウントでログインします。即座にパスワード再設定が要求されます。
+確認のため、設定したユーザーアカウントでログインします。即座にパスワード再設定が要求されます。以下の実行例では、ログインの代わりにsuコマンドを使用しています。
 
 ```
-login: suzuki
-Password: ※ユーザーsuzukiの現在のパスワードを入力
+[linuc@vbox ~]$ su - suzuki
 You are required to change your password immediately (administrator enforced).
-You are required to change your password immediately (administrator enforced).
-Last login: Mon Jul 21 11:54:53 2025 from 192.168.56.1
-WARNING: Your password has expired.
-You must change your password now and login again!
-ユーザー suzuki のパスワードを変更。Current password: ※ユーザーsuzukiの現在のパスワードを入力
+Current password: ※ユーザーsuzukiの現在のパスワードを入力
 新しい パスワード: ※ユーザーsuzukiの新しいパスワードを入力
 新しい パスワードを再入力してください: ※ユーザーsuzukiの新しいパスワードを再入力
-passwd: すべての認証トークンが正しく更新できました。
-Connection to 192.168.56.108 closed.
+[suzuki@vbox ~]$ 
 ```
 
 パスワード変更後、再度ログインすると、今度はログインできます。パスワードは30日間有効になります。
 
 ```
-$ sudo chage -l suzuki
+[suzuki@vbox ~]$ chage -l suzuki
 最終パスワード変更日				: 7月 21, 2025
 パスワード期限:					:  8月 20, 2025
 パスワード無効化中					: なし
@@ -712,7 +708,7 @@ $ sudo passwd sshuser
 ユーザー sshuser のパスワードを変更。
 新しいパスワード: ※ユーザーsshuserの新しいパスワードを入力
 新しいパスワードを再入力してください: ※ユーザーsshuserの新しいパスワードを再入力
-passwd: 全ての認証トークンが正しく更新できました。
+passwd: すべての認証トークンが正しく更新できました。
 ```
 
 ローカルホストにSSHで接続します。接続するにはsshコマンドを使用します。ユーザー名を省略すると、sshコマンドを実行したユーザーのユーザー名が指定されたことになります。
@@ -769,6 +765,9 @@ debug1: Reading configuration data /etc/crypto-policies/back-ends/openssh.config
 debug1: Connecting to localhost [::1] port 22.
 debug1: Connection established.
 （略）
+Last login: Mon Jul 21 14:50:00 2025 from ::1
+[sshuser@vbox ~]$ exit
+[linuc@vbox ~]$ 
 ```
 
 SSHプロトコルのやり取りが表示されるので、問題になっているやり取りを探すことができます。
@@ -777,14 +776,17 @@ SSHプロトコルのやり取りが表示されるので、問題になって�
 一度接続したことのあるサーバーのSSHサーバー証明書は、クライアントのホームディレクトリに作られた.sshディレクトリの中に作成されたknown_hostsファイルに保存されます。2回目以降の接続時には、初回に尋ねられた表示は出ず、すぐに認証のためのパスワード入力が要求されます。
 
 ```
-[sshuser@client ~]$ ssh sshuser@localhost
+[linuc@vbox ~]$ ssh sshuser@localhost
 sshuser@server's password: 
+Last login: Mon Sep  1 07:21:42 2025 from ::1
+[sshuser@vbox ~]$ exit
+[sshuser@vbox ~]$
 ```
 
 catコマンドでクライアントにある\~/.ssh/known_hostsファイルの中身を確認してみましょう。
 
 ```
-[sshuser@client ~]$ cat .ssh/known_hosts 
+[linuc@vbox ~]$ cat .ssh/known_hosts
 localhost ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF67wXfBQsFqTo7nM1aPX0yQh4DbQwvYXyBmZPepW6b9
 localhost ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDPPbQ64LradMJ8nv+A5zIe5VKbawLPNylJznt61j3BUNz6
 （略）
@@ -1251,7 +1253,7 @@ Windowsの検索ウインドウに「cmd」と入力し、コマンドプロン�
 ![コマンドプロンプトの起動](image/Ch01/Runcmd.png){width=50%}
 
 
-### sshコマンドでリモートログインかを確認
+### sshコマンドでリモートログインできることを確認
 パスワード認証でLinuxにリモートログインできることを確認します。
 
 ```
@@ -1302,10 +1304,12 @@ scpで公開鍵をLinuxにコピーします。
 
 catコマンドの出力をauthorized_keysに追加リダイレクトすることで、追加で公開鍵が書き込めます。
 
-## 公開鍵認証の確認
+## 公開鍵認証によるリモートログインの確認
 再度Linuxにリモートログインして、公開鍵認証が行われることを確認します。
 
+```
 >ssh linuc@192.168.56.101
+```
 
 パスフレーズを入力してリモートログインできたら、公開鍵認証の設定は完了です。
 
@@ -1318,7 +1322,7 @@ catコマンドの出力をauthorized_keysに追加リダイレクトするこ�
 SSHサーバーの設定ファイル/etc/ssh/sshd_configを以下のように設定変更します。
 
 ```
-[linuc@vbox ~]$ sudo vi /etc/ssh/sshd_config
+$ sudo vi /etc/ssh/sshd_config
 ```
 
 ```
@@ -1336,7 +1340,7 @@ PermitRootLogin no ※noに設定
 設定を保存したら、systemctlコマンドでsshdを再起動します。
 
 ```
-[linuc@vbox ~]$ sudo systemctl restart sshd
+$ sudo systemctl restart sshd
 ```
 
 これで、外部からのパスワード認証を使ったログインが禁止され、かつrootユーザーでのリモートログインが禁止されました。

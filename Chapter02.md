@@ -262,7 +262,7 @@ http            80/sctp                         # HyperText Transfer Protocol
 HTTPは基本的にTCPを使っていますが、UDPやSCTP（Stream Control Transmission Protocol）も定義されています。
 
 各種コマンドがポート番号を表示する際、TCPのポート番号80番を表示する時にはプロトコル名に置き換えてhttpと表示します。
-netstatの-nオプションは表示を数値で表示し、-nオプションが指定されないとプロトコル名などを名前で表示します。
+ssコマンドの-nオプションは表示を数値で表示し、-nオプションが指定されないとプロトコル名などを名前で表示します。
 
 この設定ファイルは、あくまで各種コマンドがポート番号をプロトコル名に置き換えて表示するために参照されます。実際には他のプロトコルがポートを使用している場合もあります。
 
@@ -334,7 +334,7 @@ public (default, active)
 servicesで、通信を許可するサービスを確認できます。cockpitはポート番号の確認でwebsm（9090番）と表示されていたものです。そしてDHCP、SSHが許可されています。
 
 ### パケットの通過を許可する
-パケットの通過を許可はfirewall-cmd --add-serviceコマンドで設定します。コマンドの書式は以下の通りです。
+パケットの通過を許可はfirewall-cmd - -add-serviceコマンドで設定します。コマンドの書式は以下の通りです。
 
 ```
 firewall-cmd --add-service=サービス名
@@ -343,22 +343,22 @@ firewall-cmd --add-service=サービス名
 たとえば、WebサーバーへのHTTP通信を許可するには、以下のように実行します。
 
 ```
-sudo firewall-cmd --add-service=http
+$ sudo firewall-cmd --add-service=http
 success
 $ sudo firewall-cmd --list-service
 cockpit dhcpv6-client http ssh
 ```
 
-ただし、この方法だと、システムを再起動すると許可設定は消えてしまいます。永続的に設定をしたい場合には、--permanentオプションをつけて設定を変更し、--reloadオプションをつけて実行して設定を適用します。
+ただし、この方法だと、システムを再起動すると許可設定は消えてしまいます。永続的に設定をしたい場合には、- -permanentオプションをつけて設定を変更し、- -reloadオプションをつけて実行して設定を適用します。
 
 ```
-sudo firewall-cmd --add-service=http --permanent
+$ sudo firewall-cmd --add-service=http --permanent
 success
 $ sudo firewall-cmd --list-service
 cockpit dhcpv6-client ssh
 ```
 
-この段階では適用されていませんので--reloadをつけて実行します。
+この段階では適用されていませんので- -reloadをつけて実行します。
 
 ```
 $ sudo firewall-cmd --reload
@@ -370,7 +370,7 @@ cockpit dhcpv6-client http ssh
 設定が反映されました。
 
 ### 設定できるサービスを確認する
-どのようなサービスが値として指定できるのか、一覧を確認するには--get-servicesオプションを使います。
+どのようなサービスが値として指定できるのか、一覧を確認するには- -get-servicesオプションを使います。
 
 ```
 $ sudo firewall-cmd --get-services
@@ -388,7 +388,7 @@ $ sudo firewall-cmd --remove-service=cockpit
 success
 ```
 
-この設定も一時的なもので、システムの再起動時に許可したくない場合には、--permanentオプションをつけて設定を変更し、--reloadオプションをつけて実行して設定を適用します。
+この設定も一時的なもので、システムの再起動時に許可したくない場合には、- -permanentオプションをつけて設定を変更し、- -reloadオプションをつけて実行して設定を適用します。
 
 ```
 $ sudo firewall-cmd --remove-service=cockpit --permanent
