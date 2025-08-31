@@ -306,7 +306,7 @@ systemctl disableコマンドを実行すると、作成されたシンボリッ
 ### サービスのsystemdからの除外
 systemctl maskコマンドを実行すると、指定したサービスがsystemdの管理から除外され、手動での起動も行えなくなります。
 
-動作としては、/etc/systemd/system/httpd.serviceが/dev/nullへのシンボリックリンクとして作成され、この起動スクリプトが呼び出されても何も行われなくなります。
+動作としては、/etc/systemd/system/firewalld.serviceが/dev/nullへのシンボリックリンクとして作成され、この起動スクリプトが呼び出されても何も行われなくなります。
 
 Webサービスをsystemdから除外します。
 
@@ -317,14 +317,14 @@ $ sudo systemctl start firewalld
 Failed to start firewalld.service: Unit firewalld.service is masked.
 ```
 
-systemctl is-enabledコマンドで、サービスの状態が確認できます。httpdサービスの状態はmaskedとなっています。
+systemctl is-enabledコマンドで、サービスの状態が確認できます。firewalldサービスの状態はmaskedとなっています。
 
 ```
 $ sudo systemctl is-enabled firewalld
 masked
 ```
 
-systemctl unmaskコマンドを実行すると、シンボリックリンクが削除されて、指定したサービスがsystemdで管理されるようになります。httpdサービスの状態はdisabledになります。
+systemctl unmaskコマンドを実行すると、シンボリックリンクが削除されて、指定したサービスがsystemdで管理されるようになります。firewalldサービスの状態はdisabledになります。
 
 ```
 $ sudo systemctl unmask firewalld
