@@ -4,7 +4,7 @@
 LinuxはPOSIXで示されているアクセス制御に準拠しています。POSIXとは「Portable Operating System Interface for UNIX」の略で、IEEE（Institute of Electrical and Electronics Engineers、アイ・トリプル・イー）によって定められた、UNIXベースのOSの仕様セットです。ユーザーID（uid）/グループID（gid）とパーミッションの組み合わせでファイルに対するアクセス権を管理しています。
 
 ### UIDとGID
-ユーザーID（uid：User Identifier)はLinuxシステムでユーザーを識別するためのユニークな番号です。Linuxで追加されたユーザーカウントには、それぞれ個別にuidが割り振られます。
+ユーザーID（uid：User Identifier）はLinuxシステムでユーザーを識別するためのユニークな番号です。Linuxで追加されたユーザーカウントには、それぞれ個別にuidが割り振られます。
 uidは0から65535までの値をとります。0は特別なユーザーIDで、管理者権限を持つrootユーザーに付与されています。
 
 グループID（gid: Group Identifier）はグループを識別するためのユニークな番号です。Linuxのユーザーは、1つ以上のグループに所属することができます。
