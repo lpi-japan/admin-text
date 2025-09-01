@@ -219,20 +219,26 @@ all
 ```
 
 ### firewalldのログ取得
-外部のクライアントから設定を行ったホストに対して、firewalldで許可されていないポート443番にWebブラウザ等でアクセスしてみます。
+ホストOS上で動作するWebブラウザなど外部のクライアントから、設定を行ったホストに対して、firewalldで許可されていないポート443番にWebブラウザ等でアクセスしてみます。
+
+firewalldの設定は以下の通りです。
 
 ```
 $ sudo firewall-cmd --list-service
 cockpit dhcpv6-client http ssh
 ```
 
+Webブラウザに入力するアドレスは、プロトコルとしてhttpsで指定してポート番号443番にアクセスするようにします。
+
+```
+https://ホストのIPアドレス（192.168.56.101）
+```
 
 /var/log/kern.logにポート番号443番に対する通信を拒否した旨のログが出力されます。DPTが宛先のポートです。
 
-
 ```
 $ sudo tail /var/log/kern.log 
-Jul 19 19:21:07 vbox kernel: filter_IN_public_REJECT: IN=enp0s8 OUT= MAC=08:00:27:40:b7:96:d0:11:e5:1a:ce:3b:08:00 SRC=192.168.11.115 DST=192.168.11.108 LEN=64 TOS=0x00 PREC=0x00 TTL=64 ID=0 DF PROTO=TCP SPT=62291 DPT=443 WINDOW=65535 RES=0x00 CWR ECE SYN URGP=0
+Jul 19 19:21:07 vbox kernel: filter_IN_public_REJECT: IN=enp0s8 OUT= MAC=08:00:27:40:b7:96:d0:11:e5:1a:ce:3b:08:00 SRC=192.168.11.115 DST=192.168.56.101 LEN=64 TOS=0x00 PREC=0x00 TTL=64 ID=0 DF PROTO=TCP SPT=62291 DPT=443 WINDOW=65535 RES=0x00 CWR ECE SYN URGP=0
 ```
 
 ### リモートホストのログをUDPで受け取る
