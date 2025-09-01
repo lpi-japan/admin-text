@@ -199,13 +199,39 @@ rsyslogサービスを再起動して、新しい設定を読み込ませます�
 $ sudo systemctl restart rsyslog
 ```
 
-外部のクライアントから設定を行ったホストに対して、nftablesで許可されていないポート番号80番と443番にWebブラウザ等でアクセスしてみます。
+### firewalldのログ設定変更
+firewalldはカーネルのnftablesを使用しているため、そのログはカーネルのログとして出力されます。デフォルトではfirewalldのログ出力は無効になっているので、有効にします。
 
-/var/log/kern.logにポート番号80番と443番に対する通信を拒否した旨のログが出力されます。DPTが宛先のポートです。
+設定の状態を確認するには、firewall-cmdコマンドに- -get-log-deniedオプションをつけて実行します。
+
+```
+$ sudo firewall-cmd --get-log-denied
+off
+```
+
+デフォルトではoffの状態ですが、これを- -set-log-deniedオプションでallに設定し、すべてのパケットのログを取得します。
+
+```
+$ sudo firewall-cmd --set-log-denied=all
+success
+$ sudo firewall-cmd --get-log-denied
+all
+```
+
+### firewalldのログ取得
+外部のクライアントから設定を行ったホストに対して、firewalldで許可されていないポート443番にWebブラウザ等でアクセスしてみます。
+
+```
+$ sudo firewall-cmd --list-service
+cockpit dhcpv6-client http ssh
+```
+
+
+/var/log/kern.logにポート番号443番に対する通信を拒否した旨のログが出力されます。DPTが宛先のポートです。
+
 
 ```
 $ sudo tail /var/log/kern.log 
-Jul 19 19:21:07 vbox kernel: filter_IN_public_REJECT: IN=enp0s8 OUT= MAC=08:00:27:40:b7:96:d0:11:e5:1a:ce:3b:08:00 SRC=192.168.11.115 DST=192.168.11.108 LEN=64 TOS=0x00 PREC=0x00 TTL=64 ID=0 DF PROTO=TCP SPT=62290 DPT=80 WINDOW=65535 RES=0x00 CWR ECE SYN URGP=0
 Jul 19 19:21:07 vbox kernel: filter_IN_public_REJECT: IN=enp0s8 OUT= MAC=08:00:27:40:b7:96:d0:11:e5:1a:ce:3b:08:00 SRC=192.168.11.115 DST=192.168.11.108 LEN=64 TOS=0x00 PREC=0x00 TTL=64 ID=0 DF PROTO=TCP SPT=62291 DPT=443 WINDOW=65535 RES=0x00 CWR ECE SYN URGP=0
 ```
 
