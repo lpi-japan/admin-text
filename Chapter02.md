@@ -388,7 +388,7 @@ $ sudo firewall-cmd --remove-service=cockpit
 success
 ```
 
-この設定も一時的なもので、システムの再起動時にも許可したい場合には、- -permanentオプションをつけて設定を変更し、- -reloadオプションをつけて実行して設定を適用します。
+この設定も一時的なもので、システムの再起動時に許可したくない場合には、- -permanentオプションをつけて設定を変更し、- -reloadオプションをつけて実行して設定を適用します。
 
 ```
 $ sudo firewall-cmd --remove-service=cockpit --permanent
