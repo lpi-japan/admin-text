@@ -167,22 +167,9 @@ UDPでsyslogサーバーにログメッセージを送信する。
 TCPでsyslogサーバーにログメッセージを送信する。
 
 ### カーネルログのsyslog出力設定
-デフォルトの設定ではコメントアウトされて無効になっているカーネルからのログ出力の設定を有効にします。カーネルのログは、たとえばnftablesによるパケットフィルタリングのようなカーネルの機能がログを出力します。
+カーネルのログを別途出力するように設定します。カーネルのログは、たとえばnftablesによるパケットフィルタリングのようなカーネルの機能がログを出力します。
 
-firewalldの設定を変更して、拒否した通信をすべてログ出力するように変更します。
-
-```
-$ sudo firewall-cmd --get-log-denied
-off
-$ sudo firewall-cmd --set-log-denied=all
-success
-$ sudo firewall-cmd --get-log-denied
-all
-$ sudo firewall-cmd --reload
-success
-```
-
-この状態では、カーネルからのログ出力はすべて/var/log/messagesに記録されます。/etc/rsyslog.confを編集し、ファシリティがkern、プライオリティが全てのメッセージを/var/log/kern.logに出力する設定を追加します。
+/etc/rsyslog.confを編集し、ファシリティがkern、プライオリティが全てのメッセージを/var/log/kern.logに出力する設定を追加します。
 
 ```
 $ sudo vi /etc/rsyslog.conf
@@ -200,16 +187,16 @@ $ sudo systemctl restart rsyslog
 ```
 
 ### firewalldのログ設定変更
-firewalldはカーネルのnftablesを使用しているため、そのログはカーネルのログとして出力されます。デフォルトではfirewalldのログ出力は無効になっているので、有効にします。
+firewalldはカーネルのnftablesを使用しているため、そのログはカーネルのログとして出力されます。
 
-設定の状態を確認するには、firewall-cmdコマンドに- -get-log-deniedオプションをつけて実行します。
+firewalldの設定を変更して、拒否した通信をすべてログ出力するように変更します。firewalldのログ出力設定を確認するには、firewall-cmdコマンドに- -get-log-deniedオプションをつけて実行します。
 
 ```
 $ sudo firewall-cmd --get-log-denied
 off
 ```
 
-デフォルトではoffの状態ですが、これを- -set-log-deniedオプションでallに設定し、すべてのパケットのログを取得します。
+デフォルトではoffの状態ですが、- -set-log-deniedオプションでallに設定し、すべてのパケットのログを取得します。
 
 ```
 $ sudo firewall-cmd --set-log-denied=all
@@ -219,14 +206,16 @@ all
 ```
 
 ### firewalldのログ取得
-ホストOS上で動作するWebブラウザなど外部のクライアントから、設定を行ったホストに対して、firewalldで許可されていないポート443番にWebブラウザ等でアクセスしてみます。
+ホストOS上で動作するWebブラウザなど外部のクライアントから設定を行ったホストに対して、firewalldで許可されていないポート443番にWebブラウザ等でアクセスしてみます。
 
-firewalldの設定は以下の通りです。
+firewalldの設定を確認します。
 
 ```
 $ sudo firewall-cmd --list-service
 cockpit dhcpv6-client http ssh
 ```
+
+httpのみ許可されており、httpsは許可されていません。
 
 Webブラウザに入力するアドレスは、プロトコルとしてhttpsで指定してポート番号443番にアクセスするようにします。
 
@@ -238,7 +227,7 @@ https://ホストのIPアドレス（192.168.56.101）
 
 ```
 $ sudo tail /var/log/kern.log 
-Jul 19 19:21:07 vbox kernel: filter_IN_public_REJECT: IN=enp0s8 OUT= MAC=08:00:27:40:b7:96:d0:11:e5:1a:ce:3b:08:00 SRC=192.168.11.115 DST=192.168.56.101 LEN=64 TOS=0x00 PREC=0x00 TTL=64 ID=0 DF PROTO=TCP SPT=62291 DPT=443 WINDOW=65535 RES=0x00 CWR ECE SYN URGP=0
+Jul 19 19:21:07 localhost kernel: filter_IN_public_REJECT: IN=enp0s8 OUT= MAC=08:00:27:40:b7:96:d0:11:e5:1a:ce:3b:08:00 SRC=192.168.56.1 DST=192.168.56.101 LEN=64 TOS=0x00 PREC=0x00 TTL=64 ID=0 DF PROTO=TCP SPT=62291 DPT=443 WINDOW=65535 RES=0x00 CWR ECE SYN URGP=0
 ```
 
 ### リモートホストのログをUDPで受け取る
