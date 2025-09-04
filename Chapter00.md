@@ -167,3 +167,25 @@ https://linuc.org/about/01.html
 \pagebreak
 
 
+### LinuCの認定取得に向けた学習方法 {.unlisted .unnumbered}
+LinuCの特徴の１つは学習環境が充実していることです。LinuCの認定取得に必要となるスキルや知識を身につけるには　体系的な学習として技術解説書を読むだけではなく、実際に手を動かして確認し問題集を繰り返し解いて理解を定着させる方法を推奨しています。
+
+体系的にしっかりとした教育を実施している認定校や認定教材のほか、様々な学習コンテンツや無料で参加できるセミナーなどが豊富に用意されています。
+
+詳しくは以下のリンク先「学習のすすめ方」をご覧ください。
+
+```
+https://linuc.org/measures/
+```
+
+![https://linuc.org/measures/](image/Ch00/QR_measures.png){width=25%}
+
+LinuCの出題範囲を網羅したLPI-Japan認定教材については以下のリンク先「認定教材」をご覧ください。
+
+```
+https://linuc.org/measures/textbook/
+```
+
+![https://linuc.org/measures/textbook/](image/Ch00/QR_textbook.png){width=25%}
+
+\pagebreak
