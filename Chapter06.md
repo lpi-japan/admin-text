@@ -77,7 +77,7 @@ rsyslogは、従来のsyslogデーモン（syslogd）に置き換わる、マル
 |news|NetNews関連|
 |security|authと同じ|
 |syslog|syslogd自身のログ|
-|user|ユーザアプリケーションのログ|
+|user|ユーザーアプリケーションのログ|
 |uucp|uucp転送を行うプログラムのログ|
 |local0からlocal7|独自のプログラムで利用可能なfacility|
 
@@ -631,5 +631,6 @@ Webサーバーが動作しているLinux上のWebブラウザからローカル
 ![httpで絞り込みを行います](image/Ch06/wireshark2.png){width=75%}
 
 \pagebreak
+
 
 
