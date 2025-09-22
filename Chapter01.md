@@ -304,7 +304,7 @@ gpasswd -d 除外するユーザー名 グループ名
 
 ```
 $ sudo gpasswd -d suzuki eigyou
-ユーザ suzuki をグループ eigyou から削除
+ユーザー suzuki をグループ eigyou から削除
 $ id suzuki
 uid=1001(suzuki) gid=1001(suzuki) groups=1001(suzuki)
 ```
@@ -324,7 +324,7 @@ eigyouグループからユーザーsuzukiが除外されているのが分か�
 
 ```
 $ sudo gpasswd -a suzuki eigyou
-ユーザ suzuki をグループ eigyou に追加
+ユーザー suzuki をグループ eigyou に追加
 $ id suzuki
 uid=1001(suzuki) gid=1001(suzuki) groups=1001(suzuki),5000(eigyou)
 ```
@@ -661,11 +661,11 @@ $ ls -l /var/spool/mail
 $ sudo useradd testuser
 $ sudo groupadd testgroup
 $ sudo gpasswd -a testuser testgroup
-ユーザ testuser をグループ testgroup に追加
+ユーザー testuser をグループ testgroup に追加
 $ id testuser
 uid=1002(testuser) gid=1002(testuser) groups=1002(testuser),5001(testgroup)
 $ sudo groupdel testuser
-groupdel: ユーザ 'testuser' のプライマリグループは削除できません。
+groupdel: ユーザー 'testuser' のプライマリグループは削除できません。
 $ sudo groupdel testgroup
 $ id testuser
 uid=1002(testuser) gid=1002(testuser) groups=1002(testuser)
@@ -1453,4 +1453,5 @@ sudo コマンドを使ってシステムを再起動します。
 システムがシャットダウンされ、再起動するのを確認します。
 
 \pagebreak
+
 
