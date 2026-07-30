@@ -8,6 +8,7 @@ on:
       - feature/*
     paths:
       - Dockerfile
+      - docker/**
       - .github/workflows/build-container.yaml
 
 jobs:
