@@ -19,6 +19,12 @@ pre {
     color: #000;
     background-color: #ccc;
 }
+/* Belt-and-suspenders for readers that honor linked CSS. Kindle Previewer
+   needs the embedded skylighting rule changed; build-epub.sh does that via
+   -V highlighting-css (display:inline-block -> inline). */
+pre > code.sourceCode > span {
+  display: inline;
+}
 p, ul, ol, dl, pre, table {
     font-family: "ShinGo Regular","ShinGo R","新ゴR","新ゴ R", sans-serif;
     font-size: 0.875em;
