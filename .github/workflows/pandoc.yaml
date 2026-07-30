@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        shell: sh
+        shell: bash
         working-directory: ${{ inputs.working-directory }}
     container:
       image: ghcr.io/lpi-japan/admin-text:latest
@@ -46,33 +46,41 @@ jobs:
         password: ${{ secrets.github_token }}
     steps:
       - uses: actions/checkout@v5
-      - run: |
-          chapters=$(ls -1 Chapter*.md | grep -v 'Chapter00.md' | sort -V | tr '\n' ' ' | sed 's/ $//')
-          pandoc Chapter00.md -o preface.tex # 前書きだけ目次の前に出すために先にtex化しておく
-          # 電子版 = 表紙あり、製本・kindleペーパーバック用 = 表紙なし (表紙は別納)
-          # まずmd → texまで変換しtex → pdfだけ表紙有無分岐するとより高速だが、toc解決の複雑さを回避するため全行程を2周する
-          pandoc -d config-pdf.yaml --template template.tex -B preface.tex ${chapters} -o guide.pdf --verbose 2>&1 | grep -v '^  '
-          pandoc -d config-pdf.yaml --template template.tex -B preface.tex ${chapters} -M no-cover=true -o guide_no_cover.pdf --verbose 2>&1 | grep -v '^  '
-      - uses: actions/upload-artifact@v6
+      - name: Build PDF
+        run: |
+          chmod +x ./build-pdf.sh
+          ./build-pdf.sh
+      - name: Upload PDF artifacts
+        if: always()
+        uses: actions/upload-artifact@v7
         with:
-          name: pdf-outputs
           path: |
-            ${{ inputs.working-directory }}/guide.pdf
-            ${{ inputs.working-directory }}/guide_no_cover.pdf
+            ${{ inputs.working-directory }}/tmp/admintext_*.pdf
+          archive: false
+          if-no-files-found: error
+
   build-epub:
     runs-on: ubuntu-latest
     defaults:
       run:
-        shell: sh
+        shell: bash
         working-directory: ${{ inputs.working-directory }}
     container:
-      image: pandoc/core:3.1.1.0
+      # PDF と同じ GHCR 画像（3.9 + pinned crossref）。cat 結合は使わない。
+      image: ghcr.io/lpi-japan/admin-text:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.github_token }}
     steps:
       - uses: actions/checkout@v5
-      - id: list-items
-        run: cat $(ls -1 Chapter*.md | sort -V | tr '\n' ' ' | sed 's/ $//') | sed 's/^####.*/#& {-}/' > guide.md
-      - run: /usr/bin/awk 'BEGIN{go=0;}{ if (go==1){print;} else {if($$0 ~ /^#/) { go=1;print;}}}' guide.md | pandoc -t epub3 -F pandoc-crossref -o guide.epub -N -M "crossrefYaml=crossref.yaml" --metadata-file=config-epub.yaml --epub-cover-image=image/Cover/電子版表紙_300dpi_2480x3508.png --css=epub.css
-      - uses: actions/upload-artifact@v6
+      - name: Build EPUB
+        run: |
+          chmod +x ./build-epub.sh ./scripts/with-build-image.sh
+          ./build-epub.sh
+      - name: Upload EPUB artifact
+        if: always()
+        uses: actions/upload-artifact@v7
         with:
-          name: guide.epub
-          path: ${{ inputs.working-directory }}/guide.epub
+          path: ${{ inputs.working-directory }}/tmp/admintext_*.epub
+          archive: false
+          if-no-files-found: error

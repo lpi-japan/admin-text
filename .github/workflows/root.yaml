@@ -5,11 +5,19 @@ on:
     branches:
       - main
       - feature/*
+      - cursor/*
     paths:
       - Chapter*.md
       - image/**
       - listing.tex
       - template.tex
+      - config-pdf.yaml
+      - config-epub.yaml
+      - crossref.yaml
+      - epub.css
+      - build-pdf.sh
+      - build-epub.sh
+      - scripts/**
       - .github/workflows/pandoc.yaml
       - .github/workflows/root.yaml
 
