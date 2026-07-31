@@ -1,6 +1,7 @@
 name: root build
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -18,11 +19,77 @@ on:
       - build-pdf.sh
       - build-epub.sh
       - scripts/**
+      - Dockerfile
+      - docker/**
       - .github/workflows/pandoc.yaml
+      - .github/workflows/build-container.yaml
       - .github/workflows/root.yaml
 
+permissions:
+  contents: read
+
 jobs:
-  build:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      docker: ${{ steps.set.outputs.docker }}
+      manuscript: ${{ steps.set.outputs.manuscript }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dorny/paths-filter@v4
+        id: filter
+        if: github.event_name == 'push'
+        with:
+          filters: |
+            docker:
+              - 'Dockerfile'
+              - 'docker/**'
+              - '.github/workflows/build-container.yaml'
+            manuscript:
+              - 'Chapter*.md'
+              - 'image/**'
+              - 'listing.tex'
+              - 'template.tex'
+              - 'config-pdf.yaml'
+              - 'config-epub.yaml'
+              - 'crossref.yaml'
+              - 'epub.css'
+              - 'build-pdf.sh'
+              - 'build-epub.sh'
+              - 'scripts/**'
+              - '.github/workflows/pandoc.yaml'
+              - '.github/workflows/root.yaml'
+      - id: set
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "docker=true" >> "$GITHUB_OUTPUT"
+            echo "manuscript=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "docker=${{ steps.filter.outputs.docker }}" >> "$GITHUB_OUTPUT"
+            echo "manuscript=${{ steps.filter.outputs.manuscript }}" >> "$GITHUB_OUTPUT"
+          fi
+
+  build-container:
+    needs: changes
+    if: needs.changes.outputs.docker == 'true'
+    permissions:
+      contents: read
+      packages: write
+    secrets: inherit
+    uses: ./.github/workflows/build-container.yaml
+
+  build-manuscript:
+    needs: [changes, build-container]
+    if: |
+      always() && !cancelled() &&
+      needs.changes.outputs.manuscript == 'true' &&
+      (needs.build-container.result == 'success' || needs.build-container.result == 'skipped')
+    permissions:
+      contents: read
+      packages: read
+    secrets: inherit
     uses: ./.github/workflows/pandoc.yaml
     with:
       working-directory: .
+      # この run で image を建てたときはその SHA タグ。建てなかったときは latest にフォールバック。
+      image_ref: ${{ needs.build-container.outputs.image_ref || 'ghcr.io/lpi-japan/admin-text:latest' }}

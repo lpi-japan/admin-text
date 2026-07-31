@@ -4,6 +4,11 @@ on:
       working-directory:
         required: true
         type: string
+      image_ref:
+        description: GHCR image to run PDF/EPUB builds in
+        required: false
+        type: string
+        default: ghcr.io/lpi-japan/admin-text:latest
 
 jobs:
   check-consistency:
@@ -40,7 +45,7 @@ jobs:
         shell: bash
         working-directory: ${{ inputs.working-directory }}
     container:
-      image: ghcr.io/lpi-japan/admin-text:latest
+      image: ${{ inputs.image_ref }}
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.github_token }}
@@ -48,14 +53,14 @@ jobs:
       - uses: actions/checkout@v5
       - name: Build PDF
         run: |
+          echo "Using image: ${{ inputs.image_ref }}"
           chmod +x ./build-pdf.sh
           ./build-pdf.sh
       - name: Upload PDF artifacts
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          path: |
-            ${{ inputs.working-directory }}/tmp/admintext_*.pdf
+          path: tmp/admintext_*.pdf
           archive: false
           if-no-files-found: error
 
@@ -66,8 +71,7 @@ jobs:
         shell: bash
         working-directory: ${{ inputs.working-directory }}
     container:
-      # PDF と同じ GHCR 画像（3.9 + pinned crossref）。cat 結合は使わない。
-      image: ghcr.io/lpi-japan/admin-text:latest
+      image: ${{ inputs.image_ref }}
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.github_token }}
@@ -75,12 +79,13 @@ jobs:
       - uses: actions/checkout@v5
       - name: Build EPUB
         run: |
+          echo "Using image: ${{ inputs.image_ref }}"
           chmod +x ./build-epub.sh ./scripts/with-build-image.sh
           ./build-epub.sh
       - name: Upload EPUB artifact
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          path: ${{ inputs.working-directory }}/tmp/admintext_*.epub
+          path: tmp/admintext_*.epub
           archive: false
           if-no-files-found: error
