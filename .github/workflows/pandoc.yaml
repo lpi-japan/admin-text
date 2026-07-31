@@ -5,10 +5,9 @@ on:
         required: true
         type: string
       image_ref:
-        description: GHCR image to run PDF/EPUB builds in
-        required: false
+        description: GHCR image built in this run (SHA tag)
+        required: true
         type: string
-        default: ghcr.io/lpi-japan/admin-text:latest
 
 jobs:
   check-consistency:
@@ -40,6 +39,9 @@ jobs:
 
   build-pdf:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
     defaults:
       run:
         shell: bash
@@ -48,7 +50,7 @@ jobs:
       image: ${{ inputs.image_ref }}
       credentials:
         username: ${{ github.actor }}
-        password: ${{ secrets.github_token }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v5
       - name: Build PDF
@@ -66,6 +68,9 @@ jobs:
 
   build-epub:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
     defaults:
       run:
         shell: bash
@@ -74,7 +79,7 @@ jobs:
       image: ${{ inputs.image_ref }}
       credentials:
         username: ${{ github.actor }}
-        password: ${{ secrets.github_token }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v5
       - name: Build EPUB
