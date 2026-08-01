@@ -38,11 +38,15 @@ jobs:
           exit $ERROR
 
   # 通常PDF / 表紙なしPDF / EPUB を並列。upload-artifact@v7 の archive:false は1ファイル制限。
+  # 表紙パスに日本語があるため、コンテナ内は UTF-8 ロケール必須（未設定だと pandoc が U+FFFD で落ちる）。
   build-pdf:
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: read
+    env:
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
     defaults:
       run:
         shell: bash
@@ -75,6 +79,9 @@ jobs:
     permissions:
       contents: read
       packages: read
+    env:
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
     defaults:
       run:
         shell: bash
@@ -104,6 +111,9 @@ jobs:
     permissions:
       contents: read
       packages: read
+    env:
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
     defaults:
       run:
         shell: bash
