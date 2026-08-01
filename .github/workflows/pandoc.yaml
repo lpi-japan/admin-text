@@ -37,6 +37,7 @@ jobs:
           if [ $ERROR -eq 0 ]; then echo "Version/Date OK: $PDF_VER / $EPUB_DATE"; fi
           exit $ERROR
 
+  # 通常PDF / 表紙なしPDF / EPUB を並列。upload-artifact@v7 の archive:false は1ファイル制限。
   build-pdf:
     runs-on: ubuntu-latest
     permissions:
@@ -57,12 +58,44 @@ jobs:
         run: |
           echo "Using image: ${{ inputs.image_ref }}"
           chmod +x ./build-pdf.sh
-          ./build-pdf.sh
-      - name: Upload PDF artifacts
+          ./build-pdf.sh cover
+      - name: Upload PDF artifact
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          path: tmp/admintext_*.pdf
+          # no_cover と区別（archive:false は1ファイルのみ）
+          path: |
+            tmp/admintext_*.pdf
+            !tmp/admintext_*_no_cover.pdf
+          archive: false
+          if-no-files-found: error
+
+  build-pdf-no-cover:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ inputs.working-directory }}
+    container:
+      image: ${{ inputs.image_ref }}
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build PDF (no cover)
+        run: |
+          echo "Using image: ${{ inputs.image_ref }}"
+          chmod +x ./build-pdf.sh
+          ./build-pdf.sh no-cover
+      - name: Upload PDF no-cover artifact
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          path: tmp/admintext_*_no_cover.pdf
           archive: false
           if-no-files-found: error
 

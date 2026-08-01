@@ -7,8 +7,18 @@ VER="$(grep -oP 'Ver\.\d+\.\d+\.\d+' "${ROOT_DIR}/config-pdf.yaml" | head -1 | s
 OUTPUT_PDF="${OUT_DIR}/admintext_${VER}.pdf"
 OUTPUT_NO_COVER="${OUT_DIR}/admintext_${VER}_no_cover.pdf"
 
+# cover | no-cover | all（省略時は all。ローカル一括用）
+MODE="${1:-all}"
+case "${MODE}" in
+  cover|no-cover|all) ;;
+  *)
+    echo "usage: $0 [cover|no-cover|all]" >&2
+    exit 2
+    ;;
+esac
+
 if ! command -v pandoc >/dev/null 2>&1 || ! command -v lualatex >/dev/null 2>&1; then
-  exec "${ROOT_DIR}/scripts/with-build-image.sh" "./build-pdf.sh"
+  exec "${ROOT_DIR}/scripts/with-build-image.sh" "./build-pdf.sh ${MODE}"
 fi
 
 mkdir -p "${OUT_DIR}"
@@ -23,16 +33,33 @@ if ((${#chapters[@]} == 0)); then
   exit 1
 fi
 
-(
-  cd "${ROOT_DIR}"
+build_one() {
+  local no_cover="$1"
+  local output="$2"
+  local -a extra=()
+  if [[ "${no_cover}" == "1" ]]; then
+    extra=(-M no-cover=true)
+  fi
   pandoc Chapter00.md -o preface.tex
   pandoc -d config-pdf.yaml --template template.tex -B preface.tex "${chapters[@]}" \
-    -o "${OUTPUT_PDF}"
-  pandoc -d config-pdf.yaml --template template.tex -B preface.tex "${chapters[@]}" \
-    -M no-cover=true -o "${OUTPUT_NO_COVER}"
+    "${extra[@]}" -o "${output}"
   rm -f preface.tex
-)
+  echo "Output: ${output}"
+  ls -lh "${output}"
+}
 
-echo "Output: ${OUTPUT_PDF}"
-echo "Output: ${OUTPUT_NO_COVER}"
-ls -lh "${OUTPUT_PDF}" "${OUTPUT_NO_COVER}"
+(
+  cd "${ROOT_DIR}"
+  case "${MODE}" in
+    cover)
+      build_one 0 "${OUTPUT_PDF}"
+      ;;
+    no-cover)
+      build_one 1 "${OUTPUT_NO_COVER}"
+      ;;
+    all)
+      build_one 0 "${OUTPUT_PDF}"
+      build_one 1 "${OUTPUT_NO_COVER}"
+      ;;
+  esac
+)
