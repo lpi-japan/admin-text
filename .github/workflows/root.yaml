@@ -1,28 +1,29 @@
 name: root build
 
+# ブランチ名制限なし・path 制限なし。
+# 毎回キャッシュ付きで image を建て、その SHA タグで原稿をビルドする。
 on:
+  workflow_dispatch:
   push:
-    branches:
-      - main
-      - feature/*
-      - cursor/*
-    paths:
-      - Chapter*.md
-      - image/**
-      - listing.tex
-      - template.tex
-      - config-pdf.yaml
-      - config-epub.yaml
-      - crossref.yaml
-      - epub.css
-      - build-pdf.sh
-      - build-epub.sh
-      - scripts/**
-      - .github/workflows/pandoc.yaml
-      - .github/workflows/root.yaml
+
+permissions:
+  contents: read
 
 jobs:
-  build:
+  build-container:
+    permissions:
+      contents: read
+      packages: write
+    secrets: inherit
+    uses: ./.github/workflows/build-container.yaml
+
+  build-manuscript:
+    needs: build-container
+    permissions:
+      contents: read
+      packages: read
+    secrets: inherit
     uses: ./.github/workflows/pandoc.yaml
     with:
       working-directory: .
+      image_ref: ${{ needs.build-container.outputs.image_ref }}

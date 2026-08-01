@@ -4,6 +4,10 @@ on:
       working-directory:
         required: true
         type: string
+      image_ref:
+        description: GHCR image built in this run (SHA tag)
+        required: true
+        type: string
 
 jobs:
   check-consistency:
@@ -33,54 +37,103 @@ jobs:
           if [ $ERROR -eq 0 ]; then echo "Version/Date OK: $PDF_VER / $EPUB_DATE"; fi
           exit $ERROR
 
+  # 通常PDF / 表紙なしPDF / EPUB を並列。upload-artifact@v7 の archive:false は1ファイル制限。
+  # 表紙パスに日本語があるため、コンテナ内は UTF-8 ロケール必須（未設定だと pandoc が U+FFFD で落ちる）。
   build-pdf:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    env:
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
     defaults:
       run:
         shell: bash
         working-directory: ${{ inputs.working-directory }}
     container:
-      image: ghcr.io/lpi-japan/admin-text:latest
+      image: ${{ inputs.image_ref }}
       credentials:
         username: ${{ github.actor }}
-        password: ${{ secrets.github_token }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v5
       - name: Build PDF
         run: |
+          echo "Using image: ${{ inputs.image_ref }}"
           chmod +x ./build-pdf.sh
-          ./build-pdf.sh
-      - name: Upload PDF artifacts
+          ./build-pdf.sh cover
+      - name: Upload PDF artifact
         if: always()
         uses: actions/upload-artifact@v7
         with:
+          # no_cover と区別（archive:false は1ファイルのみ）
           path: |
-            ${{ inputs.working-directory }}/tmp/admintext_*.pdf
+            tmp/admintext_*.pdf
+            !tmp/admintext_*_no_cover.pdf
+          archive: false
+          if-no-files-found: error
+
+  build-pdf-no-cover:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    env:
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ inputs.working-directory }}
+    container:
+      image: ${{ inputs.image_ref }}
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build PDF (no cover)
+        run: |
+          echo "Using image: ${{ inputs.image_ref }}"
+          chmod +x ./build-pdf.sh
+          ./build-pdf.sh no-cover
+      - name: Upload PDF no-cover artifact
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          path: tmp/admintext_*_no_cover.pdf
           archive: false
           if-no-files-found: error
 
   build-epub:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    env:
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
     defaults:
       run:
         shell: bash
         working-directory: ${{ inputs.working-directory }}
     container:
-      # PDF と同じ GHCR 画像（3.9 + pinned crossref）。cat 結合は使わない。
-      image: ghcr.io/lpi-japan/admin-text:latest
+      image: ${{ inputs.image_ref }}
       credentials:
         username: ${{ github.actor }}
-        password: ${{ secrets.github_token }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v5
       - name: Build EPUB
         run: |
+          echo "Using image: ${{ inputs.image_ref }}"
           chmod +x ./build-epub.sh ./scripts/with-build-image.sh
           ./build-epub.sh
       - name: Upload EPUB artifact
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          path: ${{ inputs.working-directory }}/tmp/admintext_*.epub
+          path: tmp/admintext_*.epub
           archive: false
           if-no-files-found: error
