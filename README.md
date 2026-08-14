@@ -7,3 +7,13 @@ LPI-Japanは、Linux/OSS技術者教育に利用していただくことを目�
 簡単な登録でPDF版がダウンロードできます。
 
 https://linuc.org/textbooks/admin/
+
+## ローカルビルド
+
+原稿とメタデータ（`config-*.yaml`）はリポジトリ直下。Docker / pandoc スクリプトは `build/`。
+
+```bash
+docker build -t ghcr.io/lpi-japan/admin-text:local build
+./build/build-pdf.sh
+./build/build-epub.sh
+```
